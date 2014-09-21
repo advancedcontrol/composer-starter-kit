@@ -1,0 +1,27 @@
+{
+  "name": "composer-starter-kit",
+  "dependencies": {
+    "jquery": ">=2.1.x",
+    "angular": ">=1.3",
+    "angular-resource": ">=1.3",
+    "angular-sanitize": ">=1.3",
+    "angular-animate": ">=1.3",
+
+    "angular-growl-notifications": "0.x",
+    "animate.css": "latest",
+
+    "angular-safeapply": "latest",
+    "oauth-interceptor": "latest",
+    "composer": "latest",
+    "easy-animate": "latest",
+    "angular-gesture": "latest",
+    "orbicular": "latest",
+
+    "angular-range-slider": "latest",
+    "angular-named-toggle": "latest",
+    "angular-fancy-tab": "latest",
+    "angular-button-group": "latest",
+    "angular-progress": "latest"
+  },
+  "devDependencies": {}
+}

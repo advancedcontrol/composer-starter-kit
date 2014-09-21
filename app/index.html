@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>ACA Starter Kit</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+    <!-- Hide content until page is loaded -->
+    <style>
+        div#loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding-top: 4em;
+            text-align: center;
+
+            background-color: white;
+            z-index: 999999;
+        }
+
+        .ng-cloak, .hide {
+            display: none;
+        }
+    </style>
+
+    <!-- build:css styles/all.css -->
+
+    <!-- Base styles for all projects -->
+    <link rel="stylesheet" href="branding/spinner.css">
+    <link rel="stylesheet" href="core.css">
+
+    <!-- Application styles -->
+    <link rel="stylesheet" href="components/layout.css">
+    <link rel="stylesheet" href="components/main/main.css">
+
+    <!-- Define branding in its own style sheet -->
+    <link rel="stylesheet" href="branding/aca/base.css">
+
+    <!-- endbuild -->
+  </head>
+  <body ng-app="AcaEngine">
+    <!-- Loading Indicator -->
+    <div id="loading" ng-if="ready !== true">
+        <h1>Loading...</h1>
+        <div>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+
+    <!-- System definition -->
+    <main co-system="'sys-B0'"
+         ng-include="'components/main/main.html'">
+    </main>
+
+
+    <!-- Hidden iframe for background oauth -->
+    <div co-auth
+        provider="AcaEngine"
+        login-type="Directed"
+        login="developer"
+        class="background-oauth"
+    ></div>
+
+
+    <!-- build:js scripts/app.js -->
+
+    <!-- AngularJS Core -->
+    <script src="jquery/dist/jquery.js"></script>
+    <script src="angular/angular.js"></script>
+    <script src="angular-resource/angular-resource.js"></script>
+    <script src="angular-animate/angular-animate.js"></script>
+    <script src="angular-sanitize/angular-sanitize.js"></script>
+
+    <!-- Gesture support -->
+    <script src="WeakMap/weakmap.js"></script>
+    <script src="pointerevents-polyfill/pointerevents.dev.js"></script>
+    <script src="angular-gesture/ngGesture/gesture.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngClick.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngHold.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngSwipe.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngTouch.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngDrag.js"></script>
+
+    <!-- Authentication -->
+    <script src="angular-safeapply/safe-apply.js"></script>
+    <script src="co-storage/storage.js"></script>
+    <script src="oauth-interceptor/intercept/communication.js"></script>
+    <script src="oauth-interceptor/intercept/providers/coauth.js"></script>
+
+    <!-- ACA Engine Library -->
+    <script src="composer/src/ba-debug.js"></script>
+    <script src="composer/src/composer.js"></script>
+    <script src="composer/src/resources.js"></script>
+    <script src="composer/src/websocket.js"></script>
+    <!--
+        Replace composer resources and websocket with mocksocket
+        to emulate a control server for interface building
+        <script src="/mocksocket.js"></script>
+    -->
+    <script src="composer/src/directives.js"></script>
+
+    <!-- Optional Helpers -->
+    <script src="easy-animate/requestAnimationFrame.js"></script>
+    <script src="easy-animate/angular-animate.js"></script>
+
+    <!-- UI Widgets -->
+    <script src="angular-range-slider/angular-range-slider.js"></script>
+    <script src="angular-fancy-tab/fancy-tab.js"></script>
+    <script src="angular-button-group/button-group.js"></script>
+    <script src="angular-progress/angular-progress.js"></script>
+    <script src="angular-named-toggle/angular-named-toggle.js"></script>
+
+
+    <!-- Application Components -->
+    <script src="components/app.js"></script>
+    <script src="components/settings.js"></script>
+
+    <!-- endbuild -->
+  </body>
+</html>

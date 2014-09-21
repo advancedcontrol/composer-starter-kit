@@ -1,0 +1,70 @@
+@import "compass";
+
+// Supported browsers
+$browser-minimum-versions: ("chrome": "19", "firefox": "6", "ie": "10", "safari": "5") !global;
+
+// Default box sizing
+* {
+    @include box-sizing(border-box);
+}
+
+// Don't use OS defaults
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+//  w3c version for setting the view port (similar to apples meta tag)
+//  100% is like device-width however for the current window size
+@-webkit-viewport {
+    width: 100%;
+}
+@-moz-viewport {
+    width: 100%;
+}
+@-ms-viewport {
+    width: 100%;
+}
+@-o-viewport {
+    width: 100%;
+} 
+@viewport {
+    width: 100%;
+}
+
+// This may promote the layer to a composited layer.
+.promote-layer {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    // Make room for the iOS header
+    &.ios-app-mode {
+        padding-top: 20px;
+    }
+
+    &> main {
+        position: relative;
+    }
+
+    // Authentication occurs in the background
+    &> div.background-oauth {
+        width: 2px;
+        height: 2px;
+
+        position: fixed;
+        top: -10px;
+        left: -10px;
+    }
+}

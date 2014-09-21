@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Login</title>
+    <!--[if lte IE 9]> <script>window.no_postMessage = true;</script> <![endif]-->
+  </head>
+  <body>
+    <script>
+      var run_on_load = function() {
+        var parent = window.opener || window.parent || window.top,
+            origin = '*',
+            message = 'retry';
+
+        try {
+          if (window.no_postMessage && window.opener) {
+            // IE9 or below (popup hack)
+            parent.quaypay_postMessage(message, window);
+          } else {
+            // Standards based browsers
+            parent.postMessage(message, origin);
+          }
+        } catch(e) {}
+
+        if (window.opener) {
+          window.close();
+        } else if (window.self === window.top) {
+          // redirect to root on error (instead of leaving a blank page)
+          window.location = window.location.protocol + '//' + window.location.host + '/';
+        }
+      };
+      if (window.addEventListener) {
+        window.addEventListener("DOMContentLoaded", run_on_load);
+      } else {
+        run_on_load();  // IE 8
+      }
+    </script>
+  </body>
+</html>
