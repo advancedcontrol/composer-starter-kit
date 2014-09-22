@@ -3,6 +3,8 @@
 A quick start scaffold for building interactive, web based user interfaces for
 ACA Engine.
 
+![Screenshot](https://cloud.githubusercontent.com/assets/368013/4352954/cf31c986-422c-11e4-8e59-17e29cc32a8c.png)
+
 ## Getting Started:
 
 1. Install Git
