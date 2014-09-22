@@ -24,11 +24,12 @@
             text-align: center;
 
             background-color: white;
+            color: black;
             z-index: 999999;
         }
 
-        .ng-cloak, .hide {
-            display: none;
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
         }
     </style>
 
@@ -49,8 +50,12 @@
   </head>
   <body ng-app="AcaEngine">
     <!-- Loading Indicator -->
-    <div id="loading" ng-if="ready !== true">
-        <h1>Loading...</h1>
+    <div id="loading" ng-if="$composerConnected !== true">
+        <h1 ng-if="loaded !== true">Loading...</h1>
+        <div ng-cloak ng-if="loaded === true">
+            <h1>Connecting...</h1>
+            <p>Attempting to contact the control server. Check network connectivity and try reloading this page if this message persists</p>
+        </div>
         <div>
             <div class="spinner"></div>
         </div>
@@ -58,7 +63,7 @@
 
 
     <!-- System definition -->
-    <main co-system="'sys-B0'"
+    <main co-system="controlSystem"
          ng-include="'components/main/main.html'">
     </main>
 
@@ -100,13 +105,15 @@
     <!-- ACA Engine Library -->
     <script src="composer/src/ba-debug.js"></script>
     <script src="composer/src/composer.js"></script>
-    <script src="composer/src/resources.js"></script>
-    <script src="composer/src/websocket.js"></script>
     <!--
-        Replace composer resources and websocket with mocksocket
-        to emulate a control server for interface building
-        <script src="/mocksocket.js"></script>
+        Replace mocksocket with resources and websocket to
+        connect to a live server.
+        NOTE: You may also have to enable auth in settings.
+        
+        <script src="composer/src/resources.js"></script>
+        <script src="composer/src/websocket.js"></script>
     -->
+    <script src="composer/src/mocksocket.js"></script>
     <script src="composer/src/directives.js"></script>
 
     <!-- Optional Helpers -->

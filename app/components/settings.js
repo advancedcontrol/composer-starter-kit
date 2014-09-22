@@ -17,7 +17,11 @@
     
         // The authentication service doesn't have to be hosted on the same domain
         // as the control service - hence the complexity of this configuration
-        .config(['$composerProvider', function(comms) {
+        .config([
+            '$composerProvider',
+            '$locationProvider',
+
+        function(comms) {
             // Point these variables to your ACA Engine instance
             // to start interacting with it using ACA Composer
             comms.port  = 3000;
@@ -33,6 +37,7 @@
 
             // If you would like to use Authentication then you
             // must point this configuration to your compatible oauth server
+            /*
             comms.useService({
                 id: 'AcaEngine',
                 scope: 'public',
@@ -42,6 +47,25 @@
                 client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
                 api_endpoint: 'http://localhost:3000/control/',
                 proactive: true
+            });
+            */
+        }])
+
+        // Grab the system id from the URL
+        .run([
+            '$location',
+            '$rootScope',
+
+        function ($location, $rootScope) {
+            $rootScope.$watch(function () {
+                return $location.hash();
+            }, function (value) {
+                if (value === '') {
+                    // default system?
+                    $rootScope.controlSystem = 'sys-B0';
+                } else {
+                    $rootScope.controlSystem = value;
+                };
             });
         }]);
 

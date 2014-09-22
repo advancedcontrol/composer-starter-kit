@@ -1,4 +1,36 @@
 
-<p>Hello World</p>
-<div toggle-switch></div>
-<div ios-toggle></div>
+<h1>Example APP</h1>
+<p>
+    Below is a list of the devices in the system specified and their power status <br />
+    The power switch will be grayed out if a device is not connected
+</p>
+
+<!--
+    If the system exists, show the interface
+-->
+<div ng-if="coSystem.id">
+    <div module-list="modules">
+        <div ng-repeat="module in modules">
+            <ol co-module="module" indices-of="module as indices">
+                <li ng-repeat="index in indices" co-index="index" co-bind="'connected'">
+                    {{module}}:
+
+                    <!--
+                        co-bind keeps the model == power up to date
+                        exec (in shortcut form) calls the power function on the module if power is changed
+                        toggle-switch indicated we want to show a toggle switch here
+                        disabled is used to disable the toggle if we are not connected to the device.
+                    -->
+                    Power <div co-bind="'power'" exec toggle-switch disabled="!connected" model="power"></div>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<!--
+    If the system does not exist show an error here
+-->
+<div ng-if="!coSystem.id">
+    <h2>System "{{coSystem.$name}}" Not Found</h2>
+</div>

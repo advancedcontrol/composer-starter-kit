@@ -57,7 +57,7 @@
         }
 
         // Remove the loading indicator
-        $rootScope.ready = true;
+        $rootScope.loaded = true;
     }]);
 
 }(this.angular));
