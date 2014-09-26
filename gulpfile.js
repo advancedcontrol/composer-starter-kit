@@ -14,6 +14,7 @@ var url = require('url');
 var spawn = require('child_process').spawn;
 var filed = require('filed');
 var fs = require('fs');
+var manifest = require('gulp-manifest');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 9',
@@ -243,12 +244,25 @@ gulp.task('select2:copy', function () {
     .pipe($.size({title: 'js:copy'}));
 });
 
+// Makes the site available offline.
+// Requires the site to be cache aware
+gulp.task('prod:manifest', function() {
+  gulp.src(['dist/**/*'])
+    .pipe(manifest({
+      hash: true,
+      network: ['http://*', 'https://*', '*'],
+      filename: 'app.appcache',
+      exclude: 'app.appcache'
+     }))
+    .pipe(gulp.dest('dist'));
+});
+
 // Clean Output Directory
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('prod:styles', 'dev:images', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'js:copy', 'select2:copy', cb);
+  runSequence('prod:styles', 'dev:images', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'js:copy', 'select2:copy', 'prod:manifest', cb);
 });
 
 // Load custom tasks from the `tasks` directory

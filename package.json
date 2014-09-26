@@ -27,7 +27,8 @@
     "proxy-middleware": "^0.5.0",
     "psi": "^0.1.1",
     "require-dir": "^0.1.0",
-    "run-sequence": "^0.3.6"
+    "run-sequence": "^0.3.6",
+    "gulp-manifest": "latest"
   },
   "engines": {
     "node": ">=0.10.0"

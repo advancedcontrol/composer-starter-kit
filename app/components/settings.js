@@ -51,12 +51,15 @@
             */
         }])
 
-        // Grab the system id from the URL
         .run([
+            '$window',
             '$location',
             '$rootScope',
+            'cacheman',
 
-        function ($location, $rootScope) {
+        function ($window, $location, $rootScope, cacheman) {
+
+            // Grab the system id from the URL
             $rootScope.$watch(function () {
                 return $location.hash();
             }, function (value) {
@@ -66,6 +69,13 @@
                 } else {
                     $rootScope.controlSystem = value;
                 };
+            });
+
+            // Refresh the UI if an update is detected
+            // This promise is resolved after a new version
+            // of the UI has been downloaded and cached
+            cacheman.readyCallback.then(function () {
+                $window.location.reload();
             });
         }]);
 
