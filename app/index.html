@@ -26,6 +26,18 @@
             background-color: white;
             color: black;
             z-index: 999999;
+
+            -webkit-transition: opacity linear 0.3s;
+            transition: opacity linear 0.3s;
+            opacity: 1;
+        }
+
+        div#loading.ng-leave {
+          opacity: 1;
+        }
+
+        div#loading.ng-leave.ng-leave-active {
+          opacity: 0;
         }
 
         [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
