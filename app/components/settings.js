@@ -37,7 +37,10 @@
 
             // If you would like to use Authentication then you
             // must point this configuration to your compatible oauth server
-            /*
+            //
+            // It's a lazy authentication process so only if a request
+            // is made to a protected endpoint or a 401 is received will
+            // the auth process activate.
             comms.useService({
                 id: 'AcaEngine',
                 scope: 'public',
@@ -48,7 +51,6 @@
                 api_endpoint: 'http://localhost:3000/control/',
                 proactive: true
             });
-            */
         }])
 
         .run([
@@ -56,8 +58,10 @@
             '$location',
             '$rootScope',
             'cacheman',
+            '$timeout',
+            '$comms',
 
-        function ($window, $location, $rootScope, cacheman) {
+        function ($window, $location, $rootScope, cacheman, $timeout, $comms) {
 
             // Grab the system id from the URL
             $rootScope.$watch(function () {
@@ -77,6 +81,17 @@
             cacheman.readyCallback.then(function () {
                 $window.location.reload();
             });
+
+            // If auth is in use and we want to trust the device
+            // i.e. we don't want to have to log in every time
+            // The trust URL would look like: 'http://localhost/#/?trust#sys-id'
+            if ($location.search().trust && !$comms.isRemembered('AcaEngine')) {
+                // We need time to let the directive load.
+                // This will not be required in the future
+                $timeout(function () {
+                    $comms.rememberMe('AcaEngine');
+                }, 0);
+            }
         }]);
 
 }(this, this.angular));
