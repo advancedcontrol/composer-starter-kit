@@ -56,6 +56,14 @@
             angular.element('body').addClass('ios-app-mode');
         }
 
+        $rootScope.width = $window.innerWidth;
+        $rootScope.height = $window.innerHeight;
+        
+        elWindow.bind('orientationchange resize', function () {
+            $rootScope.width = $window.innerWidth;
+            $rootScope.height = $window.innerHeight;
+        });
+
         // Remove the loading indicator
         $rootScope.loaded = true;
     }]);

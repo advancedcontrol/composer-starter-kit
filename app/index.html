@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>ACA Starter Kit</title>
+    <title>ACA Rooms</title>
     <meta name="description" content="buildings made easy">
     
 
@@ -28,7 +28,7 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- MS Application Icon -->
-    <meta name="application-name" content="ACA Starter Kit">
+    <meta name="application-name" content="ACA Rooms">
     <meta name="msapplication-tooltip" content="buildings made easy">
     <meta name="msapplication-starturl" content="./">
     <meta name="msapplication-navbutton-color" content="#b72706">
@@ -114,8 +114,14 @@
 
 
     <!-- System definition -->
-    <main co-system="controlSystem"
-         ng-include="'components/main/main.html'">
+    <main co-system="controlSystem">
+        <div class="noSystem" ng-if="!coSystem.id">
+            <h2>System "{{coSystem.$name}}" Not Found</h2>
+        </div>
+        <div ng-if="coSystem.id">
+            <div ng-if="width < 768 || height < 768" ng-include="'components/mobile/mobile.html'"></div>
+            <div ng-if="width >= 768 && height >= 768" ng-include="'components/main/main.html'"></div>
+        </div>
     </main>
 
 
