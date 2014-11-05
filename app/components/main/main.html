@@ -1,0 +1,41 @@
+
+<div co-module="'System'" co-bind="'state'">
+    <!-- Show a splash page when offline -->
+    <div 
+        class="splash"
+        ng-if="state == 'shutdown'"
+        co-bind="'name'"
+        ng-touch="coModuleInstance.exec('powerup')"
+    >
+        <h1>Touch to Start</h1>
+        <h2>{{name}}</h2>
+    </div>
+
+    <!-- Show the system when online -->
+    <article ng-if="state == 'online'" co-bind="'outputs'">
+        <header>
+            <div class="logo"></div>
+
+            <!-- 
+                TODO:: Popups
+                Popups Directive and separate controller that can be used to trigger the pop-ups
+             -->
+            <div class="tray">
+                <div class="lights" co-bind="'lights'" ng-if="lights"></div>
+                <div class="help"></div>
+                <div class="power"></div>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+
+        <!-- Show when more than one output available -->
+        <footer ng-if="Object.keys(outputs).length > 1">
+            <div ng-repeat="output in outputs" ng-class="output.type">
+                <div class="outer">{{output.type}}</div>
+                <div class="inner"></div>
+                <div class="overlay"></div>
+            </div>
+        </footer>
+    </article>
+</div>
