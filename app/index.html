@@ -128,12 +128,13 @@
                 ng-if="state == 'shutdown'"
                 co-bind="'name'"
                 ng-click="coModuleInstance.$exec('powerup')"
-                ng-class="{animate: state == 'shutdown'}"
             >
                 <div>
                     <div>
-                        <h1>Touch to Start</h1>
-                        <h2>{{name}}</h2>
+                        <div>
+                            <h1>Touch to Start</h1>
+                            <h2>{{name}}</h2>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -94,8 +94,6 @@ $masterred: #BE1428;
 }
 
 div.splash {
-    display: table;
-
     position: absolute;
     top: 0;
     left: 0;
@@ -103,10 +101,27 @@ div.splash {
     height: 100%;
     width: 100%;
 
-    background-color: $masterblue;
 
-    // Only animate when asked to
-    &.animate {
+    // Animate out the splash screen
+    &.ng-leave {
+        opacity: 1;
+        -webkit-transition: opacity 0.5s;
+        transition: opacity 0.5s;
+    }
+    &.ng-leave-active {
+        opacity: 0;
+    }
+
+
+    // Isolate the crossfade animations so angular doesn't
+    // attempt to wait for them
+    &> div {
+        display: table;
+        height: 100%;
+        width: 100%;
+
+        background-color: $masterblue;
+
         -webkit-animation: crossfade 10s linear;
         -webkit-animation-iteration-count: infinite;
         -moz-animation: crossfade 10s linear;
@@ -117,22 +132,22 @@ div.splash {
         -o-animation-iteration-count: infinite;
         animation: crossfade 10s linear;
         animation-iteration-count: infinite;
-    }
-
-    &> div {
-        display: table-row;
-
-        height: 100%;
 
         &> div {
-            display: table-cell;
+            display: table-row;
 
-            text-align: center;
-            vertical-align: middle;
-        }
+            height: 100%;
 
-        span {
-            color: white;
+            &> div {
+                display: table-cell;
+
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            span {
+                color: white;
+            }
         }
     }
 
