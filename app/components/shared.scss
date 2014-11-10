@@ -1,0 +1,147 @@
+@import "compass";
+
+//---------------
+// Modals Support
+//---------------
+@import "../../bower_components/co-modals/co-modals.scss";
+@include co-modals();
+
+
+//--------------
+// Splash screen
+//--------------
+
+// Touch to start background
+$masterblue: #78A1D6;
+$masteryellow: #8dc63f;
+$masterred: #BE1428;
+
+
+// animated background
+@-webkit-keyframes crossfade {
+    0% {
+        background-color: $masterblue;
+    }
+    35% {
+        background-color: $masteryellow;
+    }
+    70% {
+        background-color: $masterred;
+    }
+    100% {
+        background-color: $masterblue;
+    }
+}
+
+@-moz-keyframes crossfade {
+    0% {
+        background-color: $masterblue;
+    }
+    35% {
+        background-color: $masteryellow;
+    }
+    70% {
+        background-color: $masterred;
+    }
+    100% {
+        background-color: $masterblue;
+    }
+}
+
+@-ms-keyframes crossfade {
+    0% {
+        background-color: $masterblue;
+    }
+    35% {
+        background-color: $masteryellow;
+    }
+    70% {
+        background-color: $masterred;
+    }
+    100% {
+        background-color: $masterblue;
+    }
+}
+
+@-o-keyframes crossfade {
+    0% {
+        background-color: $masterblue;
+    }
+    35% {
+        background-color: $masteryellow;
+    }
+    70% {
+        background-color: $masterred;
+    }
+    100% {
+        background-color: $masterblue;
+    }
+}
+
+@keyframes crossfade {
+    0% {
+        background-color: $masterblue;
+    }
+    35% {
+        background-color: $masteryellow;
+    }
+    70% {
+        background-color: $masterred;
+    }
+    100% {
+        background-color: $masterblue;
+    }
+}
+
+div.splash {
+    display: table;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    height: 100%;
+    width: 100%;
+
+    background-color: $masterblue;
+
+    // Only animate when asked to
+    &.animate {
+        -webkit-animation: crossfade 10s linear;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation: crossfade 10s linear;
+        -moz-animation-iteration-count: infinite;
+        -ms-animation: crossfade 10s linear;
+        -ms-animation-iteration-count: infinite;
+        -o-animation: crossfade 10s linear;
+        -o-animation-iteration-count: infinite;
+        animation: crossfade 10s linear;
+        animation-iteration-count: infinite;
+    }
+
+    &> div {
+        display: table-row;
+
+        height: 100%;
+
+        &> div {
+            display: table-cell;
+
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        span {
+            color: white;
+        }
+    }
+
+    h1 {
+        color: white;
+        font-weight: normal;
+        font-family:'netto_otregular';
+        font-size: 250%;
+
+        position: relative;
+    }
+}

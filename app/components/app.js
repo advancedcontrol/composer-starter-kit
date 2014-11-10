@@ -62,6 +62,7 @@
         elWindow.bind('orientationchange resize', function () {
             $rootScope.width = $window.innerWidth;
             $rootScope.height = $window.innerHeight;
+            $rootScope.$safeApply();
         });
 
         // Remove the loading indicator

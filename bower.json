@@ -9,6 +9,7 @@
 
     "angular-growl-notifications": "0.x",
     "animate.css": "latest",
+    "co-order-object-by": "latest",
 
     "angular-safeapply": "latest",
     "oauth-interceptor": "latest",
@@ -22,7 +23,8 @@
     "angular-named-toggle": "latest",
     "angular-fancy-tab": "latest",
     "angular-button-group": "latest",
-    "angular-progress": "latest"
+    "angular-progress": "latest",
+    "co-modals": "latest"
   },
   "devDependencies": {}
 }

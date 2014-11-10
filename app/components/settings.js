@@ -7,15 +7,22 @@
     window.systemData = window.systemData || {};
     window.systemData['sys-B0'] = {
         System: [{
+            "$powerup": function () {
+                this.state = "online";
+            },
+            "$shutdown": function () {
+                this.state = "shutdown";
+            },
             "name": "Test System",
-            "state": "online",
+            "state": "shutdown",
+            "tab": "Camera",
             "inputs": [
-                "pc",
-                "laptop",
-                "camera",
-                "vc"
+                "PC",
+                "Laptop",
+                "Camera",
+                "VC"
             ],
-            "pc": [
+            "PC": [
                 {
                     "source": "g1_pc1",
                     "title": "1G1 PC-1",
@@ -37,7 +44,7 @@
                     "type": "residentpc"
                 }
             ],
-            "laptop": [
+            "Laptop": [
                 {
                     "source": "laptop_g1",
                     "title": "1G1 Laptop",
@@ -49,7 +56,7 @@
                     "type": "hdmi"
                 }
             ],
-            "camera": [
+            "Camera": [
                 {
                     "source": "cam_r_g1",
                     "title": "1G1 Rear",
@@ -79,7 +86,7 @@
                     "index": 4
                 }
             ],
-            "vc": [
+            "VC": [
                 {
                     "source": "vc1",
                     "title": "1G1 VC",
@@ -215,14 +222,24 @@
                     "remote": true
                 }
             },
+            "light_level": "Off",
             "lights": {
-                "levels": {
-                    "Off": 1,
-                    "Presentation": 2,
-                    "Full": 3
-                },
+                "levels": [
+                    {
+                        "name": "Full",
+                        "trigger": 3
+                    },
+                    {
+                        "name": "Presentation",
+                        "trigger": 2
+                    },
+                    {
+                        "name": "Off",
+                        "trigger": 1
+                    }
+                ],
                 "default": 3,
-                "shutdown": 0 
+                "shutdown": 0
             },
             "vol_max": 3,
             "vol_min": -50

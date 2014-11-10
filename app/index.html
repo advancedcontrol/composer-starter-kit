@@ -91,11 +91,14 @@
     <link rel="stylesheet" href="core.css">
 
     <!-- Application styles -->
-    <link rel="stylesheet" href="components/layout.css">
+    <link rel="stylesheet" href="components/shared.css">
     <link rel="stylesheet" href="components/main/main.css">
 
     <!-- Define branding in its own style sheet -->
     <link rel="stylesheet" href="branding/aca/base.css">
+
+    <!-- Provide styles for common animations -->
+    <link rel="stylesheet" href="animate.css/animate.css">
 
     <!-- endbuild -->
   </head>
@@ -118,9 +121,28 @@
         <div class="noSystem" ng-if="!coSystem.id">
             <h2>System "{{coSystem.$name}}" Not Found</h2>
         </div>
-        <div ng-if="coSystem.id">
-            <div ng-if="width < 768 || height < 768" ng-include="'components/mobile/mobile.html'"></div>
-            <div ng-if="width >= 768 && height >= 768" ng-include="'components/main/main.html'"></div>
+        <div ng-if="coSystem.id" co-module="'System'" co-bind="'state'">
+            <!-- Show a splash page when offline -->
+            <div 
+                class="splash"
+                ng-if="state == 'shutdown'"
+                co-bind="'name'"
+                ng-click="coModuleInstance.$exec('powerup')"
+                ng-class="{animate: state == 'shutdown'}"
+            >
+                <div>
+                    <div>
+                        <h1>Touch to Start</h1>
+                        <h2>{{name}}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Display the most appropriate user interface -->
+            <div ng-controller="SharedCtrl" co-bind="'outputs'">
+                <div ng-if="width < 768 || height < 768" ng-include="'components/mobile/mobile.html'"></div>
+                <div ng-if="width >= 768 && height >= 768" ng-include="'components/main/main.html'"></div>
+            </div>
         </div>
     </main>
 
@@ -177,6 +199,7 @@
     <script src="easy-animate/requestAnimationFrame.js"></script>
     <script src="easy-animate/angular-animate.js"></script>
     <script src="co-cacheman/cacheman.js"></script>
+    <script src="co-order-object-by/src/ng-order-object-by.js"></script>
 
     <!-- UI Widgets -->
     <script src="angular-range-slider/angular-range-slider.js"></script>
@@ -184,11 +207,13 @@
     <script src="angular-button-group/button-group.js"></script>
     <script src="angular-progress/angular-progress.js"></script>
     <script src="angular-named-toggle/angular-named-toggle.js"></script>
+    <script src="co-modals/co-modals.js"></script>
 
 
     <!-- Application Components -->
     <script src="components/app.js"></script>
     <script src="components/settings.js"></script>
+    <script src="components/shared-ctrl.js"></script>
 
     <!-- endbuild -->
   </body>

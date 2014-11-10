@@ -16,3 +16,31 @@
 
 @import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
 @include co-range-slider($handle-size: 40px, $track-girth: 20px);
+
+
+header {
+    height: 60px;
+    background-color: yellow;
+
+
+    div.tray > div {
+        float: right;
+        height: 60px;
+
+        &> div {
+            width: 60px;
+            height: 100%;
+
+            margin-right: 10px;
+        }
+    }
+
+
+    div.logo {
+        float: left;
+
+        width: 60px;
+        height: 60px;
+    }
+
+}

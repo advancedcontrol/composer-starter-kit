@@ -46,6 +46,8 @@ html, body {
     margin: 0;
     padding: 0;
     border: 0;
+
+    height: 100%;
 }
 
 body {
@@ -66,5 +68,11 @@ body {
         position: fixed;
         top: -10px;
         left: -10px;
+    }
+
+    // This is where the UI will sit
+    &> main {
+        height: 100%;
+        position: relative;
     }
 }

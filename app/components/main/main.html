@@ -1,41 +1,74 @@
 
-<div co-module="'System'" co-bind="'state'">
-    <!-- Show a splash page when offline -->
-    <div 
-        class="splash"
-        ng-if="state == 'shutdown'"
-        co-bind="'name'"
-        ng-touch="coModuleInstance.exec('powerup')"
-    >
-        <h1>Touch to Start</h1>
-        <h2>{{name}}</h2>
-    </div>
+<!-- Show the system when online, here for performance and pre-load -->
+<article ng-if="state == 'online'">
+    <header>
+        <div class="logo"></div>
 
-    <!-- Show the system when online -->
-    <article ng-if="state == 'online'" co-bind="'outputs'">
-        <header>
-            <div class="logo"></div>
+        <div class="tray" ng-controller="Modals">
 
             <!-- 
-                TODO:: Popups
-                Popups Directive and separate controller that can be used to trigger the pop-ups
+                POWER Pop up
              -->
-            <div class="tray">
-                <div class="lights" co-bind="'lights'" ng-if="lights"></div>
-                <div class="help"></div>
-                <div class="power"></div>
+            <div>
+                <div class="power" ng-click="showModal('power')">
+                    <modal name="power" title="Shutdown?">
+                        <p>
+                            <b>Are you sure you want to turn off the system?</b>
+                            <br />It may take up to 5min to restart.
+                        </p>
+                        <menu>
+                            <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
+                            <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
+                        </menu>
+                    </modal>
+                </div>
             </div>
-        </header>
 
-        <!-- Tabs -->
-
-        <!-- Show when more than one output available -->
-        <footer ng-if="Object.keys(outputs).length > 1">
-            <div ng-repeat="output in outputs" ng-class="output.type">
-                <div class="outer">{{output.type}}</div>
-                <div class="inner"></div>
-                <div class="overlay"></div>
+            <!-- 
+                HELP Pop up
+             -->
+            <div>
+                <div class="help" ng-click="showModal('help')">
+                    <modal name="help" title="Call for Help">
+                        <p>For help please call 0408419954</p>
+                    </modal>
+                </div>
             </div>
-        </footer>
-    </article>
-</div>
+
+            <!-- 
+                Lighting Pop up
+             -->
+            <div co-bind="'lights'">
+                <div class="lights" ng-if="lights" co-bind="'light_level'" exec ng-click="showModal('lights')">
+                    <modal name="lights" title="Lighting Modes">
+                        <div btn-group="light_level">
+                            <button ng-repeat="level in lights.levels" btn="level.name" ng-click="$parent.$parent.$parent.light_level = level.name">{{level.name}}</button>
+                        </div>
+                    </modal>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div co-bind="'inputs'">
+        <div co-bind="'tab'" exec>
+            <!-- Tabs -->
+            <tabs current="tab" auto-select="false">
+                <pane ng-repeat="input in inputs" title="{{input}}" icon="{{input}}">
+                    <div ng-include="'components/main/' + input + '/' + input + '.html'">
+                    </div>
+                </pane>
+            </tabs>
+
+            <!-- Show when more than one output available -->
+            <footer ng-if="outputs && numOutputs > 1">
+                <div ng-repeat="output in outputs | orderObjectBy:'pri'" ng-class="output.type">
+                    <div class="outer">{{output.type}}</div>
+                    <div class="inner"></div>
+                    <div class="overlay"></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</article>
+
