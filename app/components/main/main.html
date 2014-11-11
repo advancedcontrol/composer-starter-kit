@@ -77,7 +77,13 @@
                             <div class="outer"></div>
                             <div class="inner" ng-class="{pulse: source !== selected}">
                                 <span class="title">{{output.title || output.pri}}</span>
-                                <div class="source-image" ng-class="source || 'blank'"></div>
+                                <div class="source">
+                                    <div>
+                                        <div class="source-image" ng-class="source || 'blank'">
+                                            <span>{{source}}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!--
