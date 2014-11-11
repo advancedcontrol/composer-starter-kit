@@ -72,11 +72,11 @@
                          co-bind="output.$key as source"
                          ng-class="output.type"
                     >
-                        <div>
+                        <div class="icon">
                             <div class="outer"></div>
-                            <div class="inner">
+                            <div class="inner" ng-class="{pulse: source !== selected}">
                                 <span class="title">{{output.title || output.pri}}</span>
-                                <div class="source-image" ng-class="source"></div>
+                                <div class="source-image" ng-class="source || 'blank'"></div>
                             </div>
 
                             <!--
@@ -92,8 +92,17 @@
                                 <div>
                                     <span co-bind="'warming'" ng-show="warming">Warming up</span>
                                     <span co-bind="'mute'" ng-show="mute">Muted</span>
-                                    <span co-bind="'connected'" ng-show="connected" class="error">Comms Error</span>
+                                    <span co-bind="'connected'" ng-show="!connected" class="error">Comms Error</span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="audio">
+                            <!--
+                                Mixer used for audio
+                                We check against undefined as 0 is falsey
+                            -->
+                            <div ng-if="output.mixer_id !== undefined">
+                                
                             </div>
                         </div>
                     </div>

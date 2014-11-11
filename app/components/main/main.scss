@@ -68,7 +68,7 @@ article {
         top: 100px;
         left: $padding;
         right: $padding;
-        bottom: 20%;
+        bottom: 25%;
 
 
         &> div {
@@ -83,7 +83,7 @@ article {
                 left: 0;
                 right: 0;
 
-                height: 15%;
+                height: 20%;
 
                 // Tabs can be scrolled when there are too many
                 overflow: hidden;
@@ -128,7 +128,7 @@ article {
             // ----------------
             &> div {
                 position: absolute;
-                top: 15%;
+                top: 20%;
                 left: 0;
                 right: 0;
                 bottom: 0;
@@ -172,7 +172,7 @@ article {
     // -----------
     &> div > div > footer {
         position: absolute;
-        top: 80%;
+        top: 75%;
         left: $padding + 10;
         right: $padding + 10;
         bottom: $padding;
@@ -204,10 +204,41 @@ article {
                 padding-left: $padding;
                 padding-top: $padding;
 
+                &:last-child {
+                    padding-right: $padding;
+                }
+
                 // A wrapper div
-                &> div {
+                &> div.icon {
                     position: relative;
-                    height: 100%;
+                    height: 70%;
+
+                    &> div.inner {
+                        &> span {
+                            display: block;
+                            padding: 0.3em 0.5em;
+                            text-align: right;
+                        }
+
+                        &> div {        // The source image
+                            position: absolute;
+                            top: 0;
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                &> div.audio {
+                    display: table;
+                    position: relative;
+                    height: 30%;
+
+                    &> div {
+                        display: table-cell;
+                        vertical-align: middle;
+                        height: 100%;
+                    }
                 }
             }
         }

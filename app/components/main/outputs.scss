@@ -2,7 +2,193 @@
 @import "variables";
 
 
-article > div > div > footer > div > div > div {
+//-----------------
+// PROJECTOR STYLES
+//-----------------
+article > div > div > footer > div > div.projector > div.icon {
+
+    // These make up the output icon
+    &> div.outer {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        border: 0;
+        border-top: 15px solid $background;
+        border-bottom: 5px solid $background;
+    }
+
+    &> div.inner {
+        position: absolute;
+        top: 10px;
+        bottom: 0;
+        left: 3%;
+        right:3%;
+
+        border: 5px solid $background;
+        border-left: 6px solid $background;
+        border-right: 6px solid $background;
+
+        background-color: white;
+    }
+}
+
+
+//-------------------
+// LCD DISPLAY STYLES
+//-------------------
+article > div > div > footer > div > div.lcd > div.icon,
+article > div > div > footer > div > div.vidwall > div.icon {
+
+    // These make up the output icon
+    &> div.outer {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 3%;
+        right: 3%;
+
+        border: 0;
+        border-bottom: 15px solid $background;
+
+        @include border-bottom-right-radius($radius);
+        @include border-bottom-left-radius($radius);
+    }
+
+    &> div.inner {
+        position: absolute;
+        top: 0;
+        bottom: 10px;
+        left: 3%;
+        right:3%;
+
+        border: 5px solid $background;
+        background-color: white;
+
+        @include border-top-right-radius($radius);
+        @include border-top-left-radius($radius);
+    }
+}
+
+
+//----------------
+// VID CONF STYLES
+//----------------
+article > div > div > footer > div > div.conference > div.icon {
+
+    // These make up the output icon
+    &> div.outer {
+        position: absolute;
+        top: 10px;
+        bottom: 0;
+        left: 15px;
+        right: 0;
+
+        border: 5px solid $background;
+        background-color: white;
+    }
+
+    &> div.inner {
+        position: absolute;
+        top: 0;
+        bottom: 15px;
+        left: 0;
+        right:15px;
+
+        border: 5px solid $background;
+        background-color: white;
+    }
+}
+
+
+//---------------
+// OUTPUT PULSATE
+//---------------
+
+
+article > div > div > footer > div > div > div.icon {
+    &> div.inner.pulse {
+        -webkit-animation: pulsate 1s ease-out;
+        -webkit-animation-iteration-count: 2;
+        -moz-animation: pulsate 1s ease-out;
+        -moz-animation-iteration-count: 2;
+        -ms-animation: pulsate 1s ease-out;
+        -ms-animation-iteration-count: 2;
+        -o-animation: pulsate 1s ease-out;
+        -o-animation-iteration-count: 2;
+        animation: pulsate 1s ease-out;
+        animation-iteration-count: 2;
+    }
+}
+
+
+@-webkit-keyframes pulsate {
+    0% {
+      background-color: white;
+    }
+    50% {
+      background-color: $backgroundContrast;
+    }
+    100% {
+      background-color: white;
+    }
+}
+
+@-moz-keyframes pulsate {
+    0% {
+      background-color: white;
+    }
+    50% {
+      background-color: $backgroundContrast;
+    }
+    100% {
+      background-color: white;
+    }
+}
+
+@-ms-keyframes pulsate {
+    0% {
+      background-color: white;
+    }
+    50% {
+      background-color: $backgroundContrast;
+    }
+    100% {
+      background-color: white;
+    }
+}
+
+@-o-keyframes pulsate {
+    0% {
+      background-color: white;
+    }
+    50% {
+      background-color: $backgroundContrast;
+    }
+    100% {
+      background-color: white;
+    }
+}
+
+@keyframes pulsate {
+    0% {
+      background-color: white;
+    }
+    50% {
+      background-color: $backgroundContrast;
+    }
+    100% {
+      background-color: white;
+    }
+}
+
+
+//------------------------
+// FLASHING OVERLAY STYLES
+//------------------------
+article > div > div > footer > div > div > div.icon {
 
     // This is the warming up / muted warning
     &> div.overlay {
@@ -32,36 +218,87 @@ article > div > div > footer > div > div > div {
                 &.error {
                     color: white;
                     background-color: red;
+
+                    -webkit-animation: none;
+                    -moz-animation: none;
+                    -ms-animation: none;
+                    -o-animation: none;
+                    animation: none;
                 }
+
+                -webkit-animation: flash 3s ease-out;
+                -webkit-animation-iteration-count: infinite;
+                -moz-animation: flash 3s ease-out;
+                -moz-animation-iteration-count: infinite;
+                -ms-animation: flash 3s ease-out;
+                -ms-animation-iteration-count: infinite;
+                -o-animation: flash 3s ease-out;
+                -o-animation-iteration-count: infinite;
+                animation: flash 3s ease-out;
+                animation-iteration-count: infinite;
             }
         }
     }
 }
 
 
-article > div > div > footer > div > div.projector > div {
-
-    // These make up the output icon
-    &> div.outer {
-        position: absolute;
-        top: 0;
-        bottom: 10%;
-        left: 0%;
-        right:0%;
-
-        border: 0;
-        border-top: 15pt solid $background;
+@-webkit-keyframes flash {
+    0% {
+      opacity: 1;
     }
-
-    &> div.inner {
-        &> span {       // The title
-
-        }
-
-        &> div {        // The source image
-
-        }
+    50% {
+      opacity: 0;
     }
+    100% {
+      opacity: 1;
+    }
+}
 
+@-moz-keyframes flash {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+@-ms-keyframes flash {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+@-o-keyframes flash {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+@keyframes flash {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
 }
 
