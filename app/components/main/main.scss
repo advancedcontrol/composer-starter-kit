@@ -7,11 +7,12 @@
 @import "../../../bower_components/angular-named-toggle/image-toggle.scss";
 
 
+@import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
+@import "../../../bower_components/angular-named-toggle/image-toggle.scss";
+
 // Include helpers
 @import "../../../bower_components/angular-named-toggle/angular-named-toggle.scss";
 @include named-toggle();
-
-@import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
 
 @import "../../../bower_components/angular-named-toggle/ios-toggle.scss";
 @include ios-toggle();
@@ -299,10 +300,17 @@ article {
                         &> div {
                             display: table-cell;
                             vertical-align: middle;
-                            text-align: center;
+                            
 
                             &.mute {
                                 width: 40px;
+
+                                @include image-toggle(
+                                    $trueImage: '../images/volume-mute.svg', 
+                                    $falseImage: '../images/volume.svg',
+                                    $width: 30px,
+                                    $height: 30px
+                                );
                             }
 
                             &.volume > div {
