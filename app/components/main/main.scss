@@ -46,27 +46,25 @@ article {
                 width: 60px;
                 height: 100%;
                 margin-right: 10px;
-                background-color: $backgroundContrast;
-
-                border: 1px solid rgba(255,255,255,0.3);
+                background-color: rgba(255,255,255,0.1);
                 @include border-radius($radius);
 
-                font-family: 'Pe-icon-7-stroke';
-                font-size: 35px;
+                font-family: FontAwesome;
+                font-size: 30px;
                 text-align: center;
                 line-height: 60px;
-                color: white;
+                color: rgba(255,255,255,0.9);
 
                 &.lights::before {
-                    content: "\e643";
+                    content: "\f0eb";
                 }
 
                 &.help::before {
-                    content: "\e64a";
+                    content: "\f059";
                 }
 
                 &.power::before {
-                    content: "\e621";
+                    content: "\f011";
                 }
             }
         }
@@ -108,11 +106,13 @@ article {
 
             &> nav {
                 position: absolute;
-                top: 0;
+                top: 0px;
                 left: 0;
                 right: 0;
 
                 height: 20%;
+
+                border-bottom: 1px solid #ddd;
 
                 // Tabs can be scrolled when there are too many
                 overflow: hidden;
@@ -127,6 +127,7 @@ article {
                 &> div {
                     position: relative;
                     display: inline-block;
+                    vertical-align: top;
 
                     height: 100%;
                     width: 18%;
@@ -135,12 +136,14 @@ article {
                     @include border-top-right-radius($radius);
                     @include border-top-left-radius($radius);
 
+                    background-color: rgba(255,255,255,0.2);
+                    margin-right: 4px;
                     color: $color-contrast;
                     text-align: center;
 
                     &> span {
                         position: absolute;
-                        bottom: 5px;
+                        bottom: 10px;
                         left: 0;
                         right: 0;
                     }
@@ -148,6 +151,32 @@ article {
                     &.active {
                         background-color: $contentBackground;
                         color: $color-primary;
+                    }
+
+                    > div {
+                        font-family: FontAwesome;
+                        padding-top: 15px;
+                        font-size: 5vh;
+
+                        &.PC::before {
+                            content: "\f108";
+                        }
+
+                        &.Laptop {
+                            padding-top: 17px;
+                        }
+
+                        &.Laptop::before {
+                            content: "\f109";
+                        }
+
+                        &.Camera::before {
+                            content: "\f03d";
+                        }
+
+                        &.VC::before {
+                            content: "\f0c0";
+                        }
                     }
                 }
             }
