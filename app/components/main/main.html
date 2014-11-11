@@ -63,10 +63,39 @@
             <!-- Show when more than one output available -->
             <footer ng-if="outputs && numOutputs > 1">
                 <div>
-                    <div ng-repeat="output in outputs | orderObjectBy:'pri'" ng-class="output.type">
-                        <div class="outer">{{output.type}}</div>
-                        <div class="inner"></div>
-                        <div class="overlay"></div>
+                    <!-- 
+                        source === what is currently displaying
+                        output.type == projector / lcd / conference
+                        overlay is for indicating warming / cooling / errors etc
+                     -->
+                    <div ng-repeat="output in outputs | orderObjectBy:'pri'"
+                         co-bind="output.$key as source"
+                         ng-class="output.type"
+                    >
+                        <div>
+                            <div class="outer"></div>
+                            <div class="inner">
+                                <span class="title">{{output.title || output.pri}}</span>
+                                <div class="source-image" ng-class="source"></div>
+                            </div>
+
+                            <!--
+                                Only show if a module exists for this output as
+                                we'll query it directly
+                            -->
+                            <div ng-if="!output.no_mod"
+                                 class="overlay"
+                                 ng-controller="OutputCtrl"
+                                 co-module="device.module"
+                                 index = "device.index"
+                            >
+                                <div>
+                                    <span co-bind="'warming'" ng-show="warming">Warming up</span>
+                                    <span co-bind="'mute'" ng-show="mute">Muted</span>
+                                    <span co-bind="'connected'" ng-show="connected" class="error">Comms Error</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </footer>

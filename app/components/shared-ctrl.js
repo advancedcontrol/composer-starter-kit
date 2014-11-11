@@ -2,9 +2,6 @@
     'use strict';
 
     angular.module('AcaEngine')
-    
-        // The authentication service doesn't have to be hosted on the same domain
-        // as the control service - hence the complexity of this configuration
         .controller('SharedCtrl', [
             '$scope',
 

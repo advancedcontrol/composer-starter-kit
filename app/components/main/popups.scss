@@ -18,7 +18,17 @@
 @include co-range-slider($handle-size: 40px, $track-girth: 20px);
 
 
-@import "variables";
+$background: #131518;
+$backgroundContrast: lighten($background, 15%);
+
+$contentBackground: #F0F0F0;
+$footerBackground: darken($contentBackground, 10%);
+
+$padding: 20px;
+$color-primary: black;
+$color-contrast: white;
+
+$radius: 4px;
 
 
 // -----------
@@ -203,12 +213,6 @@ article {
 
                 padding-left: $padding;
                 padding-top: $padding;
-
-                // A wrapper div
-                &> div {
-                    position: relative;
-                    height: 100%;
-                }
             }
         }
     }

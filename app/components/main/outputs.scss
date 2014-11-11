@@ -1,0 +1,67 @@
+@import "compass";
+@import "variables";
+
+
+article > div > div > footer > div > div > div {
+
+    // This is the warming up / muted warning
+    &> div.overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        display: table;
+
+        &> div {
+            display: table-cell;
+            vertical-align: middle;
+
+            width: 100%;
+            height: 100%;
+
+            &> span {
+                display: block;
+                padding: 0.4em 0;
+
+                text-align: center;
+                color: white;
+                background-color: blue;
+                
+                &.error {
+                    color: white;
+                    background-color: red;
+                }
+            }
+        }
+    }
+}
+
+
+article > div > div > footer > div > div.projector > div {
+
+    // These make up the output icon
+    &> div.outer {
+        position: absolute;
+        top: 0;
+        bottom: 10%;
+        left: 0%;
+        right:0%;
+
+        border: 0;
+        border-top: 15pt solid $background;
+    }
+
+    &> div.inner {
+        &> span {       // The title
+
+        }
+
+        &> div {        // The source image
+
+        }
+    }
+
+}
+
