@@ -353,34 +353,3 @@ article {
     }
 }
 
-modal .btn-group {
-    padding: 0px 30px;
-
-    button {
-        height: 40px;
-    }
-}
-
-modal[name=lights] {
-    button {
-        text-align: left;
-
-        i {
-            margin-right: 10px;
-            font-size: 20px;
-        }
-
-        &.Off i {
-            opacity: 0.15;
-        }
-
-        &.Presentation i {
-            opacity: 0.5;
-        }
-
-        &.Full i {
-            opacity: 1;
-        }
-    }
-}
-

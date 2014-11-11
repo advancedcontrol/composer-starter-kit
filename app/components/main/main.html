@@ -1,6 +1,6 @@
 
 <!-- Show the system when online, here for performance and pre-load -->
-<article ng-if="state == 'online'">
+<article ng-if="state == 'online'" ng-init="selected_source = null">
     <header>
         <div class="logo"><div></div></div>
 
@@ -111,9 +111,6 @@
                             <!--
                                 Mixer used for audio
                                 We check against undefined as 0 is falsey
-
-                                TODO:: Either co-bind creates the variable at init or co-fader waits..
-                                Probably both?
                             -->
                             <div ng-if="output.mixer_id !== undefined" co-bind="'vol_min'">
                                 <div class="mute"  co-module="'Mixer'" co-bind="'fader_' + output.mixer_id + '_mute' as mute" exec="mute(output.mixer_id, mute)">

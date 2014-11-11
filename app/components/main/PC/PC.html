@@ -1,4 +1,18 @@
 
-<div>
-This is the PC Page!! Wo
+<div co-bind="'PC' as sources">
+    <div>
+        <div ng-if="numOutputs > 1">
+            <span ng-if="sources.length === 1">Select a display to show this source</span>
+            <span ng-if="sources.length > 1">Select a PC then select a display.</span>
+        </div>
+        <div ng-if="numOutputs === 1">
+            <span ng-if="sources.length === 1">The PC is now displaying</span>
+            <span ng-if="sources.length > 1">The selected PC will display.</span>
+        </div>
+        <div class="sources" ng-if="sources.length > 1" ng-init="selected_source = sources[0].source">
+            <div btn-group="selected_source">
+                <button ng-repeat="pc in sources" btn="pc.source" ng-click="selected_source = pc.source" class="{{pc.type}} toggle"><i class="fa fa-lightbulb-o"></i>{{pc.title}}</button>
+            </div>
+        </div>
+    </div>
 </div>
