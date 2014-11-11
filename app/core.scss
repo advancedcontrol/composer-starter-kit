@@ -126,6 +126,19 @@ button, .button {
     }
 }
 
+button.toggle, .button.toggle {
+    display: block;
+    width: 100%;
+    background-color: #ddd;
+    color: #333;
+    margin-bottom: 10px;
+
+    &.active {
+        background-color: #777;
+        color: white;
+    }
+}
+
 // fix
 modal > div > div menu {
     padding: 0px 20px !important;
