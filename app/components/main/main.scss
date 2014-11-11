@@ -34,7 +34,7 @@ article {
     // -------------
     &> header {
         height: 80px;
-        background-color: yellow;
+        background-color: $background;
 
 
         div.tray > div {
@@ -42,20 +42,49 @@ article {
             height: 60px;
             margin-top: 10px;
 
-            &> div {
+            > div {
                 width: 60px;
                 height: 100%;
-
                 margin-right: 10px;
+                background-color: $backgroundContrast;
+
+                border: 1px solid rgba(255,255,255,0.3);
+                @include border-radius($radius);
+
+                font-family: 'Pe-icon-7-stroke';
+                font-size: 35px;
+                text-align: center;
+                line-height: 60px;
+                color: white;
+
+                &.lights::before {
+                    content: "\e643";
+                }
+
+                &.help::before {
+                    content: "\e64a";
+                }
+
+                &.power::before {
+                    content: "\e621";
+                }
             }
         }
 
 
         div.logo {
             float: left;
-
             width: 60px;
             height: 60px;
+            margin: 10px 0px 10px 20px;
+
+            > div {
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: contain;
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 

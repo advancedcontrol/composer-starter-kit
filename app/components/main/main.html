@@ -2,7 +2,7 @@
 <!-- Show the system when online, here for performance and pre-load -->
 <article ng-if="state == 'online'">
     <header>
-        <div class="logo"></div>
+        <div class="logo"><div></div></div>
 
         <div class="tray" ng-controller="Modals">
 
@@ -20,6 +20,7 @@
                             <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
                             <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
                         </menu>
+                        <div style="clear: both"></div>
                     </modal>
                 </div>
             </div>
@@ -30,7 +31,7 @@
             <div>
                 <div class="help" ng-click="showModal('help')">
                     <modal name="help" title="Call for Help">
-                        <p>For help please call 0408419954</p>
+                        <p>For help please call <strong>0408419954</strong></p>
                     </modal>
                 </div>
             </div>

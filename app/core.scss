@@ -1,4 +1,7 @@
 @import "compass";
+@import "variables";
+@import "branding/fonts/pe-icon-7-stroke/style";
+@import "branding/fonts/netto/style";
 
 // Supported browsers
 $browser-minimum-versions: ("chrome": "19", "firefox": "6", "ie": "10", "safari": "5") !global;
@@ -48,9 +51,13 @@ html, body {
     border: 0;
 
     height: 100%;
+    color: white;
 }
 
 body {
+    font-family: $default-font;
+    background-color: $background;
+    
     // Make room for the iOS header
     &.ios-app-mode {
         padding-top: 20px;
@@ -75,4 +82,51 @@ body {
         height: 100%;
         position: relative;
     }
+}
+
+button, .button {
+    border: none;
+    @include border-radius(3px);
+    padding: 6px 15px;
+    display: inline-block;
+    
+    font-family: $default-font;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    background-color: $button-colour;
+    color: white;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($button-colour, 10%);
+    }
+
+    &.disabled, &[disabled=disabled] {
+        opacity: 0.2;
+        cursor: default;
+
+        &:hover {
+            background-color: $button-colour;
+        }
+    }
+
+    &.cancel {
+        background-color: $cancel-button-colour;
+        color: #333;
+
+        &:hover {
+            background-color: darken($cancel-button-colour, 10%);
+        }
+    }
+
+    &.active {
+        background-color: $active-button-colour;
+    }
+}
+
+// fix
+modal > div > div menu {
+    padding: 0px 20px !important;
 }
