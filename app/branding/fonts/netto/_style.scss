@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'netto';
+    src: url('branding/fonts/netto/netto_ot_light-webfont.eot');
+    src: url('branding/fonts/netto/netto_ot_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('branding/fonts/netto/netto_ot_light-webfont.woff') format('woff'),
+         url('branding/fonts/netto/netto_ot_light-webfont.ttf') format('truetype'),
+         url('branding/fonts/netto/netto_ot_light-webfont.svg#netto_otregular') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'netto';
+    src: url('branding/fonts/netto/netto_ot-webfont.eot');
+    src: url('branding/fonts/netto/netto_ot-webfont.eot?#iefix') format('embedded-opentype'),
+         url('branding/fonts/netto/netto_ot-webfont.woff') format('woff'),
+         url('branding/fonts/netto/netto_ot-webfont.ttf') format('truetype'),
+         url('branding/fonts/netto/netto_ot-webfont.svg#netto_otregular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
