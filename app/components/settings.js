@@ -13,6 +13,9 @@
             "$shutdown": function () {
                 this.state = "shutdown";
             },
+            $tab: function (tab) {
+                this.tab = tab;
+            },
             "name": "Test System",
             "state": "shutdown",
             "tab": "Camera",
@@ -244,7 +247,18 @@
             "vol_max": 3,
             "vol_min": -50
         }],
-        Mixer: [{}],
+        Mixer: [{
+            fader_106: 1,
+            fader_107: 2,
+            fader_105: 3,
+            fader_32: -30,
+            $fader: function (fader, volume) {
+                this['fader_' + fader] = volume;
+            },
+            $mute: function (fader, mute) {
+                this['fader_' + fader + '_mute'] = mute;
+            } 
+        }],
         Switcher: [{}],
         Lights: [{}],
         Computer: [{}, {}, {}, {}],
