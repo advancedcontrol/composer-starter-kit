@@ -336,20 +336,19 @@ article {
 .source-image, tabs nav > div > div {
     font-family: FontAwesome;
 
-    &.PC::before {
+    &.PC::before, &.residentpc::before {
         content: "\f108";
     }
 
-    &.Laptop::before {
+    &.Laptop::before, &.hdmi::before {
         content: "\f109";
     }
 
-    &.Camera::before {
+    &.Camera::before, &.vc-camera::before {
         content: "\f03d";
     }
 
-    &.VC::before {
+    &.VC::before, &.vc-active::before {
         content: "\f0c0";
     }
 }
-
