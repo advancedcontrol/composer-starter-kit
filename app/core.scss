@@ -57,11 +57,6 @@ html, body {
 body {
     font-family: $default-font;
     background-color: $background;
-    
-    // Make room for the iOS header
-    &.ios-app-mode {
-        padding-top: 20px;
-    }
 
     &> main {
         position: relative;

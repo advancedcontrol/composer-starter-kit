@@ -27,11 +27,20 @@
                         } else {
                             // We want to present the display
                             $scope.coModuleInstance.$exec('present', source, $scope.output.$key);
+
+                            // This is our guess as to what the server will respond with
+                            // We set it here to keep the interface reactive
                             $scope.source = {
                                 source: $scope.selectedSource.source,
                                 title: $scope.selectedSource.title,
                                 type: $scope.selectedSource.type
                             };
+
+                            // Force stop pulsing before the animation is complete
+                            if (pulsing) {
+                                queued = false;
+                                inner.removeClass('enable');
+                            }
                         }
                     };
 
@@ -43,6 +52,9 @@
                         inner = element.find('div.inner'),
                         animate = function () {
                             pulsing = true;
+
+                            // Use animation libraries to add the class
+                            // However we don't want to animate the removal
                             $animate.addClass(inner, 'pulse').then(function () {
                                 inner.removeClass('pulse');
                                 if (queued) {
@@ -56,19 +68,22 @@
 
                     $scope.$watch('selectedSource.source', function (val) {
                         if (!$scope.source || val !== $scope.source.source) {
-                            if (!inner.hasClass('enable'))
-                                inner.addClass('enable');
 
+                            // Re-enable pulsing if it was force stopped
+                            if (!inner.hasClass('enable')) {
+                                inner.addClass('enable');
+                            }
+
+                            // Queue another round of pulsing if one is in progress
                             if (pulsing) {
                                 queued = true;
                             } else {
                                 animate();
                             }
-                        } else {
+                        } else if (pulsing) {
+                            // Force stop pulsing before the animation is complete
                             queued = false;
-                            if (pulsing) {
-                                inner.removeClass('enable');
-                            }
+                            inner.removeClass('enable');
                         }
                     });
 

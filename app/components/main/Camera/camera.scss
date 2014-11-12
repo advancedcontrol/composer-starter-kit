@@ -1,0 +1,70 @@
+
+@import "../../../../bower_components/angular-range-slider/angular-range-slider.scss";
+
+div#camera-inputs {
+    div.camera-control {
+        position: relative;
+
+        &> div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 20px;
+            height: 100%;
+
+            &> div {
+                position: relative;
+                height: 100%;
+
+                &> button {
+                    position: relative;
+                    z-index: 5;
+                }
+
+                &> joystick {
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+
+                    &> img {
+                        position: absolute;
+                        width: 100px;
+                        height: 100px;
+
+                        z-index: 10;
+                    }
+                }
+
+                &> span.zoom-text {
+                    position: absolute;
+                    bottom: 60px;
+                    left: 20px;
+
+                    font-size: 1.3em;
+                    font-weight: bold;
+                }
+
+                // zoom slider container
+                &> div {
+                    position: absolute;
+                    bottom: 25px;
+                    left: 30px;
+                    right: 30px;
+
+                    &> div {
+                        @include co-range-slider(
+                            $handle-size: 40px,
+                            $track-girth: 20px,
+                            $track-colour:white
+                        );
+                    }
+                }
+            }
+        }
+    }
+}
+
+

@@ -21,6 +21,38 @@
 @import "variables";
 
 
+// IOS 8 header support
+body.ios-app-mode {
+    article {
+        &> header {
+            height: 90px !important;
+
+            div.tray {
+                // Room name
+                > span {
+                    line-height: 90px !important;
+                }
+
+                // Icons
+                > div {
+                    margin-top: 20px !important;
+                }
+            }
+
+            div.logo {
+                //margin-top: 20px !important;
+                height: 100px !important;
+            }
+        }
+
+        // Tabs starting position
+        &> div > div > tabs {
+            top: 110px !important;
+        }
+    }
+}
+
+
 // -----------
 // CORE LAYOUT
 // -----------
@@ -36,35 +68,49 @@ article {
         height: 80px;
         background-color: $background;
 
+        div.tray {
+            text-align: center;
 
-        div.tray > div {
-            float: right;
-            height: 60px;
-            margin-top: 10px;
+            &> span {
+                color: white;
+                font-size: 20px;
+                line-height: 80px;
+            }
 
-            > div {
-                width: 60px;
-                height: 100%;
-                margin-right: 10px;
-                background-color: rgba(255,255,255,0.1);
-                @include border-radius($radius);
 
-                font-family: FontAwesome;
-                font-size: 30px;
-                text-align: center;
-                line-height: 60px;
-                color: rgba(255,255,255,0.9);
+            &> div {
+                float: right;
+                height: 60px;
+                margin-top: 10px;
 
-                &.lights::before {
-                    content: "\f0eb";
-                }
+                > div {
+                    width: 60px;
+                    height: 100%;
+                    margin-right: 10px;
+                    background-color: rgba(255,255,255,0.1);
+                    @include border-radius($radius);
 
-                &.help::before {
-                    content: "\f059";
-                }
+                    font-family: FontAwesome;
+                    font-size: 30px;
+                    text-align: center;
+                    line-height: 60px;
+                    color: rgba(255,255,255,0.9);
 
-                &.power::before {
-                    content: "\f011";
+                    &.lights::before {
+                        content: "\f0eb";
+                    }
+
+                    &.manual::before {
+                        content: "\f085";
+                    }
+
+                    &.help::before {
+                        content: "\f059";
+                    }
+
+                    &.power::before {
+                        content: "\f011";
+                    }
                 }
             }
         }
@@ -112,7 +158,7 @@ article {
 
                 height: 20%;
 
-                border-bottom: 1px solid #ddd;
+                //border-bottom: 1px solid #ddd;
 
                 // Tabs can be scrolled when there are too many
                 overflow: hidden;
@@ -146,6 +192,10 @@ article {
                         bottom: 10px;
                         left: 0;
                         right: 0;
+                    }
+
+                    &:not(.active) {
+                        @include box-shadow(rgba(0, 0, 0, 0.2) 0px -4px 14px inset);
                     }
 
                     &.active {
@@ -199,9 +249,46 @@ article {
                                 position: relative;
                                 width: 100%;
                                 height: 100%;
+
+                                &> div {
+                                    height: 100%;
+
+                                    // Standard-panel here!
+                                }
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    // ----------------
+    // SOURCE SELECTION
+    // ----------------
+    div.standard-panel {
+        display: table;
+        width: 100%;
+        height: 100%;
+
+        &> div {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        div.sources {
+            width: 35%;
+            margin-top: 15px;
+
+            button {
+                height: 7vh;
+                font-size: 2.5vh;
+
+                i {
+                    float: left;
+                    margin-left: 20px;
+                    font-size: 3vh;
                 }
             }
         }

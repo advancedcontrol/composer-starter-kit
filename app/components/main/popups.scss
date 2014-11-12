@@ -31,3 +31,26 @@ modal[name=lights] {
     }
 }
 
+// Manual control popup
+modal[name=manual] {
+    &> div > div {
+        width: 300px;
+    }
+
+    h2 {
+        padding-left: 2em;
+    }
+
+    table.entries {
+        margin: 0 auto;
+
+        td {
+            padding: 0.4em 0.3em;
+
+            &.onoff {
+                width: 2.5em;
+            }
+        }
+    }
+}
+

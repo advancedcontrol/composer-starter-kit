@@ -45,7 +45,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="branding/favicon/ios_76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="branding/favicon/ios_120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="branding/favicon/ios_152.png">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -96,6 +96,7 @@
     <link rel="stylesheet" href="components/main/outputs.css">
     <link rel="stylesheet" href="components/main/popups.css">
     <link rel="stylesheet" href="components/main/PC/pc.css">
+    <link rel="stylesheet" href="components/main/Camera/camera.css">
 
     <!-- Define branding in its own style sheet -->
     <link rel="stylesheet" href="branding/tafesa/main.css">
@@ -144,8 +145,8 @@
 
             <!-- Display the most appropriate user interface -->
             <div ng-controller="SharedCtrl" co-bind="'outputs'">
-                <div ng-if="width < 768 || height < 768" ng-include="'components/mobile/mobile.html'"></div>
-                <div ng-if="width >= 768 && height >= 768" ng-include="'components/main/main.html'"></div>
+                <div ng-if="width < 700 || height < 700" ng-include="'components/mobile/mobile.html'"></div>
+                <div ng-if="width >= 700 && height >= 700" ng-include="'components/main/main.html'"></div>
             </div>
         </div>
     </main>
@@ -216,10 +217,12 @@
 
     <!-- Application Components -->
     <script src="components/app.js"></script>
+    <script src="components/joystick.js"></script>  <!-- TODO:: isolate -->
     <script src="components/settings.js"></script>
     <script src="components/shared-ctrl.js"></script>
     <script src="components/main/output-ctrl.js"></script>
     <script src="components/main/source-ctrl.js"></script>
+    <script src="components/main/Camera/cam-ctrl.js"></script>
 
     <!-- endbuild -->
   </body>

@@ -56,7 +56,8 @@
                     this.$_self[parts.module][parts.index - 1].mute = true;
                 }
             },
-            "name": "Test System",
+            "name": "Demo Room",
+            "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "Camera",
             "inputs": [
@@ -279,7 +280,27 @@
         Switcher: [{}],
         Lights: [{}],
         Computer: [{}, {}, {}, {}],
-        Camera: [{}, {}, {}, {}],
+        Camera: [{
+            joy_right: 50,
+            joy_left: 1,
+            joy_center: 25,
+            zoom: 25
+        }, {
+            joy_right: 50,
+            joy_left: 1,
+            joy_center: 25,
+            zoom: 1
+        }, {
+            joy_right: 50,
+            joy_left: 1,
+            joy_center: 25,
+            zoom: 75
+        }, {
+            joy_right: 50,
+            joy_left: 1,
+            joy_center: 25,
+            zoom: 10
+        }],
         Display: [{}, {}, {}, {}]
     };
 

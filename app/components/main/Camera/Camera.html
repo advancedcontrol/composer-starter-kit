@@ -1,4 +1,38 @@
 
-<div>
-All the cameras
+<div co-bind="'Camera' as source_names" id="camera-inputs">
+    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+        <div class="camera-control" co-module="selectedSource.mod" co-index="selectedSource.index" co-bind="'joy_right'">
+            <div co-bind="'joy_left'">
+                <div co-bind="'joy_center'" ng-controller="CamCtrl">
+                    <span>Drag the joystick to move the camera</span>
+                    <br />OR
+                    <br /><button ng-touch="coModuleInstance.$exec('preset', 'default')">Return to Default Position</button>
+
+                    <joystick
+                        img="components/images/joystick.svg"
+                        right="joy_right"
+                        left="joy_left"
+                        center="joy_center"
+                        pan-tilt="panTilt"
+                        refresh="selectedSource.mod"
+                        invert>
+                    </joystick>
+
+                    <span class="zoom-text">Zoom:</span>
+                    <div co-bind="'zoom'" exec>
+                        <div co-bind="'zoom_min'">
+                            <div co-bind="'zoom_max'">
+                                <div co-range model="zoom" min="zoom_min" max="zoom_max"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sources" ng-if="source_names.length > 1">
+            <div btn-group="selectedSource.source">
+                <button ng-repeat="cam in source_names" btn="cam" ng-touch="selectSource(cam)" class="toggle" ng-class="sources[cam].type"><i class="fa fa-video-camera"></i>{{sources[cam].title}}</button>
+            </div>
+        </div>
+    </div>
 </div>

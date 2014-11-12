@@ -6,6 +6,7 @@
         'ngAnimate',  // AngularJS Animation support
 
         'ngGesture',  // Gesture events
+        'coAnimate',  // Key frame animations
         'coUtils',    // UI Widgets
         'Composer'    // Resources + OAuth + ACA Engine API
     ])
