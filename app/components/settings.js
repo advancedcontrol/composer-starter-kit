@@ -1,6 +1,20 @@
 (function (window, angular) {
     'use strict';
 
+    window.getModuleParts = function (key) {
+        var parts = key.split('_'),
+            index = parseInt(parts[parts.length - 1], 10),
+            module;
+
+        parts.splice(parts.length - 1, 1);
+        module = parts.join('_');
+
+        return {
+            module: module, 
+            index: index
+        };
+    };
+
     // NOTE:: window.systemData is used for development.
     //  In production the interface will obtain this information from the server
     //  
@@ -16,6 +30,32 @@
             $tab: function (tab) {
                 this.tab = tab;
             },
+            $present: function (source, display) {
+                var src = this.sources[source];
+
+                // Return source and source title
+                this[display] = {
+                    source: source,
+                    title: src.title,
+                    type: src.type
+                };
+
+                // Clear mute
+                if (!this.outputs[display].no_mod) {
+                    var parts = getModuleParts(display);
+                    this.$_self[parts.module][parts.index - 1].mute = false;
+                }
+            },
+            $video_mute: function (display) {
+                this[display] = {
+                    source: 'none'
+                };
+
+                if (!this.outputs[display].no_mod) {
+                    var parts = getModuleParts(display);
+                    this.$_self[parts.module][parts.index - 1].mute = true;
+                }
+            },
             "name": "Test System",
             "state": "shutdown",
             "tab": "Camera",
@@ -26,127 +66,103 @@
                 "VC"
             ],
             "PC": [
-                {
-                    "source": "g1_pc1",
-                    "title": "1G1 PC-1",
-                    "type": "residentpc"
-                },
-                {
-                    "source": "g1_pc2",
-                    "title": "1G1 PC-2",
-                    "type": "residentpc"
-                },
-                {
-                    "source": "g2_pc1",
-                    "title": "1G2 PC-1",
-                    "type": "residentpc"
-                },
-                {
-                    "source": "g2_pc2",
-                    "title": "1G2 PC-2",
-                    "type": "residentpc"
-                }
+                "g1_pc1",
+                "g1_pc2",
+                "g2_pc1",
+                "g2_pc2"
             ],
             "Laptop": [
-                {
-                    "source": "laptop_g1",
-                    "title": "1G1 Laptop",
-                    "type": "hdmi"
-                },
-                {
-                    "source": "laptop_g2",
-                    "title": "1G2 Laptop",
-                    "type": "hdmi"
-                }
+                "laptop_g1",
+                "laptop_g2"
             ],
             "Camera": [
-                {
-                    "source": "cam_r_g1",
-                    "title": "1G1 Rear",
-                    "type": "vc-camera",
-                    "mod": "Camera",
-                    "index": 1
-                },
-                {
-                    "source": "cam_f_g1",
-                    "title": "1G1 Front",
-                    "type": "vc-camera",
-                    "mod": "Camera",
-                    "index": 2
-                },
-                {
-                    "source": "cam_r_g2",
-                    "title": "1G2 Rear",
-                    "type": "vc-camera",
-                    "mod": "Camera",
-                    "index": 3
-                },
-                {
-                    "source": "cam_f_g2",
-                    "title": "1G2 Front",
-                    "type": "vc-camera",
-                    "mod": "Camera",
-                    "index": 4
-                }
+                "cam_r_g1",
+                "cam_f_g1",
+                "cam_r_g2",
+                "cam_f_g2"
             ],
             "VC": [
-                {
-                    "source": "vc1",
-                    "title": "1G1 VC",
-                    "type": "vc-active"
-                },
-                {
-                    "source": "vc2",
-                    "title": "1G2 VC",
-                    "type": "vc-active"
-                }
+                "vc1",
+                "vc2"
             ],
             "sources": {
                 "g1_pc1": {
+                    "title": "1G1 PC-1",
                     "input": 14,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "type": "residentpc"
                 },
                 "g1_pc2": {
+                    "title": "1G1 PC-2",
                     "input": 15,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "type": "residentpc"
                 },
                 "g2_pc1": {
+                    "title": "1G2 PC-1",
                     "input": 1,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "type": "residentpc"
                 },
                 "g2_pc2": {
+                    "title": "1G2 PC-2",
                     "input": 5,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "type": "residentpc"
                 },
                 "laptop_g1": {
+                    "title": "1G1 Laptop",
                     "input": 11,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "type": "hdmi"
                 },
                 "laptop_g2": {
+                    "title": "1G2 Laptop",
                     "input": 2,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "type": "hdmi"
                 },
                 "cam_r_g1": {
+                    "title": "1G1 Rear",
+                    "type": "vc-camera",
+                    "mod": "Camera",
+                    "index": 1,
                     "input": 12,
                     "source": "hdmi"
                 },
                 "cam_f_g1": {
+                    "title": "1G1 Front",
+                    "type": "vc-camera",
+                    "mod": "Camera",
+                    "index": 2,
                     "input": 13,
                     "source": "hdmi"
                 },
                 "cam_r_g2": {
+                    "title": "1G2 Rear",
+                    "type": "vc-camera",
+                    "mod": "Camera",
+                    "index": 3,
                     "input": 10,
                     "source": "hdmi"
                 },
                 "cam_f_g2": {
+                    "title": "1G2 Front",
+                    "type": "vc-camera",
+                    "mod": "Camera",
+                    "index": 4,
                     "input": 9,
                     "source": "hdmi"
                 },
                 "vc1": {
+                    "title": "1G1 VC",
+                    "type": "vc-active",
                     "input": 6,
                     "content": 8
                 },
                 "vc2": {
+                    "title": "1G2 VC",
+                    "type": "vc-active",
                     "input": 3,
                     "content": 6
                 }
@@ -252,6 +268,7 @@
             fader_107: 2,
             fader_105: 3,
             fader_32: -30,
+            fader_107_mute: true, 
             $fader: function (fader, volume) {
                 this['fader_' + fader] = volume;
             },

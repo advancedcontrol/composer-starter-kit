@@ -109,7 +109,7 @@ article > div > div > footer > div > div.conference > div.icon {
 
 
 article > div > div > footer > div > div > div.icon {
-    &> div.inner.pulse {
+    &> div.inner.enable.pulse {
         -webkit-animation: pulsate 1s ease-out;
         -webkit-animation-iteration-count: 2;
         -moz-animation: pulsate 1s ease-out;
@@ -214,6 +214,19 @@ article > div > div > footer > div > div > div.icon {
                 text-align: center;
                 color: white;
                 background-color: blue;
+
+                &.ng-hide-remove {
+                    -webkit-animation: flash 1s ease-out;
+                    -webkit-animation-iteration-count: 1;
+                    -moz-animation: flash 1s ease-out;
+                    -moz-animation-iteration-count: 1;
+                    -ms-animation: flash 1s ease-out;
+                    -ms-animation-iteration-count: 1;
+                    -o-animation: flash 1s ease-out;
+                    -o-animation-iteration-count: 1;
+                    animation: flash 1s ease-out;
+                    animation-iteration-count: 1;
+                }
                 
                 &.error {
                     color: white;
@@ -225,17 +238,6 @@ article > div > div > footer > div > div > div.icon {
                     -o-animation: none;
                     animation: none;
                 }
-
-                -webkit-animation: flash 3s ease-out;
-                -webkit-animation-iteration-count: infinite;
-                -moz-animation: flash 3s ease-out;
-                -moz-animation-iteration-count: infinite;
-                -ms-animation: flash 3s ease-out;
-                -ms-animation-iteration-count: infinite;
-                -o-animation: flash 3s ease-out;
-                -o-animation-iteration-count: infinite;
-                animation: flash 3s ease-out;
-                animation-iteration-count: infinite;
             }
         }
     }

@@ -1,6 +1,6 @@
 
 <!-- Show the system when online, here for performance and pre-load -->
-<article ng-if="state == 'online'" ng-init="selected_source = null">
+<article ng-if="state == 'online'" ng-controller="SourceCtrl" co-bind="'sources'">
     <header>
         <div class="logo"><div></div></div>
 
@@ -51,7 +51,7 @@
         </div>
     </header>
 
-    <div co-bind="'inputs'">
+    <div ng-if="sources" co-bind="'inputs'">
         <div co-bind="'tab'" exec>
             <!-- Tabs -->
             <tabs current="tab" auto-select="false">
@@ -69,18 +69,19 @@
                         output.type == projector / lcd / conference
                         overlay is for indicating warming / cooling / errors etc
                      -->
-                    <div ng-repeat="output in outputs | orderObjectBy:'pri'"
+                    <div display ng-repeat="output in outputs | orderObjectBy:'pri'"
                          co-bind="output.$key as source"
+                         ng-init="source = {source: 'none'}"
                          ng-class="output.type"
                     >
-                        <div class="icon">
+                        <div class="icon" ng-click="presetSource()">
                             <div class="outer"></div>
-                            <div class="inner" ng-class="{pulse: source !== selected}">
+                            <div class="inner" ng-class="{pulse: doPulse}">
                                 <span class="title">{{output.title || output.pri}}</span>
                                 <div class="source">
                                     <div>
-                                        <div class="source-image" ng-class="source || 'blank'">
-                                            <span>{{source}}</span>
+                                        <div class="source-image" ng-class="source.type">
+                                            <span ng-if="source && source.source !== 'none'">{{source.title}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +93,6 @@
                             -->
                             <div ng-if="!output.no_mod"
                                  class="overlay"
-                                 ng-controller="OutputCtrl"
                                  co-module="device.module"
                                  index = "device.index"
                             >
