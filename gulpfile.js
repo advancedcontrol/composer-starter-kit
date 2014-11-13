@@ -15,6 +15,7 @@ var spawn = require('child_process').spawn;
 var filed = require('filed');
 var fs = require('fs');
 var manifest = require('gulp-manifest');
+var rebaseUrls = require('gulp-css-rebase-urls');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 9',
@@ -79,7 +80,7 @@ gulp.task('dev:images', function () {
         'app/**/*.jpg',
         'app/**/*.gif',
         'app/**/*.svg',
-        '!app/layout/fonts/**/*.svg'
+        '!app/branding/fonts/**/*.svg'
     ]).pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true
@@ -159,7 +160,7 @@ gulp.task('browser-sync', function () {
   ], ['dev:images', reload]);
 });
 
-gulp.task('serve', ['dev:styles', 'browser-sync']);
+gulp.task('serve', ['dev:styles', 'dev:images', 'browser-sync']);
 
 
 
@@ -194,11 +195,11 @@ gulp.task('html', function () {
 // Copy Web Fonts To Dist
 gulp.task('fonts', function () {
   return gulp.src([
-        'app/layout/fonts/**/*.ttf',
-        'app/layout/fonts/**/*.svg',
-        'app/layout/fonts/**/*.woff',
-        'app/layout/fonts/**/*.eot'
-    ]).pipe(gulp.dest('dist/styles'))
+        'app/branding/fonts/**/*.ttf',
+        'app/branding/fonts/**/*.svg',
+        'app/branding/fonts/**/*.woff',
+        'app/branding/fonts/**/*.eot'
+    ]).pipe(gulp.dest('dist/branding/fonts'))
     .pipe($.size({title: 'fonts'}));
 });
 
@@ -209,7 +210,7 @@ gulp.task('prod:images', function () {
         '.tmp/**/*.jpg',
         '.tmp/**/*.gif',
         '.tmp/**/*.svg',
-        '!.tmp/layout/fonts/**/*.svg'
+        '!.tmp/branding/fonts/**/*.svg'
     ], {dot: false}).pipe(gulp.dest('dist'))
     .pipe($.size({title: 'prod:images'}));
 });
@@ -223,25 +224,19 @@ gulp.task('prod:styles', function () {
     }));
 });
 
+gulp.task('rebase', function () {
+  return gulp.src(['.tmp/**/*.css'])
+    .pipe(rebaseUrls({
+      root: './.tmp/'
+    }))
+    .pipe(gulp.dest('./.tmp/'));
+});
+
 // Copy All Files At The Root Level (app)
 gulp.task('copy', function () {
-  return gulp.src(['app/*','!app/*.html'], {dot: true})
+  return gulp.src(['app/*','!app/*.html', '!app/*.scss'], {dot: true})
     .pipe(gulp.dest('dist'))
     .pipe($.size({title: 'copy'}));
-});
-
-// copy specially created js files
-gulp.task('js:copy', function () {
-  return gulp.src(['.tmp/scripts/condo-hash-worker.js','.tmp/scripts/condo-hash-worker-emulator.js'])
-    .pipe(gulp.dest('dist/scripts'))
-    .pipe($.size({title: 'js:copy'}));
-});
-
-// copy select 2 images
-gulp.task('select2:copy', function () {
-  return gulp.src(['bower_components/select2/*.png', 'bower_components/select2/*.gif'])
-    .pipe(gulp.dest('dist/styles'))
-    .pipe($.size({title: 'js:copy'}));
 });
 
 // Makes the site available offline.
@@ -262,7 +257,7 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('prod:styles', 'dev:images', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'js:copy', 'select2:copy', 'prod:manifest', cb);
+  runSequence('prod:styles', 'rebase', 'dev:images', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', cb);
 });
 
 // Load custom tasks from the `tasks` directory
