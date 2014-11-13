@@ -396,8 +396,8 @@ article {
                                 width: 40px;
 
                                 @include image-toggle(
-                                    $trueImage: '../../components/images/volume-mute.svg', 
-                                    $falseImage: '../../components/images/volume.svg',
+                                    $trueImage: '../../../../components/images/volume-mute.svg', 
+                                    $falseImage: '../../../../components/images/volume.svg',
                                     $width: 30px,
                                     $height: 30px
                                 );

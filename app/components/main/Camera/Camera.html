@@ -1,5 +1,5 @@
 
-<div co-bind="'Camera' as source_names" id="camera-inputs">
+<div co-bind="'Camera' as source_names" id="camera-inputs" ng-init="coModuleInstance.$exec('start_cameras')">
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div class="camera-control" co-module="selectedSource.mod" co-index="selectedSource.index" co-bind="'joy_right'">
             <div co-bind="'joy_left'">

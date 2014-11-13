@@ -112,7 +112,10 @@
         <h1 ng-if="loaded !== true">Loading...</h1>
         <div ng-cloak ng-if="loaded === true">
             <h1>Connecting...</h1>
-            <p>Attempting to contact the control server. Check network connectivity and try reloading this page if this message persists</p>
+            <p>
+                Attempting to contact the control server.<br />
+                Check network connectivity and try reloading this page if this message persists
+            </p>
         </div>
         <div>
             <div class="spinner"></div>
@@ -129,7 +132,7 @@
             <!-- Show a splash page when offline -->
             <div 
                 class="splash"
-                ng-if="state == 'shutdown'"
+                ng-if="state !== 'online'"
                 co-bind="'name'"
                 ng-click="coModuleInstance.$exec('powerup')"
             >
@@ -145,8 +148,8 @@
 
             <!-- Display the most appropriate user interface -->
             <div ng-controller="SharedCtrl" co-bind="'outputs'">
-                <div ng-if="width < 700 || height < 700" ng-include="'components/mobile/mobile.html'"></div>
-                <div ng-if="width >= 700 && height >= 700" ng-include="'components/main/main.html'"></div>
+                <!--  <div ng-if="width < 700 || height < 700" ng-include="'components/mobile/mobile.html'"></div> -->
+                <div ng-include="'components/main/main.html'"></div>
             </div>
         </div>
     </main>
