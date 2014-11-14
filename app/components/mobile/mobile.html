@@ -1,36 +1,80 @@
 
-<h1>Example APP</h1>
-<p>
-    Below is a list of the devices in the system specified and their power status <br />
-    The power switch will be grayed out if a device is not connected
-</p>
+<article 
+    ng-if="state === 'online'"
+    ng-controller="SidebarCtrl"
 
-<!--
-    If the system exists, show the interface
--->
-<div ng-if="coSystem.id">
-    <div module-list="modules">
-        <div ng-repeat="module in modules">
-            <ol co-module="module" indices-of="module as indices">
-                <li ng-repeat="index in indices" co-index="index" co-bind="'connected'">
-                    {{module}}:
+    ng-swipe-left="hideNav()"
+    ng-swipe-right="showNav()"
 
-                    <!--
-                        co-bind keeps the model == power up to date
-                        exec (in shortcut form) calls the power function on the module if power is changed
-                        toggle-switch indicated we want to show a toggle switch here
-                        disabled is used to disable the toggle if we are not connected to the device.
-                    -->
-                    Power <div co-bind="'power'" exec toggle-switch disabled="!connected" model="power"></div>
-                </li>
-            </ol>
-        </div>
+    drag-begin="dragStartNav($event)"
+    ng-drag="dragNav($event)"
+    drag-stop="dragEndNav()"
+    drag-directions="'left right'"
+
+    touch-action="pan-y"
+    drag-y-axis="false"
+    user-select="true"
+
+    ng-class="{
+        navAnimate: navAnimate,
+        navDecorate: navDecorate,
+        navOpen: navOpen,
+        noAuth: !authenticated
+    }"
+>
+    <div
+        id="touch-overlay" 
+        ng-touch="toggleNav()"
+    >
+        <!--
+            For closing the mobile sidebar when it is showing
+            Provides a touch area over the sliver of the visible content
+         -->
     </div>
-</div>
 
-<!--
-    If the system does not exist show an error here
--->
-<div ng-if="!coSystem.id">
-    <h2>System "{{coSystem.$name}}" Not Found</h2>
-</div>
+    <header 
+        class="promote-layer" 
+        ng-touch="$event.stopPropagation()" 
+        user-select="true" 
+        no-capture
+    >
+        <div class="name"></div>
+
+        <span id="show-menu" ng-touch="toggleNav()">
+            <div class="logo aca-small"></div>
+        </span>
+    </header>
+
+    <aside class="promote-layer">
+        <div id="aside-wrapper">
+            <div id="nav-buffer">
+                <!-- Place the popup actions here -->
+            </div>
+
+            <div id="nav-wrapper">
+                <nav>
+                    <span class="apps"></span>
+                    <span class="workshops"></span>
+                    <span class="webcam"></span>
+                </nav>
+
+                <section>
+                    <div > <!-- ng-switch -->
+                        <div > <!-- ng-switch-when -->
+                            <div > <!-- ng-include -->
+                                <!-- sidebar content -->
+
+                                SOME SAMPLE CONTENT
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </aside>
+
+    <div id="mobile-sources">
+        <!-- Output lists -->
+        <!-- Source Selection -->
+    </div>
+</article>

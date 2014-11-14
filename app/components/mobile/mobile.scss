@@ -1,18 +1,285 @@
 @import "compass";
 
-// Import Utility CSS helpers
-@import "../../../bower_components/angular-fancy-tab/fancy-tab.scss";
-@import "../../../bower_components/angular-progress/angular-progress.scss";
-@import "../../../bower_components/angular-button-group/button-group.scss";
-@import "../../../bower_components/angular-named-toggle/image-toggle.scss";
+
+main {
+    > div {
+        height: 100%;
+
+        > div {
+            height: 100%;
+
+            > div {
+                height: 100%;
+
+            }
+        }
+    }
+}
 
 
-// Include helpers
-@import "../../../bower_components/angular-named-toggle/angular-named-toggle.scss";
-@include named-toggle();
+// animations
+@mixin animation($defn) {
+    -webkit-animation: $defn;
+    -moz-animation: $defn;
+    -ms-animation: $defn;
+    animation: $defn;
+}
 
-@import "../../../bower_components/angular-named-toggle/ios-toggle.scss";
-@include ios-toggle();
 
-@import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
-@include co-range-slider($handle-size: 40px, $track-girth: 20px);
+// sizing
+@mixin fill-space($position: absolute) {
+    position: $position;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+////////////////////////////////////
+//          Panel Sizes           //
+////////////////////////////////////
+$header-height: 60px;
+$mobile-nav-width: 60px;
+
+////////////////////////////////////
+//         Content Sizing         //
+////////////////////////////////////
+$pad: 30px;
+$mobile-content-pad: 20px;
+$sidebar-pad: 25px;
+$sidebar-tab-height: 24px;
+$header-logo-width: 150px;
+
+
+////////////////////////////////////
+//            Z-Index             //
+////////////////////////////////////
+
+$header-zindex: 31;   // Header needs to be above the content
+$sidebar-zindex: 30;
+
+$overlay-zindex: 99;  // Overlay goes over the header and content
+$popups-zindex: 100;
+$notifications-zindex: 150;
+
+$fixed-elements-zindex: 10;
+$video-time-zindex: 11;
+
+
+// Sidebar is below the content on mobile
+// NOTE:: content has to be above the sidebar
+// Sidebar closed must be -1 when closed, else breaks webkit
+// Sidebar open must be 0, else scrolling broken in firefox
+$mobile-content-zindex: 1;
+$mobile-sidebar-open-zindex: 0;
+$mobile-sidebar-closed-zindex: -1;
+
+
+////////////////////////////////////
+//           Animations           //
+////////////////////////////////////
+$sidebar-transition-time: 0.3s;      // Animation time (Needs to match JS)
+$sidebar-transition-type: ease-out;  // Animation style
+
+
+////////////////////////////////////
+//            Colours             //
+////////////////////////////////////
+$header-primary-colour: #b72706;
+$header-secondary-colour: #9d2408;
+
+$sidebar-secondary-colour: #202328;
+$sidebar-primary-colour: lighten($sidebar-secondary-colour, 8%);
+
+$button-colour: #777;
+$cancel-button-colour: #eee;
+$delete-button-colour: red;
+
+$default-text-colour: #333;
+
+$nav-border: 1px solid #eee;
+
+$tab-colour: white;
+$sidebar-tab-hover-colour: transparentize($tab-colour, 0.85);
+$sidebar-tab-selected-colour: transparentize($tab-colour, 0.7);
+
+
+////////////////////////////////////
+//             Type               //
+////////////////////////////////////
+$default-font: lato, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+$default-font-size: 14px;
+$input-font-size: 14px;
+
+$mobile-nav-padding: 10px;
+
+
+body {
+    // Don't scroll left and right
+    overflow-x: hidden;
+}
+
+article {
+
+    // Sidebar animations (header and main content on mobile move)
+    &.navAnimate {
+        > header, > div#mobile-sources {
+            -webkit-transition: -webkit-transform $sidebar-transition-time $sidebar-transition-type;
+            transition: -webkit-transform $sidebar-transition-time $sidebar-transition-type;
+            transition: transform $sidebar-transition-time $sidebar-transition-type;
+        }
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: $header-height;
+
+        z-index: $header-zindex;
+
+        background-color: yellow;
+    }
+
+
+    // Don't scroll left and right
+    overflow-x: hidden;
+
+    height: 100%;
+
+    // The player is here as it should more or less emulate main
+    // Breaks convention a bit however you can't have everything
+    > div#mobile-sources {
+        display: block;
+        
+        @include box-sizing(border-box);
+        background-color: white;
+        position: relative;
+        @include pie-clearfix();
+
+        min-height: 100%;
+        padding-top: $header-height + $mobile-content-pad;
+        z-index: $mobile-content-zindex;
+
+        background-color: blue;
+    }
+
+
+    > aside {
+        // Animate nav bar in
+        -webkit-transition: -webkit-transform $sidebar-transition-time $sidebar-transition-type;
+        transition: -webkit-transform $sidebar-transition-time $sidebar-transition-type;
+        transition: transform $sidebar-transition-time $sidebar-transition-type;
+
+        // As navigation is full height we add the buffer
+        //  so on resize the elements don't jump.
+        // It also provides room for a logo or other context
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: auto;
+        bottom: 0;
+        width: 90%;
+
+        display: none;
+        z-index: $mobile-sidebar-closed-zindex;
+        
+        #aside-wrapper {
+            @include fill-space(relative);
+
+            // This is displayed on mobile
+            #nav-buffer {
+                position: relative;
+                display: block;
+                z-index: $mobile-content-zindex;
+
+                height: $header-height;
+                padding: $mobile-nav-padding 0px;
+            }
+
+            #nav-wrapper {
+                @include fill-space(relative);
+                @include box-sizing(border-box);
+
+                top: -$header-height;
+                padding-top: $header-height;
+
+                > nav {
+                    top: $header-height;
+                    right: 0;
+                    left: auto;
+                    width: $mobile-nav-width;
+                }
+
+                > section {
+                    @include fill-space(relative);
+                    width: auto;
+
+                    overflow-y: auto;
+                    -webkit-overflow-scrolling: touch;
+                    overflow-scrolling: touch;
+                    @include box-sizing(border-box);
+
+                    margin-right: $mobile-nav-width;
+                    margin-left: 0px;
+                    box-shadow: 4px 0px 4px rgba(20, 20, 20, 0.15);
+
+                    // This is used to allow dragging to occur on IE
+                    // As the section element will prevent default on
+                    // direct touch to allow using the scroll bar
+                    > div {
+                        min-height: 100%;
+
+                        // Not sure where this 30px came from
+                        margin-bottom: -30px;
+                    }
+                }
+            }
+        }
+    }
+
+    // This is what the user touches to discard the side bar
+    #touch-overlay {
+        opacity: 0;
+        cursor: pointer;
+
+        // Required for IE9, otherwise the div isn't rendered!!!
+        background-color: white;
+    }
+
+    // Separate class for animation decorators
+    // Allows us to 'manually' drag the menu open too
+    &.navDecorate {
+        > aside {
+            display: block;
+        }
+
+        > div#mobile-sources {
+            @include box-shadow(3px 0px 5px 0px #000);
+        }
+
+        overflow: hidden;
+    }
+
+    // When the navigation bar is open on mobile
+    &.navOpen {
+        // Animate the sliding out of the sidebar
+        > header, > div#mobile-sources {
+            @include translate(-90%, 0);
+        }
+
+        > aside {
+            z-index: $mobile-sidebar-open-zindex;
+        }
+
+        // Overlay to catch any clicks
+        #touch-overlay {
+            @include fill-space(fixed);
+            width: 10%;
+            z-index: $overlay-zindex;
+        }
+    }
+}
