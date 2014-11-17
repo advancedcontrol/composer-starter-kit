@@ -1,0 +1,13 @@
+<h1>Select your loop channel</h1>
+
+<div co-bind="'Loops' as source_names">
+    <div ng-init="selectSource(source_names[0])">
+        <div btn-group="selectedSource.source">
+            <button ng-repeat="loop in source_names" btn="loop" ng-click="selectSource(loop)">
+                <div class="img"><img ng-src="{{sources[loop].image}}"></div>
+                <h1>{{sources[loop].title}} <span>{{sources[loop].dur}}</span></h1>
+                <p>{{sources[loop].desc}}</p>
+            </button>
+        </div>
+    </div>
+</div>

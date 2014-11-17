@@ -2,12 +2,13 @@
     <!-- quick fix -->
     <div co-bind="'title'"></div>
     <div co-bind="'state'"></div>
+    <div co-bind="'sources'"></div>
 
     <!-- Show a splash page when offline -->
     <div 
         class="splash"
         ng-if="state == 'shutdown'"
-        ng-touch="coModuleInstance.$exec('powerup')"
+        ng-click="coModuleInstance.$exec('powerup')"
     >
         <div>
             <img src="branding/aca/oh.png">
@@ -17,13 +18,26 @@
     </div>
 
     <!-- Show the system when online -->
-    <article ng-if="state == 'online'">
+    <article ng-if="state == 'online'" ng-controller="SourceCtrl">
         <header>
             <img src="branding/aca/oh.png">
+            <button><i class="fa fa-power-off"></i></button>
         </header>
 
-        <div>
-            <table>
+        <div ng-if="sources" co-bind="'inputs'">
+            <div co-bind="'tab'" exec>
+                <tabs current="tab" auto-select="false">
+                    <pane ng-repeat="input in inputs" title="{{input}}" icon="{{input}}">
+                        <div ng-include="'components/main/' + input + '/' + input + '.html'"></div>
+                    </pane>
+                </tabs>
+            </div>
+            <!--<nav co-bind="'tab'" exec>
+                <a href="#" id="loops" class="selected"><i class="pe-7s-loop"></i></a>
+                <a href="#" id="channels"><i class="pe-7s-monitor"></i></a>
+            </nav>-->
+
+            <!-- <table>
                 <tr>
                     <th>Select Screen</th>
                     <th id="middle">&nbsp;</th>
@@ -44,7 +58,7 @@
                     <td>&nbsp;</td>
                     <td><button>VGA</button></td>
                 </tr>
-            </table>
+            </table> -->
         </div>
     </article>
 </div>

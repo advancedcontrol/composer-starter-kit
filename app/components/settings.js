@@ -7,10 +7,11 @@
     window.systemData = window.systemData || {};
     window.systemData['sys-B0'] = {
         System: [{
-            "title": "Concert Hall",
+            "title": "Western Foyers",
+
+            // power on/off
             "state": "shutdown",
             $powerup: function() {
-                console.log(1);
                 this.state = 'online';
             },
             $shutdown: function() {
@@ -20,16 +21,144 @@
                     this.$_self.Screen[i].down = false;
                 }
             },
+
+            // input tabs
+            "inputs": [
+                "Loops",
+                "TV"
+            ],
+            "tab": "Loops",
+            $tab: function(tab) {
+                this.tab = tab;
+            },
+
+            // tab content
+            "Loops": [
+                "dining",
+                "education",
+                "events",
+                "history",
+                "sponsors",
+                "tours"
+            ],
+            "TV": [
+                "abc",
+                "sbs",
+                "c7",
+                "c9",
+                "c10"
+            ],
+            "sources": {
+                // loops
+                "dining": {
+                    "title": "Dining",
+                    "dur": "6:33",
+                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
+                    "image": "branding/images/oh/dining.jpg",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "education": {
+                    "title": "Education",
+                    "dur": "4:21",
+                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
+                    "image": "branding/images/oh/education.jpg",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "events": {
+                    "title": "Events",
+                    "dur": "3:19",
+                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
+                    "image": "branding/images/oh/events.jpg",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "history": {
+                    "title": "History",
+                    "dur": "5:29",
+                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
+                    "image": "branding/images/oh/history.jpg",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "sponsors": {
+                    "title": "Sponsors",
+                    "dur": "4:21",
+                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
+                    "image": "branding/images/oh/sponsors.jpg",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "tours": {
+                    "title": "Tours",
+                    "dur": "7:43",
+                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
+                    "image": "branding/images/oh/tours.jpg",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+
+                // tv channels
+                "abc": {
+                    "title": "ABC",
+                    "image": "branding/images/oh/abc.jpg",
+                    "input": 2,
+                    "source": "hdmi2",
+                    "type": "tv"
+                },
+                "sbs": {
+                    "title": "SBS",
+                    "image": "branding/images/oh/sbs.png",
+                    "input": 2,
+                    "source": "hdmi2",
+                    "type": "tv"
+                },
+                "c7": {
+                    "title": "Channel 7",
+                    "image": "branding/images/oh/c7.jpg",
+                    "input": 2,
+                    "source": "hdmi2",
+                    "type": "tv"
+                },
+                "c9": {
+                    "title": "Channel 9",
+                    "image": "branding/images/oh/c9.jpg",
+                    "input": 2,
+                    "source": "hdmi2",
+                    "type": "tv"
+                },
+                "c10": {
+                    "title": "Channel 10",
+                    "image": "branding/images/oh/c10.jpg",
+                    "input": 2,
+                    "source": "hdmi2",
+                    "type": "tv"
+                },
+            },
+            
             $present: function(source, displayIndex) {
                 this.$_self.Display[displayIndex].power = true;
-                this.$_self.Screen[displayIndex].down = true;
-                this['Display_' + displayIndex] = source;
+                //this.$_self.Screen[displayIndex].down = true;
+
+                var src = this.sources[source];
+                this['Display_' + displayIndex] = {
+                    source: source,
+                    title: src.title,
+                    type: src.type
+                };
             }
         }],
 
-        Screen: [{
+        /*Screen: [{
             "down": false
-        }],
+        }],*/
 
         Display: [{
             "power": false
