@@ -74,6 +74,7 @@ body {
 
     // This is where the UI will sit
     &> main {
+        display: block;  // required for IE
         height: 100%;
         position: relative;
     }

@@ -6,10 +6,7 @@ div#camera-inputs {
         position: relative;
 
         &> div {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 20px;
+            padding-right: 20px;
             height: 100%;
 
             &> div {

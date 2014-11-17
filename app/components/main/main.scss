@@ -162,7 +162,7 @@ article {
 
                 // Tabs can be scrolled when there are too many
                 overflow: hidden;
-                overflow-x: scroll;
+                overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
 
                 white-space: nowrap;
@@ -309,7 +309,7 @@ article {
         @include border-bottom-left-radius($radius);
 
         overflow: hidden;
-        overflow-x: scroll;
+        overflow-x: auto;
         -webkit-overflow-scrolling: touch;
 
         background-color: $footerBackground;
