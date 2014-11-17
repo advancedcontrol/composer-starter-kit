@@ -16,6 +16,12 @@
             $scope.selectSource = function (src) {
                 angular.extend(source, $scope.sources[src]);
                 source.source = src;
+
+                $scope.coModuleInstance.$exec('present', $scope.tab);
+            };
+
+            $scope.currentTab = function (tab) {
+                $scope.coModuleInstance.$exec('tab', tab);
             };
 
             // TODO:: Source to name mapping!

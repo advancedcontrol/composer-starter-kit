@@ -1,4 +1,4 @@
-<div co-module="'System'" id="module">
+<div co-module="'System'" id="module" co-bind="'tab'" exec>
     <!-- quick fix -->
     <div co-bind="'title'"></div>
     <div co-bind="'state'"></div>
@@ -19,13 +19,24 @@
 
     <!-- Show the system when online -->
     <article ng-if="state == 'online'" ng-controller="SourceCtrl">
-        <header>
+        <header ng-controller="Modals">
             <img src="branding/aca/oh.png">
-            <button><i class="fa fa-power-off"></i></button>
+            <button ng-touch="showModal('power')"><i class="fa fa-power-off"></i></button>
+            <modal name="power" title="Shutdown?">
+                <p>
+                    <b>Are you sure you want to turn off the system?</b>
+                    <br />It may take up to 5min to restart.
+                </p>
+                <menu>
+                    <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
+                    <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
+                </menu>
+                <div style="clear: both"></div>
+            </modal>
         </header>
 
         <div ng-if="sources" co-bind="'inputs'">
-            <div co-bind="'tab'" exec>
+            <div>
                 <tabs current="tab" auto-select="false">
                     <pane ng-repeat="input in inputs" title="{{input}}" icon="{{input}}">
                         <div ng-include="'components/main/' + input + '/' + input + '.html'"></div>

@@ -16,9 +16,8 @@
             },
             $shutdown: function() {
                 this.state = 'shutdown';
-                for (var i = 0; i < 1; i++) {
+                for (var i = 0; i < this.$_self.Display.length; i += 1) {
                     this.$_self.Display[i].power = false;
-                    this.$_self.Screen[i].down = false;
                 }
             },
 
@@ -140,19 +139,11 @@
                     "input": 2,
                     "source": "hdmi2",
                     "type": "tv"
-                },
+                }
             },
             
-            $present: function(source, displayIndex) {
-                this.$_self.Display[displayIndex].power = true;
-                //this.$_self.Screen[displayIndex].down = true;
-
-                var src = this.sources[source];
-                this['Display_' + displayIndex] = {
-                    source: source,
-                    title: src.title,
-                    type: src.type
-                };
+            $present: function(tab) {
+                
             }
         }],
 
