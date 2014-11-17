@@ -49,6 +49,7 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
 
     <!-- Hide content until page is loaded -->
     <style>
@@ -118,9 +119,9 @@
         <div class="noSystem" ng-if="!coSystem.id">
             <h2>System "{{coSystem.$name}}" Not Found</h2>
         </div>
-        <div ng-if="coSystem.id">
-            <div ng-if="width < 768 || height < 768" ng-include="'components/mobile/mobile.html'"></div>
-            <div ng-if="width >= 768 && height >= 768" ng-include="'components/main/main.html'"></div>
+        <div ng-if="coSystem.id" id="system">
+            <!-- div ng-if="width < 768 || height < 768" ng-include="'components/mobile/mobile.html'"></div -->
+            <div ng-include="'components/main/main.html'"></div>
         </div>
     </main>
 

@@ -1,41 +1,50 @@
+<div co-module="'System'" id="module">
+    <!-- quick fix -->
+    <div co-bind="'title'"></div>
+    <div co-bind="'state'"></div>
 
-<div co-module="'System'" co-bind="'state'">
     <!-- Show a splash page when offline -->
     <div 
         class="splash"
         ng-if="state == 'shutdown'"
-        co-bind="'name'"
-        ng-touch="coModuleInstance.exec('powerup')"
+        ng-touch="coModuleInstance.$exec('powerup')"
     >
-        <h1>Touch to Start</h1>
-        <h2>{{name}}</h2>
+        <div>
+            <img src="branding/aca/oh.png">
+            <h1>{{title}}</h1>
+            <h2>Touch to Start</h2>
+        </div>
     </div>
 
     <!-- Show the system when online -->
-    <article ng-if="state == 'online'" co-bind="'outputs'">
+    <article ng-if="state == 'online'">
         <header>
-            <div class="logo"></div>
-
-            <!-- 
-                TODO:: Popups
-                Popups Directive and separate controller that can be used to trigger the pop-ups
-             -->
-            <div class="tray">
-                <div class="lights" co-bind="'lights'" ng-if="lights"></div>
-                <div class="help"></div>
-                <div class="power"></div>
-            </div>
+            <img src="branding/aca/oh.png">
         </header>
 
-        <!-- Tabs -->
-
-        <!-- Show when more than one output available -->
-        <footer ng-if="Object.keys(outputs).length > 1">
-            <div ng-repeat="output in outputs" ng-class="output.type">
-                <div class="outer">{{output.type}}</div>
-                <div class="inner"></div>
-                <div class="overlay"></div>
-            </div>
-        </footer>
+        <div>
+            <table>
+                <tr>
+                    <th>Select Screen</th>
+                    <th id="middle">&nbsp;</th>
+                    <th><span>Select Input</span></th>
+                </tr>
+                <tr>
+                    <td><button>East</button></td>
+                    <td>&nbsp;</td>
+                    <td><button>PC</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>&nbsp;</td>
+                    <td><button>HDMI</button></td>
+                </tr>
+                <tr>
+                    <td><button>West</button></td>
+                    <td>&nbsp;</td>
+                    <td><button>VGA</button></td>
+                </tr>
+            </table>
+        </div>
     </article>
 </div>

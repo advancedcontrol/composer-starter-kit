@@ -16,3 +16,71 @@
 
 @import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
 @include co-range-slider($handle-size: 40px, $track-girth: 20px);
+
+html, body, main, #system, #system > div, #module {
+    width: 100%;
+    height: 100%;
+}
+
+.splash {
+    text-align: center;
+    display: table;
+    width: 100%;
+    height: 100%;
+    
+    > div {
+        display: table-cell;
+        vertical-align: middle;
+
+        h2 {
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+    }
+}
+
+#module > article {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    header {
+        background-color: white;
+        padding: 10px 20px;
+
+        img {
+            width: 100px;
+        }
+    }
+
+    > div {
+        position: absolute;
+        top: 112px;
+        left: 40px;
+        right: 40px;
+        bottom: 40px;
+    }
+
+    table {
+        width: 100%;
+        height: 100%;
+
+        th {
+            font-size: 20px;
+            width: 40%;
+        }
+
+        #middle {
+            width: 20%;
+        }
+
+        button {
+            background-color: white;
+            border: 3px solid #333;
+            width: 100%;
+            height: 100%;
+            font-size: 17px;
+        }
+    }
+}
+
