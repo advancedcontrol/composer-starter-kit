@@ -22,31 +22,15 @@
                 <p>
                     Please enter your access code below
                 </p>
-                <input type="password" />
+                <input autofocus ng-model="pass" type="password" />
 
                 <div class="progress">
                     <button class="btn" ng-click="$parent.startProgress = 'start'">Cancel</button>
                     <button
                         class="btn"
-                        ng-click="$root.mode = 'meeting'; $root.showModal('Code Accepted', 'Enjoy your meeting.<br /><br />If you need any assistance at all please contact us via the Help and Support tab.')"
+                        ng-click="coModuleInstance.$exec('changeState', pass)"
                     >Next</button>
                     <div progress value="2" total="3"></div>
-                </div>
-            </div>
-            <div ng-switch-when="ready">
-                <h1>&nbsp;</h1>
-                <p>
-                    <b>Code Accepted.</b>
-                    <br />
-                    <br />
-                    Enjoy your meeting.
-                    <br />
-                    If you need any assistance at all please contact us via the Help and Support tab
-                </p>
-
-                <div class="progress">
-                    <button class="btn" ng-click="$root.mode = 'meeting'">Next</button>
-                    <div progress value="3" total="3"></div>
                 </div>
             </div>
         </div>

@@ -266,6 +266,7 @@ article {
     font-family: FontAwesome;
 
 
+    // TABS
     &.lights::before {
         content: "\f0eb";
     }
@@ -278,16 +279,36 @@ article {
         content: "\f011";
     }
 
+    &.vision::before {
+        content: "\f03e";
+    }
+
+    &.audio::before {
+        content: "\f028";
+    }
+
+    &.end::before {
+        content: "\f011";
+    }
 
 
-
-    &.PC::before, &.residentpc::before {
+    // Outputs
+    &.laptop::before {
+        content: "\f109";
+    }
+    
+    &.residentpc::before {
         content: "\f108";
     }
 
-    &.Laptop::before, &.hdmi::before {
-        content: "\f109";
+    // (plug icon)
+    &.vga::before {
+        content: "\f1e6";
     }
+
+    
+
+    
 
     &.Camera::before, &.vc-camera::before {
         content: "\f03d";

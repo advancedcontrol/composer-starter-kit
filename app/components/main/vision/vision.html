@@ -1,0 +1,79 @@
+
+<div class="expansive" co-bind="'outputs'">
+<div class="panels vision" ng-repeat="(dispName, output) in outputs" co-bind="dispName as currSource" exec="$present(currSource)">
+    <div class="panel large">
+        <div co-bind="'sources'" btn-group="currSource" btn-class="none" class="expansive">
+            <div class="panels vert">
+                <div class="panel">
+                    <div class="center-bottom">
+                        <div class="sources">
+                            <div ng-repeat="(name, details) in sources"
+                                 btn="name" 
+                                 ng-touch="$parent.currSource=name"
+                            >
+                                <div class="source-image" ng-class="details.type"></div>
+                                <span>{{details.title}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="center-hori">
+                        <div class="sources">
+                            <div btn="'blank'" ng-touch="currSource='blank'">
+                                <span>Blank</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panels vert controls">
+            <div class="panel" ng-if="output.lift">
+                <div class="center-vert" co-module="output.lift.module" co-implicit-index>
+                    <div
+                        co-bind="'screen' + output.lift.index as position"
+                        exec="state(position, output.lift.index)"
+                    >
+                        <p>Projector Lift</p>
+                        <div toggle-switch
+                             model="position"
+                             on-label="'Down'" 
+                             off-label="'Up'"
+                             true-value="'down'"
+                             false-value="'up'"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel" ng-if="output.screen">
+                <div class="center-vert" co-module="output.screen.module" co-implicit-index>
+                    <div
+                        co-bind="'screen' + output.screen.index as position"
+                        exec="state(position, output.screen.index)"
+                    >
+                        <p>Screen</p>
+                        <div toggle-switch
+                             model="position"
+                             on-label="'Down'" 
+                             off-label="'Up'"
+                             true-value="'down'"
+                             false-value="'up'"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="center-vert" co-module="dispName" co-implicit-index>
+                    <div co-bind="'power'" exec>
+                        <p>Projector</p>
+                        <div toggle-switch model="power" on-label="'On'" off-label="'Off'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,62 @@
+@import "compass";
+
+@import "../bower_components/angular-named-toggle/angular-named-toggle.scss";
+
+@include named-toggle();
+
+div.vision {
+
+    div.sources {
+        width: 100%;
+        text-align: center;
+
+        &> div {
+            position: relative;
+            display: inline-block;
+
+            width: 13.5vw;
+            height: 12vh;
+            margin: 1vw;
+
+            background-color: #eeeeee !important;
+            border: 5px solid white;
+
+            &.active {
+                border: 5px solid #53d76a;
+            }
+
+            &> span {
+                display: block;
+                position: absolute;
+                bottom: 0.5em;
+                left: 0;
+
+                width: 100%;
+            }
+
+            &> div {
+                position: absolute;
+                bottom: 1.5em;
+                left: 0;
+                right: 0;
+                top: 0.2em;
+
+                text-align: center;
+                font-size: 6vh;
+            }
+        }
+    }
+
+    div.controls {
+        font-size: 2.1vw;
+
+        p {
+            margin-bottom: 0.5em;
+        }
+
+        span.switch-min {
+            min-width: 8em;
+        }
+    }
+}
+

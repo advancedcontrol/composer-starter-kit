@@ -1,0 +1,48 @@
+@import "compass";
+
+// START PAGE
+@import "../bower_components/angular-progress/angular-progress.scss";
+@include progress-bar($inactive: white);
+
+div.start-stop > div > div > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+    font-size: 1.8vw;
+
+    h1 {
+        margin: 1em;
+
+        font-weight: bold;
+        font-size: 4vw;
+    }
+
+    p {
+        width: 70%;
+        margin-left: 15%;
+        margin-bottom: 1em;
+
+        b {
+            font-weight: bold;
+        }
+    }
+
+    input {
+        font-size: 3vw;
+    }
+
+    div.progress {
+        &> button {
+            font-size: 3vw;
+            margin-bottom: 0.5em;
+        }
+
+        width: 50%;
+
+        position: absolute;
+        bottom: 3em;
+        left: 25%;
+    }
+}

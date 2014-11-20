@@ -1,20 +1,6 @@
 (function (window, angular) {
     'use strict';
 
-    window.getModuleParts = function (key) {
-        var parts = key.split('_'),
-            index = parseInt(parts[parts.length - 1], 10),
-            module;
-
-        parts.splice(parts.length - 1, 1);
-        module = parts.join('_');
-
-        return {
-            module: module, 
-            index: index
-        };
-    };
-
     // NOTE:: window.systemData is used for development.
     //  In production the interface will obtain this information from the server
     //  
@@ -35,9 +21,7 @@
                 var display = 'Display_1';
 
                 if (source === 'none') {
-                    this[display] = {
-                        source: 'none'
-                    };
+                    this[display] = 'none';
 
                     // Mute the display as well
                     if (!this.outputs[display].no_mod) {
@@ -48,11 +32,7 @@
                     var src = this.sources[source];
 
                     // Return source and source title
-                    this[display] = {
-                        source: source,
-                        title: src.title,
-                        type: src.type
-                    };
+                    this[display] = source;
 
                     // Clear mute
                     if (!this.outputs[display].no_mod) {
@@ -61,10 +41,9 @@
                     }
                 }
             },
-            $newState: function (pass) {
+            $changeState: function (pass) {
                 if (pass == '1234') {
                     this.state = 'client';
-                    this.tab = 'vision';
                 } else if (pass == 'admin') {
                     this.state = 'advanced';
                 } else {
@@ -130,15 +109,23 @@
                     "type": "laptop"
                 },
                 "vga": {
-                    "title": "VGA Cable",
+                    "title": "AUX Input",
                     "source": "vga",
                     "type": "vga"
                 }
             },
+            "Display_1": 'blank',
             "outputs": {
                 "Display_1": {
                     "type": "projector",
-                    "screen": "Screen_1",
+                    "screen": {
+                        "module": "Screen_1",
+                        "index": 1
+                    },
+                    "lift": {
+                        "module": "Screen_1",
+                        "index": 2
+                    },
                     "output": [
                         1
                     ],
@@ -173,7 +160,19 @@
         }],
         Switcher: [{}],
         Lights: [{}],
-        Display: [{}]
+        Display: [{
+            "power": true,
+            $power: function (val) {
+                this.power = val;
+            }
+        }],
+        Screen: [{
+            "screen1": "down",
+            "screen2": "up",
+            $state: function (pos, index) {
+                this['screen' + index] = pos;
+            }
+        }]
     };
 
     angular.module('AcaEngine')
