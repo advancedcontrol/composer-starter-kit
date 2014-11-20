@@ -1,0 +1,29 @@
+@import "compass";
+
+// LIGHTING PAGE
+
+div.lighting {
+    font-size: 3vw;
+
+    div.lights > div > div {
+        margin: 0 auto;
+    }
+
+    div.lights {
+        p {
+            margin-bottom: 0.3em;
+        }
+
+        div.btn-group > .btn {
+            font-size: 2.5vw;
+            min-width: 6em;
+        }
+    }
+
+    div.vert-button-group > .btn {
+        font-size: 2.5vw;
+        margin-bottom: 0.8em;
+    }
+}
+
+

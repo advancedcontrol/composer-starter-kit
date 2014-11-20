@@ -1,6 +1,6 @@
 
 <!-- Show the system when online, here for performance and pre-load -->
-<article ng-if="state === 'online'" ng-controller="SourceCtrl" co-bind="'sources'">
+<article  ng-if="state && state !== 'shutdown'" co-bind="'pages'">
     <header co-bind="'name'">
         <div class="logo"><div></div></div>
 
@@ -74,83 +74,15 @@
         </div>
     </header>
 
-    <div ng-if="sources" co-bind="'inputs'">
+    <div co-bind="'tabs'">
         <div co-bind="'tab'" exec>
             <!-- Tabs -->
             <tabs current="tab" auto-select="false">
-                <pane ng-repeat="input in inputs" title="{{input}}" icon="{{input}}">
-                    <div ng-include="'components/main/' + input + '/' + input + '.html'">
+                <pane ng-repeat="tabType in tabs[state]" title="{{pages[tabType].title}}" icon="{{tabType}}" name="tabType">
+                    <div ng-include="'components/main/' + tabType + '/' + tabType + '.html'">
                     </div>
                 </pane>
             </tabs>
-
-            <!-- Show when more than one output available -->
-            <footer ng-if="outputs && numOutputs > 1">
-                <div>
-                    <!-- 
-                        source === what is currently displaying
-                        output.type == projector / lcd / conference
-                        overlay is for indicating warming / cooling / errors etc
-                     -->
-                    <div display ng-repeat="output in outputs | orderObjectBy:'pri'"
-                         co-bind="output.$key as source"
-                         ng-init="source = {source: 'none'}"
-                         ng-class="output.type"
-                    >
-                        <div class="icon" ng-click="presetSource()">
-                            <div class="outer"></div>
-                            <div class="inner" ng-class="{pulse: doPulse}">
-                                <span class="title">{{output.title || output.pri}}</span>
-                                <div class="source">
-                                    <div>
-                                        <div class="source-image" ng-class="source.type">
-                                            <span ng-if="source && source.source !== 'none'">{{source.title}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--
-                                Only show if a module exists for this output as
-                                we'll query it directly
-                            -->
-                            <div ng-if="!output.no_mod"
-                                 class="overlay"
-                                 co-module="device.module"
-                                 index = "device.index"
-                            >
-                                <div>
-                                    <span co-bind="'warming'" ng-show="warming">Warming up</span>
-                                    <span co-bind="'mute'" ng-show="mute">Muted</span>
-                                    <span co-bind="'connected'" ng-show="!connected" class="error">Comms Error</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--
-                            An output may not output any audio (VC for example)
-                        -->
-                        <div ng-if="!output.no_audio" class="audio">
-                            <!--
-                                Mixer used for audio
-                                We check against undefined as 0 is falsey
-                            -->
-                            <div ng-if="output.mixer_id !== undefined" co-bind="'vol_min'">
-                                <div class="mute"  co-module="'Mixer'" co-bind="'fader_' + output.mixer_id + '_mute' as mute" exec="mute(output.mixer_id, mute)">
-                                    <div image-toggle model="mute"></div>
-                                </div>
-                                <div class="volume" co-bind="'vol_max'">
-                                    <div co-module="'Mixer'" co-bind="'fader_' + output.mixer_id as volume" exec="fader(output.mixer_id, volume)">
-                                        <div>
-                                            <div co-range model="volume" min="vol_min" max="vol_max"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 </article>

@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>ACA Rooms</title>
-    <meta name="description" content="buildings made easy">
+    <title>Room Control</title>
+    <meta name="description" content="delivered by AVPartners">
     
 
     <!--
@@ -28,8 +28,8 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- MS Application Icon -->
-    <meta name="application-name" content="ACA Rooms">
-    <meta name="msapplication-tooltip" content="buildings made easy">
+    <meta name="application-name" content="Room Control">
+    <meta name="msapplication-tooltip" content="delivered by AVPartners">
     <meta name="msapplication-starturl" content="./">
     <meta name="msapplication-navbutton-color" content="#b72706">
     <meta name="msapplication-TileColor" content="#b72706" />
@@ -92,14 +92,12 @@
 
     <!-- Application styles -->
     <link rel="stylesheet" href="components/shared.css">
-    <link rel="stylesheet" href="components/main/main.css">
-    <link rel="stylesheet" href="components/main/outputs.css">
-    <link rel="stylesheet" href="components/main/popups.css">
-    <link rel="stylesheet" href="components/main/PC/pc.css">
-    <link rel="stylesheet" href="components/main/Camera/camera.css">
 
-    <!-- Define branding in its own style sheet -->
-    <link rel="stylesheet" href="branding/tafesa/main.css">
+    <link rel="stylesheet" href="components/main/main.css">
+    <link rel="stylesheet" href="components/main/popups.css">
+    <link rel="stylesheet" href="components/main/lights/lights.css">
+
+    <link rel="stylesheet" href="branding/avpartners/main.css">
 
     <!-- Provide styles for common animations -->
     <link rel="stylesheet" href="animate.css/animate.css">
@@ -132,7 +130,7 @@
             <!-- Show a splash page when offline -->
             <div 
                 class="splash"
-                ng-if="state !== 'online'"
+                ng-if="state === 'shutdown'"
                 co-bind="'name'"
                 ng-click="coModuleInstance.$exec('powerup')"
             >
@@ -148,8 +146,8 @@
 
             <!-- Display the most appropriate user interface -->
             <div ng-controller="SharedCtrl" co-bind="'outputs'">
-                <!--  <div ng-if="width < 700 || height < 700" ng-include="'components/mobile/mobile.html'"></div> -->
                 <div ng-include="'components/main/main.html'"></div>
+                <!--  <div ng-if="width >= 700 || height >= 700" ng-include="'components/mobile/mobile.html'"></div>  -->
             </div>
         </div>
     </main>
@@ -199,6 +197,8 @@
         
         <script src="composer/src/resources.js"></script>
         <script src="composer/src/websocket.js"></script>
+    
+    <script src="composer/src/mocksocket.js"></script>
     -->
     <script src="composer/src/mocksocket.js"></script>
     <script src="composer/src/directives.js"></script>
@@ -223,9 +223,10 @@
     <script src="components/joystick.js"></script>  <!-- TODO:: isolate -->
     <script src="components/settings.js"></script>
     <script src="components/shared-ctrl.js"></script>
-    <script src="components/main/output-ctrl.js"></script>
+
     <script src="components/main/source-ctrl.js"></script>
-    <script src="components/main/Camera/cam-ctrl.js"></script>
+
+    <script src="components/mobile/sidebar-ctrl.js"></script>
 
     <!-- endbuild -->
   </body>

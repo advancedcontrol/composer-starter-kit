@@ -1,0 +1,28 @@
+@import "compass";
+@import "variables";
+
+body {
+    background: url(../../../branding/avpartners/background.jpg) no-repeat center center;
+    background-size: cover !important;
+}
+
+article {
+    > div > div > tabs {
+        top: 110px;
+    }
+
+    > header {
+        div.logo {
+            width: 250px;
+            margin-top: 0px;
+            padding: 5px 20px 10px 20px;
+            height: 90px;
+
+            > div {
+                height: 100%;
+                background-image: url(../../../branding/avpartners/logo.png);
+                background-size: contain !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,455 @@
+
+<tabs>
+
+    <!-- LIGHTING PANEL -->
+    <pane title="Lighting" icon="lights">
+        <div class="expansive" ng-include="'components/lighting/lighting.html'"></div>
+    </pane>
+
+
+    <!-- VISION -  -->
+    <pane title="Vision" icon="vision">
+        <div class="panels vision">
+            <div class="panel large">
+                <div ng-init="source='blank'" btn-group="source" btn-class="none" class="panels vert">
+                    <div class="panel">
+                        <div class="center-bottom">
+                            <div class="sources">
+                                <div btn="'pc'"     ng-touch="source='pc'">
+                                    <div class="pc"></div>
+                                    <span>Resident PC</span>
+                                </div>
+                                <div btn="'laptop'" ng-touch="source='laptop'">
+                                    <div class="laptop"></div>
+                                    <span>Client Laptop</span>
+                                </div>
+                                <div btn="'aux'"    ng-touch="source='aux'">
+                                    <div class="aux"></div>
+                                    <span>Aux Input 1</span>
+                                </div>
+                                <div btn="'iptv'"   ng-touch="source='iptv'">
+                                    <div class="iptv"></div>
+                                    <span>IP TV</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="center-hori">
+                            <div class="sources">
+                                <div btn="'blank'"  ng-touch="source='blank'">
+                                    <span>Blank</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panels vert controls">
+                    <div class="panel">
+                        <div class="center-vert">
+                            <div>
+                                <p>Projector Lift</p>
+                                <div toggle-switch on-label="'Down'" off-label="'Up'"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="center-vert">
+                            <div>
+                                <p>Screen</p>
+                                <div toggle-switch on-label="'Down'" off-label="'Up'"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="center-vert">
+                            <div>
+                                <p>Projector</p>
+                                <div toggle-switch on-label="'On'" off-label="'Off'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </pane>
+
+    <!-- Audio -->
+    <pane title="Audio" icon="audio">
+        <div class="panels audio-pane">
+            <div class="panel large">
+
+                <div class="panels vert sliders">
+                    <div class="panel">
+                        <div class="center-vert">
+                            <div class="slider">
+                                <span image-toggle></span> Lectern Microphone
+                                <div ng-init="mic = 60">
+                                    <a href="#" class="btn" ng-click="mic = mic - 5">-5%</a>
+                                    <div>
+                                        <div co-range model="mic"></div>
+                                    </div>
+                                    <a href="#" class="btn" ng-click="mic = mic + 5">+5%</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="center-vert">
+                            <div class="slider">
+                                <span image-toggle></span> Lectern PC
+                                <div ng-init="pcvol = 40">
+                                    <a href="#" class="btn" ng-click="pcvol = pcvol - 5">-5%</a>
+                                    <div>
+                                        <div co-range model="pcvol"></div>
+                                    </div>
+                                    <a href="#" class="btn" ng-click="pcvol = pcvol + 5">+5%</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="center-vert">
+                            <div class="slider">
+                                <span image-toggle></span> Lapel 1
+                                <div ng-init="lapel = 50">
+                                    <a href="#" class="btn" ng-click="lapel = lapel - 5">-5%</a>
+                                    <div>
+                                        <div co-range model="lapel"></div>
+                                    </div>
+                                    <a href="#" class="btn" ng-click="lapel = lapel + 5">+5%</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="center-vert">
+                            <div class="slider">
+                                <span image-toggle></span> Aux 1
+                                <div ng-init="auxvol = 0">
+                                    <a href="#" class="btn" ng-click="auxvol = auxvol - 5">-5%</a>
+                                    <div>
+                                        <div co-range model="auxvol"></div>
+                                    </div>
+                                    <a href="#" class="btn" ng-click="auxvol = auxvol + 5">+5%</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="center-vert">
+                            <div class="slider">
+                                <span image-toggle></span> Aux 2
+                                <div ng-init="aux2vol = 0">
+                                    <a href="#" class="btn" ng-click="aux2vol = aux2vol - 5">-5%</a>
+                                    <div>
+                                        <div co-range model="aux2vol"></div>
+                                    </div>
+                                    <a href="#" class="btn" ng-click="aux2vol = aux2vol + 5">+5%</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="center-vert">
+                            <div class="slider">
+                                <span image-toggle></span> Background Music
+                                <div ng-init="music = 30">
+                                    <a href="#" class="btn" ng-click="music = music - 5">-5%</a>
+                                    <div>
+                                        <div co-range model="music"></div>
+                                    </div>
+                                    <a href="#" class="btn" ng-click="music = music + 5">+5%</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="panel">
+                <div class="master-vol" ng-init="master = 60">
+                    <div class="master-label">
+                        <span image-toggle model="master_mute"></span> Master Volume
+                    </div>
+                    <div class="plus">
+                        <a href="#" class="btn" ng-click="master = master + 5">+5%</a>
+                    </div>
+                    <div class="master-slider">
+                        <div co-range horizontal="false" model="master"></div>
+                    </div>
+                    <div class="minus">
+                        <a href="#" class="btn" ng-click="master = master - 5">-5%</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </pane>
+
+    <!-- Record -->
+    <pane title="Record" icon="record" selected="recordSelected">
+        <div class="panels record">
+            <div class="panel large">
+                <div class="panels">
+                    <div class="panel camera">
+                        <div class="center-vert">
+                            <img src="branding/sofitel/normandy.jpg" />
+                        </div>
+                    </div>
+                    <div class="panel joystick">
+                        <div joystick center="0" left="-20" right="20" refresh="recordSelected" img="components/joystick/nob.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div ng-init="recording='none'" btn-group="recording" btn-class="none" class="vert-button-group">
+                    <button class="btn" btn="'none'"  ng-touch="recording='none'">No Recording</button>
+                    <button class="btn" btn="'audio'" ng-touch="recording='audio'">Audio Only</button>
+                    <button class="btn" btn="'video'" ng-touch="recording='video'">Camera Only</button>
+                    <button class="btn" btn="'both'"  ng-touch="recording='both'">Camera &amp; Audio</button>
+                </div>
+            </div>
+        </div>
+    </pane>
+
+    <!-- Coffee -->
+    <pane title="Coffee" icon="coffee">
+        <div class="panels hori coffee">
+            <div class="panel">
+                <div class="panels hori">
+                    <div class="panel medium image afffogato">
+                    </div>
+                    <div class="panel name">
+                        <div class="center-both">
+                            <div>
+                                <div>afffogato</div>
+                                <select>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panels hori">
+                    <div class="panel medium image cappuccino">
+                    </div>
+                    <div class="panel name">
+                        <div class="center-both">
+                            <div>
+                                <div>cappuccino</div>
+                                <select>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panels hori">
+                    <div class="panel medium image expresso">
+                    </div>
+                    <div class="panel name">
+                        <div class="center-both">
+                            <div>
+                                <div>expresso</div>
+                                <select>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panels hori">
+                    <div class="panel medium image iced_coffee">
+                    </div>
+                    <div class="panel name">
+                        <div class="center-both">
+                            <div>
+                                <div>iced coffee</div>
+                                <select>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panels hori">
+                    <div class="panel medium image flat_white">
+                    </div>
+                    <div class="panel name">
+                        <div class="center-both">
+                            <div>
+                                <div>flat white</div>
+                                <select>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panels hori">
+                    <div class="panel medium image macchiato">
+                    </div>
+                    <div class="panel name">
+                        <div class="center-both">
+                            <div>
+                                <div>macchiato</div>
+                                <select>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panels hori">
+                    <div class="panel medium image mocha">
+                    </div>
+                    <div class="panel name">
+                        <div class="center-both">
+                            <div>
+                                <div>mocha</div>
+                                <select>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panels hori">
+                    <div class="panel medium image latte">
+                    </div>
+                    <div class="panel name">
+                        <div class="center-both">
+                            <div>
+                                <div>latte</div>
+                                <select>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel submit">
+                <div class="center-both">
+                    <a href="#" class="btn"
+                        ng-click="$root.showModal('Thank you', 'Your order has been recieved.')"
+                    >
+                        Submit Order
+                    </a>
+                </div>
+            </div>
+        </div>
+    </pane>
+
+
+    <!-- HELP -->
+    <pane title="Help" icon="help">
+        <div class="expansive" ng-include="'components/help/help.html'"></div>
+    </pane>
+
+
+    <!-- START MEETING -->
+    <pane title="End Meeting" icon="start">
+        <div class="panels start-stop">
+            <div class="panel">
+                <div class="center-both" ng-init="endProgress = 'start'" ng-switch="endProgress">
+                    <div ng-switch-when="start">
+                        <h1>End Meeting</h1>
+                        <p>
+                            You will need to have your access code ready.
+                        </p>
+                        <p>
+                            Press 'Next' to continue.
+                        </p>
+                        <div class="progress">
+                            <button class="btn" ng-click="$parent.endProgress = 'key'">Next</button>
+                            <div progress value="1" total="3"></div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="key">
+                        <h1>&nbsp;</h1>
+                        <p>
+                            Please enter your access code below
+                        </p>
+                        <input type="password" />
+                        <div class="progress">
+                            <button class="btn" ng-click="$parent.endProgress = 'start'">Cancel</button>
+                            <button
+                                class="btn"
+                                ng-click="$root.mode = 'basic'; $root.showModal('Code Accepted', 'Your meeting has now ended.')"
+                            >Next</button>
+                            <div progress value="2" total="3"></div>
+                        </div>
+                    </div>
+                    <div ng-switch-when="ready">
+                        <p>
+                            Code Accepted.
+                            <br />
+                            <br />
+                            Your meeting has now ended.
+                        </p>
+                        <button class="btn" ng-click="$root.mode = 'basic'">OK</button>
+                        <div progress value="3" total="3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </pane>
+</tabs>
