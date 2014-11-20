@@ -133,6 +133,12 @@
                 }
             },
             "light_level": "Off",
+            "lighting_group": 12,
+            "light_defaults": {
+                "powerup": "Full",
+                "shutdown": "Sensor",
+                "present": "Presentation"
+            },
             "light_levels": [
                 "Off",
                 "Presentation",
@@ -155,6 +161,10 @@
                 "Full": {
                     "trigger": 4,
                     "message": "Lights are at full brightness"
+                },
+                "Senesor": {
+                    "trigger": 5,
+                    "sensor": true
                 }
             }
         }],
@@ -186,8 +196,8 @@
         function(comms) {
             // Point these variables to your ACA Engine instance
             // to start interacting with it using ACA Composer
-            comms.port  = 3000;
-            comms.host  = 'localhost';
+            //comms.port  = 3000;
+            comms.host  = 'crownperth.webcontrol.me';
             comms.tls   = false;
 
             // This outputs debugging information to console useful
@@ -206,11 +216,11 @@
             comms.useService({
                 id: 'AcaEngine',
                 scope: 'public',
-                oauth_server: 'http://localhost:3000/auth/oauth/authorize',
-                oauth_tokens: 'http://localhost:3000/auth/token',
-                redirect_uri: 'http://localhost:9000/oauth-resp.html',
-                client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
-                api_endpoint: 'http://localhost:3000/control/',
+                oauth_server: 'http://crownperth.webcontrol.me/auth/oauth/authorize',
+                oauth_tokens: 'http://crownperth.webcontrol.me/auth/token',
+                redirect_uri: 'http://crownperth.webcontrol.me/oauth-resp.html',
+                client_id: 'e37063a7172450ccc568672696ac4c28c2e785b004582ba32d502c0dc4b0ad13',
+                api_endpoint: 'http://crownperth.webcontrol.me/control/',
                 proactive: true
             });
         }])

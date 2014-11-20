@@ -1,0 +1,35 @@
+
+<div class="panels start-stop">
+    <div class="panel">
+        <div class="center-both" ng-init="endProgress = 'start'" ng-switch="endProgress">
+            <div ng-switch-when="start">
+                <h1>End Meeting</h1>
+                <p>
+                    You will need to have your access code ready.
+                </p>
+                <p>
+                    Press 'Next' to continue.
+                </p>
+                <div class="progress">
+                    <button class="btn" ng-click="$parent.endProgress = 'key'">Next</button>
+                    <div progress value="1" total="3"></div>
+                </div>
+            </div>
+            <div ng-switch-when="key">
+                <h1>&nbsp;</h1>
+                <p>
+                    Please enter your access code below
+                </p>
+                <input autofocus ng-model="pass" type="password" />
+                <div class="progress">
+                    <button class="btn" ng-click="$parent.endProgress = 'start'">Cancel</button>
+                    <button
+                        class="btn"
+                        ng-click="coModuleInstance.$exec('shutdown')"
+                    >Next</button>
+                    <div progress value="2" total="3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
