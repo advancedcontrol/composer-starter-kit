@@ -1,23 +1,4 @@
 @import "compass";
-
-// Import Utility CSS helpers
-@import "../../../bower_components/angular-fancy-tab/fancy-tab.scss";
-@import "../../../bower_components/angular-progress/angular-progress.scss";
-@import "../../../bower_components/angular-button-group/button-group.scss";
-@import "../../../bower_components/angular-named-toggle/image-toggle.scss";
-
-
-@import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
-@import "../../../bower_components/angular-named-toggle/image-toggle.scss";
-
-// Include helpers
-@import "../../../bower_components/angular-named-toggle/angular-named-toggle.scss";
-@include named-toggle();
-
-@import "../../../bower_components/angular-named-toggle/ios-toggle.scss";
-@include ios-toggle();
-
-
 @import "variables";
 
 
@@ -67,54 +48,6 @@ article {
     &> header {
         height: 80px;
         background-color: $background;
-
-        div.tray {
-            text-align: center;
-
-            &> span {
-                color: white;
-                font-size: 20px;
-                line-height: 80px;
-            }
-
-
-            &> div {
-                float: right;
-                height: 60px;
-                margin-top: 10px;
-
-                > div {
-                    width: 60px;
-                    height: 100%;
-                    margin-right: 10px;
-                    background-color: rgba(255,255,255,0.1);
-                    @include border-radius($radius);
-
-                    font-family: FontAwesome;
-                    font-size: 30px;
-                    text-align: center;
-                    line-height: 60px;
-                    color: rgba(255,255,255,0.9);
-
-                    &.lights::before {
-                        content: "\f0eb";
-                    }
-
-                    &.manual::before {
-                        content: "\f085";
-                    }
-
-                    &.help::before {
-                        content: "\f059";
-                    }
-
-                    &.power::before {
-                        content: "\f011";
-                    }
-                }
-            }
-        }
-
 
         div.logo {
             float: left;

@@ -133,6 +133,11 @@ button.toggle, .button.toggle {
         background-color: #777;
         color: white;
     }
+
+    &.inline {
+        display: inline-block;
+        width: auto;
+    }
 }
 
 // fix

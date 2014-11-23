@@ -90,16 +90,23 @@
     <link rel="stylesheet" href="branding/spinner.css">
     <link rel="stylesheet" href="core.css">
 
-    <!-- Application styles -->
     <link rel="stylesheet" href="components/shared.css">
+    <link rel="stylesheet" href="components/shared/popups.css">
+    <!-- Application styles
+    
     <link rel="stylesheet" href="components/main/main.css">
     <link rel="stylesheet" href="components/main/outputs.css">
     <link rel="stylesheet" href="components/main/popups.css">
     <link rel="stylesheet" href="components/main/PC/pc.css">
     <link rel="stylesheet" href="components/main/Camera/camera.css">
+    
+     -->
+
+     <link rel="stylesheet" href="components/mobile/mobile.css">
 
     <!-- Define branding in its own style sheet -->
     <link rel="stylesheet" href="branding/tafesa/main.css">
+    
 
     <!-- Provide styles for common animations -->
     <link rel="stylesheet" href="animate.css/animate.css">
@@ -149,7 +156,7 @@
             <!-- Display the most appropriate user interface -->
             <div ng-controller="SharedCtrl" co-bind="'outputs'">
                 <!--  <div ng-if="width < 700 || height < 700" ng-include="'components/mobile/mobile.html'"></div> -->
-                <div ng-include="'components/main/main.html'"></div>
+                <div ng-include="'components/mobile/mobile.html'"></div>
             </div>
         </div>
     </main>
@@ -223,9 +230,13 @@
     <script src="components/joystick.js"></script>  <!-- TODO:: isolate -->
     <script src="components/settings.js"></script>
     <script src="components/shared-ctrl.js"></script>
+    <script src="components/shared/source-ctrl.js"></script>
+    
     <script src="components/main/output-ctrl.js"></script>
-    <script src="components/main/source-ctrl.js"></script>
     <script src="components/main/Camera/cam-ctrl.js"></script>
+
+    <script src="components/mobile/sidebar-ctrl.js"></script>
+
 
     <!-- endbuild -->
   </body>

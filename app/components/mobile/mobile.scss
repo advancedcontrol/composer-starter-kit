@@ -4,13 +4,10 @@
 main {
     > div {
         height: 100%;
-
         > div {
             height: 100%;
-
             > div {
                 height: 100%;
-
             }
         }
     }
@@ -121,7 +118,8 @@ body {
     overflow-x: hidden;
 }
 
-article {
+article.mobile {
+    color: black;
 
     // Sidebar animations (header and main content on mobile move)
     &.navAnimate {
@@ -141,7 +139,25 @@ article {
 
         z-index: $header-zindex;
 
-        background-color: yellow;
+        text-align: center;
+        font-size: 18px;
+
+        color: white;
+
+        &> span {
+            line-height: $header-height;
+
+            &#show-menu {
+                height: $header-height;
+                width: $header-height * 1.5;
+
+                float: right;
+
+                &> div.logo {
+                    height: 100%;
+                }
+            }
+        }
     }
 
 
@@ -161,10 +177,11 @@ article {
         @include pie-clearfix();
 
         min-height: 100%;
+        padding: $mobile-content-pad;
         padding-top: $header-height + $mobile-content-pad;
         z-index: $mobile-content-zindex;
 
-        background-color: blue;
+        background-color: white;
     }
 
 
@@ -197,7 +214,7 @@ article {
                 z-index: $mobile-content-zindex;
 
                 height: $header-height;
-                padding: $mobile-nav-padding 0px;
+                //padding: $mobile-nav-padding 0px;
             }
 
             #nav-wrapper {
@@ -208,10 +225,15 @@ article {
                 padding-top: $header-height;
 
                 > nav {
+                    position: absolute;
                     top: $header-height;
                     right: 0;
                     left: auto;
+
                     width: $mobile-nav-width;
+                    height: 100%;
+
+                    background-color: yellow;
                 }
 
                 > section {
@@ -232,9 +254,7 @@ article {
                     // direct touch to allow using the scroll bar
                     > div {
                         min-height: 100%;
-
-                        // Not sure where this 30px came from
-                        margin-bottom: -30px;
+                        padding: $mobile-content-pad;
                     }
                 }
             }
@@ -280,6 +300,35 @@ article {
             @include fill-space(fixed);
             width: 10%;
             z-index: $overlay-zindex;
+        }
+    }
+
+
+
+
+    ///////////////////
+    // SOURCES ICONS //
+    ///////////////////
+    div#mobile-sources {
+        div.sources > button > span {
+            font-family: FontAwesome;
+            margin-right: 0.8em;
+
+            &.residentpc::before {
+                content: "\f108";
+            }
+
+            &.hdmi::before {
+                content: "\f109";
+            }
+
+            &.vc-camera::before {
+                content: "\f03d";
+            }
+
+            &.vc-active::before {
+                content: "\f0c0";
+            }
         }
     }
 }

@@ -1,0 +1,124 @@
+@import "compass";
+@import "variables";
+
+
+div.tray {
+    text-align: center;
+
+    &> span {
+        color: white;
+        font-size: 20px;
+        line-height: 80px;
+    }
+
+
+    &> div {
+        float: right;
+        height: 60px;
+        margin-top: 10px;
+
+        > div {
+            width: 60px;
+            height: 100%;
+            margin-right: 10px;
+            background-color: rgba(255,255,255,0.1);
+            @include border-radius($radius);
+
+            font-family: FontAwesome;
+            font-size: 30px;
+            text-align: center;
+            line-height: 60px;
+            color: rgba(255,255,255,0.9);
+
+            &.lights::before {
+                content: "\f0eb";
+            }
+
+            &.manual::before {
+                content: "\f085";
+            }
+
+            &.help::before {
+                content: "\f059";
+            }
+
+            &.power::before {
+                content: "\f011";
+            }
+        }
+    }
+}
+
+article.mobile {
+    div.tray {
+        &> span.name {
+            display: none;
+        }
+
+        &> div {
+            margin-top: 5px;
+            height: 50px;
+
+            &> div {
+                width: 50px;
+                line-height: 50px;
+            }
+        }
+    }
+}
+
+
+modal .btn-group {
+    padding: 0px 30px;
+
+    button {
+        height: 40px;
+    }
+}
+
+modal[name=lights] {
+    button {
+        text-align: left;
+
+        i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        &.Off i {
+            opacity: 0.15;
+        }
+
+        &.Presentation i {
+            opacity: 0.5;
+        }
+
+        &.Full i {
+            opacity: 1;
+        }
+    }
+}
+
+// Manual control popup
+modal[name=manual] {
+    &> div > div {
+        width: 300px;
+    }
+
+    h2 {
+        padding-left: 2em;
+    }
+
+    table.entries {
+        margin: 0 auto;
+
+        td {
+            padding: 0.4em 0.3em;
+
+            &.onoff {
+                width: 2.5em;
+            }
+        }
+    }
+}
+

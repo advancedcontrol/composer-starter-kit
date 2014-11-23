@@ -5,16 +5,18 @@ body {
     background-color: #333338;
 }
 
-article {
+$header-color: #b7162c;
+
+article.main {
     > div > div > tabs {
         top: 110px;
     }
 
     > header {
-        background-color: darken(#b7162c, 10%);
+        background-color: darken($header-color, 10%);
 
         div.logo {
-            background-color: #b7162c;
+            background-color: $header-color;
             width: 150px;
             margin-top: 0px;
             padding: 5px 20px 10px 20px;
@@ -25,5 +27,25 @@ article {
                 background-image: url(../../../branding/tafesa/logo.png);
             }
         }
+    }
+}
+
+
+// Mobile styles
+article.mobile {
+    header {
+        background-color: $header-color;
+
+        span > div.logo {
+            background-image: url(../../../branding/tafesa/logo.png);
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    }
+
+    aside div#nav-buffer {
+        background-color: darken($header-color, 10%);
     }
 }

@@ -1,5 +1,5 @@
 
-<article 
+<article
     ng-if="state === 'online'"
     ng-controller="SidebarCtrl"
 
@@ -15,6 +15,7 @@
     drag-y-axis="false"
     user-select="true"
 
+    class="mobile"
     ng-class="{
         navAnimate: navAnimate,
         navDecorate: navDecorate,
@@ -38,10 +39,10 @@
         user-select="true" 
         no-capture
     >
-        <div class="name"></div>
+        <span co-bind="'name'" class="name">{{name}}</span>
 
         <span id="show-menu" ng-touch="toggleNav()">
-            <div class="logo aca-small"></div>
+            <div class="logo"></div>
         </span>
     </header>
 
@@ -49,6 +50,7 @@
         <div id="aside-wrapper">
             <div id="nav-buffer">
                 <!-- Place the popup actions here -->
+                <div class="tray" ng-include="'components/shared/popups.html'"  ng-controller="Modals"></div>
             </div>
 
             <div id="nav-wrapper">
@@ -58,12 +60,65 @@
                     <span class="webcam"></span>
                 </nav>
 
+                <!-- stopPropagation here supports scrolling -->
                 <section>
                     <div > <!-- ng-switch -->
                         <div > <!-- ng-switch-when -->
                             <div > <!-- ng-include -->
                                 <!-- sidebar content -->
 
+                                SOME SAMPLE CONTENT
+
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
+                                SOME SAMPLE CONTENT
                                 SOME SAMPLE CONTENT
                             </div>
                         </div>
@@ -73,8 +128,52 @@
         </div>
     </aside>
 
-    <div id="mobile-sources">
-        <!-- Output lists -->
+    <div id="mobile-sources" co-bind="'sources'" ng-init="current_output = null">
+
+        <div ng-if="numOutputs > 1">
+            <h2>Select display(s):</h2>
+            <!-- Output lists -->
+            <select ng-model="$parent.current_output" ng-options="key as output.title for (key, output) in outputs">
+                <option value="">all displays</option>
+            </select>
+
+            <span
+                ng-if="outputs[current_output].type == 'projector'"
+                co-module="current_output"
+                co-implicit-index
+            >
+                <button
+                    co-bind="'mute'"
+                    exec
+
+                    class="toggle inline"
+                    ng-class="{active: mute}"
+                    ng-click="mute=!!!mute"
+                >
+                    Mute
+                </button>
+            </span>
+
+            <h2>Select what to show:</h2>
+        </div>
+
+        <div ng-if="numOutputs === 1">
+            <h2>Select what to show on the display:</h2>
+        </div>
+
+        <div ng-if="current_output === null" ng-init="$parent.current_output = 'all_displays'"></div>
+
         <!-- Source Selection -->
+        <div 
+            ng-if="sources" 
+            co-bind="current_output as disp_source"
+            exec="present(disp_source, current_output)"
+        >
+            <div btn-group="disp_source.source" class="sources">
+                <button ng-repeat="(key, info) in sources" btn="key" ng-click="$parent.disp_source = key" class="toggle">
+                    <span ng-class="info.type"></span>{{info.title}}
+                </button>
+            </div>
+        </div>
     </div>
 </article>

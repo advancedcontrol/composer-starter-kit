@@ -1,0 +1,66 @@
+
+<span class="name">{{name}}</span>
+
+<!-- 
+    POWER Pop up
+ -->
+<div>
+    <div class="power" ng-click="showModal('power')">
+        <modal name="power" title="Shutdown?">
+            <p>
+                <b>Are you sure you want to turn off the system?</b>
+                <br />It may take up to 5min to restart.
+            </p>
+            <menu>
+                <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
+                <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
+            </menu>
+            <div style="clear: both"></div>
+        </modal>
+    </div>
+</div>
+
+<!-- 
+    HELP Pop up
+ -->
+<div>
+    <div class="help" ng-click="showModal('help')">
+        <modal name="help" title="Need Support?" co-bind="'help_msg'">
+            <p ng-bind-html="help_msg"></p>
+            <p>The room or system name is: <b>{{name}}</b></p>
+        </modal>
+    </div>
+</div>
+
+<!-- 
+    Manual Control Pop up
+ -->
+<div>
+    <div class="manual" ng-click="showModal('manual')">
+        <modal name="manual" title="Manual Control">
+            <h2>Displays:</h2>
+
+            <!-- Get the number of displays and list them -->
+            <table class="entries" co-module="'Display'" indices-of="'Display' as indices">
+                <tr ng-repeat="index in indices" co-index="index" co-bind="'power'" exec>
+                    <td>{{outputs['Display_' + index].title}}</td>
+                    <td><div ios-toggle model="power"></div></td>
+                    <td class="onoff">{{power ? 'On' : 'Off'}}</td>
+                </tr>
+            </table>
+        </modal>
+    </div>
+</div>
+
+<!-- 
+    Lighting Pop up
+ -->
+<div co-bind="'lights'">
+    <div class="lights" ng-if="lights" co-bind="'light_level'" exec ng-click="showModal('lights')">
+        <modal name="lights" title="Lighting Modes">
+            <div btn-group="light_level">
+                <button ng-repeat="level in lights.levels" btn="level.name" ng-click="$parent.$parent.$parent.light_level = level.name" class="{{level.name}} toggle"><i class="fa fa-lightbulb-o"></i>{{level.name}}</button>
+            </div>
+        </modal>
+    </div>
+</div>

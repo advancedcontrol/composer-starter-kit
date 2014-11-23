@@ -1,20 +1,6 @@
 (function (window, angular) {
     'use strict';
 
-    window.getModuleParts = function (key) {
-        var parts = key.split('_'),
-            index = parseInt(parts[parts.length - 1], 10),
-            module;
-
-        parts.splice(parts.length - 1, 1);
-        module = parts.join('_');
-
-        return {
-            module: module, 
-            index: index
-        };
-    };
-
     // NOTE:: window.systemData is used for development.
     //  In production the interface will obtain this information from the server
     //  
@@ -30,8 +16,11 @@
             $tab: function (tab) {
                 this.tab = tab;
             },
-            $present: function (source, display) {
+
+            $show: function (source, display) {
                 var src = this.sources[source];
+
+                console.log("SOURCE SELECT", display, source);
 
                 // Return source and source title
                 this[display] = {
@@ -44,6 +33,25 @@
                 if (!this.outputs[display].no_mod) {
                     var parts = getModuleParts(display);
                     this.$_self[parts.module][parts.index - 1].mute = false;
+                }
+            },
+            $present: function (source, display) {
+                var self = this,
+                    src = this.sources[source];
+
+                if (display == 'all_displays') {
+                    angular.forEach(this.outputs, function (val, key) {
+                        self.$show.apply(self, [source, key]);
+                    });
+
+                    this[display] = {
+                        source: source,
+                        title: src.title,
+                        type: src.type
+                    };
+                } else {
+                    this.$show.apply(self, [source, display]);
+                    this['all_displays'] = null;
                 }
             },
             $video_mute: function (display) {
@@ -301,7 +309,23 @@
             joy_center: 25,
             zoom: 10
         }],
-        Display: [{}, {}, {}, {}]
+        Display: [{
+            $mute: function (mute) {
+                this.mute = mute;
+            }
+        }, {
+            $mute: function (mute) {
+                this.mute = mute;
+            }
+        }, {
+            $mute: function (mute) {
+                this.mute = mute;
+            }
+        }, {
+            $mute: function (mute) {
+                this.mute = mute;
+            }
+        }]
     };
 
     angular.module('AcaEngine')
