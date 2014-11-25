@@ -30,7 +30,7 @@
                 };
 
                 // Clear mute
-                if (!this.outputs[display].no_mod) {
+                if (this.outputs[display] && !this.outputs[display].no_mod) {
                     var parts = getModuleParts(display);
                     this.$_self[parts.module][parts.index - 1].mute = false;
                 }
@@ -38,6 +38,11 @@
             $present: function (source, display) {
                 var self = this,
                     src = this.sources[source];
+
+                // Blank means all displays
+                if (display == null) {
+                    display = 'all_displays';
+                }
 
                 if (display == 'all_displays') {
                     angular.forEach(this.outputs, function (val, key) {

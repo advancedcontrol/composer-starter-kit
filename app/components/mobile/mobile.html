@@ -99,12 +99,10 @@
             <h2>Select what to show on the display:</h2>
         </div>
 
-        <div ng-if="current_output === null" ng-init="$parent.current_output = ''"></div>
-
         <!-- Source Selection -->
         <div 
             ng-if="sources" 
-            co-bind="current_output as disp_source"
+            co-bind="(current_output || 'all_displays') as disp_source"
             exec="present(disp_source, current_output)"
         >
             <div btn-group="disp_source.source" class="sources">
