@@ -11,6 +11,15 @@
         'Composer'    // Resources + OAuth + ACA Engine API
     ])
 
+    // Allow pan-y by default
+    .config([
+        '$gestureProvider',
+    function(gesture) {
+        gesture.setGestureDefaults({
+            touchAction: 'pan-y'
+        });
+    }])
+
     // This is our dom-ready function
     .run([
         '$window',

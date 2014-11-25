@@ -35,7 +35,7 @@
                          ng-init="source = {source: 'none'}"
                          ng-class="output.type"
                     >
-                        <div class="icon" ng-click="presetSource()">
+                        <div class="icon" touch-action="pan-x" ng-click="presetSource()">
                             <div class="outer"></div>
                             <div class="inner" ng-class="{pulse: doPulse}">
                                 <span class="title">{{output.title || output.pri}}</span>

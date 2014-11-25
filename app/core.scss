@@ -56,7 +56,6 @@ html, body {
 
 body {
     font-family: $default-font;
-    background-color: $background;
 
     &> main {
         position: relative;
@@ -140,7 +139,3 @@ button.toggle, .button.toggle {
     }
 }
 
-// fix
-modal > div > div menu {
-    padding: 0px 20px !important;
-}

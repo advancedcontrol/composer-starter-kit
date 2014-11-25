@@ -12,7 +12,13 @@
             </div>
             <p>
                 Use the drop-down below to send secondary content<br />
-                <select ng-model="content_source" ng-options="key as content.title for (key, content) in sources">
+                <select
+                    ng-model="content_source"
+                    ng-options="key as content.title for (key, content) in sources"
+                    ng-touch="$event.stopPropagation()"
+                    user-select="true" 
+                    no-capture
+                >
                     <option value="">select content source</option>
                 </select>
                 <button ng-if="content_source" ng-touch="coModuleInstance.$exec('vc_content', selectedSource.source, content_source)">Send Selection</button>

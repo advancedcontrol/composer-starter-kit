@@ -2,6 +2,10 @@
 @import "variables";
 
 
+
+/////////////////////////////
+// TRAY (DESKTOP + TABLET) //
+/////////////////////////////
 div.tray {
     text-align: center;
 
@@ -49,33 +53,38 @@ div.tray {
     }
 }
 
-article.mobile {
-    div.tray {
-        &> span.name {
-            display: none;
+
+//////////////////////////
+// MODAL CUSTOMISATIONS //
+//////////////////////////
+modal {
+    span.close {
+        position: absolute;
+        top: 2px;
+        right: 10px;
+
+        font-family: 'FontAwesome';
+        font-size: 34px;
+        color: grey;
+
+        &::before {
+            content: "\f00d";
         }
+    }
 
-        &> div {
-            margin-top: 5px;
-            height: 50px;
+    .btn-group {
+        padding: 0px 30px;
 
-            &> div {
-                width: 50px;
-                line-height: 50px;
-            }
+        button {
+            height: 40px;
         }
     }
 }
 
 
-modal .btn-group {
-    padding: 0px 30px;
-
-    button {
-        height: 40px;
-    }
-}
-
+//////////////////
+// POPUP STYLES //
+//////////////////
 modal[name=lights] {
     button {
         text-align: left;

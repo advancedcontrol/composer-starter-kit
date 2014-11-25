@@ -11,7 +11,6 @@
     drag-stop="dragEndNav()"
     drag-directions="'left right'"
 
-    touch-action="pan-y"
     drag-y-axis="false"
     user-select="true"
 
@@ -53,77 +52,10 @@
                 <div class="tray" ng-include="'components/shared/popups.html'"  ng-controller="Modals"></div>
             </div>
 
-            <div id="nav-wrapper">
-                <nav>
-                    <span class="apps"></span>
-                    <span class="workshops"></span>
-                    <span class="webcam"></span>
-                </nav>
-
-                <!-- stopPropagation here supports scrolling -->
-                <section>
-                    <div > <!-- ng-switch -->
-                        <div > <!-- ng-switch-when -->
-                            <div > <!-- ng-include -->
-                                <!-- sidebar content -->
-
-                                SOME SAMPLE CONTENT
-
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                                SOME SAMPLE CONTENT
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <div 
+                id="nav-wrapper"
+                ng-include="'components/mobile/sources/' + (selectedSource.type || 'none') + '/source.html'"
+            >
             </div>
         </div>
     </aside>
@@ -133,7 +65,13 @@
         <div ng-if="numOutputs > 1">
             <h2>Select display(s):</h2>
             <!-- Output lists -->
-            <select ng-model="$parent.current_output" ng-options="key as output.title for (key, output) in outputs">
+            <select
+                ng-model="$parent.current_output"
+                ng-options="key as output.title for (key, output) in outputs"
+                ng-touch="$event.stopPropagation()" 
+                user-select="true" 
+                no-capture
+            >
                 <option value="">all displays</option>
             </select>
 
@@ -161,7 +99,7 @@
             <h2>Select what to show on the display:</h2>
         </div>
 
-        <div ng-if="current_output === null" ng-init="$parent.current_output = 'all_displays'"></div>
+        <div ng-if="current_output === null" ng-init="$parent.current_output = ''"></div>
 
         <!-- Source Selection -->
         <div 

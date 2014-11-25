@@ -2,9 +2,13 @@
 @import "variables";
 
 
+@import "../../../bower_components/angular-named-toggle/image-toggle.scss";
+@import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
+
+
 // IOS 8 header support
 body.ios-app-mode {
-    article {
+    article.main {
         &> header {
             height: 90px !important;
 
@@ -37,7 +41,7 @@ body.ios-app-mode {
 // -----------
 // CORE LAYOUT
 // -----------
-article {
+article.main {
     background-color: $background;
     color: $color-primary;
 
@@ -351,24 +355,25 @@ article {
             }
         }
     }
-}
 
-.source-image, tabs nav > div > div {
-    font-family: FontAwesome;
 
-    &.PC::before, &.residentpc::before {
-        content: "\f108";
-    }
+    .source-image, tabs nav > div > div {
+        font-family: FontAwesome;
 
-    &.Laptop::before, &.hdmi::before {
-        content: "\f109";
-    }
+        &.PC::before, &.residentpc::before {
+            content: "\f108";
+        }
 
-    &.Camera::before, &.vc-camera::before {
-        content: "\f03d";
-    }
+        &.Laptop::before, &.hdmi::before {
+            content: "\f109";
+        }
 
-    &.VC::before, &.vc-active::before {
-        content: "\f0c0";
+        &.Camera::before, &.vc-camera::before {
+            content: "\f03d";
+        }
+
+        &.VC::before, &.vc-active::before {
+            content: "\f0c0";
+        }
     }
 }

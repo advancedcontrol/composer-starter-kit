@@ -123,13 +123,13 @@
                     "title": "1G1 Laptop",
                     "input": 11,
                     "source": "hdmi",
-                    "type": "hdmi"
+                    "type": "aux_hdmi"
                 },
                 "laptop_g2": {
                     "title": "1G2 Laptop",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "hdmi"
+                    "type": "aux_hdmi"
                 },
                 "cam_r_g1": {
                     "title": "1G1 Rear",

@@ -5,7 +5,7 @@
     POWER Pop up
  -->
 <div>
-    <div class="power" ng-click="showModal('power')">
+    <div class="power" ng-touch="showModal('power')">
         <modal name="power" title="Shutdown?">
             <p>
                 <b>Are you sure you want to turn off the system?</b>
@@ -24,7 +24,7 @@
     HELP Pop up
  -->
 <div>
-    <div class="help" ng-click="showModal('help')">
+    <div class="help" ng-touch="showModal('help')">
         <modal name="help" title="Need Support?" co-bind="'help_msg'">
             <p ng-bind-html="help_msg"></p>
             <p>The room or system name is: <b>{{name}}</b></p>
@@ -36,7 +36,7 @@
     Manual Control Pop up
  -->
 <div>
-    <div class="manual" ng-click="showModal('manual')">
+    <div class="manual" ng-touch="showModal('manual')">
         <modal name="manual" title="Manual Control">
             <h2>Displays:</h2>
 
@@ -56,7 +56,7 @@
     Lighting Pop up
  -->
 <div co-bind="'lights'">
-    <div class="lights" ng-if="lights" co-bind="'light_level'" exec ng-click="showModal('lights')">
+    <div class="lights" ng-if="lights" co-bind="'light_level'" exec ng-touch="showModal('lights')">
         <modal name="lights" title="Lighting Modes">
             <div btn-group="light_level">
                 <button ng-repeat="level in lights.levels" btn="level.name" ng-click="$parent.$parent.$parent.light_level = level.name" class="{{level.name}} toggle"><i class="fa fa-lightbulb-o"></i>{{level.name}}</button>

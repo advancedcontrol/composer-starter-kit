@@ -113,6 +113,65 @@ $input-font-size: 14px;
 $mobile-nav-padding: 10px;
 
 
+
+// Tray icons (defined in shared)
+article.mobile {
+    div.tray {
+        &> span.name {
+            display: none;
+        }
+
+        &> div {
+            margin-top: 5px;
+            height: 50px;
+
+            &> div {
+                width: 50px;
+                line-height: 50px;
+            }
+        }
+    }
+}
+
+
+// IOS 8 header support
+body.ios-app-mode {
+    article.mobile {
+        &> header {
+            height: $header-height + 15 !important;
+
+
+            &> span {
+                display: inline-block;
+                margin-top: 15px;
+            }
+        }
+
+        &> div#mobile-sources {
+            padding-top: $header-height + $mobile-content-pad + 15  !important;
+        }
+
+
+        #nav-buffer {
+            height: $header-height + 15 !important;
+        }
+
+        #nav-wrapper {
+            top: -($header-height + 15) !important;
+            padding-top: $header-height + 15 !important;
+
+            > nav {
+                top: $header-height + 15 !important;
+            }
+        }
+
+        div.tray > div {
+            margin-top: 20px;
+        }
+    }
+}
+
+
 body {
     // Don't scroll left and right
     overflow-x: hidden;
@@ -162,7 +221,7 @@ article.mobile {
 
 
     // Don't scroll left and right
-    overflow-x: hidden;
+    //overflow-x: hidden;
 
     height: 100%;
 
@@ -232,8 +291,6 @@ article.mobile {
 
                     width: $mobile-nav-width;
                     height: 100%;
-
-                    background-color: yellow;
                 }
 
                 > section {
@@ -305,7 +362,6 @@ article.mobile {
 
 
 
-
     ///////////////////
     // SOURCES ICONS //
     ///////////////////
@@ -318,7 +374,7 @@ article.mobile {
                 content: "\f108";
             }
 
-            &.hdmi::before {
+            &.aux_hdmi::before {
                 content: "\f109";
             }
 
@@ -331,4 +387,82 @@ article.mobile {
             }
         }
     }
+
+
+
+    ////////////////////
+    // SOURCE OPTIONS //
+    ////////////////////
+
+    &> aside {
+        background-color: $sidebar-primary-colour;
+
+        #nav-wrapper {
+            &> section {
+                color: white;
+                font-size: 18px;
+            }
+
+            &> nav {
+                background-color: $sidebar-secondary-colour;
+
+                span {
+                    display: block;
+                    width: $mobile-nav-width;
+                    height: $mobile-nav-width;
+                    border-bottom: 1px solid $sidebar-primary-colour;
+                    position: relative;
+                    
+                    // each tab icon is a font icon drawn in the ::before
+                    // psuedo element of each a element
+                    &:before {
+                        font-family: FontAwesome;
+                        font-size: 30px;
+                        color: rgba(255,255,255,0.9);
+                        text-decoration: none;
+                        text-align: center;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+
+                        position: absolute;
+                        top: 0px;
+                        left: 0px;
+                        width: $mobile-nav-width - 4px;
+                        height: $mobile-nav-width;
+                        padding-top: 15px;
+                    }
+
+                    &.apps:before {
+                        content: "\f022";
+                    }
+                    
+                    &.tv:before {
+                        content: "\f03e";
+                    }
+
+                    &.workshops:before {
+                        content: "\f1e7";
+                    }
+
+                    &.webcam:before {
+                        content: "\f03d";
+                    }
+
+                    &.info:before {
+                        content: "\f05a";
+                    }
+
+                    &:hover {
+                        background-color: lighten($sidebar-secondary-colour, 8%);
+                    }
+
+                    &.active {
+                        background-color: lighten($sidebar-secondary-colour, 3%);
+                        border-left: 4px solid #3c4e58;
+                    }
+                }
+            }
+        }
+    }
+
 }

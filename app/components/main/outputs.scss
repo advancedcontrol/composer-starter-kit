@@ -5,7 +5,7 @@
 //-----------------
 // PROJECTOR STYLES
 //-----------------
-article > div > div > footer > div > div.projector > div.icon {
+article.main > div > div > footer > div > div.projector > div.icon {
 
     // These make up the output icon
     &> div.outer {
@@ -39,8 +39,8 @@ article > div > div > footer > div > div.projector > div.icon {
 //-------------------
 // LCD DISPLAY STYLES
 //-------------------
-article > div > div > footer > div > div.lcd > div.icon,
-article > div > div > footer > div > div.vidwall > div.icon {
+article.main > div > div > footer > div > div.lcd > div.icon,
+article.main > div > div > footer > div > div.vidwall > div.icon {
 
     // These make up the output icon
     &> div.outer {
@@ -76,7 +76,7 @@ article > div > div > footer > div > div.vidwall > div.icon {
 //----------------
 // VID CONF STYLES
 //----------------
-article > div > div > footer > div > div.conference > div.icon {
+article.main > div > div > footer > div > div.conference > div.icon {
 
     // These make up the output icon
     &> div.outer {
@@ -108,7 +108,7 @@ article > div > div > footer > div > div.conference > div.icon {
 //---------------
 
 
-article > div > div > footer > div > div > div.icon {
+article.main > div > div > footer > div > div > div.icon {
     &> div.inner.enable.pulse {
         -webkit-animation: pulsate 1s ease-out;
         -webkit-animation-iteration-count: 2;
@@ -188,7 +188,7 @@ article > div > div > footer > div > div > div.icon {
 //------------------------
 // FLASHING OVERLAY STYLES
 //------------------------
-article > div > div > footer > div > div > div.icon {
+article.main > div > div > footer > div > div > div.icon {
 
     // This is the warming up / muted warning
     &> div.overlay {
