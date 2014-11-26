@@ -1,20 +1,12 @@
 @import "compass";
+@import "variables";
+
 
 //---------------
 // Modals Support
 //---------------
 @import "../../bower_components/co-modals/co-modals.scss";
 @include co-modals();
-
-// Import Utility CSS helpers
-@import "../../bower_components/angular-fancy-tab/fancy-tab.scss";
-@import "../../bower_components/angular-progress/angular-progress.scss";
-@import "../../bower_components/angular-button-group/button-group.scss";
-@import "../../bower_components/angular-named-toggle/image-toggle.scss";
-
-
-@import "../../bower_components/angular-range-slider/angular-range-slider.scss";
-@import "../../bower_components/angular-named-toggle/image-toggle.scss";
 
 // Include helpers
 @import "../../bower_components/angular-named-toggle/angular-named-toggle.scss";

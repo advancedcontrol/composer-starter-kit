@@ -46,17 +46,22 @@
     </header>
 
     <aside class="promote-layer">
-        <div id="aside-wrapper" ng-controller="OptionsCtrl">
+        <div 
+            id="aside-wrapper" 
+            ng-controller="OptionsCtrl" 
+            ng-class="{hasVolume: disp_source.title && !output.no_audio}"
+        >
             <div id="nav-buffer">
                 <!-- Place the popup actions here -->
                 <div class="tray" ng-include="'components/shared/popups.html'"  ng-controller="Modals"></div>
-                <div ng-controller="OptionsCtrl" class="source-info">
-                    <h1>{{disp_source.title}} on {{output_details.title || 'All Displays'}}</h1>
-                    <div ng-if="!output.no_audio" class="source-volume">
-                        <h2>Volume</h2>
-                        <div ng-include="'components/shared/audio.html'"></div>
-                    </div>
-                    <h2>{{disp_source.title}} options:</h2>
+            </div>
+
+            <div ng-controller="OptionsCtrl" id="source-info">
+                <h1 ng-if="disp_source.title">{{disp_source.title}} on {{output_details.title || 'All Displays'}}</h1>
+                <h1 ng-if="!disp_source.title">No source selected</h1>
+                <div ng-if="disp_source.title && !output.no_audio" class="source-volume">
+                    <h2>Volume</h2>
+                    <div ng-include="'components/shared/audio.html'"></div>
                 </div>
             </div>
 
