@@ -60,7 +60,11 @@
         </div>
     </aside>
 
-    <div id="mobile-sources" co-bind="'sources'" ng-init="current_output = null">
+    <div
+        id="mobile-sources"
+        co-bind="'sources'"
+        ng-init="current_output = null"
+    >
 
         <div ng-if="numOutputs > 1">
             <h2>Select display(s):</h2>
@@ -103,10 +107,11 @@
         <div 
             ng-if="sources" 
             co-bind="(current_output || 'all_displays') as disp_source"
-            exec="present(disp_source, current_output)"
+            exec="present(disp_source.source, current_output)"
+            ng-controller="OptionsCtrl"
         >
             <div btn-group="disp_source.source" class="sources">
-                <button ng-repeat="(key, info) in sources" btn="key" ng-click="$parent.disp_source = key" class="toggle">
+                <button ng-repeat="(key, info) in sources" btn="key" ng-click="selectSource(key)" class="toggle">
                     <span ng-class="info.type"></span>{{info.title}}
                 </button>
             </div>
