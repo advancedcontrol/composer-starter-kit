@@ -1,0 +1,33 @@
+
+<nav ng-init="showTab('apps')">
+    <span
+        class="apps"
+        ng-class="{active: tab === 'apps'}"
+        ng-touch="showTab('apps')"
+    ></span>
+    <span
+        class="tv"
+        ng-class="{active: tab === 'tv'}"
+        ng-touch="showTab('tv')"
+    ></span>
+    <span
+        class="webcam"
+        ng-class="{active: tab === 'webcam'}"
+        ng-touch="showTab('webcam')"
+    ></span>
+    <span
+        class="workshops"
+        ng-class="{active: tab === 'workshops'}"
+        ng-touch="showTab('workshops')"
+    ></span>
+</nav>
+
+<!-- stopPropagation here supports scrolling -->
+<section ng-touch="$event.stopPropagation()" on-target>
+    <div> <!-- ng-switch -->
+        <div> <!-- ng-switch-when -->
+            <div ng-include="'components/mobile/sources/residentpc/' + tab + '.html'">
+            </div>
+        </div>
+    </div>
+</section>

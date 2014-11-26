@@ -68,24 +68,11 @@
                         <!--
                             An output may not output any audio (VC for example)
                         -->
-                        <div ng-if="!output.no_audio" class="audio">
-                            <!--
-                                Mixer used for audio
-                                We check against undefined as 0 is falsey
-                            -->
-                            <div ng-if="output.mixer_id !== undefined" co-bind="'vol_min'">
-                                <div class="mute"  co-module="'Mixer'" co-bind="'fader_' + output.mixer_id + '_mute' as mute" exec="mute(output.mixer_id, mute)">
-                                    <div image-toggle model="mute"></div>
-                                </div>
-                                <div class="volume" co-bind="'vol_max'">
-                                    <div co-module="'Mixer'" co-bind="'fader_' + output.mixer_id as volume" exec="fader(output.mixer_id, volume)">
-                                        <div>
-                                            <div co-range model="volume" min="vol_min" max="vol_max"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div
+                            ng-if="!output.no_audio"
+                            class="audio"
+                            ng-include="'components/shared/audio.html'"
+                        ></div>
                     </div>
                 </div>
             </footer>
