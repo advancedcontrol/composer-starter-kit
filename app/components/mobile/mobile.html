@@ -57,7 +57,7 @@
             </div>
 
             <div ng-controller="OptionsCtrl" id="source-info">
-                <h1 ng-if="disp_source.title">{{disp_source.title}} on {{output_details.title || 'All Displays'}}</h1>
+                <h1 ng-if="disp_source.title">{{disp_source.title}} on {{output.title || 'All Displays'}}</h1>
                 <h1 ng-if="!disp_source.title">No source selected</h1>
                 <div ng-if="disp_source.title && !output.no_audio" class="source-volume">
                     <h2>Volume</h2>
