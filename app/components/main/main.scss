@@ -46,7 +46,61 @@ $margin: 30px;
 #module {
     background-color: white;
 
-    > article {
+    #pincode-panel {
+        width: 100%;
+        height: 100%;
+        background-color: #f6f6f6;
+        position: relative;
+
+        > div {
+            width: 320px;
+            text-align: center;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            margin-top: -100px;
+            left: 50%;
+            margin-left: -160px;
+
+            h1 {
+                font-size: 28px;
+            }
+
+            input[type=password] {
+                width: 180px;
+                text-align: center;
+                border-radius: 3px;
+                border: 2px solid #ccc;
+                line-height: 10px;
+                font-size: 30px;
+                padding-bottom: 5px;
+
+                &.incorrect {
+                    border-color: red;
+                }
+            }
+
+            menu {
+                padding: 0px;
+
+                button {
+                    border: 2px solid #222;
+                    font-size: 14px;
+                    background-color: white;
+                    border-radius: 20px;
+                    padding: 4px 15px;
+                    margin: 0px 15px;
+                }
+            }
+        }
+    }
+
+    #content {
+        width: 100%;
+        height: 100%;
+    }
+
+    #content > article {
         width: 100%;
         height: 100%;
         position: relative;
@@ -131,7 +185,8 @@ $margin: 30px;
             .tab-content {
                 position: absolute;
                 top: 0px;
-                left: $tab-dimen;
+                //left: $tab-dimen;
+                left: 0px;
                 bottom: 0px;
                 right: 0px;
                 padding: $margin $margin/2;
@@ -144,21 +199,61 @@ $margin: 30px;
                     font-size: 7vmin;
                 }
 
+                .img {
+                    vertical-align: top;
+                    height: 140px;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                #hero {
+                    margin-top: 40px;
+                    width: 358px;
+                    margin: 30px auto 8px auto;
+                }
+
+                #hero + aside {
+                    width: 358px;
+                    margin: 0px auto;
+                }
+
+                h1.desc {
+                    font-size: 20px;
+                    font-weight: 900;
+                    text-transform: uppercase;
+                    text-align: left;
+                    margin-top: 20px;
+                    padding: 0px 10px;
+
+                    span {
+                        float: right;
+                        color: #959595;
+                        font-size: 17px;
+                    }
+                }
+
                 .btn-group {
                     text-align: center;
                     margin-top: $margin;
+                    width: 400px;
+                    margin: $margin auto 0px auto;
 
                     button {
                         display: inline-block;
                         outline: none;
                         border: 1px solid #efefef;
                         background-color: white;
-                        width: 380px;
-                        height: 280px;
+                        /*width: 380px;
+                        height: 280px;*/
+                        width: 358px;
+                        //height: 30px;
                         overflow: hidden;
                         vertical-align: top;
-                        padding: 10px;
-                        margin-right: 10px;
+                        padding: 10px 14px;
+                        //margin-right: 10px;
                         margin-bottom: 10px;
                         @include border-radius(3px);
 
@@ -167,37 +262,13 @@ $margin: 30px;
                             background-color: #eee;
                         }
 
-                        .img {
-                            vertical-align: top;
-                            height: 140px;
-                            overflow: hidden;
-
-                            img {
-                                width: 100%;
-                            }
-                        }
-
-                        h1 {
-                            font-size: 20px;
-                            font-weight: 900;
-                            text-transform: uppercase;
-                            text-align: left;
-                            margin-top: 20px;
-                            padding: 0px 10px;
-
-                            span {
-                                float: right;
-                                color: #959595;
-                                font-size: 17px;
-                            }
-                        }
-
                         p {
                             text-align: left;
-                            padding: 0px 10px;
+                            //padding: 0px 10px;
                             font-size: 16px;
                             color: #333;
                             font-weight: 300;
+                            margin: 0px;
                         }
                     }
                 }

@@ -17,59 +17,73 @@
         </div>
     </div>
 
-    <!-- Show the system when online -->
-    <article ng-if="state == 'online'" ng-controller="SourceCtrl">
-        <header ng-controller="Modals">
-            <img src="branding/aca/oh.png">
-            <button ng-touch="showModal('power')"><i class="fa fa-power-off"></i></button>
-            <modal name="power" title="Shutdown?">
-                <p>
-                    <b>Are you sure you want to turn off the system?</b>
-                    <br />It may take up to 5min to restart.
-                </p>
-                <menu>
-                    <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
-                    <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
-                </menu>
-                <div style="clear: both"></div>
-            </modal>
-        </header>
-
-        <div ng-if="sources" co-bind="'inputs'">
+    <div ng-if="state == 'online'" ng-controller="SourceCtrl" id="content">
+        <div id="pincode-panel" ng-show="!validated">
             <div>
-                <tabs current="tab" auto-select="false">
-                    <pane ng-repeat="input in inputs" title="{{input}}" icon="{{input}}">
-                        <div ng-include="'components/main/' + input + '/' + input + '.html'"></div>
-                    </pane>
-                </tabs>
+                <h1>Enter your pin</h1>
+                <input ng-model="pin" autofocus type="password" ng-class="{incorrect: incorrect}">
+                <menu>
+                    <button ng-click="coModuleInstance.$exec('shutdown')">Cancel</button>
+                    <button ng-click="validate($event)">Next</button>
+                </menu>
             </div>
-            <!--<nav co-bind="'tab'" exec>
-                <a href="#" id="loops" class="selected"><i class="pe-7s-loop"></i></a>
-                <a href="#" id="channels"><i class="pe-7s-monitor"></i></a>
-            </nav>-->
-
-            <!-- <table>
-                <tr>
-                    <th>Select Screen</th>
-                    <th id="middle">&nbsp;</th>
-                    <th><span>Select Input</span></th>
-                </tr>
-                <tr>
-                    <td><button>East</button></td>
-                    <td>&nbsp;</td>
-                    <td><button>PC</button></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>&nbsp;</td>
-                    <td><button>HDMI</button></td>
-                </tr>
-                <tr>
-                    <td><button>West</button></td>
-                    <td>&nbsp;</td>
-                    <td><button>VGA</button></td>
-                </tr>
-            </table> -->
         </div>
-    </article>
+        <!-- Show the system when online -->
+        <article ng-show="validated">
+            <header ng-controller="Modals">
+                <img src="branding/aca/oh.png">
+                <button ng-touch="showModal('power')"><i class="fa fa-power-off"></i></button>
+                <modal name="power" title="Shutdown?">
+                    <p>
+                        <b>Are you sure you want to turn off the system?</b>
+                        <br />It may take up to 5min to restart.
+                    </p>
+                    <menu>
+                        <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
+                        <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
+                    </menu>
+                    <div style="clear: both"></div>
+                </modal>
+            </header>
+
+            <div ng-if="sources" co-bind="'inputs'">
+                <div class="tab-content">
+                    <!-- <tabs current="tab" auto-select="false">
+                        <pane ng-repeat="input in inputs" title="{{input}}" icon="{{input}}">
+                            <div ng-include="'components/main/' + input + '/' + input + '.html'"></div>
+                        </pane>
+                    </tabs> -->
+                    <div ng-include="'components/main/Loops/Loops.html'"></div>
+                </div>
+                <!--<nav co-bind="'tab'" exec>
+                    <a href="#" id="loops" class="selected"><i class="pe-7s-loop"></i></a>
+                    <a href="#" id="channels"><i class="pe-7s-monitor"></i></a>
+                </nav>-->
+
+                <!-- <table>
+                    <tr>
+                        <th>Select Screen</th>
+                        <th id="middle">&nbsp;</th>
+                        <th><span>Select Input</span></th>
+                    </tr>
+                    <tr>
+                        <td><button>East</button></td>
+                        <td>&nbsp;</td>
+                        <td><button>PC</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>&nbsp;</td>
+                        <td><button>HDMI</button></td>
+                    </tr>
+                    <tr>
+                        <td><button>West</button></td>
+                        <td>&nbsp;</td>
+                        <td><button>VGA</button></td>
+                    </tr>
+                </table> -->
+            </div>
+        </article>
+    </div>
+
 </div>

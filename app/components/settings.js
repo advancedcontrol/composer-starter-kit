@@ -33,12 +33,20 @@
 
             // tab content
             "Loops": [
-                "dining",
+                /*"dining",
                 "education",
                 "events",
                 "history",
                 "sponsors",
-                "tours"
+                "tours"*/
+                "english",
+                "mandarin",
+                "japanese",
+                "korean",
+                "spanish",
+                "german",
+                "cantonese",
+                "thai"
             ],
             "TV": [
                 "abc",
@@ -49,7 +57,56 @@
             ],
             "sources": {
                 // loops
-                "dining": {
+                "english": {
+                    "title": "English",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "mandarin": {
+                    "title": "Mandarin",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "japanese": {
+                    "title": "Japanese",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "korean": {
+                    "title": "Korean",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "spanish": {
+                    "title": "Spanish",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "german": {
+                    "title": "German",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "cantonese": {
+                    "title": "Cantonese",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+                "thai": {
+                    "title": "Thai",
+                    "input": 1,
+                    "source": "hdmi1",
+                    "type": "loop"
+                },
+
+                /*"dining": {
                     "title": "Dining",
                     "dur": "6:33",
                     "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
@@ -102,7 +159,7 @@
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop"
-                },
+                },*/
 
                 // tv channels
                 "abc": {
