@@ -16,5 +16,34 @@
 </div>
 
 <!--
-    TODO:: other audio types here
+    Master Audio / All displays
 -->
+<div ng-if="!output" co-bind="'vol_min'">
+    <div class="mute" co-bind="'master_mute' as mute" exec>
+        <div image-toggle model="mute"></div>
+    </div>
+    <div class="volume" co-bind="'vol_max'">
+        <div co-bind="'master_volume' as volume" exec>
+            <div>
+                <div co-range model="volume" min="vol_min" max="vol_max"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--
+    Display only audio
+-->
+<div ng-if="output && output.mixer_id === undefined" co-bind="'vol_min'">
+    <div class="mute" co-module="output.$key" co-bind="'mute'" exec>
+        <div image-toggle model="mute"></div>
+    </div>
+    <div class="volume" co-bind="'vol_max'">
+        <div co-module="output.$key" co-bind="'volume'" exec>
+            <div>
+                <div co-range model="volume" min="vol_min" max="vol_max"></div>
+            </div>
+        </div>
+    </div>
+</div>

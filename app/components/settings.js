@@ -73,6 +73,7 @@
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "Camera",
+            "apps": ['explorer', 'firefox', 'vlc', 'sankore'],
             "inputs": [
                 "PC",
                 "Laptop",

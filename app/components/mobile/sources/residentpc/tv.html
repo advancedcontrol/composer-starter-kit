@@ -1,6 +1,9 @@
 
 <h1>Tap on an channel to view it:</h1>
 
-<div>
-    Channel list here
+<div co-bind="'channels'">
+    <div class="launch-icons" ng-repeat="channel in channels">
+        <div class="icon" ng-class="app"></div>
+        <span>{{channel}}</span>
+    </div>
 </div>

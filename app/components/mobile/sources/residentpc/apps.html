@@ -1,6 +1,9 @@
 
 <h1>Tap on an app to launch it:</h1>
 
-<div>
-    App list here
+<div co-bind="'apps'">
+    <div class="launch-icons" ng-repeat="app in apps">
+        <div class="icon" ng-class="app"></div>
+        <span>{{app}}</span>
+    </div>
 </div>

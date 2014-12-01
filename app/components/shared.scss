@@ -171,3 +171,64 @@ div.splash {
         position: relative;
     }
 }
+
+
+// Icon Launch Lists
+
+div.launch-icons {
+    cursor: pointer;
+    width: 60px;
+    height: 85px;
+
+    margin-top: 1em;
+    margin-left: 1em;
+
+    position: relative;
+    float: left;
+
+    &> div.icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 1.2em;
+
+        -webkit-background-size: contain !important;
+        -moz-background-size: contain !important;
+        -ms-background-size: contain !important;
+        -o-background-size: contain !important;
+        background-size: contain !important;
+
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+
+        &.explorer {
+            background-image: url("../components/images/apps/ie10.svg");
+        }
+
+        &.firefox {
+            background-image: url("../components/images/apps/firefox.svg");
+        }
+
+        &.vlc {
+            background-image: url("../components/images/apps/vlc.svg");
+        }
+
+        &.sankore {
+            background-image: url("../components/images/apps/tablet.svg");
+        }
+    }
+
+    &> span {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1em;
+
+        text-align: center;
+    }
+}
+
+
+

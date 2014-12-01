@@ -36,6 +36,7 @@
             $scope.$on('updateOutput', function (event, output, details) {
                 $scope.current_output = output;
                 $scope.output = details;
+                $scope.output.$key = current_output;
             });
         }]);
 
