@@ -74,6 +74,22 @@
             "state": "shutdown",
             "tab": "Camera",
             "apps": ['explorer', 'firefox', 'vlc', 'sankore'],
+            "channels": [
+                "7 Digital",
+                "7TWO",
+                "7mate",
+                "ABC News",
+                "ABC1",
+                "ABC2",
+                "ABC3",
+                "ELEVEN",
+                "GEM",
+                "GO",
+                "Nine",
+                "ONE",
+                "TEN",
+                "ABC Dig"
+            ],
             "inputs": [
                 "PC",
                 "Laptop",

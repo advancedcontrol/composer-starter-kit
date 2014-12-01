@@ -182,6 +182,7 @@ div.launch-icons {
 
     margin-top: 1em;
     margin-left: 1em;
+    margin-bottom: 1em;
 
     position: relative;
     float: left;
@@ -216,6 +217,69 @@ div.launch-icons {
 
         &.sankore {
             background-image: url("../components/images/apps/tablet.svg");
+        }
+
+        // Channel 7
+        &.ch-7digital {
+            background-image: url("../components/images/tv/seven.svg");
+        }
+
+        &.ch-7two {
+            background-image: url("../components/images/tv/seven-two.svg");
+        }
+
+        &.ch-7mate {
+            background-image: url("../components/images/tv/seven-mate.svg");
+        }
+
+
+        // ABC
+        &.ch-abc1 {
+            background-image: url("../components/images/tv/abc.svg");
+        }
+
+        &.ch-abc2 {
+            background-image: url("../components/images/tv/abc2.svg");
+        }
+
+        &.ch-abc3 {
+            background-image: url("../components/images/tv/abc3.svg");
+        }
+
+        &.ch-abcnews {
+            background-image: url("../components/images/tv/abc-news-24.svg");
+        }
+
+
+        // Nine
+        &.ch-nine {
+            background-image: url("../components/images/tv/nine.svg");
+        }
+
+        &.ch-ten {
+            background-image: url("../components/images/tv/ten.svg");
+        }
+
+
+        // Others
+        &.ch-eleven {
+            background-image: url("../components/images/tv/eleven.svg");
+        }
+
+        &.ch-gem {
+            background-image: url("../components/images/tv/gem.svg");
+        }
+
+        &.ch-go {
+            background-image: url("../components/images/tv/go.svg");
+        }
+
+        &.ch-one {
+            background-image: url("../components/images/tv/one.svg");
+        }
+
+        &.ch-abcdig {
+            background-image: url("../components/images/tv/dig-radio.svg");
         }
     }
 
