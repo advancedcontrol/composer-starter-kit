@@ -56,10 +56,11 @@
                                  class="overlay"
                                  co-module="device.module"
                                  index = "device.index"
+                                 co-bind="'power'"
                             >
                                 <div>
                                     <span co-bind="'warming'" ng-show="warming">Warming up</span>
-                                    <span co-bind="'mute'" ng-show="mute">Muted</span>
+                                    <span co-bind="'mute'" ng-show="mute && power">Muted</span>
                                     <span co-bind="'connected'" ng-show="!connected" class="error">Comms Error</span>
                                 </div>
                             </div>
