@@ -316,8 +316,8 @@ article.mobile {
                                     width: 40px;
 
                                     @include image-toggle(
-                                        $trueImage: '../../../../components/images/volume-white-mute.svg', 
-                                        $falseImage: '../../../../components/images/volume-white.svg',
+                                        $trueImage: "../../components/images/volume-white-mute.svg", 
+                                        $falseImage: "../../components/images/volume-white.svg",
                                         $width: 30px,
                                         $height: 30px
                                     );

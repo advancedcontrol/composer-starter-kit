@@ -200,7 +200,10 @@
             },
             "outputs": {
                 "Display_1": {
-                    "screen": "Screen_1",
+                    "screen": {
+                        "module": "Screen_1",
+                        "index": 1
+                    },
                     "output": [
                         3,
                         23
@@ -212,7 +215,10 @@
                     "title": "G1 Front"
                 },
                 "Display_2": {
-                    "screen": "Screen_2",
+                    "screen": {
+                        "module": "Screen_2",
+                        "index": 1
+                    },
                     "output": [
                         4,
                         24
@@ -235,7 +241,10 @@
                     "title": "G1 VC"
                 },
                 "Display_3": {
-                    "screen": "Screen_3",
+                    "screen": {
+                        "module": "Screen_3",
+                        "index": 1
+                    },
                     "output": [
                         1,
                         21
@@ -248,7 +257,10 @@
                     "remote": true
                 },
                 "Display_4": {
-                    "screen": "Screen_4",
+                    "screen": {
+                        "module": "Screen_4",
+                        "index": 1
+                    },
                     "output": [
                         2,
                         22
@@ -289,10 +301,15 @@
                     }
                 ],
                 "default": 3,
-                "shutdown": 0
+                "shutdown": 0,
+                "present": 2,
+                "group": 12
             },
             "vol_max": 3,
-            "vol_min": -50
+            "vol_min": -50,
+            $lights_to: function (level) {
+                this.light_level = level;
+            }
         }],
         Mixer: [{
             fader_106: 1,

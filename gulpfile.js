@@ -47,32 +47,6 @@ gulp.task('jshint', function () {
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
-// use compass watch to only compile files when necessary
-gulp.task('dev:styles', function () {
-  var options = ['watch',
-    process.cwd(),
-    '--relative-assets',
-    '--output-style',
-    'nested',
-    '--css-dir',
-    '.tmp',
-    '--sass-dir',
-    'app',
-    '--boring'
-  ];
-
-  var child = spawn('compass', options, process.cwd());
-  child.stdout.setEncoding('utf8');
-  child.stdout.on('data', function (data) {
-    console.log(data);
-  });
-
-  child.stderr.setEncoding('utf8');
-  child.stderr.on('data', function (data) {
-    console.log(data);
-  });
-});
-
 // optimise Images
 gulp.task('dev:images', function () {
   return gulp.src([
@@ -160,7 +134,7 @@ gulp.task('browser-sync', function () {
   ], ['dev:images', reload]);
 });
 
-gulp.task('serve', ['dev:styles', 'dev:images', 'browser-sync']);
+gulp.task('serve', ['prod:styles', 'dev:images', 'browser-sync']);
 
 
 

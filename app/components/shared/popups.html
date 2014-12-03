@@ -59,7 +59,7 @@
     <div class="lights" ng-if="lights" co-bind="'light_level'" exec ng-touch="showModal('lights')">
         <modal name="lights" title="Lighting Modes">
             <div btn-group="light_level">
-                <button ng-repeat="level in lights.levels" btn="level.name" ng-click="$parent.$parent.$parent.light_level = level.name" class="{{level.name}} toggle"><i class="fa fa-lightbulb-o"></i>{{level.name}}</button>
+                <button ng-repeat="level in lights.levels" btn="level.name" ng-touch="coModuleInstance.$exec('lights_to', level.name)" class="{{level.name}} toggle"><i class="fa fa-lightbulb-o"></i>{{level.name}}</button>
             </div>
         </modal>
     </div>
