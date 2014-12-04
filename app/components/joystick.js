@@ -61,7 +61,7 @@
 
                         update_position = function () {
                             var pan = parseInt((relWidth * joy_pan)) + scope.left,
-                                tilt = parseInt((relHeight * joy_tilt)) - scope.right;
+                                tilt = parseInt((relHeight * joy_tilt)) + scope.left;
 
                             if (pan > scope.right) { pan = scope.right; }
                             if (pan < scope.left) { pan = scope.left; }
@@ -69,7 +69,7 @@
                             if (tilt < scope.left) { tilt = scope.left; }
 
                             if (invert) {
-                                tilt = -tilt;
+                                tilt = scope.right + scope.left - tilt;
                             }
 
                             timer = undefined;
@@ -124,7 +124,7 @@
                             joy_pan = 0
                         }
 
-                        if (joy_tilt > height - handleWidth) {
+                        if (joy_tilt > (height - handleWidth)) {
                             joy_tilt = height - handleWidth;
                         } else if (joy_tilt < 0) {
                             joy_tilt = 0

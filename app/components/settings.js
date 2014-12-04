@@ -328,24 +328,24 @@
         Lights: [{}],
         Computer: [{}, {}, {}, {}],
         Camera: [{
-            joy_right: 50,
-            joy_left: 1,
-            joy_center: 25,
+            joy_right: 0x99,
+            joy_left: 0x1,
+            joy_center: 0x50,
             zoom: 25
         }, {
-            joy_right: 50,
-            joy_left: 1,
-            joy_center: 25,
+            joy_right: 0x99,
+            joy_left: 0x1,
+            joy_center: 0x50,
             zoom: 1
         }, {
-            joy_right: 50,
-            joy_left: 1,
-            joy_center: 25,
+            joy_right: 0x99,
+            joy_left: 0x1,
+            joy_center: 0x50,
             zoom: 75
         }, {
-            joy_right: 50,
-            joy_left: 1,
-            joy_center: 25,
+            joy_right: 0x99,
+            joy_left: 0x1,
+            joy_center: 0x50,
             zoom: 10
         }],
         Display: [{
@@ -387,7 +387,7 @@
             // between the interface and ACA Engine.
             //
             // Should be commented out for production
-            comms.debug = true;
+            comms.debug = false;
 
             // If you would like to use Authentication then you
             // must point this configuration to your compatible oauth server
