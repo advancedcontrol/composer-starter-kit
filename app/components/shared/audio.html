@@ -2,12 +2,26 @@
     Mixer used for audio
     We check against undefined as 0 is falsey
 -->
-<div ng-if="output.mixer_id !== undefined" co-bind="'vol_min'">
+<div ng-if="output.mixer_id !== undefined && !output.mixer_index" co-bind="'vol_min'">
     <div class="mute"  co-module="'Mixer'" co-bind="'fader_' + output.mixer_id + '_mute' as mute" exec="mute(output.mixer_id, mute)">
         <div image-toggle model="mute"></div>
     </div>
     <div class="volume" co-bind="'vol_max'">
         <div co-module="'Mixer'" co-bind="'fader_' + output.mixer_id as volume" exec="fader(output.mixer_id, volume)">
+            <div>
+                <div co-range model="volume" min="vol_min" max="vol_max"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TODO:: do this more efficiently -->
+<div ng-if="output.mixer_id !== undefined && output.mixer_index !== undefined" co-bind="'vol_min'">
+    <div class="mute"  co-module="'Mixer'" co-bind="'fader_' + output.mixer_id + '_mute' as mute" exec="mute(output.mixer_id, mute, output.mixer_mute_index || output.mixer_index)">
+        <div image-toggle model="mute"></div>
+    </div>
+    <div class="volume" co-bind="'vol_max'">
+        <div co-module="'Mixer'" co-bind="'fader_' + output.mixer_id as volume" exec="fader(output.mixer_id, volume, output.mixer_index)">
             <div>
                 <div co-range model="volume" min="vol_min" max="vol_max"></div>
             </div>
