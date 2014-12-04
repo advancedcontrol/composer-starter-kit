@@ -419,13 +419,14 @@
 
             // Grab the system id from the URL
             $rootScope.$watch(function () {
-                return $location.hash();
+                return $location.search();
             }, function (value) {
-                if (value === '') {
+                if (value.ctrl === '') {
                     // default system?
-                    $rootScope.controlSystem = 'sys-B0';
+                    $rootScope.noSystemSelected = true;
                 } else {
-                    $rootScope.controlSystem = value;
+                    $rootScope.noSystemSelected = false;
+                    $rootScope.controlSystem = value.ctrl;
                 };
             });
 
@@ -446,6 +447,7 @@
                     $comms.rememberMe('AcaEngine');
                 }, 0);
             }
+            
         }]);
 
 }(this, this.angular));
