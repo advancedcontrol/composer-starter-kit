@@ -118,7 +118,7 @@
             <h1>Connecting...</h1>
             <p>
                 Attempting to contact the control server.<br />
-                Check network connectivity and try reloading this page if this message persists
+                If this message persists, check network connectivity and try reloading this page
             </p>
         </div>
         <div>
@@ -131,6 +131,9 @@
     <main co-system="controlSystem">
         <div class="noSystem" ng-if="!coSystem.id">
             <h2>System "{{coSystem.$name}}" Not Found</h2>
+        </div>
+        <div class="noSystem" ng-if="noSystemSelected">
+            <h2>No System Selected</h2>
         </div>
         <div ng-if="coSystem.id" co-module="'System'" co-bind="'state'">
             <!-- Show a splash page when offline -->
