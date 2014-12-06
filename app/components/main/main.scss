@@ -196,6 +196,96 @@ article.main {
                         }
                     }
                 }
+
+
+                // If the suorce has Tabs we want to lay it out differently
+                div.hasTabs {
+                    div.instructions {
+                        position: absolute;
+                        top: 0;
+                        width: 100%;
+                    }
+                }
+
+                tabs {
+                    display: block;
+                    position: absolute;
+                    top: 3em;
+                    width: 100%;
+
+                    text-align: left;
+
+                    nav {
+                        display: block;
+
+                        &> div {
+                            position: relative;
+                            display: inline-block;
+                            margin-bottom: 0.8em;
+                            margin-left: 1em;
+                            font-size: 18px;
+                            font-weight: bold;
+
+                            padding: 0.2em 0.5em;
+
+                            &.active {
+                                background-color: white;
+                                @include border-radius($radius);
+                            }
+
+                            &> div {
+                                display: inline-block;
+                                width: 2.5em;
+                                height: 2em;
+                                vertical-align: middle;
+
+                                // each tab icon is a font icon drawn in the ::before
+                                // psuedo element of each a element
+                                &:before {
+                                    font-family: FontAwesome;
+                                    font-size: 30px;
+                                    color: rgba(0, 0, 0, 0.8);
+                                    text-decoration: none;
+                                    text-align: center;
+                                    -webkit-font-smoothing: antialiased;
+                                    -moz-osx-font-smoothing: grayscale;
+
+                                    position: absolute;
+                                    top: 0.2em;
+                                    left: 0px;
+                                    width: 2em;
+                                    height: 2em;
+                                }
+
+                                &.apps:before {
+                                    content: "\f022";
+                                }
+                                
+                                &.tv:before {
+                                    content: "\f03e";
+                                }
+
+                                &.workshops:before {
+                                    content: "\f06e";
+                                }
+
+                                &.webcam:before {
+                                    content: "\f03d";
+                                }
+
+                                &.info:before {
+                                    content: "\f05a";
+                                }
+                            }
+                        }
+
+                        border-bottom: 1px dashed black;
+                    }
+
+                    div.tab-content {
+
+                    }
+                }
             }
         }
     }
@@ -329,30 +419,81 @@ article.main {
                             vertical-align: middle;
                             
 
-                            &.mute {
-                                width: 40px;
-
-                                @include image-toggle(
-                                    $trueImage: "../../components/images/volume-mute.svg", 
-                                    $falseImage: "../../components/images/volume.svg",
-                                    $width: 30px,
-                                    $height: 30px
-                                );
-                            }
-
-                            &.volume > div {
-                                width: 100%;
-                            }
-
-                            @include co-range-slider(
-                                $handle-size: 40px,
-                                $track-girth: 20px,
-                                $track-colour:white
-                            );
+                            // Mute and Volume are here
                         }
                     }
                 }
             }
+        }
+    }
+
+    div.mute {
+        width: 40px;
+
+        @include image-toggle(
+            $trueImage: "../../components/images/volume-mute.svg", 
+            $falseImage: "../../components/images/volume.svg",
+            $width: 30px,
+            $height: 30px
+        );
+    }
+
+    div.volume > div {
+        width: 100%;
+
+        @include co-range-slider(
+            $handle-size: 40px,
+            $track-girth: 20px,
+            $track-colour:white
+        );
+    }
+
+
+    // Modify for single display output
+    &.single {
+        &> div > div > footer {
+            top: 85%;
+            overflow: hidden;
+
+            h1 {
+                margin: 0;
+                padding-top: 20px;
+                padding-left: 30px;
+            }
+
+            // This is the volume slider container
+            &> div > div {
+                width: 100%;
+                max-width: 100%;
+                padding-top: 10px;
+                height: auto;
+
+                &> div {
+                    width: 100%;
+
+                    &> div.mute {
+                        display: inline-block;
+                        float: left;
+                        position: relative;
+                        z-index: 10;
+
+                        width: 40px;
+                    }
+
+                    &> div.volume {
+                        width: 100%;
+                        margin-left: -40px;
+                        margin-top: 5px;
+                        padding-left: 60px;
+                        padding-right: 40px;
+                        float: left;
+                    }
+                }
+            }
+        }
+
+        &> div > div > tabs {
+            bottom: 15%;
         }
     }
 
