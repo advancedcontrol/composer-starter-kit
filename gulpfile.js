@@ -52,15 +52,21 @@ gulp.task('dev:images', function () {
   return gulp.src([
         'app/**/*.png',
         'app/**/*.jpg',
-        'app/**/*.gif',
-        'app/**/*.svg',
-        '!app/branding/fonts/**/*.svg'
+        'app/**/*.gif'
     ]).pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true
     })))
     .pipe(gulp.dest('.tmp'))
     .pipe($.size({title: 'dev:images'}));
+});
+
+gulp.task('dev:svg', function () {
+  return gulp.src([
+        'app/**/*.svg',
+        '!app/branding/fonts/**/*.svg'
+    ])
+    .pipe(gulp.dest('.tmp'));
 });
 
 // Watch Files For Changes & Reload
@@ -134,7 +140,7 @@ gulp.task('browser-sync', function () {
   ], ['dev:images', reload]);
 });
 
-gulp.task('serve', ['prod:styles', 'dev:images', 'browser-sync']);
+gulp.task('serve', ['prod:styles', 'dev:images', 'dev:svg', 'browser-sync']);
 
 
 
@@ -231,7 +237,7 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('prod:styles', 'rebase', 'dev:images', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', cb);
+  runSequence('prod:styles', 'rebase', 'dev:images', 'dev:svg', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', cb);
 });
 
 // Load custom tasks from the `tasks` directory

@@ -22,9 +22,6 @@
                 $scope.$emit('navShow');
             };
 
-            $scope.classify = function (val) {
-                return 'ch-' + val.split(' ').join('').toLowerCase();
-            };
 
             // update the source
             $scope.$on('updateSource', function (event, source) {

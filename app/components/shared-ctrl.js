@@ -14,6 +14,10 @@
                 }
             });
 
+            $scope.classify = function (val) {
+                return 'ch-' + val.split(' ').join('').toLowerCase();
+            };
+
         }]);
 
 }(this.angular));
