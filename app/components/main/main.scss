@@ -108,7 +108,10 @@ article.main {
                 // THE TABS
                 // --------
                 &> div {
+                    border-bottom: 1px solid rgba(255,255,255,0.2);
+
                     position: relative;
+                    top: 1px;
                     display: inline-block;
                     vertical-align: top;
 
@@ -129,10 +132,6 @@ article.main {
                         bottom: 10px;
                         left: 0;
                         right: 0;
-                    }
-
-                    &:not(.active) {
-                        @include box-shadow(rgba(0, 0, 0, 0.2) 0px -4px 14px inset);
                     }
 
                     &.active {
@@ -210,7 +209,7 @@ article.main {
                 tabs {
                     display: block;
                     position: absolute;
-                    top: 3em;
+                    top: 1.8em;
                     width: 100%;
 
                     text-align: left;

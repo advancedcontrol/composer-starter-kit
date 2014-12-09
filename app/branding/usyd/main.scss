@@ -2,10 +2,10 @@
 @import "variables";
 
 body {
-    background-color: #333338;
+    background-color: #f9cf66;
 }
 
-$header-color: #b7162c;
+$header-color: #12416c;
 
 article.main {
     > div > div > tabs {
@@ -13,26 +13,19 @@ article.main {
     }
 
     > header {
-        background-color: darken($header-color, 10%);
+        background-color: $header-color;
 
         div.logo {
-            background-color: $header-color;
+            background-color: #CE1126;
             width: 150px;
             margin-top: 0px;
-            padding: 5px 20px 10px 20px;
+            padding: 5px 5px 5px 5px;
             height: 90px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
 
             > div {
-                background-image: url("../../branding/tafesa/logo.png");
+                background-image: url("../../branding/usyd/logo.gif");
             }
-        }
-    }
-
-    // Shadow over inactive tabs
-    > div > div > tabs > div > nav > div {
-        &:not(.active) {
-            @include box-shadow(rgba(0, 0, 0, 0.2) 0px -4px 14px inset);
         }
     }
 }
@@ -44,7 +37,7 @@ article.mobile {
         background-color: $header-color;
 
         span > div.logo {
-            background-image: url("../../branding/tafesa/logo.png");
+            background-image: url("../../branding/usyd/logo.png");
 
             background-size: contain;
             background-repeat: no-repeat;
