@@ -3,7 +3,7 @@
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div co-bind="'apps'" ng-class="{hasTabs: hasTabs}">
             <!-- SUB Tabs for the PC -->
-            <div co-bind="'channels'">
+            <div co-bind="'channels'" >
                 <div class="instructions">
                     <div ng-if="numOutputs > 1">
                         <span ng-if="source_names.length === 1">Select a display to show this source</span>
@@ -23,6 +23,9 @@
                     <pane ng-if="channels" title="Channels" icon="tv">
                         <div ng-include="'components/mobile/sources/residentpc/tv.html'">
                         </div>
+                    </pane>
+                    <pane hide="!selectedSource.hasWebCam" title="Camera" icon="webcam">
+                        Testing {{selectedSource.hasWebCam}}
                     </pane>
                 </tabs>
 

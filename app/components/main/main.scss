@@ -199,6 +199,8 @@ article.main {
 
                 // If the suorce has Tabs we want to lay it out differently
                 div.hasTabs {
+                    position: relative;
+
                     div.instructions {
                         position: absolute;
                         top: 0;
@@ -213,6 +215,7 @@ article.main {
                     width: 100%;
 
                     text-align: left;
+                    padding-right: $padding;
 
                     nav {
                         display: block;
@@ -222,7 +225,7 @@ article.main {
                             display: inline-block;
                             margin-bottom: 0.8em;
                             margin-left: 1em;
-                            font-size: 18px;
+                            font-size: 14px;
                             font-weight: bold;
 
                             padding: 0.2em 0.5em;
@@ -242,7 +245,7 @@ article.main {
                                 // psuedo element of each a element
                                 &:before {
                                     font-family: FontAwesome;
-                                    font-size: 30px;
+                                    font-size: 28px;
                                     color: rgba(0, 0, 0, 0.8);
                                     text-decoration: none;
                                     text-align: center;
@@ -250,10 +253,10 @@ article.main {
                                     -moz-osx-font-smoothing: grayscale;
 
                                     position: absolute;
-                                    top: 0.2em;
-                                    left: 0px;
-                                    width: 2em;
-                                    height: 2em;
+                                    top: 0.1em;
+                                    left: 0.2em;
+                                    width: 1em;
+                                    height: 1em;
                                 }
 
                                 &.apps:before {
@@ -282,7 +285,13 @@ article.main {
                     }
 
                     div.tab-content {
+                        h1 {
+                            font-size: 16px;
+                        }
 
+                        div.launch-icons {
+                            height: 65px;
+                        }
                     }
                 }
             }

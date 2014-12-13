@@ -1,24 +1,26 @@
 (function (angular) {
     'use strict';
 
-    var source = {};
-
     angular.module('AcaEngine')
     
         .controller('SourceCtrl', [
             '$scope',
+            '$rootScope',
 
-        function ($scope) {
-            // Provides access to the current source
-            $scope.selectedSource = source;
-
+        function ($scope, $rootScope) {
             // Updates the currently selected source
             $scope.selectSource = function (src) {
-                angular.extend(source, $scope.sources[src]);
-                source.source = src;
+                $scope.selectedSource = $scope.sources[src];
+                $scope.selectedSource.source = src;
+
+                // Update the scopes
+                $rootScope.$broadcast('updateSource', $scope.selectedSource);
             };
 
-            // TODO:: Source to name mapping!
+            // update the source
+            $scope.$on('updateSource', function (event, source) {
+                $scope.selectedSource = source;
+            });
         }]);
 
 }(this.angular));

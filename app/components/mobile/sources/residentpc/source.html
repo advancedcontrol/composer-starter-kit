@@ -12,6 +12,7 @@
     ></span>
     <span
         class="webcam"
+        ng-if="selectedSource.hasWebCam"
         ng-class="{active: tab === 'webcam'}"
         ng-touch="showTab('webcam')"
     ></span>

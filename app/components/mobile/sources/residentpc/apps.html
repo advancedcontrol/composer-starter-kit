@@ -2,7 +2,7 @@
 <h1>Tap on an app to launch it:</h1>
 
 <div co-bind="'apps'">
-    <div class="launch-icons" ng-repeat="app in apps">
+    <div class="launch-icons" ng-repeat="app in apps" ng-click="coModuleInstance.$exec('application', app, selectedSource.source)">
         <div class="icon" ng-class="app"></div>
         <span>{{app}}</span>
     </div>

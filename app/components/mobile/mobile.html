@@ -49,7 +49,7 @@
         <div 
             id="aside-wrapper" 
             ng-controller="OptionsCtrl" 
-            ng-class="{hasVolume: disp_source.title && !output.no_audio}"
+            ng-class="{hasVolume: selectedSource.title && !output.no_audio}"
         >
             <div id="nav-buffer">
                 <!-- Place the popup actions here -->
@@ -57,9 +57,9 @@
             </div>
 
             <div ng-controller="OptionsCtrl" id="source-info">
-                <h1 ng-if="disp_source.title">{{disp_source.title}} on {{output.title || 'All Displays'}}</h1>
-                <h1 ng-if="!disp_source.title">No source selected</h1>
-                <div ng-if="disp_source.title && !output.no_audio" class="source-volume">
+                <h1 ng-if="selectedSource.title">{{selectedSource.title}} on {{output.title || 'All Displays'}}</h1>
+                <h1 ng-if="!selectedSource.title">No source selected</h1>
+                <div ng-if="selectedSource.title && !output.no_audio" class="source-volume">
                     <h2>Volume</h2>
                     <div ng-include="'components/shared/audio.html'"></div>
                 </div>
@@ -67,7 +67,7 @@
 
             <div 
                 id="nav-wrapper"
-                ng-include="'components/mobile/sources/' + (disp_source.type || 'none') + '/source.html'"
+                ng-include="'components/mobile/sources/' + (selectedSource.type || 'none') + '/source.html'"
                 ng-controller="TabsCtrl"
             >
             </div>
@@ -121,11 +121,11 @@
         <!-- Source Selection -->
         <div 
             ng-if="sources" 
-            co-bind="(current_output || 'all_displays') as disp_source"
-            exec="present(disp_source.source, current_output)"
+            co-bind="(current_output || 'all_displays') as selectedSource"
+            exec="present(selectedSource.source, current_output)"
             ng-controller="OptionsCtrl"
         >
-            <div btn-group="disp_source.source" class="sources">
+            <div btn-group="selectedSource.source" class="sources">
                 <button ng-repeat="(key, info) in sources" btn="key" ng-click="selectSource(key)" class="toggle">
                     <span ng-class="info.type"></span>{{info.title}}
                 </button>

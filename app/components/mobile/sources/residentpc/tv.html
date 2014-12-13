@@ -2,7 +2,7 @@
 <h1>Tap on an channel to view it:</h1>
 
 <div co-bind="'channels'">
-    <div class="launch-icons" ng-repeat="channel in channels">
+    <div class="launch-icons" ng-repeat="channel in channels" ng-click="coModuleInstance.$exec('channel', channel, selectedSource.source)">
         <div class="icon" ng-class="classify(channel)"></div>
         <span>{{channel}}</span>
     </div>

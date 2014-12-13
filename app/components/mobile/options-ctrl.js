@@ -12,11 +12,11 @@
             // Updates the currently selected source
             $scope.selectSource = function (src) {
                 // Update the source (basically matches what the server will return)
-                var disp_source = $scope.sources[src];
-                disp_source.source = src;
+                var selectedSource = $scope.sources[src];
+                selectedSource.source = src;
 
                 // Update the scopes
-                $rootScope.$broadcast('updateSource', disp_source);
+                $rootScope.$broadcast('updateSource', selectedSource);
 
                 // Open the side panel
                 $scope.$emit('navShow');
@@ -25,7 +25,7 @@
 
             // update the source
             $scope.$on('updateSource', function (event, source) {
-                $scope.disp_source = source;
+                $scope.selectedSource = source;
             });
 
 
