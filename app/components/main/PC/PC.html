@@ -25,7 +25,8 @@
                         </div>
                     </pane>
                     <pane hide="!selectedSource.hasWebCam" title="Camera" icon="webcam">
-                        Testing {{selectedSource.hasWebCam}}
+                        <div ng-include="'components/mobile/sources/residentpc/webcam.html'">
+                        </div>
                     </pane>
                 </tabs>
 

@@ -1,6 +1,29 @@
 
+
+
 <h1>Web Camera Control:</h1>
 
-<div>
-    Camera controls here
+<div class="webcam-controls" co-module="selectedSource.mod" co-index="selectedSource.index">
+    <table>
+        <tr>
+            <td></td>
+            <td class="up" ng-touch="coModuleInstance.$exec('up')"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="left" ng-touch="coModuleInstance.$exec('left')"></td>
+            <td class="center" ng-touch="coModuleInstance.$exec('center')"></td>
+            <td class="right" ng-touch="coModuleInstance.$exec('right')"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="down" ng-touch="coModuleInstance.$exec('down')"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="zoomout" ng-touch="coModuleInstance.$exec('zoomout')"></td>
+            <td></td>
+            <td class="zoomin" ng-touch="coModuleInstance.$exec('zoomin')"></td>
+        </tr>
+    </table>
 </div>
