@@ -2,6 +2,14 @@
     'use strict';
 
     window.systemData = window.systemData || {};
+    window.systemData['sys-workshop'] = {
+        Camera: [{
+            joy_right: 100,
+            joy_left: -100,
+            joy_center: 0,
+            zoom: 999
+        },{},{},{}]
+    };
     window.systemData['sys-B0'] = {
         System: [{
             "$powerup": function () {
@@ -92,6 +100,37 @@
                 "Laptop",
                 "Camera",
                 "VC"
+            ],
+            "cameras": [
+                "Renewables Workshop",
+                "Outdoor Solar",
+                "BSI Level 1",
+                "BSI Level 2",
+                "BSI Level 3",
+                "Instrumentation & Mechanical",
+                "Gas Services",
+                "Electrical & HVAC South",
+                "Electrical & HVAC North",
+                "Finishing & Wallpaper",
+                "Furniture Finishing",
+                "Painting & Decorating North",
+                "Painting & Decorating South",
+                "Plastering North",
+                "Plastering South",
+                "Brick Laying",
+                "Timber Installation North East",
+                "Scaffolding",
+                "Timber & Roof Installation North",
+                "Basic Hand Skills",
+                "Timber Installation North West",
+                "Timber Installation South West",
+                "Primary Mill North East",
+                "Secondary Mill South East",
+                "Primary Mill North West",
+                "Secondary Mill South West",
+                "Glass",
+                "Aluminium",
+                "rick & Tile Cutting"
             ],
             "PC": [
                 "g1_pc1",

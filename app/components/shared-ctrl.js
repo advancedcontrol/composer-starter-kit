@@ -18,6 +18,10 @@
                 return 'ch-' + val.split(' ').join('').toLowerCase();
             };
 
+            $scope.toInt = function (val) {
+                return parseInt(val);
+            };
+
         }]);
 
 }(this.angular));

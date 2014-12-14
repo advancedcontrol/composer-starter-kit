@@ -348,3 +348,30 @@ div.webcam-controls {
         }
     }
 }
+
+
+// WORKSHOP CAMERAS
+div.camera-select {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding-left: 20px;
+    padding-top: 2.8em;
+
+    &> select, &> button {
+        position: relative;
+        z-index: 5;
+    }
+
+    &> select {
+        margin-bottom: 0.4em;
+    }
+
+    div.camera-control {
+        top: -2.8em;
+        height: 100%;
+    }
+}

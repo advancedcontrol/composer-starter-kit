@@ -1,5 +1,5 @@
 
-<nav ng-init="showTab('apps')">
+<nav ng-init="showTab('apps')" co-bind="'cameras'">
     <span
         class="apps"
         ng-class="{active: tab === 'apps'}"
@@ -17,7 +17,14 @@
         ng-touch="showTab('webcam')"
     ></span>
     <span
+        class="webcam"
+        ng-if="selectedSource.hasPTZ"
+        ng-class="{active: tab === 'ptzcam'}"
+        ng-touch="showTab('ptzcam')"
+    ></span>
+    <span
         class="workshops"
+        ng-if="cameras"
         ng-class="{active: tab === 'workshops'}"
         ng-touch="showTab('workshops')"
     ></span>

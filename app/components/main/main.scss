@@ -210,15 +210,16 @@ article.main {
 
                 tabs {
                     display: block;
-                    position: absolute;
-                    top: 1.8em;
-                    width: 100%;
 
                     text-align: left;
-                    padding-right: $padding;
+                    
 
                     nav {
                         display: block;
+                        position: absolute;
+                        top: 1.8em;
+                        left: 0;
+                        right: $padding;
 
                         &> div {
                             position: relative;
@@ -229,6 +230,7 @@ article.main {
                             font-weight: bold;
 
                             padding: 0.2em 0.5em;
+
 
                             &.active {
                                 background-color: white;
@@ -285,6 +287,13 @@ article.main {
                     }
 
                     div.tab-content {
+                        display: block;
+                        position: absolute;
+                        top: 4.2em;
+                        bottom: 0;
+                        width: 100%;
+                        padding-right: $padding;
+
                         h1 {
                             font-size: 16px;
                         }

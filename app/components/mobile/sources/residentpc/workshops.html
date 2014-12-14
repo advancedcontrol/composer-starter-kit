@@ -1,6 +1,44 @@
 
 <h1>Workshop Cameras:</h1>
 
-<div>
-    Drop down here
+<div class="camera-select" ng-init="camera = null">
+    <select
+        ng-model="camera"
+        ng-options="index as cam for (index, cam) in cameras"
+    >
+        <option value="">Select a Camera</option>
+    </select>
+    <button ng-show="camera" ng-click="coModuleInstance.$exec('show_camera', cameras[camera], selectedSource.source)">Open</button>
+
+    <div
+        ng-if="camera"
+        class="camera-control"
+        co-system="'sys-workshop'"
+        co-module="'Camera'"
+        co-index="toInt(camera) + 1"
+        co-bind="'joy_right'"
+    >
+        <div co-bind="'joy_left'">
+            <div co-bind="'joy_center'" ng-controller="CamCtrl">
+                <joystick
+                    img="components/images/joystick.svg"
+                    right="joy_right"
+                    left="joy_left"
+                    center="joy_center"
+                    pan-tilt="panTilt"
+                    refresh="camera"
+                    invert>
+                </joystick>
+
+                <span class="zoom-text">Zoom:</span>
+                <div co-bind="'zoom'" exec>
+                    <div co-bind="'zoom_min'">
+                        <div co-bind="'zoom_max'">
+                            <div co-range model="zoom" min="zoom_min" max="zoom_max"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

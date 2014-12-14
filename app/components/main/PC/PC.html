@@ -1,40 +1,46 @@
 
 <div co-bind="'PC' as source_names" id="pc-inputs" ng-init="hasTabs = false">
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
-        <div co-bind="'apps'" ng-class="{hasTabs: hasTabs}">
+        <div co-bind="'cameras'" ng-class="{hasTabs: hasTabs}">
             <!-- SUB Tabs for the PC -->
             <div co-bind="'channels'" >
-                <div class="instructions">
-                    <div ng-if="numOutputs > 1">
-                        <span ng-if="source_names.length === 1">Select a display to show this source</span>
-                        <span ng-if="source_names.length > 1">Select a PC then select a display.</span>
+                <div co-bind="'apps'">
+                    <div class="instructions">
+                        <div ng-if="numOutputs > 1">
+                            <span ng-if="source_names.length === 1">Select a display to show this source</span>
+                            <span ng-if="source_names.length > 1">Select a PC then select a display.</span>
+                        </div>
+                        <div ng-if="numOutputs === 1">
+                            <span ng-if="source_names.length === 1">The PC is now displaying</span>
+                            <span ng-if="source_names.length > 1">The selected PC will display.</span>
+                        </div>
                     </div>
-                    <div ng-if="numOutputs === 1">
-                        <span ng-if="source_names.length === 1">The PC is now displaying</span>
-                        <span ng-if="source_names.length > 1">The selected PC will display.</span>
-                    </div>
+
+                    <tabs ng-if="apps || channels || cameras" ng-init="$parent.$parent.hasTabs = true">
+                        <pane hide="!apps" title="Applications" icon="apps">
+                            <div ng-include="'components/mobile/sources/residentpc/apps.html'">
+                            </div>
+                        </pane>     
+                        <pane hide="!cameras" title="Workshops" icon="workshops">
+                            <div ng-include="'components/mobile/sources/residentpc/workshops.html'">
+                            </div>
+                        </pane>
+                        <pane hide="!channels" title="Channels" icon="tv">
+                            <div ng-include="'components/mobile/sources/residentpc/tv.html'">
+                            </div>
+                        </pane>
+                        <pane hide="!selectedSource.hasWebCam" title="Camera" icon="webcam">
+                            <div ng-include="'components/mobile/sources/residentpc/webcam.html'">
+                            </div>
+                        </pane>
+                        <pane hide="!selectedSource.hasPTZ" title="Camera" icon="webcam">
+                            <div ng-include="'components/mobile/sources/residentpc/ptzcam.html'">
+                            </div>
+                        </pane>          
+                    </tabs>
+
+                    <div ng-if="!apps && !channels && !cameras" ng-init="hasTabs = false"></div>
                 </div>
-
-                <tabs ng-if="apps || channels" ng-init="$parent.$parent.hasTabs = true">
-                    <pane ng-if="apps" title="Applications" icon="apps">
-                        <div ng-include="'components/mobile/sources/residentpc/apps.html'">
-                        </div>
-                    </pane>
-                    <pane ng-if="channels" title="Channels" icon="tv">
-                        <div ng-include="'components/mobile/sources/residentpc/tv.html'">
-                        </div>
-                    </pane>
-                    <pane hide="!selectedSource.hasWebCam" title="Camera" icon="webcam">
-                        <div ng-include="'components/mobile/sources/residentpc/webcam.html'">
-                        </div>
-                    </pane>
-                    <pane hide="!selectedSource.hasPTZ" title="Camera" icon="webcam">
-                        <div ng-include="'components/mobile/sources/residentpc/ptzcam.html'">
-                        </div>
-                    </pane>
-                </tabs>
-
-                <div ng-if="!apps && !channels" ng-init="hasTabs = false"></div>
             </div>
         </div>
         <div class="sources" ng-if="source_names.length > 1">

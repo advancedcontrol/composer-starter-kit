@@ -378,6 +378,7 @@ article.mobile {
                     // direct touch to allow using the scroll bar
                     > div {
                         min-height: 100%;
+                        position: relative;
                         padding: $mobile-content-pad;
                     }
                 }
