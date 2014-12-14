@@ -28,6 +28,10 @@
                         <div ng-include="'components/mobile/sources/residentpc/webcam.html'">
                         </div>
                     </pane>
+                    <pane hide="!selectedSource.hasPTZ" title="Camera" icon="webcam">
+                        <div ng-include="'components/mobile/sources/residentpc/ptzcam.html'">
+                        </div>
+                    </pane>
                 </tabs>
 
                 <div ng-if="!apps && !channels" ng-init="hasTabs = false"></div>

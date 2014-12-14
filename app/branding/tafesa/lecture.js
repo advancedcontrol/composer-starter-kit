@@ -120,7 +120,8 @@
                     "source": "hdmi",
                     "type": "residentpc",
                     "mod": "Computer",
-                    "index": 1
+                    "index": 1,
+                    "hasPTZ": true
                 },
                 "g1_pc2": {
                     "title": "1G1 PC-2",
