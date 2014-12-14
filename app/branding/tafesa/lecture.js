@@ -373,7 +373,7 @@
         }],
         Switcher: [{}],
         Lights: [{}],
-        Computer: [{}, {}, {}, {}],
+        Computer: [{}, {connected: false}, {}, {}],
         Camera: [{
             joy_right: 0x99,
             joy_left: 0x1,

@@ -1,7 +1,7 @@
 
 <h1>Workshop Cameras:</h1>
 
-<div class="camera-select" ng-init="camera = null">
+<div class="camera-select" ng-init="camera = null" co-bind="'cameras'">
     <select
         ng-model="camera"
         ng-options="index as cam for (index, cam) in cameras"

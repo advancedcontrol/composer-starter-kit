@@ -1,5 +1,19 @@
 
-<nav ng-init="showTab('apps')" co-bind="'cameras'">
+<!-- 
+    This DIV is invisible
+    it is used to check if the PCs power is on
+ -->
+<div
+    co-module="selectedSource.mod || Computer"
+    co-index="selectedSource.index || 1"
+    co-bind="'connected' as $parent.power"
+></div>
+
+<nav ng-if="!power">
+    <span class="info active"></span>
+</nav>
+
+<nav ng-if="power" ng-init="showTab('apps')" co-bind="'cameras'">
     <span
         class="apps"
         ng-class="{active: tab === 'apps'}"
@@ -34,7 +48,11 @@
 <section ng-touch="$event.stopPropagation()" on-target>
     <div> <!-- ng-switch -->
         <div> <!-- ng-switch-when -->
-            <div ng-include="'components/mobile/sources/residentpc/' + tab + '.html'">
+            <div ng-if="power" ng-include="'components/mobile/sources/residentpc/' + tab + '.html'">
+            </div>
+            <div ng-if="!power">
+                <br />Unable to connect to the computer.<br />
+                <button ng-touch="coModuleInstance.$exec('wake_pcs')">Attempt Power On</button>
             </div>
         </div>
     </div>
