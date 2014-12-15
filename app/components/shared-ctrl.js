@@ -10,7 +10,8 @@
             // So we can decide to hide or show the output pane
             $scope.$watch('outputs', function (val) {
                 if (val) {
-                    $scope.numOutputs = Object.keys(val).length;
+                    $scope.outputNames = Object.keys(val);
+                    $scope.numOutputs = $scope.outputNames.length;
                 }
             });
 

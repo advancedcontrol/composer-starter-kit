@@ -79,7 +79,7 @@
                 </div>
             </footer>
             <footer ng-if="outputs && numOutputs === 1">
-                <div ng-repeat="output in outputs"
+                <div ng-repeat="output in outputs | orderObjectBy:'pri'"
                      co-bind="output.$key as source"
                 >
                     <h1>Volume:</h1>

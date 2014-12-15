@@ -29,7 +29,6 @@
             });
 
 
-
             $scope.selectOutput = function (output) {
                 $rootScope.$broadcast('updateOutput', output, $scope.outputs[output]);
             };
@@ -37,8 +36,12 @@
             $scope.$on('updateOutput', function (event, output, details) {
                 $scope.current_output = output;
                 $scope.output = details;
-                $scope.output.$key = current_output;
+                $scope.output.$key = output;
             });
+
+            if (!$scope.output && $scope.numOutputs === 1) {
+                $scope.selectOutput($scope.outputNames[0]);
+            }
         }]);
 
 }(this.angular));
