@@ -66,7 +66,7 @@
                     this.$_self[parts.module][parts.index - 1].mute = true;
                 }
             },
-            "name": "Demo Pod",
+            "name": "Demo Trolley",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "apps": ['explorer', 'firefox', 'vlc', 'sankore'],
@@ -129,7 +129,7 @@
             ],
             "sources": {
                 "g1_pc1": {
-                    "title": "PC1",
+                    "title": "Computer",
                     "source": "hdmi",
                     "type": "residentpc",
                     "mod": "Computer",
@@ -137,7 +137,7 @@
                     "hasPTZ": true
                 },
                 "hdmi_connection": {
-                    "title": "1G1 Laptop",
+                    "title": "Laptop HDMI",
                     "source": "hdmi",
                     "type": "aux_hdmi"
                 }
@@ -146,7 +146,7 @@
                 "Display_1": {
                     "type": "lcd",
                     "pri": 1,
-                    "title": "Main Display"
+                    "title": "Display"
                 }
             },
             "vol_max": 60,
