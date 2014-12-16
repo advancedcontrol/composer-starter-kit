@@ -9,7 +9,7 @@
         System: [{
             $powerup: function () {
                 this.state = "basic";
-                this.tab = 'lights';
+                this.tab = this.tabs[this.state][0];
             },
             $shutdown: function () {
                 this.state = "shutdown";
@@ -17,9 +17,7 @@
             $tab: function (tab) {
                 this.tab = tab;
             },
-            $present: function (source) {
-                var display = 'Display_1';
-
+            $present: function (source, display) {
                 if (source === 'none') {
                     this[display] = 'none';
 
@@ -42,43 +40,49 @@
                 }
             },
             $changeState: function (pass) {
+                var newState;
+
                 if (pass == '1234') {
-                    this.state = 'client';
+                    newState = 'client';
                 } else if (pass == 'admin') {
-                    this.state = 'advanced';
+                    newState = 'advanced';
                 } else {
                     // inform user of issue
-                    // TODO:: notification system
+                    this.access_attempts += 1;
+                    return;
+                }
+
+                // Check if we are actually shutting down
+                if (this.state === newState) {
+                    this.$shutdown();
+                } else {
+                    this.state = newState;
+                    this.tab = this.tabs[this.state][0];
                 }
             },
             "name": "Demo Room",
+            "access_attempts": 1,
             "help_msg": "For help please call <strong>0408419954</strong>",
-            "state": "shutdown", // basic, booked, advanced
-            "tab": "Lights",
+            //"state": "shutdown", // basic, booked, advanced
+            //"tab": "Lights",
             "tabs": {
                 "basic": [
-                    "lights",
                     "help",
                     "start"
                 ],
                 "client": [
-                    "lights",
                     "vision", // DualVision for dual displays
                     "audio",
                     "help",
                     "end"
                 ],
                 "advanced": [
-                    "lights",
                     "vision", // DualVision for dual displays
                     "audio",
                     "end"
                 ]
             },
             "pages": {
-                "lights": {
-                    "title": "Lighting"
-                },
                 "vision": {
                     "title": "Vision"
                 },
@@ -120,53 +124,48 @@
                     "type": "projector",
                     "screen": {
                         "module": "Screen_1",
-                        "index": 1
+                        "index": 1,
+                        "binding": "screen"
                     },
                     "lift": {
                         "module": "Screen_1",
-                        "index": 2
+                        "index": 2,
+                        "binding": "screen"
                     },
                     "output": [
                         1
                     ],
-                    "title": "Demo Room Projector"
+                    "title": "Primary Projector"
+                },
+                "Display_2": {
+                    "type": "projector",
+                    "screen": {
+                        "module": "Screen_2",
+                        "index": 1,
+                        "binding": "screen"
+                    },
+                    "lift": {
+                        "module": "Screen_2",
+                        "index": 2,
+                        "binding": "screen"
+                    },
+                    "output": [
+                        1
+                    ],
+                    "title": "Secondary Projector"
                 }
             },
-            "light_level": "Off",
-            "lighting_group": 12,
-            "light_defaults": {
-                "powerup": "Full",
-                "shutdown": "Sensor",
-                "present": "Presentation"
+            "help_message": "For support, select the most appropriate option from the list below and press submit",
+            "help_sms": {
+                "to": "+61458596026"
             },
-            "light_levels": [
-                "Off",
-                "Presentation",
-                "Discussion",
-                "Full"
-            ],
-            "light_presets": {
-                "Off": {
-                    "trigger": 1,
-                    "message": "Room lights are off.<br />Please select a preset"
-                },
-                "Presentation": {
-                    "trigger": 2,
-                    "message": "Lights are on Presentation mode"
-                },
-                "Discussion": {
-                    "trigger": 3,
-                    "message": "Lights are on Discussion mode"
-                },
-                "Full": {
-                    "trigger": 4,
-                    "message": "Lights are at full brightness"
-                },
-                "Senesor": {
-                    "trigger": 5,
-                    "sensor": true
-                }
-            }
+            "help_options": [
+                "My laptop won't display",
+                "No sound is coming from the speakers",
+                "I have an issue with the lights",
+                "There is an issue with the display or projector",
+                "General support required"
+            ]
         }],
         Switcher: [{}],
         Lights: [{}],
@@ -175,7 +174,7 @@
             $power: function (val) {
                 this.power = val;
             }
-        }],
+        }, {}],
         Screen: [{
             "screen1": "down",
             "screen2": "up",
@@ -237,14 +236,14 @@
 
             // Grab the system id from the URL
             $rootScope.$watch(function () {
-                return $location.hash();
+                return $location.search().ctrl;
             }, function (value) {
-                if (value === '') {
-                    // default system?
-                    $rootScope.controlSystem = 'sys-B0';
-                } else {
+                if (value) {
                     $rootScope.controlSystem = value;
-                };
+                } else {
+                    console.log('No System ID Provided');
+                    $rootScope.controlSystem = null;
+                }
             });
 
             // Refresh the UI if an update is detected

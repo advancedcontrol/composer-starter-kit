@@ -15,17 +15,17 @@
                     <div progress value="1" total="3"></div>
                 </div>
             </div>
-            <div ng-switch-when="key">
+            <div ng-switch-when="key" ng-controller="Modals" co-bind="'access_attempts'">
                 <h1>&nbsp;</h1>
                 <p>
                     Please enter your access code below
                 </p>
-                <input autofocus ng-model="pass" type="password" />
-                <div class="progress">
+                <input autofocus ng-focus="true" ng-model="pass" type="password" />
+                <div class="progress" ng-controller="PasscodeCtrl">
                     <button class="btn" ng-click="$parent.endProgress = 'start'">Cancel</button>
                     <button
                         class="btn"
-                        ng-click="coModuleInstance.$exec('shutdown')"
+                        ng-click="attempting = true; coModuleInstance.$exec('changeState', pass)"
                     >Next</button>
                     <div progress value="2" total="3"></div>
                 </div>

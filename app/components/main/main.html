@@ -15,7 +15,7 @@
     <div co-bind="'tabs'">
         <div co-bind="'tab'" exec>
             <!-- Tabs -->
-            <tabs current="tab" auto-select="false">
+            <tabs current="tab">
                 <pane ng-repeat="tabType in tabs[state]" title="{{pages[tabType].title}}" icon="{{tabType}}" name="tabType">
                     <div ng-include="'components/main/' + tabType + '/' + tabType + '.html'">
                     </div>
@@ -27,8 +27,32 @@
                 <modal name="welcome" title="Code Accepted">
                     <p>Enjoy your meeting.<br /><br />If you need any assistance at all please contact us via the Help and Support tab.</p>
                     <menu>
-                        <button class="ok" 
+                        <button class="ok" co-binding="'System'"
                                 ng-touch="coModuleInstance.$exec('tab', 'vision'); closeModal('welcome')">
+                            Continue
+                        </button>
+                    </menu>
+                    <div style="clear: both"></div>
+                </modal>
+
+
+                <modal name="sms_sent" title="SMS Support Request Sent">
+                    <p>An AVPartners technician will be with you as soon as possible.</p>
+                    <menu>
+                        <button class="ok" 
+                                ng-touch="closeModal('sms_sent')">
+                            Continue
+                        </button>
+                    </menu>
+                    <div style="clear: both"></div>
+                </modal>
+
+
+                <modal name="bad_passcode" title="Access Code not accepted">
+                    <p>Please double check the code entered.</p>
+                    <menu>
+                        <button class="ok" 
+                                ng-touch="closeModal('bad_passcode')">
                             Continue
                         </button>
                     </menu>

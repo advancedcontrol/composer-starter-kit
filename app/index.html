@@ -95,6 +95,7 @@
 
     <link rel="stylesheet" href="components/main/main.css">
     <link rel="stylesheet" href="components/main/popups.css">
+    <link rel="stylesheet" href="components/main/help/help.css">
     <link rel="stylesheet" href="components/main/lights/lights.css">
     <link rel="stylesheet" href="components/main/start/start.css">
     <link rel="stylesheet" href="components/main/vision/vision.css">
@@ -132,7 +133,7 @@
             <!-- Show a splash page when offline -->
             <div 
                 class="splash"
-                ng-if="state === 'shutdown'"
+                ng-if="state === 'shutdown' || !state"
                 co-bind="'name'"
                 ng-click="coModuleInstance.$exec('powerup')"
             >
@@ -168,6 +169,7 @@
 
     <!-- AngularJS Core -->
     <script src="jquery/dist/jquery.js"></script>
+    <script src="localforage/dist/localforage.js"></script>
     <script src="angular/angular.js"></script>
     <script src="angular-resource/angular-resource.js"></script>
     <script src="angular-animate/angular-animate.js"></script>
@@ -185,7 +187,7 @@
 
     <!-- Authentication -->
     <script src="angular-safeapply/safe-apply.js"></script>
-    <script src="co-storage/storage.js"></script>
+    <script src="angular-localforage/dist/angular-localforage.js"></script>
     <script src="oauth-interceptor/intercept/communication.js"></script>
     <script src="oauth-interceptor/intercept/providers/coauth.js"></script>
 
@@ -202,7 +204,7 @@
     
     <script src="composer/src/mocksocket.js"></script>
     -->
-    <script src="composer/src/mocksocket.js"></script>
+     <script src="composer/src/mocksocket.js"></script>
     <script src="composer/src/directives.js"></script>
 
     <!-- Optional Helpers -->
@@ -226,6 +228,7 @@
     <script src="components/settings.js"></script>
     <script src="components/shared-ctrl.js"></script>
 
+    <script src="components/main/passcode-ctrl.js"></script>
     <script src="components/main/source-ctrl.js"></script>
 
     <script src="components/mobile/sidebar-ctrl.js"></script>
