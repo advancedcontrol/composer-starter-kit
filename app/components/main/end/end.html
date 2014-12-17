@@ -22,7 +22,7 @@
                 </p>
                 <input autofocus ng-focus="true" ng-model="pass" type="password" />
                 <div class="progress" ng-controller="PasscodeCtrl">
-                    <button class="btn" ng-click="$parent.endProgress = 'start'">Cancel</button>
+                    <button class="btn" ng-click="$parent.$parent.$parent.endProgress = 'start'">Cancel</button>
                     <button
                         class="btn"
                         ng-click="attempting = true; coModuleInstance.$exec('changeState', pass, 'shutdown')"

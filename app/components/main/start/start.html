@@ -3,7 +3,7 @@
     <div class="panel">
         <div ng-init="startProgress = 'start'" ng-switch="startProgress">
             <div ng-switch-when="start">
-                <h1>Welcome to Sofitel Meetings</h1>
+                <h1>Welcome to Crown</h1>
                 <p>
                     To start your meeting, you will need the access code
                     that was provided to you by an AVPartners representative.
@@ -25,7 +25,7 @@
                 <input autofocus ng-focus="" ng-model="pass" type="password" />
 
                 <div class="progress" ng-controller="PasscodeCtrl">
-                    <button class="btn" ng-click="$parent.startProgress = 'start'">Cancel</button>
+                    <button class="btn" ng-click="$parent.$parent.$parent.startProgress = 'start'">Cancel</button>
                     <button
                         class="btn"
                         ng-click="attempting = true; coModuleInstance.$exec('changeState', pass)"

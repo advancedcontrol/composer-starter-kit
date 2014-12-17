@@ -82,6 +82,47 @@
                     "end"
                 ]
             },
+            "presets": {
+                "All Rooms - Stage North": 1001,
+                "All Rooms - Stage West": 1002,
+                "All Rooms - Stage East": 1003,
+                "Rooms 1&2 - Stage West": 1004,
+                "Rooms 1&2 - Stage North": 1005,
+                "Rooms 2&3 - Stage North": 1006,
+                "Rooms 2&3 - Stage East": 1007,
+                "No Mic Input Selected": 1008,
+                "Room 1 - Stage West": 1009,
+                "Room 1 - Stage North": 1010,
+                "Room 2 - Stage North": 1011,
+                "Room 3 - Stage North": 1012,
+                "Room 3 - Stage East": 1013,
+                "Room 1 Clear": 1016,
+                "Room 2 Clear": 1017,
+                "Room 3 Clear": 1018,
+                "Room 1 Unlinked": 1019,
+                "Room 2 Unlinked": 1020,
+                "Room 3 Unlinked": 1021,
+                "Alt Rooms 1&2 - Stage West": 1022,
+                "Alt Rooms 1&2 - Stage North": 1023,
+                "Alt Rooms 2&3 - Stage North": 1024,
+                "Alt Rooms 2&3 - Stage East": 1025
+            },
+            "levels": [{
+                name: "S1 Input 1",
+                mixer: "Mixer_1",
+                id: 29,
+                index: 1,
+                max: 12,
+                min: -100
+            },
+            {
+                name: "S1 Input 2",
+                mixer: "Mixer_1",
+                id: 30,
+                index: 1,
+                max: 12,
+                min: -100
+            }],
             "pages": {
                 "vision": {
                     "title": "Vision"
@@ -169,6 +210,7 @@
         }],
         Switcher: [{}],
         Lights: [{}],
+        Mixer: [{}],
         Display: [{
             "power": true,
             $power: function (val) {

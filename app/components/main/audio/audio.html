@@ -1,0 +1,52 @@
+<div class="panels audio-pane" co-bind="'levels'">
+    <div class="panel large">
+        <div class="panels vert sliders">
+
+            <div class="panel" ng-repeat="level in levels">
+                <div 
+                    class="center-vert"
+                    co-module="level.mixer"
+                    co-implicit-index
+                    co-bind="'fader' + level.id + '_' + level.index as volume"
+                    exec="fader(level.id, volume, level.index)"
+                >
+                    <div
+                        class="slider"
+                        co-bind="'fader' + level.id + '_' + level.index + '_mute' as muted"
+                        exec="mute(level.id, muted, level.index)"
+                    >
+                        <span image-toggle model="muted"></span> {{level.name}}
+                        <div>
+                            <button class="btn" ng-click="volume = volume - 5">-5%</button>
+                            <div>
+                                <div co-range model="volume" min="level.min" max="level.max"></div>
+                            </div>
+                            <button class="btn" ng-click="volume = volume + 5">+5%</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel" co-bind="'presets'">
+        <div ng-if="presets">
+            <div class="presets" co-module="'Mixer'" index="1" implicit-bind co-bind="'connected'">
+                Presets:
+                <select
+                    ng-model="preset"
+                    ng-init="preset = ''"
+                    ng-options="number as name for (name, number) in presets"
+                >
+                    <option value="">Select a preset to recall</option>
+                </select><br /><br />
+                <button
+                    class="btn"
+                    ng-controller="Modals"
+                    ng-show="preset"
+                    ng-click="coModuleInstance.$exec('preset', preset); showModal('preset_recalled')"
+                >Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
