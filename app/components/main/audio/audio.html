@@ -1,5 +1,5 @@
 <div class="panels audio-pane" co-bind="'levels'">
-    <div class="panel large">
+    <div ng-if="levels" class="panel large">
         <div class="panels vert sliders">
 
             <div class="panel" ng-repeat="level in levels">
