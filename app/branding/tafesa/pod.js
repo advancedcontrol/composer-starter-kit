@@ -159,7 +159,10 @@
             joy_center: 0x50,
             zoom: 25
         }],
-        Display: [{}]
+        Display: [{
+            volume_min: 1,
+            volume_max: 255
+        }]
     };
 
 }(this, this.angular));
