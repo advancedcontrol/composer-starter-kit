@@ -2,7 +2,7 @@
 @import "variables";
 
 body {
-    background: url(../../../branding/avpartners/background.jpg) no-repeat center center;
+    background: url(../../branding/avpartners/background.jpg) no-repeat center center;
     background-size: cover !important;
 }
 
@@ -20,7 +20,7 @@ article {
 
             > div {
                 height: 100%;
-                background-image: url(../../../branding/avpartners/logo.png);
+                background-image: url(../../branding/avpartners/logo.png);
                 background-size: contain !important;
             }
         }
