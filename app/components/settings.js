@@ -195,7 +195,7 @@
         function(comms) {
             // Point these variables to your ACA Engine instance
             // to start interacting with it using ACA Composer
-            //comms.port  = 3000;
+            comms.port  = 80;
             comms.host  = 'crownperth.webcontrol.me';
             comms.tls   = false;
 

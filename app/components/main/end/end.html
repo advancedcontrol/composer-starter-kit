@@ -25,7 +25,7 @@
                     <button class="btn" ng-click="$parent.endProgress = 'start'">Cancel</button>
                     <button
                         class="btn"
-                        ng-click="attempting = true; coModuleInstance.$exec('changeState', pass)"
+                        ng-click="attempting = true; coModuleInstance.$exec('changeState', pass, 'shutdown')"
                     >Next</button>
                     <div progress value="2" total="3"></div>
                 </div>
