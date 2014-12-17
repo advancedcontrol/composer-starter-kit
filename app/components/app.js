@@ -77,6 +77,51 @@
 
         // Remove the loading indicator
         $rootScope.loaded = true;
+    }])
+
+
+    // This is our system ID and authentication function
+    .run([
+        '$window',
+        '$location',
+        '$rootScope',
+        'cacheman',
+        '$timeout',
+        '$comms',
+
+    function ($window, $location, $rootScope, cacheman, $timeout, $comms) {
+
+        // Grab the system id from the URL
+        $rootScope.$watch(function () {
+            return $location.search();
+        }, function (value) {
+            if (value.ctrl === '') {
+                // default system?
+                $rootScope.noSystemSelected = true;
+            } else {
+                $rootScope.noSystemSelected = false;
+                $rootScope.controlSystem = value.ctrl;
+            };
+        });
+
+        // Refresh the UI if an update is detected
+        // This promise is resolved after a new version
+        // of the UI has been downloaded and cached
+        cacheman.readyCallback.then(function () {
+            $window.location.reload();
+        });
+
+        // If auth is in use and we want to trust the device
+        // i.e. we don't want to have to log in every time
+        // The trust URL would look like: 'http://localhost/#/?trust#sys-id'
+        if ($location.search().trust && !$comms.isRemembered('AcaEngine')) {
+            // We need time to let the directive load.
+            // This will not be required in the future
+            $timeout(function () {
+                $comms.rememberMe('AcaEngine');
+            }, 0);
+        }
+        
     }]);
 
 }(this.angular));
