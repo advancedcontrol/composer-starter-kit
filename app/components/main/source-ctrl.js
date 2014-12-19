@@ -20,7 +20,7 @@
                 angular.extend(source, $scope.sources[src]);
                 source.source = src;
 
-                $scope.coModuleInstance.$exec('present', $scope.tab);
+                $scope.coModuleInstance.$exec('present', src);
             };
 
             $scope.currentTab = function (tab) {
@@ -32,6 +32,8 @@
                     event.target.blur();
                     $scope.validated = true;
                     $scope.incorrect = false;
+
+                    $scope.coModuleInstance.$exec('projector_on');
                 } else {
                     $scope.incorrect = true;
                 }

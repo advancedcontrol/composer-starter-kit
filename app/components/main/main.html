@@ -7,7 +7,7 @@
     <!-- Show a splash page when offline -->
     <div 
         class="splash"
-        ng-if="state == 'shutdown'"
+        ng-if="state != 'online'"
         ng-click="coModuleInstance.$exec('powerup')"
     >
         <div>
