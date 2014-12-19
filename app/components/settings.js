@@ -39,14 +39,12 @@
                 "history",
                 "sponsors",
                 "tours"*/
-                "english",
                 "mandarin",
-                "japanese",
                 "korean",
-                "spanish",
+                "japanese",
                 "german",
-                "cantonese",
-                "thai"
+                "english",
+                "french"
             ],
             "TV": [
                 "abc",
@@ -81,26 +79,14 @@
                     "source": "hdmi1",
                     "type": "loop"
                 },
-                "spanish": {
-                    "title": "Spanish",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop"
-                },
                 "german": {
                     "title": "German",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop"
                 },
-                "cantonese": {
-                    "title": "Cantonese",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop"
-                },
-                "thai": {
-                    "title": "Thai",
+                "french": {
+                    "title": "French",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop"
