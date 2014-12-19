@@ -210,8 +210,8 @@
         function(comms) {
             // Point these variables to your ACA Engine instance
             // to start interacting with it using ACA Composer
-            comms.port  = 3000;
-            comms.host  = 'localhost';
+            comms.port  = 80;
+            comms.host  = '10.71.1.248';
             comms.tls   = false;
 
             // This outputs debugging information to console useful
@@ -230,11 +230,11 @@
             comms.useService({
                 id: 'AcaEngine',
                 scope: 'public',
-                oauth_server: 'http://localhost:3000/auth/oauth/authorize',
-                oauth_tokens: 'http://localhost:3000/auth/token',
-                redirect_uri: 'http://localhost:9000/oauth-resp.html',
+                oauth_server: 'http://sohiptva.soh.com/auth/oauth/authorize',
+                oauth_tokens: 'http://sohiptva.soh.com/auth/token',
+                redirect_uri: 'http://sohiptva.soh.com/oauth-resp.html',
                 client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
-                api_endpoint: 'http://localhost:3000/control/',
+                api_endpoint: '/api',
                 proactive: true
             });
         }])
