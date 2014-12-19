@@ -81,6 +81,42 @@
                     </div>
                 </div>
             </div>
+
+            <div class="panel" ng-if="output.rotation_screen">
+                <div class="center-vert" co-module="output.rotation_screen.module" co-implicit-index>
+                    <div
+                        co-bind="output.rotation_screen.binding + output.rotation_screen.index as position"
+                        exec="state(position, output.rotation_screen.index)"
+                    >
+                        <p>Alt Screen</p>
+                        <div toggle-switch
+                             model="position"
+                             on-label="'Down'" 
+                             off-label="'Up'"
+                             true-value="'down'"
+                             false-value="'up'"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel" ng-if="output.rotation_screen">
+                <div class="center-vert" co-module="'Lifter'" index="1">
+                    <div
+                        co-bind="'lifter1_rotation' as rotation"
+                        exec="state(rotation)"
+                    >
+                        <p>Rotation State</p>
+                        <div toggle-switch
+                             model="rotation"
+                             on-label="'rotated'" 
+                             off-label="'home'"
+                             true-value="'active'"
+                             false-value="'inactive'"
+                        ></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

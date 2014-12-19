@@ -190,6 +190,11 @@
                         "index": 2,
                         "binding": "screen"
                     },
+                    "rotation_screen": {
+                        "module": "Screen_2",
+                        "index": 1,
+                        "binding": "screen"
+                    },
                     "output": [
                         1
                     ],
@@ -211,6 +216,12 @@
         Switcher: [{}],
         Lights: [{}],
         Mixer: [{}],
+        Lifter: [{
+            "lifter1_rotation": 'inactive',
+            $state: function (newState) {
+                this.lifter1_rotation = newState;
+            }
+        }],
         Display: [{
             "power": true,
             $power: function (val) {
