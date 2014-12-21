@@ -49,6 +49,10 @@ div.tray {
             &.power::before {
                 content: "\f011";
             }
+
+            &.mics::before {
+                content: "\f130";
+            }
         }
     }
 }
@@ -127,6 +131,56 @@ modal[name=manual] {
             &.onoff {
                 width: 2.5em;
             }
+        }
+    }
+}
+
+
+// Mic control popup
+@import "../../../bower_components/angular-named-toggle/image-toggle.scss";
+@import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
+
+modal[name=mics] {
+    div.mic {
+        padding: 0 30px;
+
+        &> h2 {
+            margin-bottom: 0;
+        }
+
+        &> div {
+            display: table;
+            position: relative;
+            width: 100%;
+            height: 50px;
+
+            &> div {
+                display: table-cell;
+                vertical-align: middle;
+            }
+
+            &> div.mute {
+                width: 40px;
+
+                @include image-toggle(
+                    $trueImage: "../../components/images/microphone-mute.svg", 
+                    $falseImage: "../../components/images/microphone.svg",
+                    $width: 30px,
+                    $height: 30px
+                );
+                padding-right: 15px;
+            }
+
+            &> div.mic_level {
+                width: 100%;
+
+                @include co-range-slider(
+                    $handle-size: 40px,
+                    $track-girth: 20px,
+                    $track-colour:$contentBackground
+                );
+            }
+
         }
     }
 }

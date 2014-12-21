@@ -53,6 +53,41 @@
 </div>
 
 <!-- 
+    Microphone popup
+ -->
+<div co-bind="'mics'">
+    <div class="mics" ng-if="mics" co-module="'Mixer'" ng-touch="showModal('mics')">
+        <modal name="mics" title="Microphones">
+            <div 
+                class="mic"
+                ng-repeat="mic in mics"
+                co-index="mic.mixer || 1"
+            >
+                <h2>{{mic.name}}</h2>
+                <div>
+                    <div 
+                        class="mute"
+                        co-bind="'fader' + mic.id + '_' + (mic.mute_index || mic.index || 1) + '_mute' as mute"
+                        exec="mute(mic.id, mute, mic.mute_index || mic.index || 1)"
+                    >
+                        <div image-toggle model="mute"></div>
+                    </div>
+                    <div class="mic_level">
+                        <div
+                            co-bind="'fader' + mic.id + '_' + (mic.index || 1) as level"
+                            exec="fader(mic.id, level, (mic.index || 1))">
+                            <div>
+                                <div co-range model="level" min="mic.min" max="mic.max"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </modal>
+    </div>
+</div>
+
+<!-- 
     Lighting Pop up
  -->
 <div co-bind="'lights'">

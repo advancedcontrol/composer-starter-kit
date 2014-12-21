@@ -354,22 +354,35 @@
             },
             "vol_max": 3,
             "vol_min": -50,
+            "mics": [{
+                name: "Wireless Mic",
+                id: 222,
+                index: 1
+            }, {
+                name: "Handheld Mic",
+                id: 333,
+                index: 1
+            }],
             $lights_to: function (level) {
                 this.light_level = level;
             }
         }],
         Mixer: [{
-            fader_106: 1,
-            fader_107: 2,
-            fader_105: 3,
-            fader_32: -30,
-            fader_107_mute: true, 
-            $fader: function (fader, volume) {
-                this['fader_' + fader] = volume;
+            fader106_1: 1,
+            fader107_1: 2,
+            fader105_1: 3,
+            fader32_1: -30,
+            fader107_1_mute: true,
+            fader222_1: 3,
+            fader333_1: 3,
+            $fader: function (fader, volume, index) {
+                index = index || 1;
+                this['fader' + fader + '_' + index] = volume;
             },
-            $mute: function (fader, mute) {
-                this['fader_' + fader + '_mute'] = mute;
-            } 
+            $mute: function (fader, mute, index) {
+                index = index || 1;
+                this['fader' + fader + '_' + index + '_mute'] = mute;
+            }
         }],
         Switcher: [{}],
         Lights: [{}],
