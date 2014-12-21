@@ -27,11 +27,11 @@
             comms.useService({
                 id: 'AcaEngine',
                 scope: 'public',
-                oauth_server: 'http://localhost:3000/auth/oauth/authorize',
-                oauth_tokens: 'http://localhost:3000/auth/token',
-                redirect_uri: 'http://localhost:9000/oauth-resp.html',
-                client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
-                api_endpoint: 'http://localhost:3000/control/',
+                oauth_server: 'https://control.tafesa.edu.au/auth/oauth/authorize',
+                oauth_tokens: 'https://control.tafesa.edu.au/auth/token',
+                redirect_uri: 'https://control.tafesa.edu.au/oauth-resp.html',
+                client_id: '2ffb63c89459c17288f488616d4a7e94de94628eb6c3b41f6e32e140a0a0ca53',
+                api_endpoint: '/api',
                 proactive: true
             });
         }]);
