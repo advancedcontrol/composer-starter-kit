@@ -7,7 +7,7 @@
         <div image-toggle model="mute"></div>
     </div>
     <div class="volume" co-bind="'vol_max'">
-        <div co-module="'Mixer'" co-bind="'fader' + output.mixer_id + '_' + output.mixer_index as volume" exec="fader(output.mixer_id, volume, output.mixer_index)">
+        <div co-module="'Mixer'" co-bind="'fader' + output.mixer_id + '_' + (output.mixer_index || 1) as volume" exec="fader(output.mixer_id, volume, output.mixer_index || 1)">
             <div>
                 <div co-range model="volume" min="vol_min" max="vol_max"></div>
             </div>
