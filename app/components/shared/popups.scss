@@ -112,6 +112,8 @@ modal[name=lights] {
     }
 }
 
+
+
 // Manual control popup
 modal[name=manual] {
     &> div > div {
@@ -132,6 +134,14 @@ modal[name=manual] {
                 width: 2.5em;
             }
         }
+    }
+}
+
+
+// Hide help popup on mobile
+article.mobile {
+    div.help {
+        display: none;
     }
 }
 

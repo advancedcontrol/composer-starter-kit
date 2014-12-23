@@ -3,11 +3,19 @@
     We check against undefined as 0 is falsey
 -->
 <div ng-if="output.mixer_id !== undefined" co-bind="'vol_min'">
-    <div class="mute"  co-module="'Mixer'" co-bind="'fader' + output.mixer_id + '_' + (output.mixer_mute_index || output.mixer_index || 1) + '_mute' as mute" exec="mute(output.mixer_id, mute, output.mixer_mute_index || output.mixer_index || 1)">
+    <div class="mute" 
+        co-module="'Mixer'"
+        co-bind="'fader' + (output.feedback_id || output.mixer_id) + '_' + (output.mixer_mute_index || output.mixer_index || 1) + '_mute' as mute"
+        exec="mute(output.mixer_id, mute, output.mixer_mute_index || output.mixer_index || 1)"
+    >
         <div image-toggle model="mute"></div>
     </div>
     <div class="volume" co-bind="'vol_max'">
-        <div co-module="'Mixer'" co-bind="'fader' + output.mixer_id + '_' + (output.mixer_index || 1) as volume" exec="fader(output.mixer_id, volume, output.mixer_index || 1)">
+        <div
+            co-module="'Mixer'"
+            co-bind="'fader' + (output.feedback_id || output.mixer_id) + '_' + (output.mixer_index || 1) as volume"
+            exec="fader(output.mixer_id, volume, output.mixer_index || 1)"
+        >
             <div>
                 <div co-range model="volume" min="vol_min" max="vol_max"></div>
             </div>
@@ -37,7 +45,7 @@
     Assume no audio mute - just lower volume to zero
 -->
 <div
-    ng-if="output && output.mixer_id === undefined && !no_audio"
+    ng-if="output && output.mixer_id === undefined && !output.no_audio"
     co-module="output.$key"
     co-implicit-index
     co-bind="'volume_min'"

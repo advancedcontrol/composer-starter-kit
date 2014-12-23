@@ -81,7 +81,7 @@
     >
 
         <div ng-if="numOutputs > 1">
-            <h2>Select display(s):</h2>
+            <h2>Select display:</h2>
             <!-- Output lists -->
             <select
                 ng-model="tmp_output"
@@ -130,6 +130,13 @@
                     <span ng-class="info.type"></span>{{info.title}}
                 </button>
             </div>
+        </div>
+
+
+        <br />
+        <br />
+        <div co-bind="'help_msg'">
+            <p ng-bind-html="help_msg"></p>
         </div>
     </div>
 </article>

@@ -67,7 +67,7 @@
                 <div>
                     <div 
                         class="mute"
-                        co-bind="'fader' + mic.id + '_' + (mic.mute_index || mic.index || 1) + '_mute' as mute"
+                        co-bind="'fader' + (mic.feedback_id || mic.id) + '_' + (mic.mute_index || mic.index || 1) + '_mute' as mute"
                         exec="mute(mic.id, mute, mic.mute_index || mic.index || 1)"
                     >
                         <div image-toggle model="mute"></div>
