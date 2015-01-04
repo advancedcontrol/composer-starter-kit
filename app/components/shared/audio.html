@@ -27,11 +27,11 @@
     Master Audio / All displays
 -->
 <div ng-if="!output" co-bind="'vol_min'">
-    <div class="mute" co-bind="'master_mute' as mute" exec>
+    <div class="mute" co-bind="'master_mute' as mute" exec="global_mute(mute)">
         <div image-toggle model="mute"></div>
     </div>
     <div class="volume" co-bind="'vol_max'">
-        <div co-bind="'master_volume' as volume" exec>
+        <div co-bind="'master_volume' as volume" exec="global_vol(volume)">
             <div>
                 <div co-range model="volume" min="vol_min" max="vol_max"></div>
             </div>
