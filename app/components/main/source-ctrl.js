@@ -13,6 +13,10 @@
                 $scope.selectedSource = $scope.sources[src];
                 $scope.selectedSource.source = src;
 
+                if ($scope.has_preview) {
+                    $scope.coModuleInstance.$exec('preview', $scope.selectedSource.source);
+                }
+
                 // Update the scopes
                 $rootScope.$broadcast('updateSource', $scope.selectedSource);
             };
