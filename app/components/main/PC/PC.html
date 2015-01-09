@@ -6,11 +6,11 @@
             <div co-bind="'channels'" >
                 <div co-bind="'apps'">
                     <div class="instructions">
-                        <div ng-if="numOutputs > 1">
+                        <div ng-if="numOutputs > 1 || has_preview">
                             <span ng-if="source_names.length === 1">Select a display to show this source</span>
                             <span ng-if="source_names.length > 1">Select a PC then select a display.</span>
                         </div>
-                        <div ng-if="numOutputs === 1">
+                        <div ng-if="numOutputs === 1 && !has_preview">
                             <span ng-if="source_names.length === 1">The PC is now displaying</span>
                             <span ng-if="source_names.length > 1">The selected PC will display.</span>
                         </div>

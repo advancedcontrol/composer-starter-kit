@@ -5,7 +5,7 @@
     ng-if="state === 'online'"
     ng-controller="SourceCtrl"
     co-bind="'sources'"
-    ng-class="{single: numOutputs === 1}"
+    ng-class="{single: numOutputs === 1 && !has_preview}"
 >
     <header co-bind="'name'">
         <div class="logo"><div></div></div>
@@ -24,7 +24,7 @@
             </tabs>
 
             <!-- Show when more than one output available -->
-            <footer ng-if="outputs && numOutputs > 1">
+            <footer ng-if="outputs && (numOutputs > 1 || has_preview)">
                 <div>
                     <!-- 
                         source === what is currently displaying
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </footer>
-            <footer ng-if="outputs && numOutputs === 1">
+            <footer ng-if="outputs && numOutputs === 1 && !has_preview">
                 <div ng-repeat="output in outputs | orderObjectBy:'pri'"
                      co-bind="output.$key as source"
                 >
