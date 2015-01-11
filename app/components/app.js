@@ -113,13 +113,15 @@
 
         // If auth is in use and we want to trust the device
         // i.e. we don't want to have to log in every time
-        // The trust URL would look like: 'http://localhost/#/?trust#sys-id'
-        if ($location.search().trust && !$comms.isRemembered('AcaEngine')) {
-            // We need time to let the directive load.
-            // This will not be required in the future
-            $timeout(function () {
-                $comms.rememberMe('AcaEngine');
-            }, 0);
+        // The trust URL would look like: 'http://localhost/#/?trust=sys-id'
+        if ($location.search().trust) {
+            $comms.isRemembered('AcaEngine').catch(function () {
+                // We need time to let the directive load.
+                // This will not be required in the future
+                $timeout(function () {
+                    $comms.rememberMe('AcaEngine');
+                }, 0);
+            });
         }
         
     }]);
