@@ -11,6 +11,23 @@
             '$http',
 
         function ($rootScope, $scope, $http) {
+            $scope.languages = [
+                {
+                    name: 'English',
+                    id: 1
+                },
+                {
+                    name: 'Japanese',
+                    id: 2
+                },
+                {
+                    name: 'Mandarin',
+                    id: 3
+                }
+            ];
+
+            $scope.tab = 'English';
+
             $scope.selectedSource = source;
 
             // Updates the currently selected source

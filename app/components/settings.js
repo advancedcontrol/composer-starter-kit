@@ -56,7 +56,7 @@
             "sources": {
                 // loops
                 "english": {
-                    "title": "English",
+                    "title": "Video 1",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
@@ -65,7 +65,7 @@
                     "dur": "2:43"
                 },
                 "mandarin": {
-                    "title": "Mandarin",
+                    "title": "Video 2",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
@@ -74,7 +74,7 @@
                     "dur": "2:43"
                 },
                 "japanese": {
-                    "title": "Japanese",
+                    "title": "Video 3",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
@@ -83,7 +83,7 @@
                     "dur": "2:43"
                 },
                 "korean": {
-                    "title": "Korean",
+                    "title": "Video 4",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
@@ -92,7 +92,7 @@
                     "dur": "2:43"
                 },
                 "german": {
-                    "title": "German",
+                    "title": "Video 5",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
@@ -101,7 +101,7 @@
                     "dur": "2:43"
                 },
                 "french": {
-                    "title": "French",
+                    "title": "Video 6",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",

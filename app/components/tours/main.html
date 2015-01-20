@@ -1,5 +1,7 @@
+<div co-bind="'sources'"></div>
+
 <header ng-controller="Modals">
-    <img src="branding/aca/oh.png">
+    <img src="branding/images/oh_logo.png">
     <button ng-touch="showModal('power')"><i class="fa fa-power-off"></i></button>
     <modal name="power" title="Shutdown?">
         <p>
@@ -14,16 +16,16 @@
     </modal>
 </header>
 
-<div co-bind="'inputs'">
+<div ng-controller="ToursCtrl">
     <div class="tab-content">
         <tabs current="tab" auto-select="false">
-            <pane ng-repeat="input in inputs" title="{{input}}" icon="{{input}}">
-                <div ng-include="'components/main/' + input + '/' + input + '.html'"></div>
+            <pane ng-repeat="lang in languages" title="{{lang.name}}">
             </pane>
         </tabs>
+
         <div>
             <div co-bind="'Loops' as source_names">
-                <div  ng-init="currentTab('Loops')">
+                <div ng-init="currentTab('Loops')">
                     <div btn-group="selectedSource.source">
                         <button ng-repeat="loop in source_names" btn="loop" ng-click="selectSource(loop)">
                             <div class="img"><img ng-src="{{sources[loop].image}}"></div>
@@ -33,9 +35,6 @@
                 </div>
             </div>
         </div>
+
     </div>
-    <nav co-bind="'tab'" exec>
-        <a href="#" id="loops" class="selected"><i class="pe-7s-loop"></i></a>
-        <a href="#" id="channels"><i class="pe-7s-monitor"></i></a>
-    </nav>
 </div>
