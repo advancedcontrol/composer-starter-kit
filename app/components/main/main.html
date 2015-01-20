@@ -21,11 +21,26 @@
         <div id="pincode-panel" ng-show="!validated">
             <div>
                 <h1>Enter your pin</h1>
-                <input ng-model="pin" autofocus type="password" ng-class="{incorrect: incorrect}">
-                <menu>
-                    <button ng-click="coModuleInstance.$exec('shutdown')">Cancel</button>
-                    <button ng-click="validate($event)">Next</button>
+                <div id="pin-input">
+                    <input ng-model="pin" autofocus type="password" ng-class="{incorrect: incorrect}">
+                    <a class="pe-7s-close-circle" id="clear-pin" ng-click="clearPin()" ng-show="pin.length > 0"></a>
+                </div>
+                <menu id="numpad">
+                    <button ng-click="addToPin(1)">1</button>
+                    <button ng-click="addToPin(2)">2</button>
+                    <button ng-click="addToPin(3)">3</button>
+
+                    <button ng-click="addToPin(4)">4</button>
+                    <button ng-click="addToPin(5)">5</button>
+                    <button ng-click="addToPin(6)">6</button>
+
+                    <button ng-click="addToPin(7)">7</button>
+                    <button ng-click="addToPin(8)">8</button>
+                    <button ng-click="addToPin(9)">9</button>
+
+                    <button ng-click="addToPin(0)">0</button>
                 </menu>
+                <a ng-click="coModuleInstance.$exec('shutdown')">Cancel</a>
             </div>
         </div>
         <!-- Show the system when online -->

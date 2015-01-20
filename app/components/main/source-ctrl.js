@@ -15,7 +15,40 @@
             $scope.selectedSource = source;
             $scope.validated = false;
             $scope.incorrect = false;
-            $scope.pin = null;
+            $scope.pin = '';
+
+            $scope.addToPin = function(char) {
+                // all pin codes are 4 characters. if there are 3 characters
+                // and a fourth is being entered, validate the pin. if 4
+                // characters are present, overwrite the pin from the beginning
+                // (i.e the pin was entered and invalid, new characters are
+                // intended to be the start of a new entry)
+                if ($scope.pin.length <= 3) {
+                    $scope.pin += char.toString();
+                } else {
+                    $scope.pin = char.toString();
+                    $scope.validated = false;
+                    $scope.incorrect = false;
+                }
+
+                if ($scope.pin.length != 4)
+                    return;
+
+                if ($scope.pin == '1234') {
+                    //event.target.blur();
+                    $scope.validated = true;
+                    $scope.incorrect = false;
+                    $scope.coModuleInstance.$exec('projector_on');
+                } else {
+                    $scope.incorrect = true;
+                }
+            }
+
+            $scope.clearPin = function() {
+                $scope.pin = '';
+                $scope.incorrect = false;
+                $scope.validated = false;
+            }
 
             // Updates the currently selected source
             $scope.selectSource = function (src) {
@@ -58,19 +91,6 @@
             $scope.currentTab = function (tab) {
                 $scope.coModuleInstance.$exec('tab', tab);
             };
-
-            $scope.validate = function(event) {
-                if ($scope.pin == '1234') {
-                    event.target.blur();
-                    $scope.validated = true;
-                    $scope.incorrect = false;
-
-                    $scope.coModuleInstance.$exec('projector_on');
-                } else {
-                    $scope.incorrect = true;
-                }
-            }
-
             // TODO:: Source to name mapping!
         }]);
 
