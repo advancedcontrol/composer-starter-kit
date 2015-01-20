@@ -5,62 +5,14 @@
 
     angular.module('AcaEngine')
     
-        .controller('SourceCtrl', [
+        .controller('ToursCtrl', [
             '$rootScope',
             '$scope',
             '$http',
 
         function ($rootScope, $scope, $http) {
-            // ---------------------------------------------
-            // pin code
-            // ---------------------------------------------
-            $scope.validated = false;
-            $scope.incorrect = false;
-            $scope.pin = '';
-
-            $scope.addToPin = function(char) {
-                // all pin codes are 4 characters. if there are 3 characters
-                // and a fourth is being entered, validate the pin. if 4
-                // characters are present, overwrite the pin from the beginning
-                // (i.e the pin was entered and invalid, new characters are
-                // intended to be the start of a new entry)
-                if ($scope.pin.length <= 3) {
-                    $scope.pin += char.toString();
-                } else {
-                    $scope.pin = char.toString();
-                    $scope.validated = false;
-                    $scope.incorrect = false;
-                }
-            }
-
-            $scope.clearPin = function() {
-                $scope.pin = '';
-                $scope.incorrect = false;
-                $scope.validated = false;
-            }
-
-            $scope.validate = function() {
-                if ($scope.pin == '1234') {
-                    //event.target.blur();
-                    $scope.validated = true;
-                    $scope.incorrect = false;
-                    $scope.coModuleInstance.$exec('projector_on');
-                } else {
-                    $scope.incorrect = true;
-                }
-            }
-
-            $scope.$watch('pin', function(val) {
-                if (val.length == 4)
-                    $scope.validate();
-            });
-
-
-            // ---------------------------------------------
-            // input source
-            // ---------------------------------------------
             $scope.selectedSource = source;
-            
+
             // Updates the currently selected source
             $scope.selectSource = function (src) {
                 angular.extend(source, $scope.sources[src]);

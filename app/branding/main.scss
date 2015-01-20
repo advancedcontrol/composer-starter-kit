@@ -1,0 +1,127 @@
+@import "compass";
+
+// -------------------------------
+// touch to start splash
+// -------------------------------
+#splash {
+    text-align: center;
+    display: table;
+    width: 100%;
+    height: 100%;
+    
+    > div {
+        display: table-cell;
+        vertical-align: middle;
+
+        // the shape of the logo means perfectly centring the splash screen
+        // looks a little off - this nudges the content up a bit.
+        padding-bottom: 50px;
+
+        img {
+            width: 400px;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            font-size: 32px;
+            font-weight: 300;
+            margin-top: 24px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            text-transform: uppercase;
+            font-weight: 300;
+            font-size: 20px;
+            color: #999;
+        }
+    }
+}
+
+// -------------------------------
+// pin code screen
+// -------------------------------
+#pincode-panel {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: table;
+
+    > div {
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+
+        > div {
+            display: inline-block;
+            width: 320px;
+        }
+
+        h1 {
+            font-size: 20px;
+            color: #555;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        #pin-input {
+            position: relative;
+
+            input[type=password] {
+                width: 100%;
+                text-align: center;
+                border: none;
+                line-height: 10px;
+                font-size: 30px;
+                padding-bottom: 5px;
+                outline: none;
+                background-color: #f9f9f9;
+                border-bottom: 1px solid #ddd;
+                border-top: 1px solid #ddd;
+                margin-bottom: 0px;
+
+                &.incorrect {
+                    border-color: red;
+                    background-color: rgba(255,0,0,0.1);
+                }
+            }
+
+            #clear-pin {
+                position: absolute;
+                top: 12px;
+                right: 8px;
+                font-size: 26px;
+                cursor: pointer;
+            }
+        }
+
+        #numpad {
+            margin-bottom: 25px;
+            padding: 24px 0px;
+            background-color: #f1f1f1;
+            border-bottom: 1px solid #ddd;
+
+            button {
+                margin: 2px 0px;
+                height: 50px;
+                width: 90px;
+                font-size: 22px;
+                font-weight: 300;
+                border: none;
+                background-color: rgba(0,0,0,0.04);
+                color: #444;
+                padding: 4px 15px;
+                cursor: pointer;
+            }
+        }
+
+        #cancel-pin {
+            font-weight: 300;
+            text-transform: uppercase;
+            color: #555;
+            font-size: 13px;
+            cursor: pointer;
+        }
+    }
+}

@@ -60,49 +60,61 @@
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
-                    "playlist_id": "ply-BO"
+                    "playlist_id": "ply-BO",
+                    "image": "branding/images/oh/tours.jpg",
+                    "dur": "2:43"
                 },
                 "mandarin": {
                     "title": "Mandarin",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
-                    "playlist_id": "ply-BO"
+                    "playlist_id": "ply-BO",
+                    "image": "branding/images/oh/sponsors.jpg",
+                    "dur": "2:43"
                 },
                 "japanese": {
                     "title": "Japanese",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
-                    "playlist_id": "ply-BO"
+                    "playlist_id": "ply-BO",
+                    "image": "branding/images/oh/history.jpg",
+                    "dur": "2:43"
                 },
                 "korean": {
                     "title": "Korean",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
-                    "playlist_id": "ply-kor"
+                    "playlist_id": "ply-kor",
+                    "image": "branding/images/oh/events.jpg",
+                    "dur": "2:43"
                 },
                 "german": {
                     "title": "German",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
-                    "playlist_id": "ply-ger"
+                    "playlist_id": "ply-ger",
+                    "image": "branding/images/oh/education.jpg",
+                    "dur": "2:43"
                 },
                 "french": {
                     "title": "French",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop",
-                    "playlist_id": "ply-fre"
+                    "playlist_id": "ply-fre",
+                    "image": "branding/images/oh/dining.jpg",
+                    "dur": "2:43"
                 },
 
                 /*"dining": {
                     "title": "Dining",
                     "dur": "6:33",
                     "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "branding/images/oh/dining.jpg",
+                    "image": "",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop"
@@ -111,7 +123,7 @@
                     "title": "Education",
                     "dur": "4:21",
                     "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "branding/images/oh/education.jpg",
+                    "image": "",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop"
@@ -120,7 +132,7 @@
                     "title": "Events",
                     "dur": "3:19",
                     "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "branding/images/oh/events.jpg",
+                    "image": "",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop"
@@ -129,7 +141,7 @@
                     "title": "History",
                     "dur": "5:29",
                     "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "branding/images/oh/history.jpg",
+                    "image": "",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop"
@@ -138,7 +150,7 @@
                     "title": "Sponsors",
                     "dur": "4:21",
                     "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "branding/images/oh/sponsors.jpg",
+                    "image": "",
                     "input": 1,
                     "source": "hdmi1",
                     "type": "loop"

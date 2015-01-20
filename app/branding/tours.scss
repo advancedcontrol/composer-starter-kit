@@ -1,136 +1,10 @@
 @import "compass";
 
-// Import Utility CSS helpers
-@import "../../../bower_components/angular-fancy-tab/fancy-tab.scss";
-@import "../../../bower_components/angular-progress/angular-progress.scss";
-@import "../../../bower_components/angular-button-group/button-group.scss";
-@import "../../../bower_components/angular-named-toggle/image-toggle.scss";
-
-
-// Include helpers
-@import "../../../bower_components/angular-named-toggle/angular-named-toggle.scss";
-@include named-toggle();
-
-@import "../../../bower_components/angular-named-toggle/ios-toggle.scss";
-@include ios-toggle();
-
-@import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
-@include co-range-slider($handle-size: 40px, $track-girth: 20px);
-
-html, body, main, #system, #system > div, #module {
-    width: 100%;
-    height: 100%;
-}
-
-.splash {
-    text-align: center;
-    display: table;
-    width: 100%;
-    height: 100%;
-    
-    > div {
-        display: table-cell;
-        vertical-align: middle;
-
-        h2 {
-            text-transform: uppercase;
-            font-weight: 300;
-        }
-    }
-}
-
 $header-height: 80px;
 $tab-dimen: 18vmin;
 $margin: 30px;
 
-#module {
-    background-color: white;
-
-    #pincode-panel {
-        width: 100%;
-        height: 100%;
-        background-color: #f6f6f6;
-        position: relative;
-
-        > div {
-            width: 320px;
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            margin-top: -203px;
-            left: 50%;
-            margin-left: -160px;
-
-            // cancel button
-            > a {
-                font-weight: 300;
-                text-transform: uppercase;
-                color: #555;
-                font-size: 15px;
-                margin-top: 10px;
-            }
-
-            h1 {
-                font-size: 24px;
-                color: #555;
-                text-transform: uppercase;
-                font-weight: 300; 
-            }
-
-            #pin-input {
-                position: relative;
-
-                input[type=password] {
-                    width: 100%;
-                    text-align: center;
-                    border-radius: 3px;
-                    //border: 2px solid #ccc;
-                    border: none;
-                    @include border-radius(0px);
-                    line-height: 10px;
-                    font-size: 30px;
-                    padding-bottom: 5px;
-                    outline: none;
-                    background-color: #f9f9f9;
-                    border-bottom: 1px solid #ddd;
-                    border-top: 1px solid #ddd;
-                    margin-bottom: 0px;
-
-                    &.incorrect {
-                        border-color: red;
-                        background-color: rgba(255,0,0,0.1);
-                    }
-                }
-
-                #clear-pin {
-                    position: absolute;
-                    top: 12px;
-                    right: 8px;
-                    font-size: 26px;
-                }
-            }
-
-            #numpad {
-                margin-top: 0px;
-                padding: 24px 0px;
-                background-color: #f1f1f1;
-                border-bottom: 1px solid #ddd;
-
-                button {
-                    margin: 2px 0px;
-                    height: 50px;
-                    width: 90px;
-                    font-size: 22px;
-                    border: none;
-                    @include border-radius(0px);
-                    background-color: rgba(0,0,0,0.04);
-                    color: #444;
-                    padding: 4px 15px;
-                }
-            }            
-        }
-    }
-
+#system {
     #content {
         width: 100%;
         height: 100%;
@@ -187,12 +61,12 @@ $margin: 30px;
                     text-align: center;
 
                     // hide name
-                    span {
+                    /*span {
                         display: none;
-                    }
+                    }*/
 
                     // icon
-                    div {
+                    /*div {
                         &::before {
                             font-family: "Pe-icon-7-stroke";
                             -webkit-font-smoothing: antialiased;
@@ -209,7 +83,7 @@ $margin: 30px;
                         &.TV::before {
                             content: "\e634";
                         }
-                    }
+                    }*/
 
                     &.active {
                         color: white;
@@ -274,7 +148,7 @@ $margin: 30px;
                 .btn-group {
                     text-align: center;
                     margin-top: $margin;
-                    width: 400px;
+                    max-width: 1200px;
                     margin: $margin auto 0px auto;
 
                     button {
@@ -289,7 +163,7 @@ $margin: 30px;
                         overflow: hidden;
                         vertical-align: top;
                         padding: 10px 14px;
-                        //margin-right: 10px;
+                        margin-right: 10px;
                         margin-bottom: 10px;
                         @include border-radius(3px);
 

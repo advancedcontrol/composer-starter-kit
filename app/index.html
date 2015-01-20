@@ -1,203 +1,207 @@
 <!doctype html>
 <html manifest="app.appcache">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>ACA Rooms</title>
-    <meta name="description" content="buildings made easy">
-    
+        <title>Opera House</title>
+        <!--
+          https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+          https://developer.chrome.com/multidevice/android/installtohomescreen
 
-    <!--
-      https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
-      https://developer.chrome.com/multidevice/android/installtohomescreen
+          http://blogs.msdn.com/b/ie/archive/2014/05/21/support-a-live-tile-for-your-website-on-windows-and-windows-phone-8-1.aspx
+          http://blogs.msdn.com/b/ie/archive/2012/04/03/pinned-sites-in-windows-8.aspx
+          http://blogs.msdn.com/b/ie/archive/2012/06/08/high-quality-visuals-for-pinned-sites-in-windows-8.aspx
+          http://www.xiconeditor.com/
+         -->
+        <link rel="icon" type="image/png" href="branding/favicon/w3c_48.png" sizes="48x48">
+        <link rel="icon" type="image/png" href="branding/favicon/64.png" sizes="64x64">
+        <link rel="icon" type="image/png" href="branding/favicon/128.png" sizes="128x128">
+        <link rel="icon" type="image/png" href="branding/favicon/w3c_192.png" sizes="192x192">
 
-      http://blogs.msdn.com/b/ie/archive/2014/05/21/support-a-live-tile-for-your-website-on-windows-and-windows-phone-8-1.aspx
-      http://blogs.msdn.com/b/ie/archive/2012/04/03/pinned-sites-in-windows-8.aspx
-      http://blogs.msdn.com/b/ie/archive/2012/06/08/high-quality-visuals-for-pinned-sites-in-windows-8.aspx
-      http://www.xiconeditor.com/
-     -->
-    <link rel="icon" type="image/png" href="branding/favicon/w3c_48.png" sizes="48x48">
-    <link rel="icon" type="image/png" href="branding/favicon/64.png" sizes="64x64">
-    <link rel="icon" type="image/png" href="branding/favicon/128.png" sizes="128x128">
-    <link rel="icon" type="image/png" href="branding/favicon/w3c_192.png" sizes="192x192">
+        <!-- W3C Icons -->
+        <link rel="manifest" href="manifest.json">
+        <meta name="mobile-web-app-capable" content="yes">
 
-    <!-- W3C Icons -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="mobile-web-app-capable" content="yes">
+        <!-- MS Application Icon -->
+        <meta name="application-name" content="ACA Rooms">
+        <meta name="msapplication-tooltip" content="buildings made easy">
+        <meta name="msapplication-starturl" content="./">
+        <meta name="msapplication-navbutton-color" content="#b72706">
+        <meta name="msapplication-TileColor" content="#b72706" />
+        <!-- Win8 -->
+        <meta name="msapplication-TileImage" content="branding/favicon/win_144.png" />
+        <!-- Win8.1 -->
+        <meta name="msapplication-square70x70logo" content="branding/favicon/win_70.png" />
+        <meta name="msapplication-square150x150logo" content="branding/favicon/win_150.png" />
+        <meta name="msapplication-square310x310logo" content="branding/favicon/win_310.png" />
 
-    <!-- MS Application Icon -->
-    <meta name="application-name" content="ACA Rooms">
-    <meta name="msapplication-tooltip" content="buildings made easy">
-    <meta name="msapplication-starturl" content="./">
-    <meta name="msapplication-navbutton-color" content="#b72706">
-    <meta name="msapplication-TileColor" content="#b72706" />
-    <!-- Win8 -->
-    <meta name="msapplication-TileImage" content="branding/favicon/win_144.png" />
-    <!-- Win8.1 -->
-    <meta name="msapplication-square70x70logo" content="branding/favicon/win_70.png" />
-    <meta name="msapplication-square150x150logo" content="branding/favicon/win_150.png" />
-    <meta name="msapplication-square310x310logo" content="branding/favicon/win_310.png" />
+        <!-- Apple Application Icon -->
+        <link rel="apple-touch-icon" href="branding/favicon/ios_76.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="branding/favicon/ios_76.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="branding/favicon/ios_120.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="branding/favicon/ios_152.png">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Apple Application Icon -->
-    <link rel="apple-touch-icon" href="branding/favicon/ios_76.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="branding/favicon/ios_76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="branding/favicon/ios_120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="branding/favicon/ios_152.png">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
 
-    <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+        <!-- Hide content until page is loaded -->
+        <style>
+            #loading {
+                width: 100%;
+                height: 100%;
+                display: table;
+                -webkit-transition: opacity linear 0.3s;
+                transition: opacity linear 0.3s;
+                opacity: 1;
+            }
 
-    <!-- Hide content until page is loaded -->
-    <style>
-        div#loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            #loading > div {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
 
-            padding-top: 4em;
-            text-align: center;
+            #loading h1 {
+                font-size: 20px;
+                text-transform: uppercase;
+                margin-bottom: 16px;
+            }
 
-            background-color: white;
-            color: black;
-            z-index: 999999;
+            #loading p {
+                width: 500px;
+                font-size: 16px;
+                line-height: 22px;
+                display: inline-block;
+            }
 
-            -webkit-transition: opacity linear 0.3s;
-            transition: opacity linear 0.3s;
-            opacity: 1;
-        }
+            #loading.ng-leave {
+              opacity: 1;
+            }
 
-        div#loading.ng-leave {
-          opacity: 1;
-        }
+            #loading.ng-leave.ng-leave-active {
+              opacity: 0;
+            }
 
-        div#loading.ng-leave.ng-leave-active {
-          opacity: 0;
-        }
+            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+                display: none !important;
+            }
+        </style>
 
-        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-            display: none !important;
-        }
-    </style>
+        <!-- build:css ./all.css -->
+            <!-- core -->
+            <link rel="stylesheet" href="branding/reset.css">
+            <link rel="stylesheet" href="branding/core.css">
 
-    <!-- build:css ./all.css -->
+            <!-- before an interface has been loaded -->
+            <link rel="stylesheet" href="branding/main.css">
 
-    <!-- Base styles for all projects -->
-    <link rel="stylesheet" href="branding/spinner.css">
-    <link rel="stylesheet" href="core.css">
+            <!-- interfaces -->
+            <link rel="stylesheet" href="branding/tours.css">
+            <link rel="stylesheet" href="branding/tech.css">
 
-    <!-- Application styles -->
-    <link rel="stylesheet" href="components/layout.css">
-    <link rel="stylesheet" href="components/main/main.css">
-
-    <!-- Define branding in its own style sheet -->
-    <link rel="stylesheet" href="branding/aca/base.css">
-
-    <!-- Provide styles for common animations -->
-    <link rel="stylesheet" href="animate.css/animate.css">
-
-    <!-- endbuild -->
-  </head>
-  <body ng-app="AcaEngine">
-    <!-- Loading Indicator -->
-    <div id="loading" ng-if="$composerConnected !== true">
-        <h1 ng-if="loaded !== true">Loading...</h1>
-        <div ng-cloak ng-if="loaded === true">
-            <h1>Connecting...</h1>
-            <p>Attempting to contact the control server. Check network connectivity and try reloading this page if this message persists</p>
+            <!-- animations -->
+            <link rel="stylesheet" href="branding/spinner.css">
+            <link rel="stylesheet" href="animate.css/animate.css">
+        <!-- endbuild -->
+    </head>
+    <body ng-app="AcaEngine">
+        <!-- Loading Indicator -->
+        <div id="loading" ng-if="$composerConnected !== true">
+            <div>
+                <h1 ng-if="loaded !== true">Loading</h1>
+                <div ng-cloak ng-if="loaded === true">
+                    <h1>Connecting</h1>
+                    <p>Attempting to contact the control server. Check network connectivity and try reloading this page if this message persists</p>
+                </div>
+                <div>
+                    <div class="spinner"></div>
+                </div>
+            </div>
         </div>
-        <div>
-            <div class="spinner"></div>
+
+
+        <!-- System definition -->
+        <div co-system="controlSystem" ng-if="$composerConnected" class="full-screen">
+            <div ng-if="!coSystem.id" class="full-screen no-system">
+                <h2>System "{{coSystem.$name}}" Not Found</h2>
+            </div>
+            <div ng-if="coSystem.id" ng-include="'components/main.html'" class="full-screen">
+            </div>
         </div>
-    </div>
 
 
-    <!-- System definition -->
-    <main co-system="controlSystem">
-        <div class="noSystem" ng-if="!coSystem.id">
-            <h2>System "{{coSystem.$name}}" Not Found</h2>
-        </div>
-        <div ng-if="coSystem.id" id="system">
-            <!-- div ng-if="width < 768 || height < 768" ng-include="'components/mobile/mobile.html'"></div -->
-            <div ng-include="'components/main/main.html'"></div>
-        </div>
-    </main>
+        <!-- Hidden iframe for background oauth -->
+        <div co-auth
+            provider="AcaEngine"
+            login-type="Directed"
+            login="soh"
+            class="background-oauth"
+        ></div>
 
 
-    <!-- Hidden iframe for background oauth -->
-    <div co-auth
-        provider="AcaEngine"
-        login-type="Directed"
-        login="soh"
-        class="background-oauth"
-    ></div>
+        <!-- build:js ./app.js -->
+            <!-- AngularJS Core -->
+            <script src="jquery/dist/jquery.js"></script>
+            <script src="localforage/dist/localforage.js"></script>
+            <script src="angular/angular.js"></script>
+            <script src="angular-resource/angular-resource.js"></script>
+            <script src="angular-animate/angular-animate.js"></script>
+            <script src="angular-sanitize/angular-sanitize.js"></script>
+            <script src="angular-localforage/dist/angular-localforage.js"></script>
+
+            <!-- Gesture support -->
+            <script src="WeakMap/weakmap.js"></script>
+            <script src="pointerevents-polyfill/pointerevents.dev.js"></script>
+            <script src="angular-gesture/ngGesture/gesture.js"></script>
+            <script src="angular-gesture/ngGesture/directive/ngClick.js"></script>
+            <script src="angular-gesture/ngGesture/directive/ngHold.js"></script>
+            <script src="angular-gesture/ngGesture/directive/ngSwipe.js"></script>
+            <script src="angular-gesture/ngGesture/directive/ngTouch.js"></script>
+            <script src="angular-gesture/ngGesture/directive/ngDrag.js"></script>
+
+            <!-- Authentication -->
+            <script src="angular-safeapply/safe-apply.js"></script>
+            <script src="co-storage/storage.js"></script>
+            <script src="oauth-interceptor/intercept/communication.js"></script>
+            <script src="oauth-interceptor/intercept/providers/coauth.js"></script>
+
+            <!-- ACA Engine Library -->
+            <script src="composer/src/ba-debug.js"></script>
+            <script src="composer/src/composer.js"></script>
+            <!--
+                Replace mocksocket with resources and websocket to
+                connect to a live server.
+                NOTE: You may also have to enable auth in settings.
+                
+                <script src="composer/src/resources.js"></script>
+                <script src="composer/src/websocket.js"></script>
+            -->
+            <script src="composer/src/mocksocket.js"></script>
+            <script src="composer/src/directives.js"></script>
+
+            <!-- Optional Helpers -->
+            <script src="easy-animate/requestAnimationFrame.js"></script>
+            <script src="easy-animate/angular-animate.js"></script>
+            <script src="co-cacheman/cacheman.js"></script>
+
+            <!-- UI Widgets -->
+            <script src="angular-range-slider/angular-range-slider.js"></script>
+            <script src="angular-fancy-tab/fancy-tab.js"></script>
+            <script src="angular-button-group/button-group.js"></script>
+            <script src="angular-progress/angular-progress.js"></script>
+            <script src="angular-named-toggle/angular-named-toggle.js"></script>
+            <script src="co-modals/co-modals.js"></script>
 
 
-    <!-- build:js ./app.js -->
-
-    <!-- AngularJS Core -->
-    <script src="jquery/dist/jquery.js"></script>
-    <script src="localforage/dist/localforage.js"></script>
-    <script src="angular/angular.js"></script>
-    <script src="angular-resource/angular-resource.js"></script>
-    <script src="angular-animate/angular-animate.js"></script>
-    <script src="angular-sanitize/angular-sanitize.js"></script>
-    <script src="angular-localforage/dist/angular-localforage.js"></script>
-
-    <!-- Gesture support -->
-    <script src="WeakMap/weakmap.js"></script>
-    <script src="pointerevents-polyfill/pointerevents.dev.js"></script>
-    <script src="angular-gesture/ngGesture/gesture.js"></script>
-    <script src="angular-gesture/ngGesture/directive/ngClick.js"></script>
-    <script src="angular-gesture/ngGesture/directive/ngHold.js"></script>
-    <script src="angular-gesture/ngGesture/directive/ngSwipe.js"></script>
-    <script src="angular-gesture/ngGesture/directive/ngTouch.js"></script>
-    <script src="angular-gesture/ngGesture/directive/ngDrag.js"></script>
-
-    <!-- Authentication -->
-    <script src="angular-safeapply/safe-apply.js"></script>
-    <script src="co-storage/storage.js"></script>
-    <script src="oauth-interceptor/intercept/communication.js"></script>
-    <script src="oauth-interceptor/intercept/providers/coauth.js"></script>
-
-    <!-- ACA Engine Library -->
-    <script src="composer/src/ba-debug.js"></script>
-    <script src="composer/src/composer.js"></script>
-    <!--
-        Replace mocksocket with resources and websocket to
-        connect to a live server.
-        NOTE: You may also have to enable auth in settings.
-        
-        <script src="composer/src/resources.js"></script>
-        <script src="composer/src/websocket.js"></script>
-    -->
-    <script src="composer/src/mocksocket.js"></script>
-    <script src="composer/src/directives.js"></script>
-
-    <!-- Optional Helpers -->
-    <script src="easy-animate/requestAnimationFrame.js"></script>
-    <script src="easy-animate/angular-animate.js"></script>
-    <script src="co-cacheman/cacheman.js"></script>
-
-    <!-- UI Widgets -->
-    <script src="angular-range-slider/angular-range-slider.js"></script>
-    <script src="angular-fancy-tab/fancy-tab.js"></script>
-    <script src="angular-button-group/button-group.js"></script>
-    <script src="angular-progress/angular-progress.js"></script>
-    <script src="angular-named-toggle/angular-named-toggle.js"></script>
-    <script src="co-modals/co-modals.js"></script>
-
-
-    <!-- Application Components -->
-    <script src="components/app.js"></script>
-    <script src="components/settings.js"></script>
-    <script src="components/main/source-ctrl.js"></script>
-
-    <!-- endbuild -->
-  </body>
+            <!-- Application Components -->
+            <script src="components/app.js"></script>
+            <script src="components/settings.js"></script>
+            <script src="components/main-ctrl.js"></script>
+            <script src="components/tech/tech-ctrl.js"></script>
+        <!-- endbuild -->
+    </body>
 </html>

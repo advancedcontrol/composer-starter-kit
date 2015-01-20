@@ -66,10 +66,6 @@
 
         // Remove the loading indicator
         $rootScope.loaded = true;
-
-        $rootScope.doAlert = function(obj) {
-            console.log(obj);
-        }
     }]);
 
 }(this.angular));

@@ -1,0 +1,52 @@
+<div co-module="'System'" co-bind="'tab'" id="system" class="full-screen" exec>
+    <!-- quick fix -->
+    <div co-bind="'title'"></div>
+    <div co-bind="'state'"></div>
+
+    <!-- show a splash page when offline -->
+    <div id="splash" ng-if="state != 'online'" ng-click="coModuleInstance.$exec('powerup')">
+        <div>
+            <img src="branding/images/oh_logo.png">
+            <h1>{{title}}</h1>
+            <h2>Touch to Start</h2>
+        </div>
+    </div>
+
+    <!-- once online -->
+    <div ng-if="state == 'online'" ng-controller="MainCtrl" class="full-screen">
+        <!-- a pincode is required to log in; pins select an interface -->
+        <div id="pincode-panel" ng-show="!validated">
+            <div>
+                <div>
+                    <h1>Enter your pin</h1>
+                    <div id="pin-input">
+                        <input ng-model="pin" autofocus type="password" ng-class="{incorrect: incorrect}">
+                        <a class="pe-7s-close-circle" id="clear-pin" ng-click="clearPin()" ng-show="pin.length > 0"></a>
+                    </div>
+
+                    <menu id="numpad">
+                        <button ng-click="addToPin(1)">1</button>
+                        <button ng-click="addToPin(2)">2</button>
+                        <button ng-click="addToPin(3)">3</button>
+
+                        <button ng-click="addToPin(4)">4</button>
+                        <button ng-click="addToPin(5)">5</button>
+                        <button ng-click="addToPin(6)">6</button>
+
+                        <button ng-click="addToPin(7)">7</button>
+                        <button ng-click="addToPin(8)">8</button>
+                        <button ng-click="addToPin(9)">9</button>
+
+                        <button ng-click="addToPin(0)">0</button>
+                    </menu>
+
+                    <a ng-click="coModuleInstance.$exec('shutdown')" id="cancel-pin">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- show the selected interface once logged in -->
+        <main ng-if="validated" ng-include="'components/main/' + validated + '/main.html'" ng-class="validated">
+        </main>
+    </div>
+</div>
