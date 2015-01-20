@@ -59,37 +59,43 @@
                     "title": "English",
                     "input": 1,
                     "source": "hdmi1",
-                    "type": "loop"
+                    "type": "loop",
+                    "playlist_id": "ply-BO"
                 },
                 "mandarin": {
                     "title": "Mandarin",
                     "input": 1,
                     "source": "hdmi1",
-                    "type": "loop"
+                    "type": "loop",
+                    "playlist_id": "ply-BO"
                 },
                 "japanese": {
                     "title": "Japanese",
                     "input": 1,
                     "source": "hdmi1",
-                    "type": "loop"
+                    "type": "loop",
+                    "playlist_id": "ply-BO"
                 },
                 "korean": {
                     "title": "Korean",
                     "input": 1,
                     "source": "hdmi1",
-                    "type": "loop"
+                    "type": "loop",
+                    "playlist_id": "ply-kor"
                 },
                 "german": {
                     "title": "German",
                     "input": 1,
                     "source": "hdmi1",
-                    "type": "loop"
+                    "type": "loop",
+                    "playlist_id": "ply-ger"
                 },
                 "french": {
                     "title": "French",
                     "input": 1,
                     "source": "hdmi1",
-                    "type": "loop"
+                    "type": "loop",
+                    "playlist_id": "ply-fre"
                 },
 
                 /*"dining": {
@@ -251,15 +257,14 @@
 
             // Grab the system id from the URL
             $rootScope.$watch(function () {
-                return $location.hash();
+                return $location.search();
             }, function (value) {
-                if (value === '') {
-                    // default system?
-                    $rootScope.controlSystem = 'sys-B0';
-                } else {
-                    $rootScope.controlSystem = value;
-                };
+                $rootScope.controlSystem = value.channel || 'sys-B0';
+                $rootScope.groupID = value.group;
             });
+
+            // this should go in config?
+            $rootScope.scheduleCreateURL = 'http://0.0.0.0:9000/api/schedules';
 
             // Refresh the UI if an update is detected
             // This promise is resolved after a new version
