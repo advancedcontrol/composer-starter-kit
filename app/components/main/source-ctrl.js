@@ -11,8 +11,9 @@
             '$http',
 
         function ($rootScope, $scope, $http) {
-            // Provides access to the current source
-            $scope.selectedSource = source;
+            // ---------------------------------------------
+            // pin code
+            // ---------------------------------------------
             $scope.validated = false;
             $scope.incorrect = false;
             $scope.pin = '';
@@ -30,10 +31,15 @@
                     $scope.validated = false;
                     $scope.incorrect = false;
                 }
+            }
 
-                if ($scope.pin.length != 4)
-                    return;
+            $scope.clearPin = function() {
+                $scope.pin = '';
+                $scope.incorrect = false;
+                $scope.validated = false;
+            }
 
+            $scope.validate = function() {
                 if ($scope.pin == '1234') {
                     //event.target.blur();
                     $scope.validated = true;
@@ -44,12 +50,17 @@
                 }
             }
 
-            $scope.clearPin = function() {
-                $scope.pin = '';
-                $scope.incorrect = false;
-                $scope.validated = false;
-            }
+            $scope.$watch('pin', function(val) {
+                if (val.length == 4)
+                    $scope.validate();
+            });
 
+
+            // ---------------------------------------------
+            // input source
+            // ---------------------------------------------
+            $scope.selectedSource = source;
+            
             // Updates the currently selected source
             $scope.selectSource = function (src) {
                 angular.extend(source, $scope.sources[src]);
