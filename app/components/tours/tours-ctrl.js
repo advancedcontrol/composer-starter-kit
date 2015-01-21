@@ -11,7 +11,28 @@
             '$http',
 
         function ($rootScope, $scope, $http) {
-            $http.get('/api/groups?mine=true&offset=0&q=Tours', {
+            $scope.selectedSource = source;
+            $scope.languages = [];
+            $scope.playlists = {};
+            $scope.tab = null;
+
+            function loadLanguage(lang) {
+                var url = $rootScope.playlistsQueryPrefix + lang.id + '/playlists';
+                $http.get(url, {
+                    responseType: 'json',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).success(function(data, status, headers, config) {
+                    $scope.playlists[data.id] = data.playlists;
+                });
+            }
+
+            // load groups containing the name 'Tours'; these groups are used
+            // to represent the language options available to tour guides. The
+            // playlists in each group represent the videos available in each
+            // language.
+            $http.get($rootScope.languagesQueryURL, {
                 responseType: 'json',
                 headers: {
                     'Accept': 'application/json'
@@ -19,25 +40,25 @@
             }).success(function(data, status, headers, config) {
                 $scope.languages = [];
                 
-                for (var i = 0; i < data.results.length; i++) {
-                    var group = data.results[i];
-
+                // each group represents a language option
+                data.results.forEach(function(group) {
                     $scope.languages.push({
                         name: group.name.replace('Tours: ', ''),
                         id: group.id
                     });
-                }
+                });
 
+                // sort languages by name, ascending
                 $scope.languages = $scope.languages.sort(function (a, b) {
                     return ((a.name < b.name) ? -1 : (b.name > a.name) ? 1 : 0);
                 });
 
+                // initialise the UI with the first language tab selected
                 $scope.tab = $scope.languages[0].name;
-            });
 
-            $scope.tab = null;
-            $scope.languages = [];
-            $scope.selectedSource = source;
+                // start loading playlists for each language
+                $scope.languages.forEach(loadLanguage);
+            });
 
             // Updates the currently selected source
             $scope.selectSource = function (src) {

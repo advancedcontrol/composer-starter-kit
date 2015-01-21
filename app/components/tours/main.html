@@ -24,9 +24,9 @@
                 <div>
                     <h1>{{lang.name}}</h1>
                     <div btn-group="lang.name">
-                        <button ng-repeat="loop in source_names" btn="loop" ng-click="selectSource(loop)">
-                            <div class="img"><img ng-src="{{sources[loop].image}}"></div>
-                            <h1 class="desc">{{sources[loop].title}} <span>{{sources[loop].dur}}</span></h1>
+                        <button ng-repeat="playlist in playlists[lang.id]" btn="loop" ng-click="selectSource(loop)">
+                            <div class="img"><img ng-src="{{playlist.poster_url}}"></div>
+                            <h1 class="desc">{{playlist.name}}</h1>
                         </button>
                     </div>
                 </div>
