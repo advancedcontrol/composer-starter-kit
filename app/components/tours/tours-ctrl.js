@@ -11,23 +11,32 @@
             '$http',
 
         function ($rootScope, $scope, $http) {
-            $scope.languages = [
-                {
-                    name: 'English',
-                    id: 1
-                },
-                {
-                    name: 'Japanese',
-                    id: 2
-                },
-                {
-                    name: 'Mandarin',
-                    id: 3
+            $http.get('/api/groups?mine=true&offset=0&q=Tours', {
+                responseType: 'json',
+                headers: {
+                    'Accept': 'application/json'
                 }
-            ];
+            }).success(function(data, status, headers, config) {
+                $scope.languages = [];
+                
+                for (var i = 0; i < data.results.length; i++) {
+                    var group = data.results[i];
 
-            $scope.tab = 'English';
+                    $scope.languages.push({
+                        name: group.name.replace('Tours: ', ''),
+                        id: group.id
+                    });
+                }
 
+                $scope.languages = $scope.languages.sort(function (a, b) {
+                    return ((a.name < b.name) ? -1 : (b.name > a.name) ? 1 : 0);
+                });
+
+                $scope.tab = $scope.languages[0].name;
+            });
+
+            $scope.tab = null;
+            $scope.languages = [];
             $scope.selectedSource = source;
 
             // Updates the currently selected source

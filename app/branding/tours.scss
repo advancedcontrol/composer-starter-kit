@@ -89,8 +89,8 @@ main.tours {
         .tab-content {
             position: absolute;
             top: 0px;
-            //left: $tab-dimen;
-            left: 0px;
+            left: $tab-dimen;
+            //left: 0px;
             bottom: 0px;
             right: 0px;
             padding: $margin $margin/2;

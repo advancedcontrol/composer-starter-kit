@@ -17,24 +17,21 @@
 </header>
 
 <div ng-controller="ToursCtrl">
-    <div class="tab-content">
+    <div>
         <tabs current="tab" auto-select="false">
             <pane ng-repeat="lang in languages" title="{{lang.name}}">
-            </pane>
-        </tabs>
 
-        <div>
-            <div co-bind="'Loops' as source_names">
-                <div ng-init="currentTab('Loops')">
-                    <div btn-group="selectedSource.source">
+                <div>
+                    <h1>{{lang.name}}</h1>
+                    <div btn-group="lang.name">
                         <button ng-repeat="loop in source_names" btn="loop" ng-click="selectSource(loop)">
                             <div class="img"><img ng-src="{{sources[loop].image}}"></div>
                             <h1 class="desc">{{sources[loop].title}} <span>{{sources[loop].dur}}</span></h1>
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
 
+            </pane>
+        </tabs>
     </div>
 </div>
