@@ -61,11 +61,8 @@
             });
 
             // Updates the currently selected source
-            $scope.selectSource = function (src) {
-                angular.extend(source, $scope.sources[src]);
-                source.source = src;
-
-                $scope.coModuleInstance.$exec('present', src);
+            $scope.play = function(playlist) {
+                $scope.coModuleInstance.$exec('present', $scope.sources['default']);
 
                 // start the schedule 1 day in the past to work around any
                 // time sync issues (phones with times out of sync)
@@ -79,8 +76,8 @@
                 var endDate = now.toISOString();
 
                 $http.post($rootScope.scheduleCreateURL, {
-                    group_id: $rootScope.groupID,
-                    playlist_id: source.playlist_id,
+                    group_id: $scope.group_id,
+                    playlist_id: playlist.id,
                     once: true,
                     priority: 1,
                     start_date: startDate,
@@ -91,9 +88,9 @@
                         'Accept': 'application/json'
                     }
                 }).success(function(data, status, headers, config) {
-                    console.log('success', data, status, headers, config);
+                    console.log('success', data, status, config);
                 }).error(function(data, status, headers, config) {
-                    console.log('error', data, status, headers, config);
+                    console.log('error', data, status, config);
                     alert('Sorry, an error occurred while scheduling this playlist. Please try again later.');
                 });
             };

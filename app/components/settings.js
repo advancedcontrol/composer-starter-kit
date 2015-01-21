@@ -14,6 +14,7 @@
             $powerup: function() {
                 this.state = 'online';
             },
+
             $shutdown: function() {
                 this.state = 'shutdown';
                 for (var i = 0; i < this.$_self.Display.length; i += 1) {
@@ -21,153 +22,16 @@
                 }
             },
 
-            // input tabs
-            "inputs": [
-                "Loops",
-                "TV"
-            ],
-            "tab": "Loops",
-            $tab: function(tab) {
-                this.tab = tab;
-            },
-
-            // tab content
-            "Loops": [
-                /*"dining",
-                "education",
-                "events",
-                "history",
-                "sponsors",
-                "tours"*/
-                "mandarin",
-                "korean",
-                "japanese",
-                "german",
-                "english",
-                "french"
-            ],
-            "TV": [
-                "abc",
-                "sbs",
-                "c7",
-                "c9",
-                "c10"
-            ],
+            // present content
+            "group_id": "grp-B2",
             "sources": {
-                // loops
-                "english": {
-                    "title": "Video 1",
+                "default": {
                     "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop",
-                    "playlist_id": "ply-BO",
-                    "image": "branding/images/oh/tours.jpg",
-                    "dur": "2:43"
-                },
-                "mandarin": {
-                    "title": "Video 2",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop",
-                    "playlist_id": "ply-BO",
-                    "image": "branding/images/oh/sponsors.jpg",
-                    "dur": "2:43"
-                },
-                "japanese": {
-                    "title": "Video 3",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop",
-                    "playlist_id": "ply-BO",
-                    "image": "branding/images/oh/history.jpg",
-                    "dur": "2:43"
-                },
-                "korean": {
-                    "title": "Video 4",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop",
-                    "playlist_id": "ply-kor",
-                    "image": "branding/images/oh/events.jpg",
-                    "dur": "2:43"
-                },
-                "german": {
-                    "title": "Video 5",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop",
-                    "playlist_id": "ply-ger",
-                    "image": "branding/images/oh/education.jpg",
-                    "dur": "2:43"
-                },
-                "french": {
-                    "title": "Video 6",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop",
-                    "playlist_id": "ply-fre",
-                    "image": "branding/images/oh/dining.jpg",
-                    "dur": "2:43"
-                },
-
-                /*"dining": {
-                    "title": "Dining",
-                    "dur": "6:33",
-                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop"
-                },
-                "education": {
-                    "title": "Education",
-                    "dur": "4:21",
-                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop"
-                },
-                "events": {
-                    "title": "Events",
-                    "dur": "3:19",
-                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop"
-                },
-                "history": {
-                    "title": "History",
-                    "dur": "5:29",
-                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop"
-                },
-                "sponsors": {
-                    "title": "Sponsors",
-                    "dur": "4:21",
-                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop"
-                },
-                "tours": {
-                    "title": "Tours",
-                    "dur": "7:43",
-                    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod erat volutpat.",
-                    "image": "branding/images/oh/tours.jpg",
-                    "input": 1,
-                    "source": "hdmi1",
-                    "type": "loop"
-                },*/
+                    "source": "hdmi1"
+                }
             },
-            
-            $present: function(tab) {
-                
+
+           $present: function(tab) {
             }
         }],
 
