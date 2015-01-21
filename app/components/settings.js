@@ -7,7 +7,7 @@
     window.systemData = window.systemData || {};
     window.systemData['sys-B0'] = {
         System: [{
-            "title": "Western Foyers",
+            "title": "Studio Projector",
 
             // power on/off
             "state": "shutdown",
@@ -164,43 +164,6 @@
                     "source": "hdmi1",
                     "type": "loop"
                 },*/
-
-                // tv channels
-                "abc": {
-                    "title": "ABC",
-                    "image": "branding/images/oh/abc.jpg",
-                    "input": 2,
-                    "source": "hdmi2",
-                    "type": "tv"
-                },
-                "sbs": {
-                    "title": "SBS",
-                    "image": "branding/images/oh/sbs.png",
-                    "input": 2,
-                    "source": "hdmi2",
-                    "type": "tv"
-                },
-                "c7": {
-                    "title": "Channel 7",
-                    "image": "branding/images/oh/c7.jpg",
-                    "input": 2,
-                    "source": "hdmi2",
-                    "type": "tv"
-                },
-                "c9": {
-                    "title": "Channel 9",
-                    "image": "branding/images/oh/c9.jpg",
-                    "input": 2,
-                    "source": "hdmi2",
-                    "type": "tv"
-                },
-                "c10": {
-                    "title": "Channel 10",
-                    "image": "branding/images/oh/c10.jpg",
-                    "input": 2,
-                    "source": "hdmi2",
-                    "type": "tv"
-                }
             },
             
             $present: function(tab) {
@@ -277,6 +240,8 @@
 
             // this should go in config?
             $rootScope.scheduleCreateURL = 'http://0.0.0.0:9000/api/schedules';
+            $rootScope.languagesQueryURL = '/api/groups?mine=true&offset=0&q=Tours';
+            $rootScope.playlistsQueryPrefix = '/api/groups/';
 
             // Refresh the UI if an update is detected
             // This promise is resolved after a new version
