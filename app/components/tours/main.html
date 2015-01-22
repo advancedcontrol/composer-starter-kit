@@ -1,9 +1,11 @@
 <div co-bind="'sources'"></div>
 <div co-bind="'group_id'"></div>
+<div co-bind="'muted'"></div>
 
 <header ng-controller="Modals">
     <img src="branding/images/oh_logo.png">
-    <button ng-touch="showModal('power')"><i class="fa fa-power-off"></i></button>
+    <button ng-touch="coModuleInstance.$exec('toggle_mute')" id="picture-mute"><i class="fa fa-desktop"></i><i ng-show="!muted" class="fa fa-ban"></i><i ng-show="muted" class="fa fa-circle-o"></i></button>
+    <button ng-touch="showModal('power')" id="power-off"><i class="fa fa-power-off"></i></button>
     <modal name="power" title="Shutdown?">
         <p>
             <b>Are you sure you want to turn off the system?</b>

@@ -22,6 +22,12 @@
                 }
             },
 
+            // picture mute
+            "muted": false,
+            $toggle_mute: function() {
+                this.muted = !this.muted;
+            },
+
             // present content
             "group_id": "grp-B2",
             "sources": {

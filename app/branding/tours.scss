@@ -26,10 +26,37 @@ main.tours {
             outline: none;
             background-color: transparent;
             border: none;
-            font-size: 30px;
             position: absolute;
             top: 20px;
+            width: 32px;
+
+            i {
+                font-size: 30px;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+            }
+        }
+
+        #power-off {
             right: 20px;
+        }
+
+        #picture-mute {
+            right: 80px;
+
+            .fa-desktop {
+                font-size: 20px;
+                top: 6px;
+                left: 6px;
+            }
+
+            .fa-ban, .fa-circle-o {
+                color: rgba(0,0,0, 0.4);
+                font-size: 46px;
+                top: -8px;
+                left: -3px;
+            }
         }
     }
 
@@ -51,7 +78,6 @@ main.tours {
             > div {
                 display: block;
                 color: #9b9da8;
-                //height: $tab-dimen;
                 height: $tab-height;
                 line-height: $tab-height;
                 text-align: center;
