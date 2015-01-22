@@ -103,3 +103,16 @@ body {
         left: -10px;
     }
 }
+
+.no-system {
+    display: table;
+
+    h1 {
+        display: table-cell;
+        vertical-align: middle;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 20px;
+    }
+}

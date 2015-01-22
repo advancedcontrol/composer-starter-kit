@@ -127,7 +127,7 @@
         <!-- System definition -->
         <div co-system="controlSystem" ng-if="$composerConnected" class="full-screen">
             <div ng-if="!coSystem.id" class="full-screen no-system">
-                <h2>System "{{coSystem.$name}}" Not Found</h2>
+                <h1>System "{{coSystem.$name}}" Not Found</h1>
             </div>
             <div ng-if="coSystem.id" ng-include="'components/main.html'" class="full-screen">
             </div>
