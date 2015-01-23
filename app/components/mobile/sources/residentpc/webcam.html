@@ -4,6 +4,7 @@
 <h1>Web Camera Control:</h1>
 
 <div class="webcam-controls" co-module="selectedSource.mod" co-index="selectedSource.index">
+    <span co-bind="'authenticated'"></span>
     <button ng-touch="coModuleInstance.$exec('center')">Return to Default Position</button><br />
     <table>
         <tr>

@@ -8,7 +8,6 @@
         // as the control service - hence the complexity of this configuration
         .config([
             '$composerProvider',
-            '$locationProvider',
 
         function(comms) {
             // This outputs debugging information to console useful

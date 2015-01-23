@@ -1,6 +1,7 @@
 (function (window, angular) {
     'use strict';
 
+    window.systemData = window.systemData || {};
     window.systemData['sys-B1'] = {
         System: [{
             "$powerup": function () {
@@ -134,7 +135,7 @@
                     "type": "residentpc",
                     "mod": "Computer",
                     "index": 1,
-                    "hasPTZ": true
+                    "hasWebCam": true
                 },
                 "hdmi_connection": {
                     "title": "Laptop HDMI",
@@ -152,7 +153,7 @@
             "vol_max": 60,
             "vol_min": 0
         }],
-        Computer: [{}],
+        Computer: [{name: 'testname'}],
         Camera: [{
             joy_right: 0x99,
             joy_left: 0x1,
