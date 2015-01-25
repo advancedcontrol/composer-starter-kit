@@ -1,0 +1,104 @@
+@import "compass";
+@import "../bower_components/angular-named-toggle/image-toggle.scss";
+@import "../bower_components/angular-range-slider/angular-range-slider.scss";
+
+
+div.astral-lighting {
+    table {
+        td {
+            vertical-align: middle;
+        }
+    }
+
+    @include co-range-slider(
+        $track-colour: rgb(180,180,180)
+    );
+
+
+    tr.select-light {
+        @include image-toggle(
+            $trueImage: '../../../components/main/audio/volume-mute.svg', 
+            $falseImage: '../../../components/main/audio/volume.svg',
+            $width: 2em,
+            $height: 2em
+        );
+    }
+
+    tr.select-all {
+        @include image-toggle(
+            $trueImage: '../../../components/main/astral_lights/checkbox-checked.png', 
+            $falseImage: '../../../components/main/astral_lights/checkbox-unchecked.png',
+            $width: 2em,
+            $height: 2em
+        );
+    }
+
+
+    table.house-lighting {
+        height: 100%;
+        width: 30%;
+        float: left;
+
+        text-align: center;
+
+        border: 1px solid black;
+        border-radius: 5px;
+
+        td {
+            width: 33.3333%;
+        }
+    }
+
+    table.light-select {
+        height: 100%;
+        width: 100%;
+
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+}
+
+modal.chandelier {
+    text-align: center;
+
+    menu > button {
+        margin-right: 1.5em;
+    }
+
+    table {
+        height: 18em;
+        float: left;
+    }
+
+    table.custom-fader {
+        width: 20%;
+        height: 24em;
+    }
+
+    table.chandelier-diagram {
+        background-image: url(../../../components/main/astral_lights/chandelier.png);
+
+        width: 80%;
+        margin-top: 3em;
+        margin-bottom: 1.5em;
+        text-align: center;
+
+        -webkit-background-size: contain !important;
+        -moz-background-size: contain !important;
+        -ms-background-size: contain !important;
+        -o-background-size: contain !important;
+        background-size: contain !important;
+
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+
+        td {
+            @include image-toggle(
+                $trueImage: '../../../components/main/astral_lights/checkbox-checked.png', 
+                $falseImage: '../../../components/main/astral_lights/checkbox-unchecked.png',
+                $width: 1.5em,
+                $height: 1.5em
+            );
+        }
+    }
+}

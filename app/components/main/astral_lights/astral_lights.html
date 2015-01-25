@@ -1,0 +1,251 @@
+
+<div class="expansive astral-lighting">
+
+
+<div ng-controller="Modals">
+    <modal class="chandelier" name="chandelier" title="Adjust Chandelier Levels">
+        <p>Select the levels you would like to adjust, then adjust using the slider.</p>
+        <table class="custom-fader">
+            <tr style="height: 4.5em;">
+                <td>
+                    <button class="btn">Full</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div co-range horizontal="false" model="custom_fader" min="0" max="255"></div>
+                </td>
+            </tr>
+            <tr style="height: 4.5em;">
+                <td>
+                    <button class="btn">Off</button>
+                </td>
+            </tr>
+        </table>
+        <table class="chandelier-diagram">
+            <tr>
+                <td style="width: 50%"></td>
+                <td>
+                    <image-toggle model="level[0]"></image-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <image-toggle model="level[1]"></image-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <image-toggle model="level[2]"></image-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <image-toggle model="level[3]"></image-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <image-toggle model="level[4]"></image-toggle>
+                </td>
+            </tr>
+        </table>
+        <menu>
+            <button class="ok">
+                Select All
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button class="ok">
+                Deselect All
+            </button>
+        </menu>
+        <div style="clear: both"></div>
+    </modal>
+</div>
+
+
+<table style="height: 100%; width: 70%; float: left; text-align: center;">
+    <tr style="height: 4.5em;">
+        <td style="width: 5em;">
+            <button class="btn">Full</button>
+        </td>
+        <td colspan="3" ng-controller="Modals">
+            <button class="btn" ng-click="showModal('chandelier')">Chandelier Levels</button>
+            <button class="btn">Recall a Preset</button>
+            <button class="btn">Save a Preset</button>
+        </td>
+    </tr>
+    <tr class="select-light">
+        <td>
+            <!-- Fader -->
+            <div co-range horizontal="false" model="chandelier_fader" min="0" max="255"></div>
+        </td>
+        <td style="width: 30%;">
+            <!-- Astral 1 -->
+            <table class="light-select">
+                <tr style="height: 2em;">
+                    <td colspan="2">Astral 1 (front)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astral_1_light[0]"></image-toggle> 1
+                    </td>
+                    <td>
+                        <image-toggle model="astral_1_light[1]"></image-toggle> 2
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astral_1_light[2]"></image-toggle> 3
+                    </td>
+                    <td>
+                        <image-toggle model="astral_1_light[3]"></image-toggle> 4
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astral_1_light[4]"></image-toggle> 5
+                    </td>
+                    <td>
+                        <image-toggle model="astral_1_light[5]"></image-toggle> 6
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td style="width: 25%;">
+            <!-- Astral 2 -->
+            <table class="light-select">
+                <tr style="height: 2em;">
+                    <td>Astral 2 (front)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astral_2_light[0]"></image-toggle> 7
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astral_2_light[1]"></image-toggle> 8
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astral_2_light[2]"></image-toggle> 9
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td style="width: 30%;">
+            <!-- Astral 3 -->
+            <table class="light-select">
+                <tr style="height: 2em;">
+                    <td colspan="2">Astral 3 (front)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astral_3_light[0]"></image-toggle> 10
+                    </td>
+                    <td>
+                        <image-toggle model="astral_3_light[1]"></image-toggle> 11
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astral_3_light[2]"></image-toggle> 12
+                    </td>
+                    <td>
+                        <image-toggle model="astral_3_light[3]"></image-toggle> 13
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astral_3_light[4]"></image-toggle> 14
+                    </td>
+                    <td>
+                        <image-toggle model="astral_3_light[5]"></image-toggle> 15
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr class="select-all" style="height: 4.5em;">
+        <!-- Select all toggle -->
+        <td style="text-align: center;">
+            <button class="btn">Off</button>
+        </td>
+        <td>
+            <image-toggle model="astral_1_All"></image-toggle> All
+        </td>
+        <td>
+            <image-toggle model="astral_2_All"></image-toggle> All
+        </td>
+        <td>
+            <image-toggle model="astral_3_All"></image-toggle> All
+        </td>
+    </tr>
+</table>
+
+<!-- House Lighting Faders -->
+<table class="house-lighting">
+    <tr style="height: 2em;">
+        <td colspan="3">House Lighting</td>
+    </tr>
+    <tr style="height: 4.5em;">
+        <td>
+            <!-- Onyx -->
+            <button class="btn">Full</button>
+        </td>
+        <td>
+            <!-- Pelmets -->
+            <button class="btn">Full</button>
+        </td>
+        <td>
+            <!-- Downlights -->
+            <button class="btn">Full</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <!-- Onyx -->
+            <div co-range horizontal="false" model="onyx_fader" min="0" max="255"></div>
+        </td>
+        <td>
+            <!-- Pelmets -->
+            <div co-range horizontal="false" model="pelmets_fader" min="0" max="255"></div>
+        </td>
+        <td>
+            <!-- Downlights -->
+            <div co-range horizontal="false" model="dlights_fader" min="0" max="255"></div>
+        </td>
+    </tr>
+    <tr style="height: 4.5em;">
+        <td>
+            <!-- Onyx -->
+            <button class="btn">Off</button>
+        </td>
+        <td>
+            <!-- Pelmets -->
+            <button class="btn">Off</button>
+        </td>
+        <td>
+            <!-- Downlights -->
+            <button class="btn">Off</button>
+        </td>
+    </tr>
+    <tr style="height: 2em;">
+        <td>
+            Onyx
+        </td>
+        <td>
+            Pelmets
+        </td>
+        <td>
+            Downlights
+        </td>
+    </tr>
+</table>
+</div>
