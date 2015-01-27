@@ -17,8 +17,8 @@ div.astral-lighting {
 
     tr.select-light {
         @include image-toggle(
-            $trueImage: '../../../components/main/audio/volume-mute.svg', 
-            $falseImage: '../../../components/main/audio/volume.svg',
+            $trueImage: '../../../components/main/astral_lights/light-selected.svg', 
+            $falseImage: '../../../components/main/astral_lights/light-unselected.svg',
             $width: 2em,
             $height: 2em
         );
@@ -66,7 +66,6 @@ modal.chandelier {
     }
 
     table {
-        height: 18em;
         float: left;
     }
 
@@ -78,6 +77,7 @@ modal.chandelier {
     table.chandelier-diagram {
         background-image: url(../../../components/main/astral_lights/chandelier.png);
 
+        height: 18em;
         width: 80%;
         margin-top: 3em;
         margin-bottom: 1.5em;
