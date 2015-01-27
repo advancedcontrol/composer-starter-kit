@@ -4,7 +4,7 @@
     it is used to check if the PCs power is on
  -->
 <div
-    co-module="selectedSource.mod || Computer"
+    co-module="selectedSource.mod || 'Computer'"
     co-index="selectedSource.index || 1"
     co-bind="'connected' as $parent.power"
 ></div>

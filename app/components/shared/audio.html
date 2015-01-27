@@ -2,7 +2,7 @@
     Mixer used for audio
     We check against undefined as 0 is falsey
 -->
-<div ng-if="output.mixer_id !== undefined && output.basic_mixer === undefined" co-bind="'vol_min'">
+<div ng-if="output.mixer_id !== undefined && output.basic_mixer !== true" co-bind="'vol_min'">
     <div class="mute" 
         co-module="'Mixer'"
         co-bind="'fader' + (output.feedback_id || output.mixer_id) + '_' + (output.mixer_mute_index || output.mixer_index || 1) + '_mute' as mute"
@@ -26,11 +26,11 @@
 <!--
     A mixer that doesn't support indexes - such as the DMP64
 -->
-<div ng-if="output.mixer_id !== undefined && output.basic_mixer !== undefined" co-bind="'vol_min'">
+<div ng-if="output.mixer_id !== undefined && output.basic_mixer === true" co-bind="'vol_min'">
     <div class="mute" 
         co-module="'Mixer'"
-        co-bind="'group' + (output.mute_feedback_id || output.mute_id || output.feedback_id || output.mixer_id) + '_mute' as mute"
-        exec="mute(output.mute_id, mute)"
+        co-bind="'fader' + (output.mute_feedback_id || output.mute_id || output.feedback_id || output.mixer_id) + '_mute' as mute"
+        exec="mute(output.mute_id || output.mixer_id, mute)"
     >
         <div image-toggle model="mute"></div>
     </div>

@@ -56,7 +56,7 @@
     Microphone popup
  -->
 <div co-bind="'mics'">
-    <div class="mics" ng-if="mics" co-module="'Mixer'" ng-touch="showModal('mics')">
+    <div class="mics" ng-if="mics && mics[0].basic_mixer === undefined" co-module="'Mixer'" ng-touch="showModal('mics')">
         <modal name="mics" title="Microphones">
             <div 
                 class="mic"
@@ -76,6 +76,35 @@
                         <div
                             co-bind="'fader' + mic.id + '_' + (mic.index || 1) as level"
                             exec="fader(mic.id, level, (mic.index || 1))">
+                            <div>
+                                <div co-range model="level" min="mic.min" max="mic.max"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </modal>
+    </div>
+    <div class="mics" ng-if="mics && mics[0].basic_mixer === true" co-module="'Mixer'" ng-touch="showModal('mics')">
+        <modal name="mics" title="Microphones">
+            <div 
+                class="mic"
+                ng-repeat="mic in mics"
+                co-index="mic.mixer || 1"
+            >
+                <h2>{{mic.name}}</h2>
+                <div>
+                    <div 
+                        class="mute"
+                        co-bind="'fader' + (mic.mute_feedback_id || mic.mute_id || mic.feedback_id || mic.id) + '_mute' as mute"
+                        exec="mute(mic.mute_id || mic.id, mute)"
+                    >
+                        <div image-toggle model="mute"></div>
+                    </div>
+                    <div class="mic_level">
+                        <div
+                            co-bind="'fader' + (mic.feedback_id || mic.id) as level"
+                            exec="fader(mic.id, level)">
                             <div>
                                 <div co-range model="level" min="mic.min" max="mic.max"></div>
                             </div>
