@@ -5,5 +5,5 @@ demo/style.css
 .DS_Store
 .tmp
 dist/
-
+dist.zip
 npm-debug.log
