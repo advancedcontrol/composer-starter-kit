@@ -61,6 +61,32 @@ gulp.task('dev:images', function () {
     .pipe($.size({title: 'dev:images'}));
 });
 
+gulp.task('dev:styles', function () {
+  var options = ['watch',
+    process.cwd(),
+    '--relative-assets',
+    '--output-style',
+    'nested',
+    '--css-dir',
+    '.tmp',
+    '--sass-dir',
+    'app',
+    '--boring'
+  ];
+
+  var child = spawn('compass', options, process.cwd());
+  child.stdout.setEncoding('utf8');
+  child.stdout.on('data', function (data) {
+    console.log(data);
+  });
+
+  child.stderr.setEncoding('utf8');
+  child.stderr.on('data', function (data) {
+    console.log(data);
+  });
+});
+
+
 gulp.task('dev:svg', function () {
   return gulp.src([
         'app/**/*.svg',
@@ -140,7 +166,7 @@ gulp.task('browser-sync', function () {
   ], ['dev:images', reload]);
 });
 
-gulp.task('serve', ['prod:styles', 'dev:images', 'dev:svg', 'browser-sync']);
+gulp.task('serve', ['dev:styles', 'dev:images', 'dev:svg', 'browser-sync']);
 
 
 
