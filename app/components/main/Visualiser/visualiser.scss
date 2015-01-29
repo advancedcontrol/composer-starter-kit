@@ -1,0 +1,56 @@
+
+@import "../../../../bower_components/angular-range-slider/angular-range-slider.scss";
+
+
+#vismain {
+    text-align: center;
+
+
+    button.freezeBtn {
+        width: 10em;
+        margin: 0 auto;
+        margin-bottom: 1.5em;
+
+        height: 6vh;
+        font-size: 2vh;
+    }
+
+    table {
+        width: 100%;
+        margin: 0 auto;
+        padding-right: 20px;
+
+        td {
+            @include co-range-slider(
+                $handle-size: 40px,
+                $track-girth: 20px,
+                $track-colour:white
+            );
+        }
+
+        td.zoom-icon {
+            width: 13%;
+        }
+    }
+
+}
+
+
+#vismobile {
+
+    div.zoom-slider {
+        padding-left: 10px;
+        margin-top: 5px;
+
+        @include co-range-slider(
+            $handle-size: 40px,
+            $track-girth: 20px,
+            $track-colour:white
+        );
+    }
+
+    button.freezeBtn {
+        margin-top: 15px;
+    }
+}
+

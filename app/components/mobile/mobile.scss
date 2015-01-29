@@ -540,6 +540,14 @@ article.mobile {
                         content: "\f05a";
                     }
 
+                    &.visualiser {
+                        background-image: url("../../components/main/Visualiser/visualiser.svg");
+
+                        background-size: auto 2.3em;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                    }
+
                     &:hover {
                         background-color: lighten($sidebar-secondary-colour, 8%);
                     }

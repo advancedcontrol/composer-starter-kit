@@ -140,11 +140,16 @@ article.main {
                     }
 
                     > div {
-                        padding-top: 15px;
+                        margin-top: 15px;
                         font-size: 5vh;
 
                         &.Laptop {
-                            padding-top: 17px;
+                            margin-top: 17px;
+                        }
+
+                        &.Visualiser {
+                            margin-top: 13px;
+                            font-size: 5.5vh
                         }
                     }
                 }
@@ -532,6 +537,27 @@ article.main {
 
         &.VC::before, &.vc-active::before {
             content: "\f0c0";
+        }
+
+        // Give the DIV a height
+        &.Visualiser::before, &.visualiser::before {
+            content: "\00A0";
+        }
+
+        // Fill the DIV with an image
+        &.Visualiser, &.visualiser {
+            background-image: url("../../components/main/Visualiser/visualiser.svg");
+
+            background-size: auto 1em;
+            background-repeat: no-repeat;
+            background-position: center top;
+        }
+    }
+
+
+    .source-image, tabs nav > div.active > div {
+        &.Visualiser, &.visualiser {
+            background-image: url("../../components/main/Visualiser/visualiser-active.svg") !important;
         }
     }
 }

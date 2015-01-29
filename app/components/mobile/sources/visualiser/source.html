@@ -1,0 +1,43 @@
+<nav>
+    <span class="visualiser active"></span>
+</nav>
+
+<!-- stopPropagation here supports scrolling -->
+<section ng-touch="$event.stopPropagation()" on-target>
+    <div > <!-- ng-switch -->
+        <div > <!-- ng-switch-when -->
+            <div co-module="'Visualiser'" id="vismobile"> <!-- ng-include -->
+                <!-- sidebar content -->
+
+                
+				<h1>Visualiser:</h1>
+
+				<button class="toggle" ng-touch="coModuleInstance.$exec('auto_focus')"><i class="fa fa-eye"></i> Auto Focus</button>
+                <button class="toggle" ng-class="{active: lamp}" co-bind="'lamp'" exec ng-touch="lamp = !lamp"><i class="fa fa-lightbulb-o"></i> Lamp</button>
+                <button class="toggle" ng-class="{active: sharp}" co-bind="'sharp'" exec ng-touch="sharp = !sharp"><i class="fa fa-file-text-o"></i> Sharp Text</button>
+                <button class="toggle" ng-click="coModuleInstance.$exec('reset')"><i class="fa fa-refresh"></i> Reset</button>
+
+				<span class="zoom-text">Zoom:</span>
+                <div class="zoom-slider" co-bind="'zoom_max'">
+                    <div co-bind="'zoom_min'">
+                        <div co-bind="'zoom'" exec>
+                            <div co-range model="zoom" min="zoom_min" max="zoom_max"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    class="freezeBtn toggle"
+                    ng-class="{active: frozen}"
+                    co-bind="'frozen'" exec
+                    ng-touch="frozen = !frozen"
+                >
+                    <span ng-show="frozen">un-</span>freeze
+                </button>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+

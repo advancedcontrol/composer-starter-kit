@@ -75,13 +75,18 @@
             "tab": "PC",
             "inputs": [
                 "PC",
-                "Laptop"
+                "Laptop",
+                "Visualiser"
             ],
             "PC": [
                 "g1_pc1"
             ],
             "Laptop": [
-                "laptop_g1"
+                "laptop_g1",
+                "laptop_g2"
+            ],
+            "Visualiser": [
+                "vis"
             ],
             "sources": {
                 "g1_pc1": {
@@ -95,6 +100,18 @@
                     "input": 11,
                     "source": "hdmi",
                     "type": "aux_hdmi"
+                },
+                "laptop_g2": {
+                    "title": "Laptop 2 HDMI",
+                    "input": 11,
+                    "source": "hdmi",
+                    "type": "aux_hdmi"
+                },
+                "vis" : {
+                    "title": "Visualiser",
+                    "input": 10,
+                    "source": "hdmi",
+                    "type": "visualiser"
                 }
             },
             "outputs": {

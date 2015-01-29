@@ -1,0 +1,52 @@
+
+<div co-bind="'Visualiser' as source_names" id="vismain">
+    <div 
+        ng-if="source_names"
+        ng-init="selectSource(source_names[0])"
+        class="standard-panel"
+    >
+        
+        <div co-module="'Visualiser'">
+            <div co-bind="'zoom_max'">
+                <div co-bind="'zoom_min'">
+                    <button
+                        class="freezeBtn toggle"
+                        ng-class="{active: frozen}"
+                        co-bind="'frozen'" exec
+                        ng-touch="frozen = !frozen"
+                    >
+                        <span ng-show="frozen">un-</span>freeze
+                    </button>
+
+                    <table co-bind="'zoom'" exec>
+                        <tr>
+                            <td class="zoom-icon"
+                                ng-touch="coModuleInstance.$exec('zoom_out')"
+                                ng-release="coModuleInstance.$exec('zoom_stop')"
+                            >
+                                <i class="fa fa-search-minus"></i>
+                            </td>
+                            <td>
+                                <div co-range model="zoom" min="zoom_min" max="zoom_max"></div>
+                            </td>
+                            <td class="zoom-icon"
+                                ng-touch="coModuleInstance.$exec('zoom_in')"
+                                ng-release="coModuleInstance.$exec('zoom_stop')"
+                            >
+                                <i class="fa fa-search-plus"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="sources" co-module="'Visualiser'" >
+            <div>
+                <button class="toggle" ng-touch="coModuleInstance.$exec('auto_focus')"><i class="fa fa-eye"></i>Auto Focus</button>
+                <button class="toggle" ng-class="{active: lamp}" co-bind="'lamp'" exec ng-touch="lamp = !lamp"><i class="fa fa-lightbulb-o"></i>Lamp</button>
+                <button class="toggle" ng-class="{active: sharp}" co-bind="'sharp'" exec ng-touch="sharp = !sharp"><i class="fa fa-file-text-o"></i>Sharp Text</button>
+                <button class="toggle" ng-click="coModuleInstance.$exec('reset')"><i class="fa fa-refresh"></i>Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
