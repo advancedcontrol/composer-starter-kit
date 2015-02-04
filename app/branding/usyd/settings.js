@@ -8,7 +8,6 @@
         // as the control service - hence the complexity of this configuration
         .config([
             '$composerProvider',
-            '$locationProvider',
 
         function(comms) {
             // This outputs debugging information to console useful
@@ -32,7 +31,11 @@
                 redirect_uri: 'https://cntrl-web-uat-1.ucc.usyd.edu.au/oauth-resp.html',
                 client_id: 'aa549e0f7e1c5be36045b81b9edb6d6b8a29e7730814bcf5f1b0314f2e52806a',
                 api_endpoint: '/api',
-                proactive: true
+                proactive: true,
+                login_redirect: function () {
+                    var url = encodeURIComponent(document.location.href);
+                    return '/auth/login?continue=' + url + '&provider=usyd';
+                }
             });
         }]);
 

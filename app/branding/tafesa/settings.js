@@ -31,7 +31,11 @@
                 redirect_uri: 'https://control.tafesa.edu.au/oauth-resp.html',
                 client_id: '2ffb63c89459c17288f488616d4a7e94de94628eb6c3b41f6e32e140a0a0ca53',
                 api_endpoint: '/api',
-                proactive: true
+                proactive: true,
+                login_redirect: function () {
+                    var url = encodeURIComponent(document.location.href);
+                    return '/auth/login?continue=' + url + '&provider=tafesa';
+                }
             });
         }]);
 
