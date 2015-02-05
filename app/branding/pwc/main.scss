@@ -1,0 +1,58 @@
+@import "compass";
+@import "variables";
+
+body {
+    background-color: #333338;
+}
+
+$header-color: #b7162c;
+
+article.main {
+    > div > div > tabs {
+        top: 110px;
+    }
+
+    > header {
+        background-color: darken($header-color, 10%);
+
+        div.logo {
+            background-color: #942836;
+            width: 150px;
+            margin-top: 0px;
+            padding: 5px 5px 5px 5px;
+            height: 90px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+
+            > div {
+                background-image: url("../../branding/pwc/logo.png");
+            }
+        }
+    }
+
+    // Shadow over inactive tabs
+    > div > div > tabs > div > nav > div {
+        &:not(.active) {
+            @include box-shadow(rgba(0, 0, 0, 0.2) 0px -4px 14px inset);
+        }
+    }
+}
+
+
+// Mobile styles
+article.mobile {
+    header {
+        background-color: #942836;
+
+        span > div.logo {
+            background-image: url("../../branding/pwc/logo.png");
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    }
+
+    aside div#nav-buffer {
+        background-color: darken($header-color, 10%);
+    }
+}
