@@ -150,21 +150,12 @@
             </div>
 
             <!-- Display the most appropriate user interface -->
-            <div ng-controller="SharedCtrl" co-bind="'outputs'">
+            <div ng-if="state !== 'shutdown'" ng-controller="SharedCtrl" co-bind="'outputs'">
                 <div ng-include="'components/main/main.html'"></div>
                 <!--  <div ng-if="width >= 700 || height >= 700" ng-include="'components/mobile/mobile.html'"></div>  -->
             </div>
         </div>
     </main>
-
-
-    <!-- Hidden iframe for background oauth -->
-    <div co-auth
-        provider="AcaEngine"
-        login-type="Directed"
-        login="avpartners"
-        class="background-oauth"
-    ></div>
 
 
     <!-- build:js ./app.js -->
@@ -191,7 +182,6 @@
     <script src="angular-safeapply/safe-apply.js"></script>
     <script src="angular-localforage/dist/angular-localforage.js"></script>
     <script src="oauth-interceptor/intercept/communication.js"></script>
-    <script src="oauth-interceptor/intercept/providers/coauth.js"></script>
 
     <!-- ACA Engine Library -->
     <script src="composer/src/ba-debug.js"></script>

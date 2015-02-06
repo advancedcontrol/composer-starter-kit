@@ -36,6 +36,10 @@
                 oauth_tokens: 'http://crownperth.webcontrol.me/auth/token',
                 redirect_uri: 'http://crownperth.webcontrol.me/oauth-resp.html',
                 client_id: 'e37063a7172450ccc568672696ac4c28c2e785b004582ba32d502c0dc4b0ad13',
+                login_redirect: function () {
+                    var url = encodeURIComponent(document.location.href);
+                    return '/auth/login?continue=' + url + '&provider=avpartners'
+                },
                 api_endpoint: 'http://crownperth.webcontrol.me/control/',
                 proactive: true
             });
