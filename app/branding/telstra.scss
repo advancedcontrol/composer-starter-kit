@@ -106,6 +106,11 @@ $header-height: 80px;
             #pin-input input[type=password] {
                 background-color: rgba(255, 255, 255, 0.9);
                 border: none;
+                padding-bottom: 1px;
+            }
+
+            #clear-pin {
+                top: 7px;
             }
 
             #numpad {
@@ -140,7 +145,7 @@ $header-height: 80px;
     > menu {
         @include up-arrow(10px, 457px);
         width: 500px;
-        height: 400px;
+        height: 550px;
         background-color: white;
         position: absolute;
         top: $header-height + 15px;
@@ -164,10 +169,10 @@ $header-height: 80px;
             }
 
             > div {
-                margin-bottom: 10px;
+                margin-bottom: 20px;
 
                 &+h1 {
-                    margin-top: 40px;
+                    margin-top: 60px;
                 }
 
                 label {
@@ -204,7 +209,7 @@ $header-height: 80px;
                     display: inline-block;
 
                     &.slider {
-                        width: 260px;
+                        width: 235px;
                         margin-right: 20px;
                         padding-left: 12.5px;
                     }
@@ -232,42 +237,8 @@ $header-height: 80px;
 }
 
 
-// bookings list
-#bookings {
-    padding-top: 30px;
-
-    h1 {
-        text-transform: uppercase;
-        font-size: 26px;
-        margin-bottom: 30px;
-        padding-left: 40px;
-        color: white;
-    }
-
-    nav {
-        position: absolute;
-        top: 90px;
-        bottom: 140px;
-        left: 0px;
-        right: 0px;
-        overflow: auto;
-    }
-
-    menu {
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
-        right: 0px;
-        height: 140px;
-        border-top: 1px solid rgba(255,255,255,0.6);
-        padding-top: 40px;
-
-        a {
-            background-color: white;
-        }
-    }
-
-    a {
+#bookings, #meeting {
+    nav > a {
         background-color: rgba(255,255,255,0.8);
         margin: 0px 40px 40px 40px;
         list-style-type: none;
@@ -291,3 +262,213 @@ $header-height: 80px;
         }
     }
 }
+
+
+
+// bookings list
+#bookings {
+    padding-top: 30px;
+
+    h1 {
+        text-transform: uppercase;
+        font-size: 26px;
+        margin-bottom: 30px;
+        padding-left: 40px;
+        color: white;
+    }
+
+    #listing {
+        position: absolute;
+        top: 90px;
+        bottom: 140px;
+        left: 0px;
+        right: 0px;
+        overflow: auto;
+    }
+
+    #impromptu {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 140px;
+        border-top: 1px solid rgba(255,255,255,0.6);
+        padding-top: 40px;
+
+        a {
+            background-color: white;
+        }
+    }
+}
+
+#meeting {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    @include background-image(linear-gradient(#EA2359, #FD960C));
+    padding: 30px;
+
+    > h1 {
+        border-bottom: 1px solid rgba(255,255,255,0.6);
+        padding-left: 0px;
+        padding-bottom: 7px;
+
+        menu {
+            float: right;
+            position: relative;
+            top: -3px;
+
+            a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                margin-left: 15px;
+
+                i {
+                    font-size: 20px;
+                    vertical-align: top;
+                    position: relative;
+                    top: 5px;
+                    left: -2px;
+                }
+            }
+        }
+    }
+
+    #playlists {
+        width: 30vw;
+
+        a {
+            margin: 10px 0px;
+
+            &.active {
+                background-color: white;
+            }
+
+            i {
+                font-size: 18px;
+                margin-right: 10px;
+                position: relative;
+                top: 1px;
+            }
+
+            aside {
+                float: right;
+                display: block;
+                position: relative;
+                top: -3px;
+
+                span {
+                    display: block;
+                    text-align: right;
+                    font-weight: normal;
+                    color: #555;
+                }
+            }
+        }
+    }
+
+    #entries {
+        position: absolute;
+        top: 94px;
+        bottom: 30px;
+        right: 30px;
+        width: 62vw;
+        border-radius: 3px;
+        background-color: rgba(255,255,255,0.5);
+
+        #no-selected {
+            display: table;
+            width: 100%;
+            height: 100%;
+
+            h1 {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                padding-left: 0px;
+            }
+        }
+        
+        #selected {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            bottom: 30px;
+            left: 30px;
+            overflow: auto;
+
+            h1 {
+                text-transform: none;
+                color: #222;
+                font-weight: normal;
+                font-size: 22px;
+                padding-left: 0px;
+                line-height: 40px;
+
+                button {
+                    float: right;
+                    background-color: rgba(255,255,255,0.8);
+                    padding: 10px 15px;
+                    border-radius: 3px;
+                    font-family: Gravur;
+                    color: #444;
+                    font-size: 18px;
+                    border: none;
+                    outline: none;
+                    position: relative;
+                    left: -2px;
+                    height: 38px;
+                    line-height: 16px;
+                }
+            }
+
+            ul {
+                border-top: 1px solid rgba(0,0,0,0.2);
+
+                li {
+                    list-style-type: none;
+                    padding-left: 0px;
+                    line-height: 60px;
+                    border-bottom: 1px solid rgba(0,0,0,0.2);
+                    clear: both;
+                    font-family: Gravur;
+
+                    span {
+                        font-size: 18px;
+                    }
+
+                    .poster {
+                        display: inline-block;
+                        margin-right: 10px;
+                        width: 40px;
+                        height: 40px;
+                        vertical-align: middle;
+
+                        i {
+                            font-size: 30px;
+                            position: relative;
+                            top: -3px;
+                        }
+
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            position: relative;
+                            top: -2px;
+                        }
+                    }
+
+                    aside {
+                        display: block;
+                        float: right;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+

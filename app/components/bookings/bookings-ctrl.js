@@ -33,6 +33,10 @@
 
         function ($rootScope, $scope) {
             $scope.bookings = BOOKINGS;
+
+            $scope.selectBooking = function(booking) {
+                $rootScope.meeting = booking;
+            }
         }]);
 
 }(this.angular));

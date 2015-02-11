@@ -1,0 +1,46 @@
+<div ng-controller="MeetingCtrl" id="meeting">
+    <h1>
+        {{meeting.name}}
+        <menu>
+            <a href="#" ng-click="back()"><i class="pe-7s-angle-left-circle"></i> Back</a>
+            <a href="#"><i class="pe-7s-video"></i> Start Recording</a>
+        </menu>
+    </h1>
+
+    <nav id="playlists" btn-group="selected.id">
+        <a href="#" ng-repeat="playlist in meeting.playlists" btn="playlist.id" ng-click="selectPlaylist(playlist)">
+            <i class="pe-7s-play" ng-if="playing && (playing.id == playlist.id)"></i>{{playlist.name}}
+            <aside>
+                <span>{{playlist.duration | duration}}</span>
+                <span ng-if="playlist.audio && !playlist.video">Audio Only</span>
+                <span ng-if="!playlist.audio && playlist.video">Video Only</span>
+                <span ng-if="playlist.audio && playlist.video">Audio  &amp; Video</span>
+            </aside>
+        </a>
+    </nav>
+
+    <div id="entries">
+        <div id="no-selected" ng-if="!selected">
+            <h1>Select a playlist</h1>
+        </div>
+        <div id="selected" ng-if="selected">
+            <h1>
+                {{selected.name}}
+                <button ng-click="play(selected)">
+                    <span ng-if="playing && (playing.id == selected.id)">Stop</span>
+                    <span ng-if="!playing || (playing.id != selected.id)">Play</span>
+                </button>
+            </h1>
+            <ul>
+                <li ng-repeat="entry in selected.entries">
+                    <div class="poster">
+                        <img ng-src="{{entry.default_poster_url}}" ng-if="entry.default_poster_url">
+                        <i class="pe-7s-volume" ng-if="!entry.default_poster_url"></i>
+                    </div>
+                    <aside>{{entry.duration | duration}}</aside>
+                    <span>{{entry.name}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

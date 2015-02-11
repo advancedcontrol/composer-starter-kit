@@ -25,16 +25,6 @@
         <menu id="controls" ng-show="$root.showControls">
             <div>
                 <h1>Audio</h1>
-                <div co-module="'Mixer'">
-                    <label>Volume:</label>
-                    <div class="slider" co-bind="volume">
-                        <div co-range model="volume"></div>
-                    </div>
-                    <div co-bind="muted">
-                        <button ng-class="{active: muted}" ng-click="muted = !muted">Mute</button>
-                    </div>
-                </div>
-                
                 <div co-module="'Mixer'" co-bind="audio_source as source">
                     <label>Source:</label>
                     <div btn-group="source">
@@ -43,22 +33,29 @@
                         <button btn="'Camera'" ng-click="source='Camera'"><i class="pe-7s-micro"></i> Microphone</button>
                     </div>
                 </div>
-
-                <h1>Video</h1>
-
-                <div co-module="'Display'" co-bind="muted">
-                    <label>Muted:</label>
-                    <div>
-                        <div ios-toggle model="muted"></div>
+                <div co-module="'Mixer'">
+                    <label>Volume:</label>
+                    <div class="slider" co-bind="volume">
+                        <div co-range model="volume"></div>
+                    </div>
+                    <div co-bind="muted">
+                        <button ng-class="{active: muted}" ng-click="muted = !muted"><i class="pe-7s-mute"></i></button>
                     </div>
                 </div>
 
+                <h1>Video</h1>
                 <div co-module="'Mixer'" co-bind="video_source">
                     <label>Source:</label>
                     <div btn-group="video_source">
                         <button btn="'Computer'" ng-click="video_source='Computer'"><i class="pe-7s-monitor"></i> Computer</button>
                         <button btn="'DVD'" ng-click="video_source='DVD'"><i class="pe-7s-disk"></i> DVD</button>
                         <button btn="'Camera'" ng-click="video_source='Camera'"><i class="pe-7s-video"></i> Camera</button>
+                    </div>
+                </div>
+                <div co-module="'Display'" co-bind="muted">
+                    <label>Muted:</label>
+                    <div>
+                        <div ios-toggle model="muted"></div>
                     </div>
                 </div>
 
