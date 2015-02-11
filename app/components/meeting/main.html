@@ -33,9 +33,10 @@
             </h1>
             <ul>
                 <li ng-repeat="entry in selected.entries">
+                    <div class="transition">fade</div>
                     <div class="poster">
                         <img ng-src="{{entry.default_poster_url}}" ng-if="entry.default_poster_url">
-                        <i class="pe-7s-volume" ng-if="!entry.default_poster_url"></i>
+                        <i class="pe-7s-volume" ng-if="entry.media_type == 2"></i>
                     </div>
                     <aside>{{entry.duration | duration}}</aside>
                     <span>{{entry.name}}</span>
