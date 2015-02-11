@@ -4,6 +4,7 @@
     angular.module('AcaEngine', [
         'ngSanitize', // AngularJS text sanitation support
         'ngAnimate',  // AngularJS Animation support
+        'coAnimate',
 
         'ngGesture',  // Gesture events
         'coUtils',    // UI Widgets

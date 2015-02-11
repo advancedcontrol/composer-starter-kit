@@ -36,15 +36,8 @@
                 }
 
                 $scope.validate = function() {
-                    // tours user
                     if ($scope.pin == '1234') {
-                        $scope.validated = 'tours';
-                        $scope.coModuleInstance.$exec('projector_on');
-
-                    // tech / admin user
-                    } else if ($scope.pin == '1988') {
-                        $scope.validated = 'tech';
-
+                        $scope.validated = 'bookings';
                     } else {
                         $scope.incorrect = true;
                         $scope.validated = false;

@@ -1,0 +1,10 @@
+<div ng-controller="BookingsCtrl" id="bookings">
+    <h1>Today</h1>
+    <nav>
+        <a href="#" ng-repeat="booking in bookings"><aside>{{booking.time.getHours()}}:00</aside> {{booking.name}}</a>
+    </nav>
+
+    <menu>
+        <a href="#">Impromptu</a>
+    </menu>
+</div>

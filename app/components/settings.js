@@ -7,7 +7,7 @@
     window.systemData = window.systemData || {};
     window.systemData['sys-B0'] = {
         System: [{
-            "title": "Studio Projector",
+            "title": "Telstra Demo Room 1",
 
             // power on/off
             "state": "shutdown",
@@ -22,31 +22,26 @@
                 }
             },
 
-            // picture mute
-            "muted": false,
-            $toggle_mute: function() {
-                this.muted = !this.muted;
-            },
-
             // present content
-            "group_id": "grp-B2",
+            "room_id": "rom-B0",
             "sources": {
                 "default": {
                     "input": 1,
                     "source": "hdmi1"
                 }
-            },
-
-           $present: function(tab) {
             }
         }],
 
-        /*Screen: [{
-            "down": false
-        }],*/
-
         Display: [{
-            "power": false
+            "power": false,
+            "muted": false
+        }],
+
+        Mixer: [{
+            "muted": false,
+            "volume": 100,
+            "audio_source": "Computer",
+            "video_source": "Computer"
         }]
     };
 

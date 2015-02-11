@@ -1,4 +1,4 @@
-<div co-module="'System'" co-bind="'tab'" id="system" class="full-screen" exec>
+<div co-module="'System'" id="system" class="full-screen" exec>
     <!-- quick fix -->
     <div co-bind="'title'"></div>
     <div co-bind="'state'"></div>
@@ -6,14 +6,91 @@
     <!-- show a splash page when offline -->
     <div id="splash" ng-if="state != 'online'" ng-click="coModuleInstance.$exec('powerup')">
         <div>
-            <img src="branding/images/oh_logo.png">
+            <!--img src="branding/images/oh_logo.png"-->
             <h1>{{title}}</h1>
             <h2>Touch to Start</h2>
         </div>
     </div>
 
     <!-- once online -->
-    <div ng-if="state == 'online'" ng-controller="MainCtrl" class="full-screen">
+    <div ng-if="state == 'online'" ng-controller="MainCtrl" class="full-screen" id="content">
+        <header ng-show="validated">
+            <img src="branding/images/telstra_logo.jpg">
+            <menu>
+                <a href="#" class="pe-7s-switch" ng-click="$root.showControls = !$root.showControls"></a>
+                <a href="#" class="pe-7s-power" ng-click="coModuleInstance.$exec('shutdown')"></a>
+            </menu>
+        </header>
+
+        <menu id="controls" ng-show="$root.showControls">
+            <div>
+                <h1>Audio</h1>
+                <div co-module="'Mixer'">
+                    <label>Volume:</label>
+                    <div class="slider" co-bind="volume">
+                        <div co-range model="volume"></div>
+                    </div>
+                    <div co-bind="muted">
+                        <button ng-class="{active: muted}" ng-click="muted = !muted">Mute</button>
+                    </div>
+                </div>
+                
+                <div co-module="'Mixer'" co-bind="audio_source as source">
+                    <label>Source:</label>
+                    <div btn-group="source">
+                        <button btn="'Computer'" ng-click="source='Computer'"><i class="pe-7s-monitor"></i> Computer</button>
+                        <button btn="'DVD'" ng-click="source='DVD'"><i class="pe-7s-disk"></i> DVD</button>
+                        <button btn="'Camera'" ng-click="source='Camera'"><i class="pe-7s-micro"></i> Microphone</button>
+                    </div>
+                </div>
+
+                <h1>Video</h1>
+
+                <div co-module="'Display'" co-bind="muted">
+                    <label>Muted:</label>
+                    <div>
+                        <div ios-toggle model="muted"></div>
+                    </div>
+                </div>
+
+                <div co-module="'Mixer'" co-bind="video_source">
+                    <label>Source:</label>
+                    <div btn-group="video_source">
+                        <button btn="'Computer'" ng-click="video_source='Computer'"><i class="pe-7s-monitor"></i> Computer</button>
+                        <button btn="'DVD'" ng-click="video_source='DVD'"><i class="pe-7s-disk"></i> DVD</button>
+                        <button btn="'Camera'" ng-click="video_source='Camera'"><i class="pe-7s-video"></i> Camera</button>
+                    </div>
+                </div>
+
+                <h1>Camera</h1>
+                <div co-bind="'joy_left'">
+                    <div co-bind="'joy_center'">
+                        <label style="width: 200px;">Drag the joystick to move the camera</label>
+                        <button ng-touch="coModuleInstance.$exec('preset', 'default')">Return to Default Position</button>
+
+                        <joystick
+                            img="/branding/images/joystick.svg"
+                            right="joy_right"
+                            left="joy_left"
+                            center="joy_center"
+                            pan-tilt="panTilt"
+                            refresh="selectedSource.mod"
+                            invert>
+                        </joystick>
+                    </div>
+                </div>
+                
+                <div co-bind="'zoom'" exec>
+                    <label>Zoom:</label>
+                    <div co-bind="'zoom_min'" class="slider">
+                        <div co-bind="'zoom_max'">
+                            <div co-range model="zoom" min="zoom_min" max="zoom_max"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </menu>
+
         <!-- a pincode is required to log in; pins select an interface -->
         <div id="pincode-panel" ng-show="!validated">
             <div>
