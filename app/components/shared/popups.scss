@@ -38,8 +38,12 @@ div.tray {
                 content: "\f0eb";
             }
 
-            &.manual::before {
+            &.displays::before {
                 content: "\f085";
+            }
+
+            &.screens::before {
+                content: "\f0dc";
             }
 
             &.help::before {
@@ -115,7 +119,7 @@ modal[name=lights] {
 
 
 // Manual control popup
-modal[name=manual] {
+modal[name=displays], modal[name=screens] {
     &> div > div {
         width: 300px;
     }
@@ -131,7 +135,7 @@ modal[name=manual] {
             padding: 0.4em 0.3em;
 
             &.onoff {
-                width: 2.5em;
+                width: 4em;
             }
         }
     }

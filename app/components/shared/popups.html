@@ -33,18 +33,50 @@
 </div>
 
 <!-- 
+    Screen Control Pop up
+ -->
+<div>
+    <div class="screens" ng-touch="showModal('screens')">
+        <modal name="screens" title="Screen Control">
+            <h2>Screens:</h2>
+
+            <!-- Get the number of displays and list them -->
+            <table class="entries" co-module="'Screen'">
+                <tr
+                    ng-repeat="display in outputs | orderObjectBy:'pri'"
+                    ng-if="display.screen"
+                    co-module="display.screen.module"
+                    co-implicit-index
+                    co-bind="'lifter' + (display.screen.index || 1) as screen" exec="state(screen, display.screen.index)"
+                >
+                    <td>{{display.title}}</td>
+                    <td ><div ios-toggle model="screen" true-value="'down'" false-value="'up'"></div></td>
+                    <td class="onoff">{{screen === 'down' ? 'Down' : 'Up'}}</td>
+                </tr>
+            </table>
+        </modal>
+    </div>
+</div>
+
+<!-- 
     Manual Control Pop up
  -->
 <div>
-    <div class="manual" ng-touch="showModal('manual')">
-        <modal name="manual" title="Manual Control">
+    <div class="displays" ng-touch="showModal('displays')">
+        <modal name="displays" title="Display Control">
             <h2>Displays:</h2>
 
             <!-- Get the number of displays and list them -->
-            <table class="entries" co-module="'Display'" indices-of="'Display' as indices">
-                <tr ng-repeat="index in indices" co-index="index" co-bind="'power'" exec>
-                    <td>{{outputs['Display_' + index].title}}</td>
-                    <td><div ios-toggle model="power"></div></td>
+            <table class="entries" co-module="'Display'">
+                <tr
+                    ng-repeat="display in outputs | orderObjectBy:'pri'"
+                    ng-if="!display.no_mod"
+                    co-module="display.$key"
+                    co-implicit-index
+                    co-bind="'power'" exec
+                >
+                    <td>{{display.title}}</td>
+                    <td ><div ios-toggle model="power"></div></td>
                     <td class="onoff">{{power ? 'On' : 'Off'}}</td>
                 </tr>
             </table>
