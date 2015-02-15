@@ -61,8 +61,8 @@
         function(comms) {
             // Point these variables to your ACA Engine instance
             // to start interacting with it using ACA Composer
-            comms.port  = 80;
-            comms.host  = '10.71.1.248';
+            //comms.port  = 80;
+            //comms.host  = '10.71.1.248';
             comms.tls   = false;
 
             // This outputs debugging information to console useful
@@ -85,6 +85,10 @@
                 oauth_tokens: 'http://sohiptva.soh.com/auth/token',
                 redirect_uri: 'http://sohiptva.soh.com/oauth-resp.html',
                 client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
+                login_redirect: function () {
+                    var url = encodeURIComponent(document.location.href);
+                    return '/auth/login?continue=' + url + '&provider=soh';
+                },
                 api_endpoint: '/api',
                 proactive: true
             });
@@ -104,13 +108,13 @@
             $rootScope.$watch(function () {
                 return $location.search();
             }, function (value) {
-                $rootScope.controlSystem = value.channel || 'sys-B0';
+                $rootScope.controlSystem = value.channel;
                 $rootScope.groupID = value.group;
             });
 
             // this should go in config?
-            $rootScope.scheduleCreateURL = 'http://0.0.0.0:9000/api/schedules';
-            $rootScope.languagesQueryURL = '/api/groups?mine=true&offset=0&q=Tours';
+            $rootScope.scheduleCreateURL = '/api/schedules';
+            $rootScope.languagesQueryURL = '/api/groups?mine=true&offset=0&q=ToursGroup';
             $rootScope.playlistsQueryPrefix = '/api/groups/';
 
             // Refresh the UI if an update is detected
@@ -119,17 +123,6 @@
             cacheman.readyCallback.then(function () {
                 $window.location.reload();
             });
-
-            // If auth is in use and we want to trust the device
-            // i.e. we don't want to have to log in every time
-            // The trust URL would look like: 'http://localhost/#/?trust#sys-id'
-            if ($location.search().trust && !$comms.isRemembered('AcaEngine')) {
-                // We need time to let the directive load.
-                // This will not be required in the future
-                $timeout(function () {
-                    $comms.rememberMe('AcaEngine');
-                }, 0);
-            }
         }]);
 
 }(this, this.angular));

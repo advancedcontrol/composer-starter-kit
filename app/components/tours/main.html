@@ -4,23 +4,50 @@
 
 <header ng-controller="Modals">
     <img src="branding/images/oh_logo.png">
-    <button ng-touch="coModuleInstance.$exec('toggle_mute')" id="picture-mute"><i class="fa fa-desktop"></i><i ng-show="!muted" class="fa fa-ban"></i><i ng-show="muted" class="fa fa-circle-o"></i></button>
-    <button ng-touch="showModal('power')" id="power-off"><i class="fa fa-power-off"></i></button>
-    <modal name="power" title="Shutdown?">
+    <button ng-touch="coModuleInstance.$exec('toggle_mute')" id="picture-mute"><i class="fa fa-desktop"></i><i ng-show="muted" class="fa fa-ban"></i><i ng-show="!muted" class="fa fa-circle-o"></i></button>
+    <button ng-touch="showModal('finish')" id="power-off"><i class="fa fa-power-off"></i></button>
+    <modal name="finish" title="Finish Presentation?">
         <p>
-            <b>Are you sure you want to turn off the system?</b>
-            <br />It may take up to 5min to restart.
+            <b>Pressing finish will blank the display</b>
         </p>
         <menu>
-            <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
-            <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
+            <button class="cancel" ng-touch="closeModal('finish')">Cancel</button>
+            <button class="ok" ng-touch="coModuleInstance.$exec('shutdown'); setState('shutdown')">Finish</button>
+        </menu>
+        <div style="clear: both"></div>
+    </modal>
+
+    <modal name="scheduling" title="Scheduling Presentation" no-close="true">
+        <p>
+            <b>Please Wait...</b>
+        </p>
+        <div style="clear: both"></div>
+    </modal>
+
+    <modal name="scheduled" title="Presentation Scheduled">
+        <p>
+            <b>The video will begin playing momentarily</b>
+        </p>
+        <menu>
+            <button class="ok" ng-touch="closeModal('scheduled')">OK</button>
+        </menu>
+        <div style="clear: both"></div>
+    </modal>
+
+    <modal name="schedfailed" title="Failed to Schedule">
+        <p>
+            <b>An error occured whilst trying to schedule the video</b>
+            <br /> Click OK to try scheduling again.
+        </p>
+        <menu>
+            <button class="ok" ng-touch="closeModal('schedfailed')">OK</button>
         </menu>
         <div style="clear: both"></div>
     </modal>
 </header>
 
-<div ng-controller="ToursCtrl">
-    <div>
+<div co-bind="'group_id'" ng-controller="Modals">
+    <div ng-controller="ToursCtrl">
         <tabs current="tab" auto-select="false">
             <pane ng-repeat="lang in languages" title="{{lang.name}}">
 

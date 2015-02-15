@@ -7,10 +7,11 @@
     
         .controller('ToursCtrl', [
             '$rootScope',
+            '$timeout',
             '$scope',
             '$http',
 
-        function ($rootScope, $scope, $http) {
+        function ($rootScope, $timeout, $scope, $http) {
             $scope.selectedSource = source;
             $scope.languages = [];
             $scope.playlists = {};
@@ -43,7 +44,7 @@
                 // each group represents a language option
                 data.results.forEach(function(group) {
                     $scope.languages.push({
-                        name: group.name.replace('Tours: ', ''),
+                        name: group.name.replace('ToursGroup: ', ''),
                         id: group.id
                     });
                 });
@@ -60,9 +61,16 @@
                 $scope.languages.forEach(loadLanguage);
             });
 
+            var playCount = 0,
+                playing;
+
             // Updates the currently selected source
-            $scope.play = function(playlist) {
-                $scope.coModuleInstance.$exec('present', $scope.sources['default']);
+            $scope.play = function(playlist, count) {
+                playCount = count || 0;
+
+                if (playCount === 0) {
+                    $scope.showModal('scheduling');
+                }
 
                 // start the schedule 1 day in the past to work around any
                 // time sync issues (phones with times out of sync)
@@ -89,9 +97,20 @@
                     }
                 }).success(function(data, status, headers, config) {
                     console.log('success', data, status, config);
+                    $scope.closeModal('scheduling');
+                    $scope.showModal('scheduled');
+
                 }).error(function(data, status, headers, config) {
                     console.log('error', data, status, config);
-                    alert('Sorry, an error occurred while scheduling this playlist. Please try again later.');
+
+                    if (playCount >= 2) {
+                        $scope.showModal('schedfailed');
+
+                    } else {
+                        $timeout(function () {
+                            $scope.play(playing, playCount + 1);
+                        }, 1000);
+                    }
                 });
             };
 

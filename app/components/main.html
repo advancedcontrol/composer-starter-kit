@@ -1,10 +1,11 @@
-<div co-module="'System'" co-bind="'tab'" id="system" class="full-screen" exec>
+<div co-module="'System'" id="system" class="full-screen" ng-controller="StateCtrl">
     <!-- quick fix -->
     <div co-bind="'title'"></div>
-    <div co-bind="'state'"></div>
+    <div co-bind="'tech_pin'"></div>
+    <div co-bind="'tours_pin'"></div>
 
     <!-- show a splash page when offline -->
-    <div id="splash" ng-if="state != 'online'" ng-click="coModuleInstance.$exec('powerup')">
+    <div id="splash" ng-if="state === 'shutdown'" ng-release="setState('online')">
         <div>
             <img src="branding/images/oh_logo.png">
             <h1>{{title}}</h1>
@@ -13,7 +14,7 @@
     </div>
 
     <!-- once online -->
-    <div ng-if="state == 'online'" ng-controller="MainCtrl" class="full-screen">
+    <div ng-if="state === 'online'" ng-controller="MainCtrl" class="full-screen">
         <!-- a pincode is required to log in; pins select an interface -->
         <div id="pincode-panel" ng-show="!validated">
             <div>
@@ -40,7 +41,7 @@
                         <button ng-click="addToPin(0)">0</button>
                     </menu>
 
-                    <a ng-click="coModuleInstance.$exec('shutdown')" id="cancel-pin">Cancel</a>
+                    <a ng-click="setState('shutdown')" id="cancel-pin">Cancel</a>
                 </div>
             </div>
         </div>
