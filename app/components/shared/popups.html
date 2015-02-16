@@ -36,12 +36,12 @@
     Screen Control Pop up
  -->
 <div>
-    <div class="screens" ng-touch="showModal('screens')">
-        <modal name="screens" title="Screen Control">
-            <h2>Screens:</h2>
+    <div ng-if="hasScreens || hasLifters" class="screens" ng-touch="showModal('screens')">
+        <modal name="screens" title="Raise/Lower Control">
+            <h2 ng-if="hasScreens">Screens:</h2>
 
-            <!-- Get the number of displays and list them -->
-            <table class="entries" co-module="'Screen'">
+            <!-- Get the number of screens and list them -->
+            <table ng-if="hasScreens" class="entries" co-module="'Screen'">
                 <tr
                     ng-repeat="display in outputs | orderObjectBy:'pri'"
                     ng-if="display.screen"
@@ -52,6 +52,23 @@
                     <td>{{display.title}}</td>
                     <td ><div ios-toggle model="screen" true-value="'down'" false-value="'up'"></div></td>
                     <td class="onoff">{{screen === 'down' ? 'Down' : 'Up'}}</td>
+                </tr>
+            </table>
+
+            <h2 ng-if="hasLifters">Lifters:</h2>
+
+            <!-- Get the number of screens and list them -->
+            <table ng-if="hasLifters" class="entries" co-module="'Lifter'">
+                <tr
+                    ng-repeat="display in outputs | orderObjectBy:'pri'"
+                    ng-if="display.lifter"
+                    co-module="display.lifter.module"
+                    co-implicit-index
+                    co-bind="'lifter' + (display.lifter.index || 1) as lifter" exec="state(lifter, display.lifter.index)"
+                >
+                    <td>{{display.title}}</td>
+                    <td ><div ios-toggle model="lifter" true-value="'down'" false-value="'up'"></div></td>
+                    <td class="onoff">{{lifter === 'down' ? 'Down' : 'Up'}}</td>
                 </tr>
             </table>
         </modal>

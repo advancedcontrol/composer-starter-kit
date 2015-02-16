@@ -9,11 +9,13 @@
     co-bind="'connected' as $parent.power"
 ></div>
 
-<nav ng-if="!power">
+<div co-bind="'pc_control' as $parent.pc_control"></div>
+
+<nav ng-if="!power || !pc_control">
     <span class="info active"></span>
 </nav>
 
-<nav ng-if="power" ng-init="showTab('apps')" co-bind="'cameras'">
+<nav ng-if="pc_control && power" ng-init="showTab('apps')" co-bind="'cameras'">
     <span
         class="apps"
         ng-class="{active: tab === 'apps'}"
@@ -50,9 +52,12 @@
         <div> <!-- ng-switch-when -->
             <div ng-if="power" ng-include="'components/mobile/sources/residentpc/' + tab + '.html'">
             </div>
-            <div ng-if="!power">
+            <div ng-if="pc_control && !power">
                 <br />Unable to connect to the computer.<br />
                 <button ng-touch="coModuleInstance.$exec('wake_pcs')">Attempt Power On</button>
+            </div>
+            <div ng-if="!pc_control">
+                <br />This PC is now displaying.
             </div>
         </div>
     </div>

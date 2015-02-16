@@ -1,6 +1,6 @@
 
 <div co-bind="'PC' as source_names" id="pc-inputs" ng-init="hasTabs = false">
-    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+    <div co-bind="'pc_control'" ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div co-bind="'cameras'" ng-class="{hasTabs: hasTabs}">
             <!-- SUB Tabs for the PC -->
             <div co-bind="'channels'" >
@@ -21,12 +21,12 @@
                         co-index="selectedSource.index || 1"
                         co-bind="'connected' as $parent.power"
                     ></div>
-                    <div ng-if="!power">
+                    <div ng-if="pc_control && !power">
                         <br />Unable to connect to the computer.<br />
                         <button ng-touch="coModuleInstance.$exec('wake_pcs')">Attempt Power On</button>
                     </div>
 
-                    <tabs ng-if="power && (apps || channels || cameras)" ng-init="$parent.$parent.hasTabs = true">
+                    <tabs ng-if="pc_control && power && (apps || channels || cameras)" ng-init="$parent.$parent.hasTabs = true">
                         <pane hide="!apps" title="Applications" icon="apps">
                             <div ng-include="'components/mobile/sources/residentpc/apps.html'">
                             </div>

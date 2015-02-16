@@ -12,6 +12,18 @@
                 if (val) {
                     $scope.outputNames = Object.keys(val);
                     $scope.numOutputs = $scope.outputNames.length;
+
+                    $scope.hasScreens = false;
+                    $scope.hasLifters = false;
+                    angular.forEach(val, function (output) {
+                        if (output.screen) {
+                            $scope.hasScreens = true;
+                        }
+
+                        if (output.lifter) {
+                            $scope.hasLifters = true;
+                        }
+                    });
                 }
             });
 
