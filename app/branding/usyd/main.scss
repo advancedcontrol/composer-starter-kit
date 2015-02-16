@@ -2,10 +2,11 @@
 @import "variables";
 
 body {
-    background-color: #f9cf66;
+    background-color: #172A3E;   //currently, dark blue - was #f9cf66 (yellow)
 }
 
-$header-color: #12416c;
+$header-color: darken(#145C9A, 10%); //#145C9A; //#12416F;
+
 
 article.main {
     > div > div > tabs {
