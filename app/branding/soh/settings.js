@@ -18,7 +18,7 @@
             // between the interface and ACA Engine.
             //
             // Should be commented out for production
-            //comms.debug = true;
+            comms.debug = true;
 
             // If you would like to use Authentication then you
             // must point this configuration to your compatible oauth server
