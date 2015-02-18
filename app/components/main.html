@@ -17,72 +17,87 @@
         <header ng-show="validated">
             <img src="branding/images/telstra_logo.jpg">
             <menu>
-                <a href="#" class="pe-7s-switch" ng-click="$root.showControls = !$root.showControls"></a>
+                <a href="#" class="pe-7s-disk" ng-click="showPopup('showDvd')"></a>
+                <a href="#" class="pe-7s-micro" ng-click="showPopup('showMics')"></a>
+                <a href="#" class="pe-7s-display1" ng-click="showPopup('showControls')"></a>
+                <a href="#" class="pe-7s-video" ng-click="showPopup('showCamera')"></a>
                 <a href="#" class="pe-7s-power" ng-click="coModuleInstance.$exec('shutdown')"></a>
             </menu>
         </header>
 
-        <menu id="controls" ng-show="$root.showControls">
-            <div>
-                <h1>Audio</h1>
-                <div co-module="'Mixer'" co-bind="audio_source as source">
-                    <label>Source:</label>
-                    <div btn-group="source">
-                        <button btn="'Computer'" ng-click="source='Computer'"><i class="pe-7s-monitor"></i> Computer</button>
-                        <button btn="'DVD'" ng-click="source='DVD'"><i class="pe-7s-disk"></i> DVD</button>
-                        <button btn="'Camera'" ng-click="source='Camera'"><i class="pe-7s-micro"></i> Microphone</button>
+        <menu id="mics" ng-show="$root.showMics">
+            <div co-module="'Switcher'">
+                <h1>Microphone</h1>
+                <div>
+                    <label>Level:</label>
+                    <div class="slider" co-bind="'fader3' as volume" exec="fader(3, volume)">
+                        <div co-range model="volume" min="-1000" max="0"></div>
                     </div>
-                </div>
-                <div co-module="'Mixer'">
-                    <label>Volume:</label>
-                    <div class="slider" co-bind="volume">
-                        <div co-range model="volume"></div>
-                    </div>
-                    <div co-bind="muted">
+                    <div co-bind="'fader3_mute' as muted" exec="mute_audio(3, muted)">
                         <button ng-class="{active: muted}" ng-click="muted = !muted"><i class="pe-7s-mute"></i></button>
                     </div>
                 </div>
+            </div>
+        </menu>
 
+        <menu id="dvd" ng-show="$root.showDvd">
+            <div co-module="'Bluray'">
+                <h1>Bluray Player</h1>
+                <div>
+                    
+                </div>
+            </div>
+        </menu>
+
+        <menu id="camera" ng-show="$root.showCamera">
+            <div co-module="'Camera'">
+                <h1>Camera Control</h1>
+                <div>
+                    
+                </div>
+            </div>
+        </menu>
+
+        <menu id="controls" ng-show="$root.showControls">
+            <div co-module="'Switcher'">
                 <h1>Video</h1>
-                <div co-module="'Mixer'" co-bind="video_source">
+                <div co-bind="'video'" exec="switch_video(video)">
                     <label>Source:</label>
-                    <div btn-group="video_source">
-                        <button btn="'Computer'" ng-click="video_source='Computer'"><i class="pe-7s-monitor"></i> Computer</button>
-                        <button btn="'DVD'" ng-click="video_source='DVD'"><i class="pe-7s-disk"></i> DVD</button>
-                        <button btn="'Camera'" ng-click="video_source='Camera'"><i class="pe-7s-video"></i> Camera</button>
+                    <br />
+                    <br />
+                    <div btn-group="video">
+                        <button btn="1" ng-click="video=1"><i class="pe-7s-monitor"></i> Computer</button>
+                        <button btn="2" ng-click="video=2"><i class="pe-7s-video"></i> Camera</button>
+                        <button btn="3" ng-click="video=3"><i class="pe-7s-disk"></i> DVD</button>
+                        <button btn="4" ng-click="video=4"><i class="pe-7s-user-female"></i> Signage</button>
                     </div>
                 </div>
-                <div co-module="'Display'" co-bind="muted">
+                <div co-bind="'video_muted'" exec="mute_video(video_muted)">
                     <label>Muted:</label>
                     <div>
-                        <div ios-toggle model="muted"></div>
+                        <div ios-toggle model="video_muted"></div>
                     </div>
                 </div>
-
-                <h1>Camera</h1>
-                <div co-bind="'joy_left'">
-                    <div co-bind="'joy_center'">
-                        <label style="width: 200px;">Drag the joystick to move the camera</label>
-                        <button ng-touch="coModuleInstance.$exec('preset', 'default')">Return to Default Position</button>
-
-                        <joystick
-                            img="/branding/images/joystick.svg"
-                            right="joy_right"
-                            left="joy_left"
-                            center="joy_center"
-                            pan-tilt="panTilt"
-                            refresh="selectedSource.mod"
-                            invert>
-                        </joystick>
+                <br />
+                <br />
+                <h1>Audio</h1>
+                <div co-bind="'audio'" exec="switch_audio(audio)">
+                    <label>Source:</label>
+                    <br />
+                    <br />
+                    <div btn-group="audio">
+                        <button btn="1" ng-click="audio=1"><i class="pe-7s-monitor"></i> Computer</button>
+                        <button btn="3" ng-click="audio=3"><i class="pe-7s-disk"></i> DVD</button>
+                        <button btn="4" ng-click="audio=4"><i class="pe-7s-user-female"></i> Signage</button>
                     </div>
                 </div>
-                
-                <div co-bind="'zoom'" exec>
-                    <label>Zoom:</label>
-                    <div co-bind="'zoom_min'" class="slider">
-                        <div co-bind="'zoom_max'">
-                            <div co-range model="zoom" min="zoom_min" max="zoom_max"></div>
-                        </div>
+                <div>
+                    <label>Volume:</label>
+                    <div class="slider" co-bind="'fader1' as volume" exec="fader(1, volume)">
+                        <div co-range model="volume" min="-1000" max="0"></div>
+                    </div>
+                    <div co-bind="'fader1_mute' as muted" exec="mute_audio(1, muted)">
+                        <button ng-class="{active: muted}" ng-click="muted = !muted"><i class="pe-7s-mute"></i></button>
                     </div>
                 </div>
             </div>

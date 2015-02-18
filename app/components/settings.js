@@ -56,8 +56,8 @@
         function(comms) {
             // Point these variables to your ACA Engine instance
             // to start interacting with it using ACA Composer
-            comms.port  = 80;
-            comms.host  = '10.71.1.248';
+            comms.port  = 3000;
+            comms.host  = 'localhost';
             comms.tls   = false;
 
             // This outputs debugging information to console useful
@@ -76,9 +76,9 @@
             comms.useService({
                 id: 'AcaEngine',
                 scope: 'public',
-                oauth_server: 'http://sohiptva.soh.com/auth/oauth/authorize',
-                oauth_tokens: 'http://sohiptva.soh.com/auth/token',
-                redirect_uri: 'http://sohiptva.soh.com/oauth-resp.html',
+                oauth_server: 'http://localhost:9000/auth/oauth/authorize',
+                oauth_tokens: 'http://localhost:9000/auth/token',
+                redirect_uri: 'http://localhost:9000/oauth-resp.html',
                 client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
                 api_endpoint: '/api',
                 proactive: true
@@ -103,10 +103,17 @@
                 $rootScope.groupID = value.group;
             });
 
-            // this should go in config?
-            $rootScope.scheduleCreateURL = 'http://0.0.0.0:9000/api/schedules';
-            $rootScope.languagesQueryURL = '/api/groups?mine=true&offset=0&q=Tours';
-            $rootScope.playlistsQueryPrefix = '/api/groups/';
+
+            $rootScope.showPopup = function (name) {
+                var newVal = !$rootScope[name]
+
+                $rootScope.showDvd = false;
+                $rootScope.showMics = false;
+                $rootScope.showControls = false;
+                $rootScope.showCamera = false;
+
+                $rootScope[name] = newVal;
+            };
 
             // Refresh the UI if an update is detected
             // This promise is resolved after a new version
@@ -114,17 +121,6 @@
             cacheman.readyCallback.then(function () {
                 $window.location.reload();
             });
-
-            // If auth is in use and we want to trust the device
-            // i.e. we don't want to have to log in every time
-            // The trust URL would look like: 'http://localhost/#/?trust#sys-id'
-            if ($location.search().trust && !$comms.isRemembered('AcaEngine')) {
-                // We need time to let the directive load.
-                // This will not be required in the future
-                $timeout(function () {
-                    $comms.rememberMe('AcaEngine');
-                }, 0);
-            }
         }]);
 
 }(this, this.angular));

@@ -10,12 +10,6 @@
     <nav id="playlists" btn-group="selected.id">
         <a href="#" ng-repeat="playlist in meeting.playlists" btn="playlist.id" ng-click="selectPlaylist(playlist)">
             <i class="pe-7s-play" ng-if="playing && (playing.id == playlist.id)"></i>{{playlist.name}}
-            <aside>
-                <span>{{playlist.duration | duration}}</span>
-                <span ng-if="playlist.audio && !playlist.video">Audio Only</span>
-                <span ng-if="!playlist.audio && playlist.video">Video Only</span>
-                <span ng-if="playlist.audio && playlist.video">Audio  &amp; Video</span>
-            </aside>
         </a>
     </nav>
 
@@ -35,11 +29,11 @@
                 <li ng-repeat="entry in selected.entries">
                     <div class="transition">fade</div>
                     <div class="poster">
-                        <img ng-src="{{entry.default_poster_url}}" ng-if="entry.default_poster_url">
+                        <img ng-src="{{entry.poster}}" ng-if="entry.poster">
                         <i class="pe-7s-volume" ng-if="entry.media_type == 2"></i>
                     </div>
                     <aside>{{entry.duration | duration}}</aside>
-                    <span>{{entry.name}}</span>
+                    <span>{{entry.article_title}}</span>
                 </li>
             </ul>
         </div>

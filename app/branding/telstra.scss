@@ -143,13 +143,47 @@ $header-height: 80px;
 
     // control panel
     > menu {
-        @include up-arrow(10px, 457px);
+
+        &#controls {
+            @include up-arrow(10px, 425px);
+            position: absolute;
+            top: $header-height + 15px;
+            right: 80px;
+
+            height: 450px;
+        }
+
+        &#mics {
+            @include up-arrow(10px, 398px);
+            position: absolute;
+            top: $header-height + 15px;
+            right: 100px;
+            
+
+            height: 150px;
+        }
+
+        &#camera {
+            @include up-arrow(10px, 457px);
+            position: absolute;
+            top: $header-height + 15px;
+            right: 60px;
+
+            height: 400px;
+        }
+
+        &#dvd {
+            @include up-arrow(10px, 380px);
+            position: absolute;
+            top: $header-height + 15px;
+            right: 125px;
+
+            height: 400px;
+        }
+
         width: 500px;
-        height: 550px;
+        
         background-color: white;
-        position: absolute;
-        top: $header-height + 15px;
-        right: 60px;
         box-shadow: 0px 0px 7px rgba(0,0,0,0.2);
         z-index: 10;
         border-radius: 3px;
