@@ -42,19 +42,142 @@
 
         <menu id="dvd" ng-show="$root.showDvd">
             <div co-module="'Bluray'">
-                <h1>Bluray Player</h1>
+                <h1>Bluray Player
+                    <span>
+                        &nbsp;&nbsp;&nbsp;<button>Show</button>
+                    </span>
+                    <span>
+                        &nbsp;<button>Hear</button>
+                    </span>
+                </h1>
                 <div>
-                    
+                    <label>Current State</label>
+                    <table>
+                        <tr>
+                            <td>Power</td>
+                            <td>Tray</td>
+                            <td>Playing</td>
+                            <td>Paused</td>
+                        </tr>
+                        <tr>
+                            <td co-bind="'power'">{{power ? 'On' : 'OFF'}}</td>
+                            <td co-bind="'ejected'">{{ejected ? 'Open' : 'Closed'}}</td>
+                            <td co-bind="'playing'">{{playing ? 'Yes' : 'No'}}</td>
+                            <td co-bind="'paused'">{{paused ? 'Yes' : 'No'}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <label>Controls</label>
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td class="up"
+                                ng-touch="coModuleInstance.$exec('tilt', 'up')"
+                                ng-release="coModuleInstance.$exec('tilt', 'stop')"
+                            ></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="left"
+                                ng-touch="coModuleInstance.$exec('pan', 'left')"
+                                ng-release="coModuleInstance.$exec('pan', 'stop')"
+                            ></td>
+                            <td class="center"
+                                ng-touch="coModuleInstance.$exec('home')"
+                            ></td>
+                            <td class="right"
+                                ng-touch="coModuleInstance.$exec('pan', 'right')"
+                                ng-release="coModuleInstance.$exec('pan', 'stop')"
+                            ></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="down"
+                                ng-touch="coModuleInstance.$exec('tilt', 'down')"
+                                ng-release="coModuleInstance.$exec('tilt', 'stop')"
+                            ></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="zoomout"
+                                ng-touch="coModuleInstance.$exec('zoom', 'out')"
+                                ng-release="coModuleInstance.$exec('zoom', 'stop')"
+                            ></td>
+                            <td></td>
+                            <td class="zoomin"
+                                ng-touch="coModuleInstance.$exec('zoom', 'in')"
+                                ng-release="coModuleInstance.$exec('zoom', 'stop')"
+                            ></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </menu>
 
         <menu id="camera" ng-show="$root.showCamera">
             <div co-module="'Camera'">
-                <h1>Camera Control</h1>
-                <div>
-                    
+                <h1>Camera Control
+                    <span>
+                        &nbsp;&nbsp;&nbsp;<button>Show Camera</button>
+                    </span>
+                </h1>
+                <div class="webcam-controls" co-bind="'connected'">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td class="up"
+                                ng-touch="coModuleInstance.$exec('tilt', 'up')"
+                                ng-release="coModuleInstance.$exec('tilt', 'stop')"
+                            ></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="left"
+                                ng-touch="coModuleInstance.$exec('pan', 'left')"
+                                ng-release="coModuleInstance.$exec('pan', 'stop')"
+                            ></td>
+                            <td class="center"
+                                ng-touch="coModuleInstance.$exec('home')"
+                            ></td>
+                            <td class="right"
+                                ng-touch="coModuleInstance.$exec('pan', 'right')"
+                                ng-release="coModuleInstance.$exec('pan', 'stop')"
+                            ></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="down"
+                                ng-touch="coModuleInstance.$exec('tilt', 'down')"
+                                ng-release="coModuleInstance.$exec('tilt', 'stop')"
+                            ></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="zoomout"
+                                ng-touch="coModuleInstance.$exec('zoom', 'out')"
+                                ng-release="coModuleInstance.$exec('zoom', 'stop')"
+                            ></td>
+                            <td></td>
+                            <td class="zoomin"
+                                ng-touch="coModuleInstance.$exec('zoom', 'in')"
+                                ng-release="coModuleInstance.$exec('zoom', 'stop')"
+                            ></td>
+                        </tr>
+                    </table>
                 </div>
+
+                <br />
+
+                <h1>Presets</h1>
+                <button class="btn" ng-click="coModuleInstance.$exec('preset', 1)">Preset 1</button>
+                <button class="btn" ng-click="coModuleInstance.$exec('preset', 2)">Preset 2</button>
+                <button class="btn" ng-click="coModuleInstance.$exec('preset', 3)">Preset 3</button>
+                <button class="btn" ng-click="coModuleInstance.$exec('preset', 4)">Preset 4</button>
+                <button class="btn" ng-click="coModuleInstance.$exec('preset', 5)">Preset 5</button>
+
+                <br />
             </div>
         </menu>
 

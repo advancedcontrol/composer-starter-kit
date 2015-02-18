@@ -169,7 +169,7 @@ $header-height: 80px;
             top: $header-height + 15px;
             right: 60px;
 
-            height: 400px;
+            height: 500px;
         }
 
         &#dvd {
@@ -189,6 +189,25 @@ $header-height: 80px;
         border-radius: 3px;
         box-sizing: border-box;
         padding: 30px;
+
+        button {
+            background: none;
+            border: none;
+            background-color: #eee;
+            padding: 10px 15px;
+            text-transform: uppercase;
+            font-size: 14px;
+            color: #777;
+            font-family: Gravur;
+            outline: none;
+
+            &.active, &:active {
+                background-color: #F05A00;
+                color: white;
+            }
+
+            margin-bottom: 0.3em;
+        }
 
         > div {
             overflow: auto;
@@ -212,7 +231,7 @@ $header-height: 80px;
                 label {
                     display: inline-block;
                     font-size: 15px;
-                    width: 80px;
+                    //width: 80px;
                     vertical-align: middle;
                     color: #444;
                     text-transform: uppercase;
@@ -246,23 +265,6 @@ $header-height: 80px;
                         width: 235px;
                         margin-right: 20px;
                         padding-left: 12.5px;
-                    }
-
-                    button {
-                        background: none;
-                        border: none;
-                        background-color: #eee;
-                        padding: 10px 15px;
-                        text-transform: uppercase;
-                        font-size: 14px;
-                        color: #777;
-                        font-family: Gravur;
-                        outline: none;
-
-                        &.active {
-                            background-color: #F05A00;
-                            color: white;
-                        }
                     }
                 }
             }
@@ -520,4 +522,58 @@ $header-height: 80px;
         }
     }
 }
+
+// WEBCAM CONTROLS
+div.webcam-controls {
+    text-align: center;
+    table {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        margin-bottom: 1.5em;
+
+        font-family: FontAwesome;
+
+        tr {
+            height: 45px;
+
+            &> td {
+                width: 33.3%;
+                font-size: 30px;
+                vertical-align: middle;
+
+                &.up:before {
+                    content: "\f077";
+                }
+                
+                &.left:before {
+                    content: "\f053";
+                }
+
+                &.right:before {
+                    content: "\f054";
+                }
+
+                &.down:before {
+                    content: "\f078";
+                }
+
+
+                &.center:before {
+                    content: "\f015";
+                }
+
+                &.zoomin:before {
+                    content: "\f00e";
+                }
+
+                &.zoomout:before {
+                    content: "\f010";
+                }
+            }
+        }
+    }
+}
+
+
 
