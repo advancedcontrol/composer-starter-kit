@@ -10,6 +10,7 @@
                 // ---------------------------------------------
                 // pin code
                 // ---------------------------------------------
+                $scope.validating = false;
                 $scope.validated = false;
                 $scope.incorrect = false;
                 $scope.pin = '';
@@ -38,6 +39,7 @@
                 $scope.validate = function() {
                     if ($scope.pin == '1234') {
                         $scope.validated = 'bookings';
+                        $scope.coModuleInstance.$exec('powerup');
                     } else {
                         $scope.incorrect = true;
                         $scope.validated = false;

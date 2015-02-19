@@ -1,27 +1,62 @@
-<div co-module="'System'" id="system" class="full-screen" exec>
+<div co-module="'System'" id="system" class="full-screen">
     <!-- quick fix -->
     <div co-bind="'title'"></div>
     <div co-bind="'state'"></div>
 
     <!-- show a splash page when offline -->
-    <div id="splash" ng-if="state != 'online'" ng-click="coModuleInstance.$exec('powerup')">
-        <div>
-            <!--img src="branding/images/oh_logo.png"-->
-            <h1>{{title}}</h1>
-            <h2>Touch to Start</h2>
+    <div ng-if="state != 'online'" ng-controller="MainCtrl">
+        <div id="splash" ng-if="!validating" ng-click="$parent.validating = true">
+            <div>
+                <!--img src="branding/images/oh_logo.png"-->
+                <h1>{{title}}</h1>
+                <h2>Touch to Start</h2>
+            </div>
+        </div>
+
+        <div ng-if="validating"  class="full-screen" id="content">
+            <!-- a pincode is required to log in; pins select an interface -->
+            <div id="pincode-panel">
+                <div>
+                    <div>
+                        <h1>Enter your pin</h1>
+                        <div id="pin-input">
+                            <input ng-model="$parent.pin" type="password" ng-class="{incorrect: incorrect}">
+                            <a class="pe-7s-close-circle" id="clear-pin" ng-click="clearPin()" ng-show="pin.length > 0"></a>
+                        </div>
+
+                        <menu id="numpad">
+                            <button ng-click="addToPin(1)">1</button>
+                            <button ng-click="addToPin(2)">2</button>
+                            <button ng-click="addToPin(3)">3</button>
+
+                            <button ng-click="addToPin(4)">4</button>
+                            <button ng-click="addToPin(5)">5</button>
+                            <button ng-click="addToPin(6)">6</button>
+
+                            <button ng-click="addToPin(7)">7</button>
+                            <button ng-click="addToPin(8)">8</button>
+                            <button ng-click="addToPin(9)">9</button>
+
+                            <button ng-click="addToPin(0)">0</button>
+                        </menu>
+
+                        <a ng-click="$parent.validating = false" id="cancel-pin">Cancel</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- once online -->
-    <div ng-if="state == 'online'" ng-controller="MainCtrl" class="full-screen" id="content">
-        <header ng-show="validated">
+    <div ng-if="state == 'online'" class="full-screen" id="content">
+        <header>
             <img src="branding/images/telstra_logo.jpg">
-            <menu>
+            <menu ng-controller="Modals">
                 <a href="#" class="pe-7s-disk" ng-click="showPopup('showDvd')"></a>
                 <a href="#" class="pe-7s-micro" ng-click="showPopup('showMics')"></a>
                 <a href="#" class="pe-7s-display1" ng-click="showPopup('showControls')"></a>
                 <a href="#" class="pe-7s-video" ng-click="showPopup('showCamera')"></a>
-                <a href="#" class="pe-7s-power" ng-click="coModuleInstance.$exec('shutdown')"></a>
+                <a href="#" class="pe-7s-power" ng-click="showModal('finish')"></a>
             </menu>
         </header>
 
@@ -30,10 +65,10 @@
                 <h1>Microphone</h1>
                 <div>
                     <label>Level:</label>
-                    <div class="slider" co-bind="'fader3' as volume" exec="fader(3, volume)">
+                    <div class="slider" co-bind="'fader3' as volume" exec="fader('3', volume)">
                         <div co-range model="volume" min="-1000" max="0"></div>
                     </div>
-                    <div co-bind="'fader3_mute' as muted" exec="mute_audio(3, muted)">
+                    <div co-bind="'fader3_mute' as muted" exec="mute_audio('3', muted)">
                         <button ng-class="{active: muted}" ng-click="muted = !muted"><i class="pe-7s-mute"></i></button>
                     </div>
                 </div>
@@ -41,16 +76,16 @@
         </menu>
 
         <menu id="dvd" ng-show="$root.showDvd">
-            <div co-module="'Bluray'">
-                <h1>Bluray Player
+            <div co-module="'Bluray'" co-bind="'power'">
+                <h1 co-module="'Switcher'" co-bind="'connected'">Bluray Player
                     <span>
-                        &nbsp;&nbsp;&nbsp;<button>Show</button>
+                        &nbsp;&nbsp;&nbsp;<button ng-touch="coModuleInstance.$exec('switch_video', '4')">Show</button>
                     </span>
                     <span>
-                        &nbsp;<button>Hear</button>
+                        &nbsp;<button ng-touch="coModuleInstance.$exec('switch_audio', '4')">Hear</button>
                     </span>
                 </h1>
-                <div>
+                <div co-bind="'playing'">
                     <label>Current State</label>
                     <table>
                         <tr>
@@ -59,57 +94,59 @@
                             <td>Playing</td>
                             <td>Paused</td>
                         </tr>
-                        <tr>
-                            <td co-bind="'power'">{{power ? 'On' : 'OFF'}}</td>
+                        <tr class="bold">
+                            <td>{{power ? 'On' : 'OFF'}}</td>
                             <td co-bind="'ejected'">{{ejected ? 'Open' : 'Closed'}}</td>
-                            <td co-bind="'playing'">{{playing ? 'Yes' : 'No'}}</td>
+                            <td>{{playing ? 'Yes' : 'No'}}</td>
                             <td co-bind="'paused'">{{paused ? 'Yes' : 'No'}}</td>
                         </tr>
                     </table>
+
+                    <br />
+                    <br />
+                    <label>Controls</label>
+                    <br /><br />
+                    <button ng-touch="coModuleInstance.$exec('power', !power)">{{power ? 'Power Off' : 'Power On'}}</button> 
+                    <button ng-touch="coModuleInstance.$exec('eject')" ng-if="power" co-bind="'ejected'">{{ejected ? 'Close Tray' : 'Eject Tray'}}</button> 
+                    <button co-bind="'paused'" ng-touch="coModuleInstance.$exec((playing && !paused) ? 'pause' : 'play')" ng-if="power">{{(playing && !paused) ? 'Pause' : 'Play'}}</button> 
+                    <button ng-touch="coModuleInstance.$exec('stop')" ng-if="playing">Stop</button> 
                 </div>
 
-                <div>
-                    <label>Controls</label>
+                <div class="dvd-controls" ng-if="power">
                     <table>
                         <tr>
                             <td></td>
                             <td class="up"
-                                ng-touch="coModuleInstance.$exec('tilt', 'up')"
-                                ng-release="coModuleInstance.$exec('tilt', 'stop')"
+                                ng-touch="coModuleInstance.$exec('cursor', 'up')"
                             ></td>
                             <td></td>
+                            <td>
+                                <button ng-touch="coModuleInstance.$exec('menu')">Menu</button>
+                            </td>
                         </tr>
                         <tr>
                             <td class="left"
-                                ng-touch="coModuleInstance.$exec('pan', 'left')"
-                                ng-release="coModuleInstance.$exec('pan', 'stop')"
+                                ng-touch="coModuleInstance.$exec('cursor', 'left')"
                             ></td>
                             <td class="center"
-                                ng-touch="coModuleInstance.$exec('home')"
+                                ng-touch="coModuleInstance.$exec('enter')"
                             ></td>
                             <td class="right"
-                                ng-touch="coModuleInstance.$exec('pan', 'right')"
-                                ng-release="coModuleInstance.$exec('pan', 'stop')"
+                                ng-touch="coModuleInstance.$exec('cursor', 'right')"
                             ></td>
+                            <td>
+                                
+                            </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td class="down"
-                                ng-touch="coModuleInstance.$exec('tilt', 'down')"
-                                ng-release="coModuleInstance.$exec('tilt', 'stop')"
+                                ng-touch="coModuleInstance.$exec('cursor', 'down')"
                             ></td>
                             <td></td>
-                        </tr>
-                        <tr>
-                            <td class="zoomout"
-                                ng-touch="coModuleInstance.$exec('zoom', 'out')"
-                                ng-release="coModuleInstance.$exec('zoom', 'stop')"
-                            ></td>
-                            <td></td>
-                            <td class="zoomin"
-                                ng-touch="coModuleInstance.$exec('zoom', 'in')"
-                                ng-release="coModuleInstance.$exec('zoom', 'stop')"
-                            ></td>
+                            <td>
+                                <button ng-touch="coModuleInstance.$exec('return')">return</button>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -118,9 +155,9 @@
 
         <menu id="camera" ng-show="$root.showCamera">
             <div co-module="'Camera'">
-                <h1>Camera Control
+                <h1 co-module="'Switcher'" co-bind="'connected'">Camera Control
                     <span>
-                        &nbsp;&nbsp;&nbsp;<button>Show Camera</button>
+                        &nbsp;&nbsp;&nbsp;<button ng-touch="coModuleInstance.$exec('switch_video', '6')">Show Camera</button>
                     </span>
                 </h1>
                 <div class="webcam-controls" co-bind="'connected'">
@@ -135,14 +172,14 @@
                         </tr>
                         <tr>
                             <td class="left"
-                                ng-touch="coModuleInstance.$exec('pan', 'left')"
+                                ng-touch="coModuleInstance.$exec('pan', 'right')"
                                 ng-release="coModuleInstance.$exec('pan', 'stop')"
                             ></td>
                             <td class="center"
                                 ng-touch="coModuleInstance.$exec('home')"
                             ></td>
                             <td class="right"
-                                ng-touch="coModuleInstance.$exec('pan', 'right')"
+                                ng-touch="coModuleInstance.$exec('pan', 'left')"
                                 ng-release="coModuleInstance.$exec('pan', 'stop')"
                             ></td>
                         </tr>
@@ -182,17 +219,17 @@
         </menu>
 
         <menu id="controls" ng-show="$root.showControls">
-            <div co-module="'Switcher'">
+            <div co-module="'Switcher'" co-bind="'connected'">
                 <h1>Video</h1>
                 <div co-bind="'video'" exec="switch_video(video)">
                     <label>Source:</label>
                     <br />
                     <br />
                     <div btn-group="video">
-                        <button btn="1" ng-click="video=1"><i class="pe-7s-monitor"></i> Computer</button>
-                        <button btn="2" ng-click="video=2"><i class="pe-7s-video"></i> Camera</button>
-                        <button btn="3" ng-click="video=3"><i class="pe-7s-disk"></i> DVD</button>
-                        <button btn="4" ng-click="video=4"><i class="pe-7s-user-female"></i> Signage</button>
+                        <button btn="5" ng-click="video=5"><i class="pe-7s-monitor"></i> Computer</button>
+                        <button btn="4" ng-click="video=4"><i class="pe-7s-disk"></i> DVD</button>
+                        <button btn="3" ng-click="video=3"><i class="pe-7s-user-female"></i> Signage</button>
+                        <button btn="6" ng-click="video=6"><i class="pe-7s-video"></i> Camera</button>
                     </div>
                 </div>
                 <div co-bind="'video_muted'" exec="mute_video(video_muted)">
@@ -209,56 +246,25 @@
                     <br />
                     <br />
                     <div btn-group="audio">
-                        <button btn="1" ng-click="audio=1"><i class="pe-7s-monitor"></i> Computer</button>
-                        <button btn="3" ng-click="audio=3"><i class="pe-7s-disk"></i> DVD</button>
-                        <button btn="4" ng-click="audio=4"><i class="pe-7s-user-female"></i> Signage</button>
+                        <button btn="5" ng-click="audio=5"><i class="pe-7s-monitor"></i> Computer</button>
+                        <button btn="4" ng-click="audio=4"><i class="pe-7s-disk"></i> DVD</button>
+                        <button btn="3" ng-click="audio=3"><i class="pe-7s-user-female"></i> Signage</button>
                     </div>
                 </div>
                 <div>
                     <label>Volume:</label>
-                    <div class="slider" co-bind="'fader1' as volume" exec="fader(1, volume)">
+                    <div class="slider" co-bind="'fader1' as volume" exec="fader('1', volume)">
                         <div co-range model="volume" min="-1000" max="0"></div>
                     </div>
-                    <div co-bind="'fader1_mute' as muted" exec="mute_audio(1, muted)">
-                        <button ng-class="{active: muted}" ng-click="muted = !muted"><i class="pe-7s-mute"></i></button>
+                    <div co-bind="'fader1_mute' as muted_pres">
+                        <button ng-class="{active: muted_pres}" ng-click="coModuleInstance.$exec('mute_audio', '1', !muted_pres)"><i class="pe-7s-mute"></i></button>
                     </div>
                 </div>
             </div>
         </menu>
 
-        <!-- a pincode is required to log in; pins select an interface -->
-        <div id="pincode-panel" ng-show="!validated">
-            <div>
-                <div>
-                    <h1>Enter your pin</h1>
-                    <div id="pin-input">
-                        <input ng-model="pin" type="password" ng-class="{incorrect: incorrect}">
-                        <a class="pe-7s-close-circle" id="clear-pin" ng-click="clearPin()" ng-show="pin.length > 0"></a>
-                    </div>
-
-                    <menu id="numpad">
-                        <button ng-click="addToPin(1)">1</button>
-                        <button ng-click="addToPin(2)">2</button>
-                        <button ng-click="addToPin(3)">3</button>
-
-                        <button ng-click="addToPin(4)">4</button>
-                        <button ng-click="addToPin(5)">5</button>
-                        <button ng-click="addToPin(6)">6</button>
-
-                        <button ng-click="addToPin(7)">7</button>
-                        <button ng-click="addToPin(8)">8</button>
-                        <button ng-click="addToPin(9)">9</button>
-
-                        <button ng-click="addToPin(0)">0</button>
-                    </menu>
-
-                    <a ng-click="coModuleInstance.$exec('shutdown')" id="cancel-pin">Cancel</a>
-                </div>
-            </div>
-        </div>
-
         <!-- show the selected interface once logged in -->
-        <main ng-if="validated" ng-include="'components/' + validated + '/main.html'" ng-class="validated">
+        <main ng-include="'components/bookings/main.html'" ng-class="validated">
         </main>
     </div>
 </div>

@@ -178,7 +178,21 @@ $header-height: 80px;
             top: $header-height + 15px;
             right: 125px;
 
-            height: 400px;
+            height: 500px;
+
+            table {
+                width: 100%;
+                font-size: 90%;
+                margin-top: 0.5em;
+
+                tr.bold {
+                    font-weight: bold;
+
+                    td {
+                        padding-top: 0.3em;
+                    }
+                }
+            }
         }
 
         width: 500px;
@@ -569,6 +583,52 @@ div.webcam-controls {
 
                 &.zoomout:before {
                     content: "\f010";
+                }
+            }
+        }
+    }
+}
+
+
+
+// DVD Transport Controls
+div.dvd-controls {
+    text-align: center;
+    table {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        margin-bottom: 1.5em;
+
+        font-family: FontAwesome;
+
+        tr {
+            height: 45px;
+
+            &> td {
+                width: 33.3%;
+                font-size: 30px;
+                vertical-align: middle;
+
+                &.up:before {
+                    content: "\f077";
+                }
+                
+                &.left:before {
+                    content: "\f053";
+                }
+
+                &.right:before {
+                    content: "\f054";
+                }
+
+                &.down:before {
+                    content: "\f078";
+                }
+
+
+                &.center:before {
+                    content: "\f192";
                 }
             }
         }

@@ -6,105 +6,8 @@
     var MONTH = TODAY.getMonth();
     var DAY = TODAY.getDate();
 
-    var MEETING = {
-        name: 'Meeting 1',
-        playlists: [
-            {
-                id: 1,
-                index: 1,
-                name: 'Intro Music',
-                audio: true,
-                video: false,
-                duration: 300,
-                auto_next: false,
-                entries: [
-                    {
-                        id: 1,
-                        name: 'Track 1',
-                        duration: 100,
-                        transition: 2,
-                        index: 1,
-                        media_type: 2
-                    },
-                    {
-                        id: 2,
-                        name: 'Track 2',
-                        duration: 50,
-                        transition: 2,
-                        index: 2,
-                        media_type: 2
-                    },
-                    {
-                        id: 3,
-                        name: 'Track 3',
-                        duration: 150,
-                        transition: 2,
-                        index: 3,
-                        media_type: 2
-                    }
-                ]
-            },
-            {
-                id: 2,
-                index: 2,
-                name: 'Photos',
-                audio: false,
-                video: true,
-                duration: 75,
-                auto_next: false,
-                repeat: true,
-                entries: [
-                    {
-                        id: 4,
-                        name: 'Photo 1',
-                        duration: 15,
-                        transition: 2,
-                        index: 1,
-                        media_type: 1,
-                        default_poster_url: '/branding/images/poster1.jpg'
-                    },
-                    {
-                        id: 5,
-                        name: 'Photo 2',
-                        duration: 15,
-                        transition: 2,
-                        index: 2,
-                        media_type: 1,
-                        default_poster_url: '/branding/images/poster2.jpg'
-                    },
-                    {
-                        id: 6,
-                        name: 'Photo 3',
-                        duration: 15,
-                        transition: 2,
-                        index: 3,
-                        media_type: 1,
-                        default_poster_url: '/branding/images/poster3.jpg'
-                    },
-                    {
-                        id: 7,
-                        name: 'Photo 4',
-                        duration: 15,
-                        transition: 2,
-                        index: 4,
-                        media_type: 1,
-                        default_poster_url: '/branding/images/poster4.jpg'
-                    },
-                    {
-                        id: 8,
-                        name: 'Photo 5',
-                        duration: 15,
-                        transition: 2,
-                        index: 5,
-                        media_type: 1,
-                        default_poster_url: '/branding/images/poster5.jpg'
-                    }
-                ]
-            }
-        ]
-    };
-
-    var playlist_url = '/api/playlists/ply_1-13/playlist_revisions/unpublished';
+    var playCount = 0,
+        playing;
 
     angular.module('AcaEngine')
     
@@ -112,8 +15,9 @@
             '$rootScope',
             '$scope',
             '$http',
+            '$timeout',
 
-        function ($rootScope, $scope, $http) {
+        function ($rootScope, $scope, $http, $timeout) {
             $scope.selected = null;
             $scope.playing = null;
             $rootScope.playlistData = $rootScope.playlistData || {};
@@ -138,12 +42,59 @@
                 });
             };
 
-            $scope.play = function(playlist) {
-                if ($scope.playing && (playlist.id == $scope.playing.id)) {
+            $scope.play = function(playlist, count) {
+                /*if ($scope.playing && (playlist.id == $scope.playing.id)) {
                     $scope.playing = null;
                 } else {
                     $scope.playing = playlist;
+                }*/
+
+                playCount = count || 0;
+
+                if (playCount === 0) {
+                    $scope.showModal('scheduling');
                 }
+
+                // start the schedule 1 day in the past to work around any
+                // time sync issues (phones with times out of sync)
+                var now = new Date();
+                now.setDate(now.getDate() - 1);
+                var startDate = now.toISOString();
+
+                // end the schedule 1 day in the future - this will be enough
+                // time to play the content.
+                now.setDate(now.getDate() + 2);
+                var endDate = now.toISOString();
+
+                $http.post('/api/schedules', {
+                    group_id: playlist.group_id, // TODO:: This should be grabbed from the header!
+                    playlist_id: playlist.id,
+                    once: true,
+                    priority: 1,
+                    start_date: startDate,
+                    end_date: endDate
+                }, {
+                    responseType: 'json',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).success(function(data, status, headers, config) {
+                    console.log('success', data, status, config);
+                    $scope.closeModal('scheduling');
+                    $scope.showModal('scheduled');
+
+                }).error(function(data, status, headers, config) {
+                    console.log('error', data, status, config);
+
+                    if (playCount >= 2) {
+                        $scope.showModal('schedfailed');
+
+                    } else {
+                        $timeout(function () {
+                            $scope.play(playing, playCount + 1);
+                        }, 1000);
+                    }
+                });
             };
             
         }]);
