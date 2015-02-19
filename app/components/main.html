@@ -4,7 +4,7 @@
     <div co-bind="'state'"></div>
 
     <!-- show a splash page when offline -->
-    <div ng-if="state != 'online'" ng-controller="MainCtrl">
+    <div ng-if="state != 'online'" ng-controller="MainCtrl" id="splash-container">
         <div id="splash" ng-if="!validating" ng-click="$parent.validating = true">
             <div>
                 <!--img src="branding/images/oh_logo.png"-->
