@@ -41,11 +41,11 @@
             </div>
         </div>
         <div class="sources" co-module="'Visualiser'" >
-            <div>
-                <button class="toggle" ng-touch="coModuleInstance.$exec('auto_focus')"><i class="fa fa-eye"></i>Auto Focus</button>
-                <button class="toggle" ng-class="{active: lamp}" co-bind="'lamp'" exec ng-touch="lamp = !lamp"><i class="fa fa-lightbulb-o"></i>Lamp</button>
-                <button class="toggle" ng-class="{active: sharp}" co-bind="'sharp'" exec ng-touch="sharp = !sharp"><i class="fa fa-file-text-o"></i>Sharp Text</button>
-                <button class="toggle" ng-click="coModuleInstance.$exec('reset')"><i class="fa fa-refresh"></i>Reset</button>
+            <div co-bind="'frozen'">
+                <button class="toggle" ng-class="{disabled: frozen}" ng-touch="coModuleInstance.$exec('auto_focus')"><i class="fa fa-eye"></i>Auto Focus</button>
+                <button class="toggle" ng-class="{active: lamp, disabled: frozen}" co-bind="'lamp'" exec ng-touch="lamp = frozen ? lamp : !lamp"><i class="fa fa-lightbulb-o"></i>Lamp</button>
+                <button class="toggle" ng-class="{active: sharp, disabled: frozen}" co-bind="'sharp'" exec ng-touch="sharp = frozen ? sharp : !sharp"><i class="fa fa-file-text-o"></i>Sharp Text</button>
+                <button class="toggle" ng-class="{disabled: frozen}" ng-click="coModuleInstance.$exec('reset')"><i class="fa fa-refresh"></i>Reset</button>
             </div>
         </div>
     </div>

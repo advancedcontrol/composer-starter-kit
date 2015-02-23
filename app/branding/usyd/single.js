@@ -123,17 +123,11 @@
             },
             "outputs": {
                 "Display_1": {
-                    "screen": {
-                        "module": "Screen_1",
-                        "index": 1
-                    },
                     "output": [
                         3,
                         23
                     ],
-                    "audio_out": 21,
-                    "mixer_id": 105,
-                    "type": "projector",
+                    "type": "lcd",
                     "pri": 1,
                     "title": "Pod Display"
                 }

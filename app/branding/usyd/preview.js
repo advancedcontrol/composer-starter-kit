@@ -5,7 +5,7 @@
     //  In production the interface will obtain this information from the server
     //  
     window.systemData = window.systemData || {};
-    window.systemData['sys-B0'] = {
+    window.systemData['sys-B1'] = {
         System: [{
             "$powerup": function () {
                 this.state = "online";
@@ -155,6 +155,19 @@
         Display: [{
             $mute: function (mute) {
                 this.mute = mute;
+            }
+        }],
+        Visualiser: [{
+            $frozen: function (freeze) {
+                this.frozen = freeze;
+            },
+            $lamp: function (freeze) {
+                if (!this.frozen)
+                    this.lamp = freeze;
+            },
+            $sharp: function (freeze) {
+                if (!this.frozen)
+                    this.sharp = freeze;
             }
         }]
     };
