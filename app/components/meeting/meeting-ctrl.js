@@ -67,7 +67,7 @@
                 var endDate = now.toISOString();
 
                 $http.post('/api/schedules', {
-                    group_id: playlist.group_id, // TODO:: This should be grabbed from the header!
+                    group_id: $rootScope.groupID, // This is the Group Header
                     playlist_id: playlist.id,
                     once: true,
                     priority: 1,

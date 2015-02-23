@@ -68,9 +68,11 @@
                     <div class="slider" co-bind="'fader3' as volume" exec="fader('3', volume)">
                         <div co-range model="volume" min="-1000" max="0"></div>
                     </div>
+                    <!--
                     <div co-bind="'fader3_mute' as muted" exec="mute_audio('3', muted)">
                         <button ng-class="{active: muted}" ng-click="muted = !muted"><i class="pe-7s-mute"></i></button>
                     </div>
+                    -->
                 </div>
             </div>
         </menu>
@@ -172,14 +174,14 @@
                         </tr>
                         <tr>
                             <td class="left"
-                                ng-touch="coModuleInstance.$exec('pan', 'right')"
+                                ng-touch="coModuleInstance.$exec('pan', 'left')"
                                 ng-release="coModuleInstance.$exec('pan', 'stop')"
                             ></td>
                             <td class="center"
                                 ng-touch="coModuleInstance.$exec('home')"
                             ></td>
                             <td class="right"
-                                ng-touch="coModuleInstance.$exec('pan', 'left')"
+                                ng-touch="coModuleInstance.$exec('pan', 'right')"
                                 ng-release="coModuleInstance.$exec('pan', 'stop')"
                             ></td>
                         </tr>
@@ -214,7 +216,17 @@
                 <button class="btn" ng-click="coModuleInstance.$exec('preset', 4)">Preset 4</button>
                 <button class="btn" ng-click="coModuleInstance.$exec('preset', 5)">Preset 5</button>
 
+                <!--
                 <br />
+                <select ng-model="savePreset">
+                    <option value="1">Preset 1</option>
+                    <option value="2">Preset 2</option>
+                    <option value="3">Preset 3</option>
+                    <option value="4">Preset 4</option>
+                    <option value="5">Preset 5</option>
+                </select>
+                <button class="btn" ng-click="coModuleInstance.$exec('preset', savePreset, 'store')">Save Preset</button>
+                -->
             </div>
         </menu>
 
@@ -256,9 +268,11 @@
                     <div class="slider" co-bind="'fader1' as volume" exec="fader('1', volume)">
                         <div co-range model="volume" min="-1000" max="0"></div>
                     </div>
+                    <!--
                     <div co-bind="'fader1_mute' as muted_pres">
                         <button ng-class="{active: muted_pres}" ng-click="coModuleInstance.$exec('mute_audio', '1', !muted_pres)"><i class="pe-7s-mute"></i></button>
                     </div>
+                    -->
                 </div>
             </div>
         </menu>

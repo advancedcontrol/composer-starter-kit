@@ -56,8 +56,6 @@
         function(comms) {
             // Point these variables to your ACA Engine instance
             // to start interacting with it using ACA Composer
-            comms.port  = 3000;
-            comms.host  = 'localhost';
             comms.tls   = false;
 
             // This outputs debugging information to console useful
@@ -73,12 +71,27 @@
             // It's a lazy authentication process so only if a request
             // is made to a protected endpoint or a 401 is received will
             // the auth process activate.
+            /*
+            comms.port  = 3000;
+            comms.host  = 'localhost';
             comms.useService({
                 id: 'AcaEngine',
                 scope: 'public',
                 oauth_server: 'http://localhost:9000/auth/oauth/authorize',
                 oauth_tokens: 'http://localhost:9000/auth/token',
                 redirect_uri: 'http://localhost:9000/oauth-resp.html',
+                client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
+                api_endpoint: '/api',
+                proactive: true
+            });
+            */
+
+            comms.useService({
+                id: 'AcaEngine',
+                scope: 'public',
+                oauth_server: 'http://192.168.0.250:3000/auth/oauth/authorize',
+                oauth_tokens: 'http://192.168.0.250:3000/auth/token',
+                redirect_uri: 'http://192.168.0.250:3000/oauth-resp.html',
                 client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
                 api_endpoint: '/api',
                 proactive: true
