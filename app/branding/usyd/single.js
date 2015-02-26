@@ -14,6 +14,7 @@
                 this.state = "shutdown";
             },
             $tab: function (tab) {
+                console.log('changing tab to ' + tab);
                 this.tab = tab;
             },
 
@@ -92,7 +93,8 @@
             ],
             "inputs": [
                 "PC",
-                "Laptop"
+                "Laptop",
+                "Presenter"
             ],
             "PC": [
                 "g1_pc1"
@@ -100,6 +102,9 @@
             "Laptop": [
                 "laptop_g1",
                 "laptop_g2"
+            ],
+            "Presenter": [
+                "sharing_input"
             ],
             "sources": {
                 "g1_pc1": {
@@ -119,6 +124,12 @@
                     "input": 2,
                     "source": "hdmi",
                     "type": "aux_hdmi"
+                },
+                "sharing_input": {
+                    "title": "Presenters PC",
+                    "input": 2,
+                    "source": "hdmi",
+                    "type": "presenter"
                 }
             },
             "outputs": {
@@ -134,6 +145,7 @@
             },
             "vol_max": 3,
             "vol_min": -50,
+            "Presenter_hide": true,
             $lights_to: function (level) {
                 this.light_level = level;
             }

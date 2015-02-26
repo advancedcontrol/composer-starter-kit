@@ -1,0 +1,13 @@
+
+<div co-bind="'Presenter' as source_names" id="presenter-inputs">
+    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+        <div class="instructions">
+            <div ng-if="numOutputs > 1 || has_preview">
+                <span>Select a display to show the presentation on</span>
+            </div>
+            <div ng-if="numOutputs === 1 && !has_preview">
+                <span>The presentation is now displaying</span>
+            </div>
+        </div>
+    </div>
+</div>

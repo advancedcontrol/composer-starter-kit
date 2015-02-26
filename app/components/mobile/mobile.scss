@@ -473,6 +473,10 @@ article.mobile {
             &.vc-active::before {
                 content: "\f0c0";
             }
+
+            &.presenter::before {
+                content: "\f1e7";
+            }
         }
     }
 

@@ -536,6 +536,10 @@ article.main {
             content: "\f0c0";
         }
 
+        &.Presenter::before, &.presenter::before {
+            content: "\f1e7";
+        }
+
         // Give the DIV a height
         &.Visualiser::before, &.visualiser::before {
             content: "\00A0";
