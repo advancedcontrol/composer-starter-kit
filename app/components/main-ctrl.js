@@ -7,52 +7,18 @@
             '$scope',
 
             function ($scope) {
-                // ---------------------------------------------
-                // pin code
-                // ---------------------------------------------
-                $scope.validating = false;
-                $scope.validated = false;
-                $scope.incorrect = false;
-                $scope.pin = '';
-
-                $scope.addToPin = function(char) {
-                    // all pin codes are 4 characters. if there are 3 characters
-                    // and a fourth is being entered, validate the pin. if 4
-                    // characters are present, overwrite the pin from the beginning
-                    // (i.e the pin was entered and invalid, new characters are
-                    // intended to be the start of a new entry)
-                    if ($scope.pin.length <= 3) {
-                        $scope.pin += char.toString();
-                    } else {
-                        $scope.pin = char.toString();
-                        $scope.validated = false;
-                        $scope.incorrect = false;
-                    }
-                }
-
-                $scope.clearPin = function() {
-                    $scope.pin = '';
-                    $scope.incorrect = false;
-                    $scope.validated = false;
-                }
-
-                $scope.validate = function() {
-                    if ($scope.pin == '1234') {
-                        $scope.validated = 'bookings';
-                        $scope.coModuleInstance.$exec('powerup');
-                    } else {
-                        $scope.incorrect = true;
-                        $scope.validated = false;
-                    }
-
-                    if ($scope.validated)
-                        $scope.incorrect = false;
-                }
-
-                $scope.$watch('pin', function(val) {
-                    if (val.length == 4)
-                        $scope.validate();
-                });
+                // TODO: load list of systems properly
+                $scope.systems = [
+                    'sys-B0',
+                    'sys-B1',
+                    'sys-B2',
+                    'sys-B3',
+                    'sys-B4',
+                    'sys-B5',
+                    'sys-B6',
+                    'sys-B7',
+                    'sys-B8'
+                ];
             }
         ]);
 
