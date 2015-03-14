@@ -45,45 +45,6 @@
             });
         }])
 
-        .run([
-            '$window',
-            '$location',
-            '$rootScope',
-            'cacheman',
-            '$timeout',
-            '$comms',
-
-        function ($window, $location, $rootScope, cacheman, $timeout, $comms) {
-
-            // Grab the system id from the URL
-            $rootScope.$watch(function () {
-                return $location.search().ctrl;
-            }, function (value) {
-                if (value) {
-                    $rootScope.controlSystem = value;
-                } else {
-                    console.log('No System ID Provided');
-                    $rootScope.controlSystem = null;
-                }
-            });
-
-            // Refresh the UI if an update is detected
-            // This promise is resolved after a new version
-            // of the UI has been downloaded and cached
-            cacheman.readyCallback.then(function () {
-                $window.location.reload();
-            });
-
-            // If auth is in use and we want to trust the device
-            // i.e. we don't want to have to log in every time
-            // The trust URL would look like: 'http://localhost/#/?trust#sys-id'
-            if ($location.search().trust && !$comms.isRemembered('AcaEngine')) {
-                // We need time to let the directive load.
-                // This will not be required in the future
-                $timeout(function () {
-                    $comms.rememberMe('AcaEngine');
-                }, 0);
-            }
-        }]);
+        
 
 }(this, this.angular));
