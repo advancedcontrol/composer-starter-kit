@@ -58,7 +58,7 @@
                 client_id: '3de2f53e51dce42e1acc023706a95ea4108a397b62eb4b494bc8a866ee8517a9',
                 login_redirect: function () {
                     var url = encodeURIComponent(document.location.href);
-                    return '/auth/login_ldap?continue=' + url;
+                    return '/login_ldap?continue=' + url;
                 },
                 api_endpoint: '/api',
                 proactive: true
