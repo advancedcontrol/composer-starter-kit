@@ -5,14 +5,14 @@
 
 <main ng-controller="MainCtrl">
     <article ng-repeat="system in systems" co-system="system">
-        <div co-module="'Recorder'" co-bind="'recording'">
+        <div co-module="'Recorder'" co-bind="'recording'" ng-init="cam=nextCam()">
             <a
                 co-bind="'cameras'"
-                ng-href="http://149.171.94.124:8080/camera/{{cameras[0]}}/full" 
+                ng-href="http://cam{{cam}}.cams.vl8.ad.life.unsw.edu.au:8080/camera/{{cameras[0]}}/full" 
                 target="_new"
             >
                 <div class="recording" ng-show="recording"></div>
-                <img ng-src="http://149.171.94.124:8080/camera/{{cameras[0]}}/thumbnail">
+                <img ng-src="http://cam{{cam}}.cams.vl8.ad.life.unsw.edu.au:8080/camera/{{cameras[0]}}/thumbnail">
                 <h1 co-bind="'name'">{{name}}</h1>
             </a>
 
