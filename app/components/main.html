@@ -7,7 +7,6 @@
     <article ng-repeat="system in systems" co-system="system">
         <div co-module="'Recorder'" co-bind="'recording'">
             <a
-                co-module="'System'"
                 co-bind="'cameras'"
                 ng-href="http://149.171.94.124:8080/camera/{{cameras[0]}}/full" 
                 target="_new"

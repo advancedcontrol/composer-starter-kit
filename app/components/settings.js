@@ -67,19 +67,19 @@
 
         .run([
             '$window',
-            '$location',
-            '$rootScope',
             'cacheman',
-            '$timeout',
-            '$comms',
+            'User',
+            '$rootScope',
+            '$conductor',
 
-        function ($window, $location, $rootScope, cacheman, $timeout, $comms) {
-
-            // Grab the system id from the URL
-            $rootScope.$watch(function () {
-                return $location.search();
-            }, function (value) {
-                $rootScope.controlSystem = value.sys;
+        function ($window, cacheman, User, $rootScope) {
+            User.get_current().then(function (user) {
+                // Check the user has the appropriate permissions
+                if (user.sys_admin || user.support) {
+                    $rootScope.authorised = true;
+                } else {
+                    document.location = document.location.pathname + '403.html';
+                }
             });
 
             // Refresh the UI if an update is detected
