@@ -4,15 +4,15 @@
 </header>
 
 <main ng-controller="MainCtrl">
-    <article ng-repeat="system in systems" co-system="system">
-        <div co-module="'Recorder'" co-bind="'recording'" ng-init="cam=nextCam()">
+    <article ng-repeat="system in currentSystems" co-system="system">
+        <div co-module="'Recorder'" co-bind="'recording'">
             <a
                 co-bind="'cameras'"
-                ng-href="http://cam{{cam}}.cams.vl8.ad.life.unsw.edu.au:8080/camera/{{cameras[0]}}/full" 
+                ng-href="http://cam.cams.vl8.ad.life.unsw.edu.au:8080/camera/{{cameras[0]}}/full" 
                 target="_new"
             >
                 <div class="recording" ng-show="recording"></div>
-                <img ng-src="http://cam{{cam}}.cams.vl8.ad.life.unsw.edu.au:8080/camera/{{cameras[0]}}/thumbnail">
+                <img ng-src="http://cam.cams.vl8.ad.life.unsw.edu.au:8080/camera/{{cameras[0]}}/thumbnail">
                 <h1 co-bind="'name'">{{name}}</h1>
             </a>
 
@@ -22,4 +22,8 @@
             </button>
         </div>
     </article>
+
+    <nav>
+        <a ng-repeat="pageNum in pageNums" ng-click="gotoPage(pageNum)" href="#" ng-class="{selected: page == pageNum}">{{pageNum}}</a>
+    </nav>
 </main>
