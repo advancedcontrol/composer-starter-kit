@@ -15,6 +15,13 @@
                 // https://code.google.com/p/chromium/issues/detail?id=362004
                 $scope.currentSystems = [];
 
+                // There is also a connection limit per page
+                var cam = 1;
+                $scope.nextCam = function () {
+                    cam = cam + 1;
+                    return cam;
+                };
+
                 // ng-repeat only works over collections
                 $scope.pageNums = [];
                 var numPages = Math.ceil($scope.systems.length / PER_PAGE);
