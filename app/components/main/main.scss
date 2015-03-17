@@ -21,6 +21,13 @@
 @import "variables";
 
 
+// Hide the 1px coauth div
+div#coauth {
+    position: absolute;
+    top: -3px;
+}
+
+
 // IOS 8 header support
 body.ios-app-mode {
     article {
