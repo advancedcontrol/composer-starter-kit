@@ -5,8 +5,9 @@
     angular.module('AcaEngine')
         .controller('MainCtrl', [
             '$scope',
+            '$location',
 
-            function ($scope) {
+            function ($scope, $location) {
                 // The list of systems (listed in settings)
                 $scope.systems = window.systemsList;
 
@@ -20,15 +21,21 @@
                 for (var i = 1; i <= numPages; i++)
                     $scope.pageNums.push(i);
 
-                $scope.gotoPage = function(pageNum) {
-                    if ($scope.page == pageNum)
-                        return;
-                    $scope.page = pageNum;
-                    var start = (pageNum - 1) * PER_PAGE;
-                    $scope.currentSystems = $scope.systems.slice(start, start + PER_PAGE);
-                }
+                var pageNum = $location.search().page;
+                if (pageNum)
+                    $scope.page = parseInt(pageNum, 10);
+                else
+                    $scope.page = 1;
 
-                $scope.gotoPage(1);
+                var start = ($scope.page - 1) * PER_PAGE;
+                $scope.currentSystems = $scope.systems.slice(start, start + PER_PAGE);
+
+                $scope.gotoPage = function(num) {
+                    if ($scope.page == num)
+                        return;
+                    $location.path($location.path()).search({page: num}).replace();
+                    window.location.reload();
+                }
             }
         ]);
 
