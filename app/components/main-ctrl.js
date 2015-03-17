@@ -3,10 +3,21 @@
 
     angular.module('AcaEngine')
 
+
+        .controller('StateCtrl', ['$scope', function ($scope) {
+            $scope.state = 'shutdown';
+            $scope.setState = function (val) {
+                $scope.state = val;
+            };
+        }])
+
         .controller('MainCtrl', [
             '$scope',
+            '$timeout',
 
-            function ($scope) {
+            function ($scope, $timeout) {
+                var startTimeout = null;
+
                 // ---------------------------------------------
                 // pin code
                 // ---------------------------------------------
@@ -37,12 +48,12 @@
 
                 $scope.validate = function() {
                     // tours user
-                    if ($scope.pin == '1234') {
+                    if ($scope.pin === $scope.tours_pin) {
                         $scope.validated = 'tours';
-                        $scope.coModuleInstance.$exec('projector_on');
+                        $scope.coModuleInstance.$exec('powerup');
 
                     // tech / admin user
-                    } else if ($scope.pin == '1988') {
+                    } else if ($scope.pin === $scope.tech_pin) {
                         $scope.validated = 'tech';
 
                     } else {
@@ -50,13 +61,32 @@
                         $scope.validated = false;
                     }
 
-                    if ($scope.validated)
+                    if ($scope.validated) {
+                        $timeout.cancel(startTimeout);
+                        startTimeout = null;
                         $scope.incorrect = false;
+                    }
                 }
 
                 $scope.$watch('pin', function(val) {
-                    if (val.length == 4)
+                    if (!val || !$scope.tours_pin || !$scope.tech_pin) {
+                        return;
+                    }
+
+                    if (val.length === $scope.tours_pin.length || val.length === $scope.tech_pin.length)
                         $scope.validate();
+                });
+
+                $scope.$watch('state', function (val) {
+                    if (val === 'online') {
+                        startTimeout = $timeout(function () {
+                            state = 'shutdown';
+                            startTimeout = null;
+                        }, 60000);
+                    } else if (startTimeout) {
+                        $timeout.cancel(startTimeout);
+                        startTimeout = null;
+                    }
                 });
             }
         ]);
