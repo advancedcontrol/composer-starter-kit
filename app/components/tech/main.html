@@ -1,1 +1,35 @@
-<div co-bind="'sources'"></div>
+<div co-bind="'tech_url'"></div>
+
+<header ng-controller="Modals">
+    <img src="branding/images/oh_logo.png">
+    <button ng-touch="coModuleInstance.$exec('toggle_mute')" id="picture-mute"><i class="fa fa-desktop"></i><i ng-show="muted" class="fa fa-ban"></i><i ng-show="!muted" class="fa fa-circle-o"></i></button>
+    <button ng-touch="showModal('finish')" id="power-off"><i class="fa fa-power-off"></i></button>
+    <modal name="finish" title="Close Tech Page?">
+        <p>
+            <b>Pressing finish will return to the login screen</b>
+        </p>
+        <menu>
+            <button class="cancel" ng-touch="closeModal('finish')">Cancel</button>
+            <button class="ok" ng-touch="coModuleInstance.$exec('shutdown'); setState('shutdown')">Finish</button>
+        </menu>
+        <div style="clear: both"></div>
+    </modal>
+</header>
+
+<div ng-if="tech_url">
+    <iframe ng-src="{{tech_url}}" style="width: 100%; height: 100%;" frameborder="0"></iframe>
+</div>
+
+<div ng-if="!tech_url" ng-controller="TechCtrl">
+    <div co-module="'Display'">
+        <!-- power, input, mute -->
+        <div co-bind="'power'" exec>
+            Power: <div ios-toggle model="power"></div>
+        </div>
+        <div co-bind="'input'" exec="switch_to(input)">
+            Input: <select ng-model="input" ng-options="inpt for inpt in inputs">
+                <option value="">-- choose input --</option>
+            </select>
+        </div>
+    </div>
+</div>
