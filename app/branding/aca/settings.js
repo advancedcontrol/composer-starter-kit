@@ -16,6 +16,8 @@
             //
             // Should be commented out for production
             comms.debug = true;
+            comms.port = 3000;
+            comms.tls = false;
 
             // If you would like to use Authentication then you
             // must point this configuration to your compatible oauth server
@@ -24,16 +26,17 @@
             // is made to a protected endpoint or a 401 is received will
             // the auth process activate.
             comms.useService({
-                id: 'AcaEngine',
+                id: 'Cotag',
                 scope: 'public',
-                oauth_server: 'https://cntrl-web-uat-1.ucc.usyd.edu.au/auth/oauth/authorize',
-                oauth_tokens: 'https://cntrl-web-uat-1.ucc.usyd.edu.au/auth/token',
-                redirect_uri: 'https://cntrl-web-uat-1.ucc.usyd.edu.au/oauth-resp.html',
-                client_id: 'aa549e0f7e1c5be36045b81b9edb6d6b8a29e7730814bcf5f1b0314f2e52806a',
+                oauth_server: 'http://localhost:9000/auth/oauth/authorize',
+                oauth_tokens: 'http://localhost:9000/auth/token',
+                redirect_uri: 'http://localhost:9000/oauth-resp.html',
+                client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
                 api_endpoint: '/api',
+                proactive: true,
                 login_redirect: function () {
                     var url = encodeURIComponent(document.location.href);
-                    return '/auth/login?continue=' + url + '&provider=usyd';
+                    return '/auth/login?continue=' + url + '&provider=developer';
                 }
             });
         }]);
