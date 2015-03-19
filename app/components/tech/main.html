@@ -23,9 +23,11 @@
 <div ng-if="!tech_url" ng-controller="TechCtrl">
     <div co-module="'Display'">
         <!-- power, input, mute -->
+        <br />
         <div co-bind="'power'" exec>
             Power: <div ios-toggle model="power"></div>
         </div>
+        <br />
         <div co-bind="'input'" exec="switch_to(input)">
             Input: <select ng-model="input" ng-options="inpt for inpt in inputs">
                 <option value="">-- choose input --</option>

@@ -1,3 +1,86 @@
 div {
     color: #333;
 }
+
+
+@import "compass";
+
+$header-height: 80px;
+
+
+main.tech {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    header {
+        background-color: #fff;
+        padding: 10px 20px;
+        position: relative;
+        height: $header-height;
+
+        img {
+            width: 100px;
+            position: relative;
+            top: 7px;
+        }
+
+        button {
+            outline: none;
+            background-color: transparent;
+            border: none;
+            position: absolute;
+            top: 20px;
+            width: 32px;
+
+            i {
+                font-size: 30px;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+            }
+        }
+
+        #power-off {
+            right: 20px;
+        }
+
+        #picture-mute {
+            right: 80px;
+
+            .fa-desktop {
+                font-size: 20px;
+                top: 6px;
+                left: 6px;
+            }
+
+            .fa-ban, .fa-circle-o {
+                color: rgba(0,0,0, 0.4);
+                font-size: 46px;
+                top: -8px;
+                left: -3px;
+            }
+        }
+    }
+
+    > div {
+        position: absolute;
+        top: $header-height;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+
+        > div > div {
+            margin-left: 3em;
+        }
+
+        iframe {
+            margin: 0;
+            padding: 0;
+            border: 0;
+
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
