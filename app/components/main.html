@@ -50,13 +50,13 @@
     <!-- once online -->
     <div ng-if="state == 'online'" class="full-screen" id="content">
         <header>
-            <img src="branding/images/telstra_logo.jpg">
+            <img src="branding/images/logo.png">
             <menu ng-controller="Modals">
-                <a href="#" class="pe-7s-disk" ng-click="showPopup('showDvd')"></a>
-                <a href="#" class="pe-7s-micro" ng-click="showPopup('showMics')"></a>
-                <a href="#" class="pe-7s-display1" ng-click="showPopup('showControls')"></a>
-                <a href="#" class="pe-7s-video" ng-click="showPopup('showCamera')"></a>
-                <a href="#" class="pe-7s-power" ng-click="showModal('finish')"></a>
+                <a href="#" ng-click="showPopup('showDvd')"><i class="pe-7s-disk"></i>DVD</a>
+                <a href="#" ng-click="showPopup('showMics')"><i class="pe-7s-micro"></i>Mic</a>
+                <a href="#" ng-click="showPopup('showControls')"><i class="pe-7s-display1"></i>Display</a>
+                <a href="#" ng-click="showPopup('showCamera')"><i class="pe-7s-video"></i>Camera</a>
+                <a href="#" id="finish" ng-click="showModal('finish')"><i class="pe-7s-power"></i></a>
             </menu>
         </header>
 
