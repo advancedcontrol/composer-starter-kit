@@ -1,16 +1,13 @@
 (function (angular) {
     'use strict';
 
-    var source = {};
-
     angular.module('AcaEngine')
     
         .controller('TechCtrl', [
-            '$rootScope',
             '$scope',
-            '$http',
 
-        function ($rootScope, $scope, $http) {
+        function ($scope) {
+            $scope.inputs = ['hdmi', 'vga'];
         }]);
 
 }(this.angular));
