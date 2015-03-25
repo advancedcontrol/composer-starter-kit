@@ -40,10 +40,10 @@
                     var url = encodeURIComponent(document.location.href);
                     return '/auth/login?continue=' + url + '&provider=developer'
                 },
-                api_endpoint: '/control',
+                api_endpoint: '/control/',
                 proactive: true
             });
-        }])
+        }]);
 
         
 

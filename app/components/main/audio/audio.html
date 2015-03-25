@@ -1,8 +1,8 @@
-<div class="panels audio-pane" co-bind="'levels'">
-    <div ng-if="levels" class="panel large">
-        <div class="panels vert sliders">
+<div class="panels audio-pane" co-bind="'mixer_type'">
+    <div class="panel large" co-bind="'levels'">
+        <div ng-if="levels" class="panels vert sliders">
 
-            <div class="panel" ng-repeat="level in levels">
+            <div ng-if="mixer_type !== 'basic'" class="panel" ng-repeat="level in levels">
                 <div 
                     class="center-vert"
                     co-module="level.mixer"
@@ -14,6 +14,31 @@
                         class="slider"
                         co-bind="'fader' + level.id + '_' + level.index + '_mute' as muted"
                         exec="mute(level.id, muted, level.index)"
+                    >
+                        <span image-toggle model="muted"></span> {{level.name}}
+                        <div>
+                            <button class="btn" ng-click="volume = volume - 5">-5%</button>
+                            <div>
+                                <div co-range model="volume" min="level.min" max="level.max"></div>
+                            </div>
+                            <button class="btn" ng-click="volume = volume + 5">+5%</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="mixer_type === 'basic'" class="panel" ng-repeat="level in levels">
+                <div 
+                    class="center-vert"
+                    co-module="level.mixer"
+                    co-implicit-index
+                    co-bind="'fader' + level.id as volume"
+                    exec="fader(level.id, volume)"
+                >
+                    <div
+                        class="slider"
+                        co-bind="'fader' + (level.mute_id || level.id) + '_mute' as muted"
+                        exec="mute(level.mute_id || level.id, muted)"
                     >
                         <span image-toggle model="muted"></span> {{level.name}}
                         <div>

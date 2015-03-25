@@ -43,7 +43,7 @@
                 api_endpoint: 'http://crownperth.webcontrol.me/control/',
                 proactive: true
             });
-        }])
+        }]);
 
         
 
