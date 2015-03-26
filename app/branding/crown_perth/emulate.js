@@ -218,7 +218,6 @@
             ]
         }],
         Switcher: [{}],
-        Lights: [{}],
         Mixer: [{}],
         Lifter: [{
             "lifter1_rotation": 'inactive',
@@ -249,6 +248,8 @@
                 "sys_3-19": "Astral 2"
             }
         }],
+        Lighting: [{
+        }],
         AstralLights: [{
             "selected": [
                 [true, true, true, true, true, true],
@@ -261,12 +262,6 @@
                 [125, 125, 125],
                 [125, 125, 125]
             ],
-            "chandelier": [
-                [true, true, true, true, true],
-                [true, true, true, true, true],
-                [true, true, true, true, true]
-            ],
-            "chandelier_level": [125, 125, 125],
 
             $select: function (rooms, selections) {
                 var sys = this;
@@ -305,6 +300,14 @@
                 });
             },
 
+
+            "chandelier": [
+                [true, true, true, true, true],
+                [true, true, true, true, true],
+                [true, true, true, true, true]
+            ],
+            "chandelier_level": [125, 125, 125],
+
             $chandelier_select: function (rooms, selections) {
                 var sys = this;
 
@@ -319,6 +322,35 @@
                 angular.forEach(rooms, function (room) {
                     sys.chandelier_level[room] = level;
                 });
+            },
+
+
+
+            "custom_presets": {
+                "My custom preset": {
+                    "applied_to": ['sys_3-18'],
+                    "number": 10
+                },
+                "This does somthing": {
+                    "applied_to": ['sys_3-18'],
+                    "number": 11
+                }
+            },
+            "custom_numbers": [10, 11, 12, 13],
+            "chandelier_presets": {
+                "Red": 1,
+                "Rainbow Slow Fade": 2,
+                "Blue": 3,
+                "Magenta": 4
+            },
+            $save_preset: function (rooms, number, name) {
+                console.log("SAVING PRESET: ", number, name, " on ", rooms);
+            },
+            $call_preset: function (rooms, preset) {
+                console.log("CALLING PRESET: ", preset, " on ", rooms);
+            },
+            $set_transition: function (rooms, preset) {
+                console.log("SETTING TRANSITION: ", preset, " on ", rooms);
             }
         }]
     };

@@ -92,6 +92,7 @@
                     }
 
                     if (joinedTo) {
+                        $scope.joinedTo = joinedTo;
                         $scope.show_astral_1 = false;
                         $scope.show_astral_2 = false;
                         $scope.show_astral_3 = false;
@@ -154,7 +155,7 @@
                     angular.forEach(joinedTo, function (index) {
                         settings.selected_level[index] = level;
                     });
-                    
+
                     $scope.sendCurrentLevel();
                 }
             });
@@ -241,9 +242,60 @@
             });
 
 
-            // Preset Saving / callback
-            // TODO:: This is probably why we have to join rooms at the light controller level
+
             // ---------------------------------------------
+            // Preset Pop-ups!
+            // ---------------------------------------------
+            // custom_presets: {number: name}
+            // custom_numbers: [4,5,6,7,8,9,10]
+            // Save a preset: select a number, give it a name
+
+            $scope.callPreset = function (number) {
+                $scope.coModuleInstance.$exec('call_preset', joinedTo, number);
+            };
+
+            $scope.setTransition = function (number) {
+                $scope.coModuleInstance.$exec('set_transition', joinedTo, number);
+            };
+
+            $scope.clearPreset = function (number) {
+                $scope.coModuleInstance.$exec('clear_preset', joinedTo, number);
+            };
+
+            $scope.savePreset = function (number, name) {
+                $scope.coModuleInstance.$exec('save_preset', joinedTo, number, name);
+            };
+
+
+
+            var calculate_unused = function () {
+                // TODO:: build list of unused_presets
+                settings.unused_presets = [12, 13];
+            };
+
+            $scope.$watch('astrals.all_presets', function (presets) {
+                if (presets) {
+                    // TODO:: build list of valid_presets
+                    // TODO:: build list of all_presets (all custom presets)
+                    // TODO:: build list of existing_presets
+
+                    settings.valid_presets = {
+                        "My custom preset": 10,
+                        "This does somthing": 11
+                    };
+                    settings.existing_presets = [10, 11];
+
+                    if (settings.custom_range) {
+                        calculate_unused();
+                    }
+                }
+            });
+
+            $scope.$watch('astrals.custom_range', function (presets) {
+                if (presets && settings.all_presets) {
+                    calculate_unused();
+                }
+            });
         }]);
 
 }(this.angular));

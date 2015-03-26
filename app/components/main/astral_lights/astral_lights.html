@@ -71,18 +71,83 @@
         </menu>
         <div style="clear: both"></div>
     </modal>
+
+    <modal class="light-presets" name="lightPresets" title="Recall a Preset">
+        <p>Select the preset you would like to recall. Note: Only the presets that apply to the current room configuration are shown</p>
+
+        <div class="preset-buttons">
+            <h3>House and Chandeliers</h3>
+            <button ng-click="callPreset(1)">High</button>
+            <button ng-click="callPreset(2)">Medium</button>
+            <button ng-click="callPreset(3)">Low</button>
+            <button ng-click="callPreset(5)">Very Low</button>
+            <button ng-click="callPreset(4)">Off</button>
+
+            <h3>House Only</h3>
+            <button ng-click="callPreset(6)">High</button>
+            <button ng-click="callPreset(7)">Medium</button>
+            <button ng-click="callPreset(8)">Low</button>
+            <button ng-click="callPreset(9)">Very Low</button>
+
+            <h3>Custom Presets</h3>
+            <select ng-options="key for (key, value) in astrals.valid_presets" ng-model="custom_preset"></select>
+            <button ng-if="custom_preset" ng-click="callPreset(custom_preset)">Recall</button>
+
+            <h3>Chandelier Settings</h3>
+            <select ng-options="key for (key, value) in astrals.chand_transitions" ng-model="custom_transition"></select>
+            <button ng-if="custom_transition" ng-click="setTransition(custom_transition)">Set</button>
+            <button ng-click="setTransition(26)">Off</button>
+        </div>
+        <div style="clear: both"></div>
+    </modal>
+
+
+    <modal class="preset-save" name="lightSave" title="Save a Preset">
+        <p>Warning! Make sure the preset you overwrite is no longer required.</p>
+
+        <div class="preset-buttons">
+            <div ng-if="astrals.existing_presets.length > 0">
+                <h3>Clear a preset</h3>
+                <select ng-options="key for (key, value) in astrals.all_presets" ng-model="clear_preset"></select>
+                <button ng-if="clear_preset" ng-click="clearPreset(clear_preset)">Clear</button>
+
+                <h3>Overwrite Existing</h3>
+                <select ng-options="key for (key, value) in astrals.all_presets" ng-model="over_preset"></select>
+            </div>
+
+            <br />
+            <b>OR</b>
+
+            <div ng-if="astrals.unused_presets.length > 0">
+                <h3>Select an unused preset</h3>
+                <select ng-options="value for value in astrals.unused_presets" ng-model="new_preset"></select>
+            </div>
+
+            <br />
+            <br />
+            <h3>Name:</h3>
+            <input type="text" ng-bind="preset_name" />
+            <button ng-if="preset_name && (over_preset || new_preset)" ng-click="savePreset(new_preset || over_preset, name); closeModal('lightSave')">Save</button>
+        </div>
+        <div style="clear: both"></div>
+    </modal>
 </div>
 
 
 <table style="height: 100%; width: 70%; float: left; text-align: center;">
     <tr style="height: 4.5em;">
         <td style="width: 5em;">
-            <button class="btn" ng-click="astrals.local_level = 255">Full</button>
+            <button class="btn" ng-click="sendCurrentLevel()">Resend</button>
         </td>
         <td colspan="3" ng-controller="Modals">
             <button class="btn" ng-click="showModal('chandelier')">Chandelier Levels</button>
-            <button class="btn">Recall a Preset</button>
-            <button class="btn">Save a Preset</button>
+            <button class="btn" ng-click="showModal('lightPresets')">Recall a Preset</button>
+            <button class="btn" ng-click="showModal('lightSave')">Save a Preset</button>
+
+            <!-- This is where the preset binds occur -->
+            <div co-bind="'chandelier_presets' as astrals.chand_transitions"></div>
+            <div co-bind="'custom_numbers' as astrals.custom_range"></div>
+            <div co-bind="'custom_presets' as astrals.all_presets"></div>
         </td>
     </tr>
     <tr class="select-light" co-bind="'selected' as astrals.selected">
