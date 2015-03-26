@@ -1,35 +1,67 @@
 
-<div class="expansive" co-bind="'outputs'">
-<div ng-if="numOutputs > 1" class="output-select">
-    <span>Selected Display:</span><select
-        ng-model="selectedOutput"
-        ng-options="key as source.title for (key, source) in outputs"
-        ng-change="selectOutput(selectedOutput)"
-    >
-    </select>
+
+
+<div class="expansive" ng-controller="SourceCtrl">
+
+<!-- TODO:: need to check if room support joining -->
+<!-- This loads the current joined rooms -->
+<div ng-repeat="room in joinedRooms.rooms">
+    <div co-system="room" co-module="'System'" co-bind="'outputs' as sysOutputs">
+        <div ng-if="sysOutputs" ng-init="addOutputs(room, sysOutputs)"></div>
+    </div>
 </div>
-<div class="panels vision" co-bind="selectedOutput as currSource" exec="present(currSource, selectedOutput)">
+
+
+
+<div class="panels vision">
     <div class="panel large">
-        <div co-bind="'sources'" btn-group="currSource" btn-class="none" class="expansive">
+        <div class="expansive">
             <div class="panels vert">
-                <div class="panel">
-                    <div class="center-bottom">
-                        <div class="sources">
-                            <div ng-repeat="(name, details) in sources"
-                                 btn="name" 
-                                 ng-touch="$parent.currSource=name"
-                            >
-                                <div class="source-image" ng-class="details.type"></div>
-                                <span>{{details.title}}</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="panel sources">
+
+                        <!-- Tabs to select inputs here -->
+
+                        <tabs class="room-sources">
+                            <pane ng-repeat="room in joinedRooms.rooms" title="{{roomNames[room]}}" name="room">
+                                <div co-system="room" co-module="'System'" co-bind="'sources'" ng-init="selectRoom(room)">
+
+                                    <!-- Sources from each room -->
+                                    <div btn-group="selectedSource" btn-class="none" class="source-btns">
+
+                                        <div ng-repeat="(name, details) in sources"
+                                             btn="room + '_' + name"
+                                             ng-touch="selectSource(room, name, details)"
+                                        >
+                                            <div class="source-image" ng-class="details.type"></div>
+                                            <span>{{details.title}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </pane>
+                        </tabs>
+
+
                 </div>
-                <div class="panel">
+                <div class="panel outputs">
                     <div class="center-hori">
-                        <div class="sources">
-                            <div btn="'blank'" ng-touch="currSource='blank'">
-                                <span>Blank</span>
+                        <div>
+                            <!-- All Outputs here -->
+                            <div ng-repeat="output in outputs" class="output">
+                                <div
+                                    co-system="output.sys_id"
+                                    co-module="'System'"
+                                    co-bind="output.src_id as dispOutput"
+                                    exec="preset(dispOutput, output.src_id)"
+                                    ng-touch="dispOutput = selectedDetails"
+                                >
+                                    <div>
+                                        <span>{{roomNames[dispOutput.sys_id] || '&nbsp;'}}</span>
+                                        <div class="source-image" ng-class="dispOutput.type"></div>
+                                    </div>
+                                </div>
+                                <span>{{output.title}}</span><br />
+                                <span>{{roomNames[output.sys_id]}}</span>
                             </div>
                         </div>
                     </div>
@@ -37,8 +69,16 @@
             </div>
         </div>
     </div>
+
+
+    <!-- TODO:: Select Display drop-down -->
+    <!-- Manual Controls (auto-select room) -->
     <div class="panel">
-        <div class="panels vert controls">
+        
+
+        <div class="panels vert controls" co-system="output.sys_id" co-module="'System'">
+            <select ng-controller="SyncOutputCtrl" ng-options="out.title for out in roomOutputs" ng-model="out" ng-change="selectOutput(out)"></select>
+
             <div class="panel" ng-if="output.lift">
                 <div class="center-vert" co-module="output.lift.module" co-implicit-index>
                     <div
@@ -73,10 +113,10 @@
                     </div>
                 </div>
             </div>
-            <div class="panel">
+            <div class="panel" ng-if="output">
                 <div class="center-vert" co-module="selectedOutput" co-implicit-index>
                     <div co-bind="'power'" exec>
-                        <p>Projector</p>
+                        <p>{{output.title}}</p>
                         <div toggle-switch model="power" on-label="'On'" off-label="'Off'"></div>
                     </div>
                 </div>

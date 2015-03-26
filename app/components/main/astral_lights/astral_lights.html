@@ -1,5 +1,5 @@
 
-<div class="expansive astral-lighting">
+<div ng-controller="AstralCtrl" class="expansive astral-lighting" co-module="'AstralLights'">
 
 
 <div ng-controller="Modals">
@@ -8,49 +8,49 @@
         <table class="custom-fader">
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn">Full</button>
+                    <button class="btn" ng-click="astrals.local_chand = 255">Full</button>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <div co-range horizontal="false" model="custom_fader" min="0" max="255"></div>
+                <td co-bind="'chandelier_level' as astrals.chandelier_level">
+                    <div co-range horizontal="false" model="astrals.local_chand" min="0" max="255"></div>
                 </td>
             </tr>
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn">Off</button>
+                    <button class="btn" ng-click="astrals.local_chand = 0">Off</button>
                 </td>
             </tr>
         </table>
-        <table class="chandelier-diagram">
+        <table class="chandelier-diagram" co-bind="'chandelier' as astrals.chandelier">
             <tr>
                 <td style="width: 50%"></td>
                 <td>
-                    <image-toggle model="level[0]"></image-toggle>
+                    <image-toggle model="astrals.chandelier[systemIndex][0]" on-change="selectChand(0)"></image-toggle>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <image-toggle model="level[1]"></image-toggle>
+                    <image-toggle model="astrals.chandelier[systemIndex][1]" on-change="selectChand(1)"></image-toggle>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <image-toggle model="level[2]"></image-toggle>
+                    <image-toggle model="astrals.chandelier[systemIndex][2]" on-change="selectChand(2)"></image-toggle>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <image-toggle model="level[3]"></image-toggle>
+                    <image-toggle model="astrals.chandelier[systemIndex][3]" on-change="selectChand(3)"></image-toggle>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <image-toggle model="level[4]"></image-toggle>
+                    <image-toggle model="astrals.chandelier[systemIndex][4]" on-change="selectChand(4)"></image-toggle>
                 </td>
             </tr>
             <tr>
@@ -59,11 +59,14 @@
             </tr>
         </table>
         <menu>
-            <button class="ok">
+            <button class="ok" ng-click="toggleChand(true)">
                 Select All
             </button>
-            <button class="ok">
+            <button class="ok" ng-click="toggleChand(false)">
                 Deselect All
+            </button>
+            <button class="ok" ng-click="sendCurrentChandLevel()">
+                Resend Level
             </button>
         </menu>
         <div style="clear: both"></div>
@@ -74,7 +77,7 @@
 <table style="height: 100%; width: 70%; float: left; text-align: center;">
     <tr style="height: 4.5em;">
         <td style="width: 5em;">
-            <button class="btn">Full</button>
+            <button class="btn" ng-click="astrals.local_level = 255">Full</button>
         </td>
         <td colspan="3" ng-controller="Modals">
             <button class="btn" ng-click="showModal('chandelier')">Chandelier Levels</button>
@@ -82,94 +85,94 @@
             <button class="btn">Save a Preset</button>
         </td>
     </tr>
-    <tr class="select-light">
-        <td>
+    <tr class="select-light" co-bind="'selected' as astrals.selected">
+        <td co-bind="'selected_level' as astrals.selected_level">
             <!-- Fader -->
-            <div co-range horizontal="false" model="chandelier_fader" min="0" max="255"></div>
+            <div co-range horizontal="false" model="astrals.local_level" min="0" max="255"></div>
         </td>
         <td style="width: 30%;">
             <!-- Astral 1 -->
-            <table class="light-select">
+            <table class="light-select" ng-if="show_astral_1">
                 <tr style="height: 2em;">
                     <td colspan="2">Astral 1 (front)</td>
                 </tr>
                 <tr>
                     <td>
-                        <image-toggle model="astral_1_light[0]"></image-toggle> 1
+                        <image-toggle model="astrals.selected[0][0]" on-change="selected(0)"></image-toggle> 1
                     </td>
                     <td>
-                        <image-toggle model="astral_1_light[1]"></image-toggle> 2
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <image-toggle model="astral_1_light[2]"></image-toggle> 3
-                    </td>
-                    <td>
-                        <image-toggle model="astral_1_light[3]"></image-toggle> 4
+                        <image-toggle model="astrals.selected[0][1]" on-change="selected(0)"></image-toggle> 2
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <image-toggle model="astral_1_light[4]"></image-toggle> 5
+                        <image-toggle model="astrals.selected[0][2]" on-change="selected(0)"></image-toggle> 3
                     </td>
                     <td>
-                        <image-toggle model="astral_1_light[5]"></image-toggle> 6
+                        <image-toggle model="astrals.selected[0][3]" on-change="selected(0)"></image-toggle> 4
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astrals.selected[0][4]" on-change="selected(0)"></image-toggle> 5
+                    </td>
+                    <td>
+                        <image-toggle model="astrals.selected[0][5]" on-change="selected(0)"></image-toggle> 6
                     </td>
                 </tr>
             </table>
         </td>
         <td style="width: 25%;">
             <!-- Astral 2 -->
-            <table class="light-select">
+            <table class="light-select" ng-if="show_astral_2">
                 <tr style="height: 2em;">
                     <td>Astral 2 (front)</td>
                 </tr>
                 <tr>
                     <td>
-                        <image-toggle model="astral_2_light[0]"></image-toggle> 7
+                        <image-toggle model="astrals.selected[1][0]" on-change="selected(1)"></image-toggle> 7
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <image-toggle model="astral_2_light[1]"></image-toggle> 8
+                        <image-toggle model="astrals.selected[1][1]" on-change="selected(1)"></image-toggle> 8
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <image-toggle model="astral_2_light[2]"></image-toggle> 9
+                        <image-toggle model="astrals.selected[1][2]" on-change="selected(1)"></image-toggle> 9
                     </td>
                 </tr>
             </table>
         </td>
         <td style="width: 30%;">
             <!-- Astral 3 -->
-            <table class="light-select">
+            <table class="light-select" ng-if="show_astral_3">
                 <tr style="height: 2em;">
                     <td colspan="2">Astral 3 (front)</td>
                 </tr>
                 <tr>
                     <td>
-                        <image-toggle model="astral_3_light[0]"></image-toggle> 10
+                        <image-toggle model="astrals.selected[2][0]" on-change="selected(2)"></image-toggle> 10
                     </td>
                     <td>
-                        <image-toggle model="astral_3_light[1]"></image-toggle> 11
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <image-toggle model="astral_3_light[2]"></image-toggle> 12
-                    </td>
-                    <td>
-                        <image-toggle model="astral_3_light[3]"></image-toggle> 13
+                        <image-toggle model="astrals.selected[2][1]" on-change="selected(2)"></image-toggle> 11
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <image-toggle model="astral_3_light[4]"></image-toggle> 14
+                        <image-toggle model="astrals.selected[2][2]" on-change="selected(2)"></image-toggle> 12
                     </td>
                     <td>
-                        <image-toggle model="astral_3_light[5]"></image-toggle> 15
+                        <image-toggle model="astrals.selected[2][3]" on-change="selected(2)"></image-toggle> 13
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <image-toggle model="astrals.selected[2][4]" on-change="selected(2)"></image-toggle> 14
+                    </td>
+                    <td>
+                        <image-toggle model="astrals.selected[2][5]" on-change="selected(2)"></image-toggle> 15
                     </td>
                 </tr>
             </table>
@@ -178,16 +181,16 @@
     <tr class="select-all" style="height: 4.5em;">
         <!-- Select all toggle -->
         <td style="text-align: center;">
-            <button class="btn">Off</button>
+            <button class="btn" ng-click="astrals.local_level = 0">Off</button>
         </td>
         <td>
-            <image-toggle model="astral_1_All"></image-toggle> All
+            <span ng-if="show_astral_1"><image-toggle model="astrals.checkBoxes[0]" on-change="toggleAll(0)"></image-toggle> All</span>
         </td>
         <td>
-            <image-toggle model="astral_2_All"></image-toggle> All
+            <span ng-if="show_astral_2"><image-toggle model="astrals.checkBoxes[1]" on-change="toggleAll(1)"></image-toggle> All</span>
         </td>
         <td>
-            <image-toggle model="astral_3_All"></image-toggle> All
+            <span ng-if="show_astral_3"><image-toggle model="astrals.checkBoxes[2]" on-change="toggleAll(2)"></image-toggle> All</span>
         </td>
     </tr>
 </table>
@@ -200,43 +203,43 @@
     <tr style="height: 4.5em;">
         <td>
             <!-- Onyx -->
-            <button class="btn">Full</button>
+            <button class="btn" ng-click="astrals.onyx_fader = 255">Full</button>
         </td>
         <td>
             <!-- Pelmets -->
-            <button class="btn">Full</button>
+            <button class="btn" ng-click="astrals.pelmets_fader = 255">Full</button>
         </td>
         <td>
             <!-- Downlights -->
-            <button class="btn">Full</button>
+            <button class="btn" ng-click="astrals.down_fader = 255">Full</button>
         </td>
     </tr>
-    <tr>
+    <tr co-bind="'house_levels' as astrals.house_levels">
         <td>
             <!-- Onyx -->
-            <div co-range horizontal="false" model="onyx_fader" min="0" max="255"></div>
+            <div co-range horizontal="false" model="astrals.onyx_fader" min="0" max="255"></div>
         </td>
         <td>
             <!-- Pelmets -->
-            <div co-range horizontal="false" model="pelmets_fader" min="0" max="255"></div>
+            <div co-range horizontal="false" model="astrals.pelmets_fader" min="0" max="255"></div>
         </td>
         <td>
             <!-- Downlights -->
-            <div co-range horizontal="false" model="dlights_fader" min="0" max="255"></div>
+            <div co-range horizontal="false" model="astrals.down_fader" min="0" max="255"></div>
         </td>
     </tr>
     <tr style="height: 4.5em;">
         <td>
             <!-- Onyx -->
-            <button class="btn">Off</button>
+            <button class="btn" ng-click="astrals.onyx_fader = 0">Off</button>
         </td>
         <td>
             <!-- Pelmets -->
-            <button class="btn">Off</button>
+            <button class="btn" ng-click="astrals.pelmets_fader = 0">Off</button>
         </td>
         <td>
             <!-- Downlights -->
-            <button class="btn">Off</button>
+            <button class="btn" ng-click="astrals.down_fader = 0">Off</button>
         </td>
     </tr>
     <tr style="height: 2em;">

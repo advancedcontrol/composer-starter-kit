@@ -5,7 +5,7 @@
     //  In production the interface will obtain this information from the server
     //  
     window.systemData = window.systemData || {};
-    window.systemData['sys-B0'] = {
+    window.systemData['sys_3-18'] = {
         System: [{
             $powerup: function () {
                 this.state = "basic";
@@ -60,7 +60,7 @@
                     this.tab = this.tabs[this.state][0];
                 }
             },
-            "name": "Demo Room",
+            "name": "Astral 1",
             "access_attempts": 1,
             "help_msg": "For help please call <strong>0408419954</strong>",
             //"state": "shutdown", // basic, booked, advanced
@@ -238,7 +238,262 @@
             $state: function (pos, index) {
                 this['screen' + index] = pos;
             }
+        }],
+        Joiner: [{
+            "joined": {
+                rooms: ['sys_3-18', 'sys_3-19'],
+                initiator: 'sys_3-18'
+            },
+            "rooms": {
+                "sys_3-18": "Astral 1",
+                "sys_3-19": "Astral 2"
+            }
+        }],
+        AstralLights: [{
+            "selected": [
+                [true, true, true, true, true, true],
+                [true, true, true],
+                [true, true, true, true, false, true]
+            ],
+            "selected_level": [125, 125, 125],
+            "house_levels": [
+                [125, 125, 125],
+                [125, 125, 125],
+                [125, 125, 125]
+            ],
+            "chandelier": [
+                [true, true, true, true, true],
+                [true, true, true, true, true],
+                [true, true, true, true, true]
+            ],
+            "chandelier_level": [125, 125, 125],
+
+            $select: function (rooms, selections) {
+                var sys = this;
+
+                angular.forEach(rooms, function (room) {
+                    sys.selected[room] = selections[room];
+                });
+            },
+
+            $selected_level: function (rooms, level) {
+                var sys = this;
+
+                angular.forEach(rooms, function (room) {
+                    sys.selected_level[room] = level;
+                });
+            },
+
+            $house_level: function (rooms, section, level) {
+                var part,
+                    sys = this;
+
+                if (typeof(section) === 'string') {
+                    part = 0;
+
+                    if (section === 'pelmets') {
+                        part = 1;
+                    } else if (section === 'downlights') {
+                        part = 2;
+                    }
+                } else {
+                    part = section;
+                }
+
+                angular.forEach(rooms, function (room) {
+                    sys.house_levels[room][part] = level;
+                });
+            },
+
+            $chandelier_select: function (rooms, selections) {
+                var sys = this;
+
+                angular.forEach(rooms, function (room) {
+                    sys.chandelier[room] = selections[room];
+                });
+            },
+
+            $chandelier_level: function (rooms, level) {
+                var sys = this;
+
+                angular.forEach(rooms, function (room) {
+                    sys.chandelier_level[room] = level;
+                });
+            }
         }]
     };
+
+
+
+
+
+    window.systemData['sys_3-19'] = {
+        System: [{
+            $present: function (source, display) {
+                if (source === 'none') {
+                    this[display] = 'none';
+
+                    // Mute the display as well
+                    if (!this.outputs[display].no_mod) {
+                        var parts = getModuleParts(display);
+                        this.$_self[parts.module][parts.index - 1].mute = true;
+                    }
+                } else {
+                    var src = this.sources[source];
+
+                    // Return source and source title
+                    this[display] = source;
+
+                    // Clear mute
+                    if (!this.outputs[display].no_mod) {
+                        var parts = getModuleParts(display);
+                        this.$_self[parts.module][parts.index - 1].mute = false;
+                    }
+                }
+            },
+            "name": "Astral 2",
+            "sources": {
+                "respc": {
+                    "title": "Signage PC",
+                    "input": 1,
+                    "source": "hdmi",
+                    "type": "residentpc"
+                }
+            },
+            "Room_Display_1": 'blank',
+            "outputs": {
+                "Display_1": {
+                    "type": "projector",
+                    "screen": {
+                        "module": "Screen_1",
+                        "index": 1,
+                        "binding": "screen"
+                    },
+                    "lift": {
+                        "module": "Screen_1",
+                        "index": 2,
+                        "binding": "screen"
+                    },
+                    "output": [
+                        1
+                    ],
+                    "title": "Projector"
+                }
+            }
+        }],
+        Switcher: [{}],
+        Lights: [{}],
+        Mixer: [{}],
+        Lifter: [{
+            "lifter1_rotation": 'inactive',
+            $state: function (newState) {
+                this.lifter1_rotation = newState;
+            }
+        }],
+        Display: [{
+            "power": true,
+            $power: function (val) {
+                this.power = val;
+            }
+        }],
+        Screen: [{
+            "screen1": "up",
+            $state: function (pos, index) {
+                this['screen' + index] = pos;
+            }
+        }]
+    };
+
+
+
+
+
+
+
+
+
+    window.systemData['sys_3-1A'] = {
+        System: [{
+            $present: function (source, display) {
+                if (source === 'none') {
+                    this[display] = 'none';
+
+                    // Mute the display as well
+                    if (!this.outputs[display].no_mod) {
+                        var parts = getModuleParts(display);
+                        this.$_self[parts.module][parts.index - 1].mute = true;
+                    }
+                } else {
+                    var src = this.sources[source];
+
+                    // Return source and source title
+                    this[display] = source;
+
+                    // Clear mute
+                    if (!this.outputs[display].no_mod) {
+                        var parts = getModuleParts(display);
+                        this.$_self[parts.module][parts.index - 1].mute = false;
+                    }
+                }
+            },
+            "name": "Astral 3",
+            "sources": {
+                "respc": {
+                    "title": "Signage PC",
+                    "input": 1,
+                    "source": "hdmi",
+                    "type": "residentpc"
+                }
+            },
+            "Display_1": 'blank',
+            "outputs": {
+                "Display_1": {
+                    "type": "projector",
+                    "screen": {
+                        "module": "Screen_1",
+                        "index": 1,
+                        "binding": "screen"
+                    },
+                    "lift": {
+                        "module": "Screen_1",
+                        "index": 2,
+                        "binding": "screen"
+                    },
+                    "output": [
+                        1
+                    ],
+                    "title": "Projector in Rm3"
+                }
+            }
+        }],
+        Switcher: [{}],
+        Lights: [{}],
+        Mixer: [{}],
+        Lifter: [{
+            "lifter1_rotation": 'inactive',
+            $state: function (newState) {
+                this.lifter1_rotation = newState;
+            }
+        }],
+        Display: [{
+            "power": true,
+            $power: function (val) {
+                this.power = val;
+            }
+        }],
+        Screen: [{
+            "screen1": "up",
+            $state: function (pos, index) {
+                this['screen' + index] = pos;
+            }
+        }]
+    };
+
+
+
+
+
+
+
 
 }(this, this.angular));

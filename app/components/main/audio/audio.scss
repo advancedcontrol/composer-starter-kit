@@ -3,7 +3,11 @@
 
 // AUDIO PAGE
 @import "../bower_components/angular-range-slider/angular-range-slider.scss";
-@include co-range-slider($handle-size: 40px, $track-girth: 20px);
+@include co-range-slider(
+    $handle-size: 40px,
+    $track-girth: 20px,
+    $track-colour: #FFF
+);
 
 @import "../bower_components/angular-named-toggle/image-toggle.scss";
 
@@ -21,30 +25,17 @@ div.audio-pane {
 
         // Slider should take up the full width
         // of the column it is currently in
-        div.slider {
+        table.slider {
             width: 100%;
 
-            &> div {
-                margin-top: 0.5em;
+            text-align: center;
 
-                &> * {
-                    position: relative;
-                    float: left;
-                }
+            td.name {
+                text-align: left;
+            }
 
-                &> button.btn {
-                    z-index: 10;
-                    font-size: smaller;
-                }
-
-                &> div {
-                    z-index: 5;
-                    width: 100%;
-                    height: 100%;
-                    margin: 0 -3.2em;
-                    margin-top: 0.5em;
-                    padding: 0 4.5em;
-                }
+            td.btn-adjust {
+                width: 5em;
             }
         }
     }

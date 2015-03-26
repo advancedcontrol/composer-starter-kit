@@ -3,10 +3,16 @@
 @import "../bower_components/angular-range-slider/angular-range-slider.scss";
 
 
-div.astral-lighting {
-    table {
-        td {
-            vertical-align: middle;
+div.astral-lighting, table.custom-fader {
+    td {
+        vertical-align: middle;
+        position: relative;
+
+        &> div.co-range-slider.vert {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            width: 100%;
         }
     }
 

@@ -102,7 +102,7 @@
     <link rel="stylesheet" href="components/main/audio/audio.css">
     <link rel="stylesheet" href="components/main/astral_lights/astral_lights.css">
 
-    <link rel="stylesheet" href="branding/twin_waters/main.css">
+    <link rel="stylesheet" href="branding/crown_perth/main.css">
 
     <!-- Provide styles for common animations -->
     <link rel="stylesheet" href="animate.css/animate.css">
@@ -150,7 +150,7 @@
             </div>
 
             <!-- Display the most appropriate user interface -->
-            <div ng-if="state !== 'shutdown'" ng-controller="SharedCtrl" co-bind="'outputs'">
+            <div ng-if="state !== 'shutdown'" ng-controller="SharedCtrl">
                 <div ng-include="'components/main/main.html'"></div>
                 <!--  <div ng-if="width >= 700 || height >= 700" ng-include="'components/mobile/mobile.html'"></div>  -->
             </div>
@@ -184,10 +184,10 @@
     <script src="oauth-interceptor/intercept/communication.js"></script>
 
     <!-- ACA Engine Library -->
+    <script src="branding/crown_perth/emulate.js"></script>
     <script src="composer/src/ba-debug.js"></script>
     <script src="composer/src/composer.js"></script>
-    <script src="composer/src/resources.js"></script>
-    <script src="composer/src/websocket.js"></script>
+    <script src="composer/src/mocksocket.js"></script>
     <script src="composer/src/directives.js"></script>
 
     <!-- Optional Helpers -->
@@ -207,15 +207,14 @@
 
     <!-- Application Components -->
     <script src="components/app.js"></script>
-    <script src="branding/twin_waters/settings.js"></script>
+    <script src="branding/crown_perth/settings.js"></script>
     
     <script src="components/joystick.js"></script>  <!-- TODO:: isolate -->
     <script src="components/shared-ctrl.js"></script>
 
     <script src="components/main/passcode-ctrl.js"></script>
     <script src="components/main/source-ctrl.js"></script>
-
-    <script src="components/mobile/sidebar-ctrl.js"></script>
+    <script src="components/main/astral_lights/astral-ctrl.js"></script>
 
     <!-- endbuild -->
   </body>

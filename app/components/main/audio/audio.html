@@ -10,20 +10,32 @@
                     co-bind="'fader' + level.id + '_' + level.index as volume"
                     exec="fader(level.id, volume, level.index)"
                 >
-                    <div
+                    <table
                         class="slider"
                         co-bind="'fader' + level.id + '_' + level.index + '_mute' as muted"
                         exec="mute(level.id, muted, level.index)"
                     >
-                        <span image-toggle model="muted"></span> {{level.name}}
-                        <div>
-                            <button class="btn" ng-click="volume = volume - 5">-5%</button>
-                            <div>
+                        <tr>
+                            <td>
+                                <span image-toggle model="muted"></span>
+                            </td>
+                            <td class="name">
+                                 {{level.name}}
+                            <td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="btn-adjust">
+                                <button class="btn" ng-click="volume = volume - 5">-5%</button>
+                            </td>
+                            <td>
                                 <div co-range model="volume" min="level.min" max="level.max"></div>
-                            </div>
-                            <button class="btn" ng-click="volume = volume + 5">+5%</button>
-                        </div>
-                    </div>
+                            </td>
+                            <td class="btn-adjust">
+                                <button class="btn" ng-click="volume = volume + 5">+5%</button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
@@ -35,20 +47,32 @@
                     co-bind="'fader' + level.id as volume"
                     exec="fader(level.id, volume)"
                 >
-                    <div
+                    <table
                         class="slider"
                         co-bind="'fader' + (level.mute_id || level.id) + '_mute' as muted"
                         exec="mute(level.mute_id || level.id, muted)"
                     >
-                        <span image-toggle model="muted"></span> {{level.name}}
-                        <div>
-                            <button class="btn" ng-click="volume = volume - 5">-5%</button>
-                            <div>
+                        <tr class="name">
+                            <td>
+                                <span image-toggle model="muted"></span>
+                            </td>
+                            <td>
+                                 {{level.name}}
+                            <td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="btn-adjust">
+                                <button class="btn" ng-click="volume = volume - 5">-5%</button>
+                            </td>
+                            <td>
                                 <div co-range model="volume" min="level.min" max="level.max"></div>
-                            </div>
-                            <button class="btn" ng-click="volume = volume + 5">+5%</button>
-                        </div>
-                    </div>
+                            </td>
+                            <td class="btn-adjust">
+                                <button class="btn" ng-click="volume = volume + 5">+5%</button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 

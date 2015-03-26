@@ -25,48 +25,103 @@ div.vision {
     div.sources {
         width: 100%;
         text-align: center;
+        flex-grow: 2!important;
 
-        &> div {
-            position: relative;
-            display: inline-block;
+        tabs.room-sources {
+            width: 100%;
+            height: 100%;
 
-            width: 13.5vw;
-            height: 12vh;
-            margin: 1vw;
-
-            background-color: #eeeeee !important;
-            border: 5px solid white;
-
-            &.active {
-                border: 5px solid #53d76a;
-            }
-
-            &> span {
-                display: block;
-                position: absolute;
-                bottom: 0.5em;
-                left: 0;
-
+            nav {
                 width: 100%;
+                height: 3em;
+
+                &> div {
+                    max-width: none;
+
+                    &.active {
+                        background-color: #aaa;
+                    }
+                }
             }
 
-            &> div {
-                position: absolute;
-                bottom: 1.5em;
-                left: 0;
-                right: 0;
-                top: 0.2em;
+            pane {
 
-                text-align: center;
-                font-size: 6vh;
+                &> div {
+                    background-color: #aaa;
+                }
+
+                div.source-btns > div {
+                    position: relative;
+                    display: inline-block;
+
+                    width: 13.5vw;
+                    height: 12vh;
+                    margin: 1vw;
+
+                    background-color: #eeeeee !important;
+                    border: 5px solid white;
+
+                    &.active {
+                        border: 5px solid #53d76a;
+                    }
+
+                    &> span {
+                        display: block;
+                        position: absolute;
+                        bottom: 0.5em;
+                        left: 0;
+
+                        width: 100%;
+                    }
+
+                    &> div {
+                        position: absolute;
+                        bottom: 1.5em;
+                        left: 0;
+                        right: 0;
+                        top: 0.2em;
+
+                        text-align: center;
+                        font-size: 6vh;
+                    }
+
+                }
             }
         }
     }
 
-    div.controls {
+    div.outputs {
+        flex-grow: 3!important;
+        text-align: center;
+
+        div.output {
+            position: relative;
+            display: inline-block;
+
+            margin-right: 1em; 
+            min-width: 8em;
+
+            &> div {
+                padding: 0.5em;
+                margin-bottom: 0.5em;
+                width: 100%;
+
+                background-color: #eeeeee !important;
+                border: 5px solid white;
+
+                div.source-image {
+                    font-size: 6vh;
+                    height: 6vh;
+                }
+            }
+        }
+    }
+
+    div.controls > div {
         font-size: 2.1vw;
 
         p {
+            margin-top: 0;
             margin-bottom: 0.5em;
         }
 
