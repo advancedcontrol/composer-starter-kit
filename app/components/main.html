@@ -29,4 +29,6 @@
     <nav>
         <a ng-repeat="pageNum in pageNums" ng-click="gotoPage(pageNum)" href="#" ng-class="{selected: page == pageNum}">{{pageNum}}</a>
     </nav>
+
+    <p>Space remaining: <span>{{remaining}}</span></p>
 </main>

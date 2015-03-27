@@ -5,9 +5,19 @@
     angular.module('AcaEngine')
         .controller('MainCtrl', [
             '$scope',
+            '$http',
             '$location',
 
-            function ($scope, $location) {
+            function ($scope, $http, $location) {
+                // disk space remaining
+                $scope.remaining = 'unknown';
+
+                $http.get('http://cam10.cams.vl8.ad.life.unsw.edu.au:4567/remaining.json').success(
+                    function(data, status, headers, config) {
+                        $scope.remaining = data.remaining;
+                    }
+                );
+
                 // The list of systems (listed in settings)
                 $scope.systems = window.systemsList;
 

@@ -42,17 +42,21 @@ main {
     text-align: center;
 
     // page numbers
-    > nav a {
-        margin: 0px 5px;
-        text-decoration: none;
-        color: #999;
+    > nav {
+        margin-bottom: 10px;
+        
+        a {
+            margin: 0px 5px;
+            text-decoration: none;
+            color: #999;
 
-        &:hover {
-            text-decoration: underline;
-        }
+            &:hover {
+                text-decoration: underline;
+            }
 
-        &.selected {
-            color: #333;
+            &.selected {
+                color: #333;
+            }
         }
     }
 
