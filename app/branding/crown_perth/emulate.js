@@ -351,6 +351,21 @@
             },
             $set_transition: function (rooms, preset) {
                 console.log("SETTING TRANSITION: ", preset, " on ", rooms);
+            },
+
+            $clear_preset: function (rooms, preset) {
+                console.log("CLEAR PRESET: ", preset, " on ", rooms);
+            },
+
+            "spots_enabled": [true, false, false],
+            $spots_enabled: function (rooms, val) {
+                var sys = this;
+
+                angular.forEach(rooms, function (room) {
+                    sys.spots_enabled[room] = val;
+                });
+
+                console.log("SPOTS ENABLED: ", val, " on ", rooms);
             }
         }]
     };

@@ -3,6 +3,17 @@
 @import "../bower_components/angular-range-slider/angular-range-slider.scss";
 
 
+// Here as used in modals and on the main page
+td.with_checkbox {
+    @include image-toggle(
+        $trueImage: '../../../components/main/astral_lights/checkbox-checked.png', 
+        $falseImage: '../../../components/main/astral_lights/checkbox-unchecked.png',
+        $width: 1.5em,
+        $height: 1.5em
+    );
+}
+
+
 div.astral-lighting, table.custom-fader {
     td {
         vertical-align: middle;
@@ -97,15 +108,11 @@ modal.chandelier {
 
         background-repeat: no-repeat !important;
         background-position: center center !important;
+    }
 
-        td {
-            @include image-toggle(
-                $trueImage: '../../../components/main/astral_lights/checkbox-checked.png', 
-                $falseImage: '../../../components/main/astral_lights/checkbox-unchecked.png',
-                $width: 1.5em,
-                $height: 1.5em
-            );
-        }
+    div.chand-effects {
+        text-align: left;
+        padding-left: 2em;
     }
 }
 

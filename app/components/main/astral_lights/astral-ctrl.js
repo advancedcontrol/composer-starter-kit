@@ -263,6 +263,9 @@
             };
 
             $scope.savePreset = function (number, name) {
+                settings.over_preset = null;
+                settings.new_preset = null;
+                settings.preset_name = null;
                 $scope.coModuleInstance.$exec('save_preset', joinedTo, number, name);
             };
 
@@ -296,6 +299,15 @@
                     calculate_unused();
                 }
             });
+
+
+
+            // ------------------------------
+            // SPOT LIGHTS
+            // ------------------------------
+            $scope.updateSpots = function () {
+                $scope.coModuleInstance.$exec('spots_enabled', joinedTo, settings.spots_enabled[myIndex]);
+            };
         }]);
 
 }(this.angular));

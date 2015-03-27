@@ -22,42 +22,6 @@
                 </td>
             </tr>
         </table>
-        <table class="chandelier-diagram" co-bind="'chandelier' as astrals.chandelier">
-            <tr>
-                <td style="width: 50%"></td>
-                <td>
-                    <image-toggle model="astrals.chandelier[systemIndex][0]" on-change="selectChand(0)"></image-toggle>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <image-toggle model="astrals.chandelier[systemIndex][1]" on-change="selectChand(1)"></image-toggle>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <image-toggle model="astrals.chandelier[systemIndex][2]" on-change="selectChand(2)"></image-toggle>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <image-toggle model="astrals.chandelier[systemIndex][3]" on-change="selectChand(3)"></image-toggle>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <image-toggle model="astrals.chandelier[systemIndex][4]" on-change="selectChand(4)"></image-toggle>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
         <menu>
             <button class="ok" ng-click="toggleChand(true)">
                 Select All
@@ -69,7 +33,52 @@
                 Resend Level
             </button>
         </menu>
+        <table class="chandelier-diagram" co-bind="'chandelier' as astrals.chandelier">
+            <tr>
+                <td style="width: 50%"></td>
+                <td class="with_checkbox">
+                    <image-toggle model="astrals.chandelier[systemIndex][0]" on-change="selectChand(0)"></image-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="with_checkbox">
+                    <image-toggle model="astrals.chandelier[systemIndex][1]" on-change="selectChand(1)"></image-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="with_checkbox">
+                    <image-toggle model="astrals.chandelier[systemIndex][2]" on-change="selectChand(2)"></image-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="with_checkbox">
+                    <image-toggle model="astrals.chandelier[systemIndex][3]" on-change="selectChand(3)"></image-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="with_checkbox">
+                    <image-toggle model="astrals.chandelier[systemIndex][4]" on-change="selectChand(4)"></image-toggle>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
         <div style="clear: both"></div>
+        <br />
+
+        <div class="chand-effects">
+            <h3>Chandelier Effects  <button ng-click="setTransition(26); custom_transition = null;">Off</button></h3>
+            Select Effect: <select ng-options="key for (key, value) in astrals.chand_transitions" ng-model="custom_transition"></select>
+            <button ng-if="custom_transition" ng-click="setTransition(custom_transition)">Set</button>
+            <div style="clear: both"></div>
+        </div>
     </modal>
 
     <modal class="light-presets" name="lightPresets" title="Recall a Preset">
@@ -92,42 +101,47 @@
             <h3>Custom Presets</h3>
             <select ng-options="key for (key, value) in astrals.valid_presets" ng-model="custom_preset"></select>
             <button ng-if="custom_preset" ng-click="callPreset(custom_preset)">Recall</button>
-
-            <h3>Chandelier Settings</h3>
-            <select ng-options="key for (key, value) in astrals.chand_transitions" ng-model="custom_transition"></select>
-            <button ng-if="custom_transition" ng-click="setTransition(custom_transition)">Set</button>
-            <button ng-click="setTransition(26)">Off</button>
         </div>
         <div style="clear: both"></div>
     </modal>
 
 
-    <modal class="preset-save" name="lightSave" title="Save a Preset">
+    <modal class="preset-save" name="lightSave" title="Save and Clear Presets">
         <p>Warning! Make sure the preset you overwrite is no longer required.</p>
 
         <div class="preset-buttons">
             <div ng-if="astrals.existing_presets.length > 0">
                 <h3>Clear a preset</h3>
                 <select ng-options="key for (key, value) in astrals.all_presets" ng-model="clear_preset"></select>
-                <button ng-if="clear_preset" ng-click="clearPreset(clear_preset)">Clear</button>
+                <button ng-if="clear_preset" ng-click="clearPreset(clear_preset.number)">Clear</button>
+
+                <br />
+                <br />
+                <br />
 
                 <h3>Overwrite Existing</h3>
-                <select ng-options="key for (key, value) in astrals.all_presets" ng-model="over_preset"></select>
+                <select ng-options="key for (key, value) in astrals.all_presets" ng-model="astrals.over_preset">
+                    <option value="">Select Preset:</option>
+                </select>
+            </div>
+
+
+            <div ng-if="astrals.unused_presets.length > 0">   
+                <br />
+                <h3>OR - Select an unused preset</h3>
+                <select ng-options="value for value in astrals.unused_presets" ng-model="astrals.new_preset">
+                    <option value=""> - </option>
+                </select>
             </div>
 
             <br />
-            <b>OR</b>
-
-            <div ng-if="astrals.unused_presets.length > 0">
-                <h3>Select an unused preset</h3>
-                <select ng-options="value for value in astrals.unused_presets" ng-model="new_preset"></select>
-            </div>
-
-            <br />
-            <br />
-            <h3>Name:</h3>
-            <input type="text" ng-bind="preset_name" />
-            <button ng-if="preset_name && (over_preset || new_preset)" ng-click="savePreset(new_preset || over_preset, name); closeModal('lightSave')">Save</button>
+            <h3>Describe this preset to save:</h3>
+            <input ng-model="astrals.preset_name" />
+            <button
+                ng-if="astrals.preset_name && (astrals.over_preset || astrals.new_preset)"
+                ng-click="savePreset(astrals.new_preset || astrals.over_preset.number, astrals.preset_name); closeModal('lightSave');">
+                Save
+            </button>
         </div>
         <div style="clear: both"></div>
     </modal>
@@ -140,9 +154,9 @@
             <button class="btn" ng-click="sendCurrentLevel()">Resend</button>
         </td>
         <td colspan="3" ng-controller="Modals">
-            <button class="btn" ng-click="showModal('chandelier')">Chandelier Levels</button>
+            <button class="btn" ng-click="showModal('chandelier')">Chandelier Config</button>
             <button class="btn" ng-click="showModal('lightPresets')">Recall a Preset</button>
-            <button class="btn" ng-click="showModal('lightSave')">Save a Preset</button>
+            <button class="btn" ng-click="showModal('lightSave')">Manage Presets</button>
 
             <!-- This is where the preset binds occur -->
             <div co-bind="'chandelier_presets' as astrals.chand_transitions"></div>
@@ -263,7 +277,14 @@
 <!-- House Lighting Faders -->
 <table class="house-lighting">
     <tr style="height: 2em;">
-        <td colspan="3">House Lighting</td>
+        <td class="with_checkbox" colspan="1">
+            <b>House Lighting</b>
+        </td>
+        <td co-bind="'spots_enabled' as astrals.spots_enabled"
+            colspan="2"
+            class="with_checkbox">
+            Enable Spots: <image-toggle model="astrals.spots_enabled[systemIndex]" on-change="updateSpots()"></image-toggle>
+        </td>
     </tr>
     <tr style="height: 4.5em;">
         <td>
