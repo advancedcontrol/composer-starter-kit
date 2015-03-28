@@ -249,6 +249,22 @@
             }
         }],
         Lighting: [{
+            "area88_chan0_level": 50,
+            "area88_chan1_level": 125,
+            "area88_chan2_level": 250,
+            "area89_chan0_level": 50,
+            "area89_chan1_level": 125,
+            "area89_chan2_level": 250,
+            "area90_chan0_level": 50,
+            "area90_chan1_level": 125,
+            "area90_chan2_level": 250,
+
+            $light_level: function (area, level, channel) {
+                var setting = "area" + area + "_chan" + channel + "_level";
+                this[setting] = level;
+
+                console.log('LIGHT LEVEL: ' + setting + ' = ' + level);
+            }
         }],
         AstralLights: [{
             "selected": [
@@ -257,11 +273,6 @@
                 [true, true, true, true, false, true]
             ],
             "selected_level": [125, 125, 125],
-            "house_levels": [
-                [125, 125, 125],
-                [125, 125, 125],
-                [125, 125, 125]
-            ],
 
             $select: function (rooms, selections) {
                 var sys = this;
@@ -281,7 +292,8 @@
 
             $house_level: function (rooms, section, level) {
                 var part,
-                    sys = this;
+                    sys = this,
+                    areas = [88, 89, 90];
 
                 if (typeof(section) === 'string') {
                     part = 0;
@@ -296,7 +308,7 @@
                 }
 
                 angular.forEach(rooms, function (room) {
-                    sys.house_levels[room][part] = level;
+                    sys.$_self['Lighting'][0].$light_level(areas[room], level, part);
                 });
             },
 
@@ -306,7 +318,6 @@
                 [true, true, true, true, true],
                 [true, true, true, true, true]
             ],
-            "chandelier_level": [125, 125, 125],
 
             $chandelier_select: function (rooms, selections) {
                 var sys = this;
@@ -316,23 +327,19 @@
                 });
             },
 
-            $chandelier_level: function (rooms, level) {
-                var sys = this;
-
-                angular.forEach(rooms, function (room) {
-                    sys.chandelier_level[room] = level;
-                });
-            },
 
 
 
+            // These are the currently selected presets
+            "presets": [10, 11, 12],
+            "effects": [1, 2, 3],
             "custom_presets": {
                 "My custom preset": {
-                    "applied_to": ['sys_3-18'],
+                    "applied_to": [2, 1],
                     "number": 10
                 },
                 "This does somthing": {
-                    "applied_to": ['sys_3-18'],
+                    "applied_to": [0, 1],
                     "number": 11
                 }
             },
@@ -343,18 +350,77 @@
                 "Blue": 3,
                 "Magenta": 4
             },
-            $save_preset: function (rooms, number, name) {
-                console.log("SAVING PRESET: ", number, name, " on ", rooms);
-            },
-            $call_preset: function (rooms, preset) {
-                console.log("CALLING PRESET: ", preset, " on ", rooms);
-            },
-            $set_transition: function (rooms, preset) {
-                console.log("SETTING TRANSITION: ", preset, " on ", rooms);
+
+
+
+            $save_preset: function (rooms) {
+                console.log("SAVING PRESET: " + this.presets[rooms[0]] + " on ", rooms);
             },
 
-            $clear_preset: function (rooms, preset) {
-                console.log("CLEAR PRESET: ", preset, " on ", rooms);
+            $create_preset: function (rooms, name) {
+                var number = Math.floor(Math.random() * (20 - 12 + 1)) + 12;
+                console.log("CREATING PRESET: ", number, name, " on ", rooms);
+
+                this.custom_presets = angular.extend({}, this.custom_presets);
+
+                this.custom_presets[name] = {
+                    applied_to: rooms,
+                    number: number
+                };
+            },
+
+            $clear_preset: function (preset) {
+                console.log("CLEAR PRESET: ", preset);
+                var name;
+                angular.forEach(this.custom_presets, function (value, key) {
+                    if (value.number === preset) {
+                        name = key;
+                    }
+                });
+
+                if (name) {
+                    this.custom_presets = angular.extend({}, this.custom_presets);
+                    delete this.custom_presets[name];
+                }
+            },
+
+
+            $call_named: function (rooms, name) {
+                var number = this.custom_presets[name].number;
+                this.$call_preset(rooms, number);
+            },
+
+            $call_preset: function (rooms, preset) {
+                var rand = Math.floor(Math.random() * (10 - 1 + 1)) + 1,
+                    i;
+
+                for (i = 0; i < rooms.length; i += 1) {
+                    this.presets[rooms[i]] = preset;
+                }
+
+                console.log("CALLING PRESET: ", preset, " on ", rooms);
+
+                // Bug in angular equals?
+                for (i = 0; i < rand; i += 1) {
+                    this.presets.push(Math.floor(Math.random() * (10 - 1 + 1)) + 1);
+                }
+
+                this.presets = this.presets.slice(0, 3);
+            },
+
+
+            $set_transition: function (rooms, preset) {
+                this.effects[0] = preset;
+                console.log("SETTING EFFECT: ", preset, " on ", rooms);
+
+                // Bug in angular equals?
+                var rand = Math.floor(Math.random() * (10 - 1 + 1)) + 1,
+                    i;
+                for (i = 0; i < rand; i += 1) {
+                    this.effects.push(Math.floor(Math.random() * (10 - 1 + 1)) + 1);
+                }
+
+                this.effects = this.effects.slice(0, 3);
             },
 
             "spots_enabled": [true, false, false],

@@ -34,7 +34,9 @@
             'sys_3-18': 0,
             'sys_3-19': 1,
             'sys_3-1A': 2
-        };
+        },
+
+        area_codes = [88, 89, 90];
 
 
     // -----------------------------------------------------------
@@ -53,11 +55,12 @@
     ];
 
     settings.checkBoxes = [false, false, false];
+    settings.area_codes = area_codes;
 
     // This is the last know level of the last selection you had
     settings.selected_level = [125, 125, 125];
     settings.chandelier_level = [5, 5, 5];
-    settings.house_levels = [[],[],[]];
+    settings.house_levels = [0, 0, 0];
 
 
     // Define the controller
@@ -66,8 +69,9 @@
         .controller('AstralCtrl', [
             '$scope',
             '$rootScope',
+            '$timeout',
 
-        function ($scope, $rootScope) {
+        function ($scope, $rootScope, $timeout) {
 
             // -------------------------------------------
             // Keep track of which rooms we are joined too
@@ -165,36 +169,22 @@
             // --------------------------------------------
             // House Lighting
             // --------------------------------------------
-            $scope.$watch('astrals.house_levels', function (levels) {
-                if (levels) {
-                    settings.onyx_fader = levels[myIndex][0];
-                    settings.pelmets_fader = levels[myIndex][1];
-                    settings.down_fader = levels[myIndex][2];
-                }
-            });
-
             var updateHouse = function (fader, level) {
-                if (settings.house_levels && level !== settings.house_levels[myIndex][fader]) {
-                    angular.forEach(joinedTo, function (index) {
-                        settings.house_levels[index][fader] = level;
-                    });
-
-                    $scope.coModuleInstance.$exec('house_level', joinedTo, fader, level);
-                }
+                $scope.coModuleInstance.$exec('house_level', joinedTo, fader, level);
             };
 
             $scope.$watch('astrals.onyx_fader', function (val) {
-                if (val !== undefined)
+                if (val || val === 0)
                     updateHouse(0, val);
             });
 
             $scope.$watch('astrals.pelmets_fader', function (val) {
-                if (val !== undefined)
+                if (val || val === 0)
                     updateHouse(1, val);
             });
 
             $scope.$watch('astrals.down_fader', function (val) {
-                if (val !== undefined)
+                if (val || val === 0)
                     updateHouse(2, val);
             });
 
@@ -221,26 +211,6 @@
                 $scope.coModuleInstance.$exec('chandelier_select', joinedTo, settings.chandelier);
             };
 
-            $scope.sendCurrentChandLevel = function () {
-                $scope.coModuleInstance.$exec('chandelier_level', joinedTo, settings.local_chand);
-            };
-
-            $scope.$watch('astrals.chandelier_level', function (levels) {
-                if (levels) {
-                    settings.local_chand = levels[myIndex];
-                }
-            });
-
-            $scope.$watch('astrals.local_chand', function (level) {
-                if (level !== settings.chandelier_level[myIndex]) {
-                    angular.forEach(joinedTo, function (index) {
-                        settings.chandelier_level[index] = level;
-                    });
-                    
-                    $scope.sendCurrentChandLevel();
-                }
-            });
-
 
 
             // ---------------------------------------------
@@ -259,47 +229,107 @@
             };
 
             $scope.clearPreset = function (number) {
-                $scope.coModuleInstance.$exec('clear_preset', joinedTo, number);
-            };
-
-            $scope.savePreset = function (number, name) {
-                settings.over_preset = null;
-                settings.new_preset = null;
-                settings.preset_name = null;
-                $scope.coModuleInstance.$exec('save_preset', joinedTo, number, name);
+                $scope.coModuleInstance.$exec('clear_preset', number);
             };
 
 
+            // Current lighting levels will be saved to the current preset
+            $scope.createPreset = function (name) {
+                settings.new_preset_name = null;
+                $scope.coModuleInstance.$exec('create_preset', joinedTo, name);
 
-            var calculate_unused = function () {
-                // TODO:: build list of unused_presets
-                settings.unused_presets = [12, 13];
+                $timeout(function () {
+                    $scope.coModuleInstance.$exec('call_named', joinedTo, name);
+                });
             };
 
+            $scope.savePreset = function () {
+                $scope.coModuleInstance.$exec('save_preset', joinedTo);
+            };
+
+
+            var builtin = {
+                '1': 'H&C High',
+                '2': 'H&C Medium',
+                '3': 'H&C Low',
+                '4': 'H&C Off',
+                '5': 'H&C Very Low',
+                '6': 'House High',
+                '7': 'House Medium',
+                '8': 'House Low',
+                '9': 'House Very Low'
+            };
+            $scope.$watch('astrals.current_preset', function (val) {
+                if (!val) {
+                    return;
+                }
+
+                var can_save = false,
+                    current = settings.current_preset[myIndex],
+                    name;
+
+                // Check if save is possible
+                if (current < 10) {
+                    name = builtin[current];
+                } else {
+                    can_save = true;
+                    angular.forEach(joinedTo, function (val) {
+                        if (current !== settings.current_preset[val]) {
+                            can_save = false;
+                        }
+                    });
+
+                    angular.forEach(settings.all_presets, function (val, key) {
+                        if (current === val.number) {
+                            name = key;
+                        }
+                    });
+                }
+                settings.can_save = can_save;
+                settings.current_preset_name = name;
+            });
+
+            $scope.$watch('astrals.current_effect', function (presets) {
+                var current = settings.current_effect[myIndex],
+                    name;
+
+                angular.forEach(settings.chand_transitions, function (val, key) {
+                    if (current === val) {
+                        name = key;
+                    }
+                });
+
+                settings.current_effect_name = name;
+            });
+
+
+            // Calculate valid and unused presets
             $scope.$watch('astrals.all_presets', function (presets) {
                 if (presets) {
-                    // TODO:: build list of valid_presets
-                    // TODO:: build list of all_presets (all custom presets)
-                    // TODO:: build list of existing_presets
+                    var valid = {},
+                        unused = settings.custom_range.slice(0), // clone array
+                        count = 0;
 
-                    settings.valid_presets = {
-                        "My custom preset": 10,
-                        "This does somthing": 11
-                    };
-                    settings.existing_presets = [10, 11];
+                    angular.forEach(presets, function (val, name) {
+                        var index = unused.indexOf(val.number);
 
-                    if (settings.custom_range) {
-                        calculate_unused();
-                    }
+                        if (index > -1) {
+                            // The preset is used, lets remove it from this list
+                            unused.splice(index, 1);
+                        }
+
+                        if (val.applied_to.indexOf(myIndex) > -1) {
+                            valid[name] = val.number;
+                        }
+
+                        count += 1;
+                    });
+
+                    settings.valid_presets = valid;
+                    settings.unused_presets = unused;
+                    settings.custom_preset_count = count;
                 }
             });
-
-            $scope.$watch('astrals.custom_range', function (presets) {
-                if (presets && settings.all_presets) {
-                    calculate_unused();
-                }
-            });
-
 
 
             // ------------------------------

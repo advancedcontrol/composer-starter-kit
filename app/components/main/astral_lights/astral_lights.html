@@ -3,22 +3,46 @@
 
 
 <div ng-controller="Modals">
+    <modal class="chandelier" name="lightAdjust" title="Adjust Levels and Save">
+        <p>Preset created! Now adjust the levels and remember to save this preset</p>
+
+        <menu>
+            <button class="ok" ng-click="closeModal('lightAdjust')">
+                Understood
+            </button>
+        </menu>
+
+        <div style="clear: both"></div>
+    </modal>
+
+    <modal class="chandelier" name="lightSaved" title="Preset Saved!">
+        <p>Preset "{{astrals.current_preset_name}}" has been saved!</p>
+
+        <menu>
+            <button class="ok" ng-click="closeModal('lightSaved')">
+                Understood
+            </button>
+        </menu>
+
+        <div style="clear: both"></div>
+    </modal>
+
     <modal class="chandelier" name="chandelier" title="Adjust Chandelier Levels">
         <p>Select the levels you would like to adjust, then adjust using the slider.</p>
         <table class="custom-fader">
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn" ng-click="astrals.local_chand = 255">Full</button>
+                    <button class="btn" ng-click="astrals.local_level = 255">Full</button>
                 </td>
             </tr>
             <tr>
-                <td co-bind="'chandelier_level' as astrals.chandelier_level">
-                    <div co-range horizontal="false" model="astrals.local_chand" min="0" max="255"></div>
+                <td>
+                    <div co-range horizontal="false" model="astrals.local_level" min="0" max="255"></div>
                 </td>
             </tr>
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn" ng-click="astrals.local_chand = 0">Off</button>
+                    <button class="btn" ng-click="astrals.local_level = 0">Off</button>
                 </td>
             </tr>
         </table>
@@ -71,20 +95,28 @@
         </table>
 
         <div style="clear: both"></div>
-        <br />
 
         <div class="chand-effects">
-            <h3>Chandelier Effects  <button ng-click="setTransition(26); custom_transition = null;">Off</button></h3>
+            <h3>Chandelier Effects  <button ng-click="setTransition(26)">Off</button></h3>
+
             Select Effect: <select ng-options="key for (key, value) in astrals.chand_transitions" ng-model="custom_transition"></select>
             <button ng-if="custom_transition" ng-click="setTransition(custom_transition)">Set</button>
+
+            <p ng-if="astrals.current_effect_name">
+                Currently Selected: {{astrals.current_effect_name}}
+            </p>
             <div style="clear: both"></div>
         </div>
     </modal>
 
     <modal class="light-presets" name="lightPresets" title="Recall a Preset">
-        <p>Select the preset you would like to recall. Note: Only the presets that apply to the current room configuration are shown</p>
+        <p>Select the preset you would like to recall.</p>
 
         <div class="preset-buttons">
+            <p>
+                <h3>Current: {{astrals.current_preset_name}}</h3>
+            </p>
+
             <h3>House and Chandeliers</h3>
             <button ng-click="callPreset(1)">High</button>
             <button ng-click="callPreset(2)">Medium</button>
@@ -99,49 +131,59 @@
             <button ng-click="callPreset(9)">Very Low</button>
 
             <h3>Custom Presets</h3>
-            <select ng-options="key for (key, value) in astrals.valid_presets" ng-model="custom_preset"></select>
-            <button ng-if="custom_preset" ng-click="callPreset(custom_preset)">Recall</button>
+            <select ng-options="key for (key, value) in astrals.valid_presets" ng-model="custom_preset">
+                <option value="">Select Preset</option>
+            </select>
+            <button ng-if="custom_preset" ng-click="callPreset(custom_preset);">Recall</button>
         </div>
         <div style="clear: both"></div>
     </modal>
 
 
     <modal class="preset-save" name="lightSave" title="Save and Clear Presets">
-        <p>Warning! Make sure the preset you overwrite is no longer required.</p>
+        <p>NOTE - To create a preset you must do the following:</p>
 
         <div class="preset-buttons">
-            <div ng-if="astrals.existing_presets.length > 0">
-                <h3>Clear a preset</h3>
+            <ol>
+                <li>Create the preset below</li>
+                <li>Adjust the levels</li>
+                <li>Return here to save the preset</li>
+            </ol>
+
+            <div ng-if="astrals.can_save && astrals.current_preset_name">
+                <h3>
+                    Save preset: {{astrals.current_preset_name}}
+                    <span>
+                        <button ng-click="savePreset(); closeModal('lightSave'); showModal('lightSaved');">Save</button>
+                    </span>
+                </h3>
+            </div>
+            <br />
+
+
+            <div ng-if="astrals.custom_preset_count > 0">
+                <h3>Delete an existing preset:</h3>
                 <select ng-options="key for (key, value) in astrals.all_presets" ng-model="clear_preset"></select>
-                <button ng-if="clear_preset" ng-click="clearPreset(clear_preset.number)">Clear</button>
-
-                <br />
-                <br />
-                <br />
-
-                <h3>Overwrite Existing</h3>
-                <select ng-options="key for (key, value) in astrals.all_presets" ng-model="astrals.over_preset">
-                    <option value="">Select Preset:</option>
-                </select>
+                <button ng-if="clear_preset" ng-click="clearPreset(clear_preset.number)">Delete</button>
             </div>
 
 
             <div ng-if="astrals.unused_presets.length > 0">   
                 <br />
-                <h3>OR - Select an unused preset</h3>
-                <select ng-options="value for value in astrals.unused_presets" ng-model="astrals.new_preset">
-                    <option value=""> - </option>
-                </select>
+                <br />
+                <h3>Create a preset:</h3>
+                <input ng-model="astrals.new_preset_name" />
+                <button
+                    ng-if="astrals.new_preset_name"
+                    ng-click="createPreset(astrals.new_preset_name); closeModal('lightSave'); showModal('lightAdjust');">
+                    Create
+                </button>
             </div>
 
-            <br />
-            <h3>Describe this preset to save:</h3>
-            <input ng-model="astrals.preset_name" />
-            <button
-                ng-if="astrals.preset_name && (astrals.over_preset || astrals.new_preset)"
-                ng-click="savePreset(astrals.new_preset || astrals.over_preset.number, astrals.preset_name); closeModal('lightSave');">
-                Save
-            </button>
+            <div ng-if="astrals.unused_presets.length === 0">
+                <br />
+                <h3>Clear an existing preset to create new ones</h3>
+            </div>
         </div>
         <div style="clear: both"></div>
     </modal>
@@ -159,6 +201,8 @@
             <button class="btn" ng-click="showModal('lightSave')">Manage Presets</button>
 
             <!-- This is where the preset binds occur -->
+            <div co-bind="'presets' as astrals.current_preset"></div>
+            <div co-bind="'effects' as astrals.current_effect"></div>
             <div co-bind="'chandelier_presets' as astrals.chand_transitions"></div>
             <div co-bind="'custom_numbers' as astrals.custom_range"></div>
             <div co-bind="'custom_presets' as astrals.all_presets"></div>
@@ -300,16 +344,16 @@
             <button class="btn" ng-click="astrals.down_fader = 255">Full</button>
         </td>
     </tr>
-    <tr co-bind="'house_levels' as astrals.house_levels">
-        <td>
+    <tr co-module="'Lighting'">
+        <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan0_level' as astrals.onyx_fader">
             <!-- Onyx -->
             <div co-range horizontal="false" model="astrals.onyx_fader" min="0" max="255"></div>
         </td>
-        <td>
+        <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan1_level' as astrals.pelmets_fader">
             <!-- Pelmets -->
             <div co-range horizontal="false" model="astrals.pelmets_fader" min="0" max="255"></div>
         </td>
-        <td>
+        <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan2_level' as astrals.down_fader">
             <!-- Downlights -->
             <div co-range horizontal="false" model="astrals.down_fader" min="0" max="255"></div>
         </td>
