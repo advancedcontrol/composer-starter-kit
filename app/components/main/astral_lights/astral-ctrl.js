@@ -259,13 +259,13 @@
                 '8': 'House Low',
                 '9': 'House Very Low'
             };
-            $scope.$watch('astrals.current_preset', function (val) {
-                if (!val) {
+            $scope.$watch('astrals.current_preset', function (preset) {
+                if (!preset) {
                     return;
                 }
 
                 var can_save = false,
-                    current = settings.current_preset[myIndex],
+                    current = preset[myIndex],
                     name;
 
                 // Check if save is possible
@@ -274,7 +274,7 @@
                 } else {
                     can_save = true;
                     angular.forEach(joinedTo, function (val) {
-                        if (current !== settings.current_preset[val]) {
+                        if (current !== preset[val]) {
                             can_save = false;
                         }
                     });
@@ -289,8 +289,12 @@
                 settings.current_preset_name = name;
             });
 
-            $scope.$watch('astrals.current_effect', function (presets) {
-                var current = settings.current_effect[myIndex],
+            $scope.$watch('astrals.current_effect', function (preset) {
+                if (!preset) {
+                    return;
+                }
+
+                var current = preset[myIndex],
                     name;
 
                 angular.forEach(settings.chand_transitions, function (val, key) {

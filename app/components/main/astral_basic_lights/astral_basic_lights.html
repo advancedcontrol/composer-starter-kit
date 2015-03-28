@@ -1,0 +1,37 @@
+
+<div ng-controller="AstralCtrl" class="expansive astral-basic-lighting" co-module="'AstralLights'">
+<div class="basic-wrapper">
+    <p>Select the preset you would like to recall.</p>
+
+    <div class="preset-buttons">
+        <p>
+            <h3>Current Preset: {{astrals.current_preset_name}}</h3>
+        </p>
+
+        <h3>House and Chandeliers</h3>
+        <button ng-click="callPreset(1)">High</button>
+        <button ng-click="callPreset(2)">Medium</button>
+        <button ng-click="callPreset(3)">Low</button>
+        <button ng-click="callPreset(5)">Very Low</button>
+        <button ng-click="callPreset(4)">Off</button>
+
+        <h3>House Only</h3>
+        <button ng-click="callPreset(6)">High</button>
+        <button ng-click="callPreset(7)">Medium</button>
+        <button ng-click="callPreset(8)">Low</button>
+        <button ng-click="callPreset(9)">Very Low</button>
+
+        <h3>Custom Presets</h3>
+        <select ng-options="key for (key, value) in astrals.valid_presets" ng-model="custom_preset">
+            <option value="">Select Preset</option>
+        </select>
+        <button ng-if="custom_preset" ng-click="callPreset(custom_preset);">Recall</button>
+    </div>
+    <div co-bind="'presets' as astrals.current_preset"></div>
+    <div co-bind="'effects' as astrals.current_effect"></div>
+    <div co-bind="'chandelier_presets' as astrals.chand_transitions"></div>
+    <div co-bind="'custom_numbers' as astrals.custom_range"></div>
+    <div co-bind="'custom_presets' as astrals.all_presets"></div>
+    <div style="clear: both"></div>
+</div>
+</div>

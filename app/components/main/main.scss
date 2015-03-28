@@ -274,7 +274,9 @@ article {
 
 
     // TABS
-    &.lights::before {
+    &.lights::before,
+    &.astral_lights::before,
+    &.astral_basic_lights::before {
         content: "\f0eb";
     }
 

@@ -68,18 +68,20 @@
             "tabs": {
                 "basic": [
                     "help",
-                    "start",
-                    "astral_lights"
+                    "astral_basic_lights",
+                    "start"
                 ],
                 "client": [
                     "vision", // DualVision for dual displays
                     "audio",
                     "help",
+                    "astral_basic_lights",
                     "end"
                 ],
                 "advanced": [
                     "vision", // DualVision for dual displays
                     "audio",
+                    "astral_lights",
                     "end"
                 ]
             },
@@ -141,6 +143,9 @@
                     "title": "Help"
                 },
                 "astral_lights": {
+                    "title": "Lights"
+                },
+                "astral_basic_lights": {
                     "title": "Lights"
                 }
             },
