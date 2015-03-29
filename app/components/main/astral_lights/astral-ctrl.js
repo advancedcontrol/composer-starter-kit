@@ -60,7 +60,6 @@
     // This is the last know level of the last selection you had
     settings.selected_level = [125, 125, 125];
     settings.chandelier_level = [5, 5, 5];
-    settings.house_levels = [0, 0, 0];
 
 
     // Define the controller
@@ -127,11 +126,11 @@
             $scope.toggleAll = function (room) {
 
                 performToggle(settings.selected[room], settings.checkBoxes[room]);
-                $scope.coModuleInstance.$exec('select', [room], settings.selected);
+                $scope.coModuleInstance.$exec('selection', [room], settings.selected);
             };
 
             $scope.selected = function (room) {
-                $scope.coModuleInstance.$exec('select', [room], settings.selected);
+                $scope.coModuleInstance.$exec('selection', [room], settings.selected);
                 settings.checkBoxes[room] = checkSelected(settings.selected, room);
             };
 
@@ -174,17 +173,29 @@
             };
 
             $scope.$watch('astrals.onyx_fader', function (val) {
-                if (val || val === 0)
-                    updateHouse(0, val);
+                settings.onyx_fader_ui = val;
             });
 
             $scope.$watch('astrals.pelmets_fader', function (val) {
-                if (val || val === 0)
-                    updateHouse(1, val);
+                settings.pelmets_fader_ui = val;
             });
 
             $scope.$watch('astrals.down_fader', function (val) {
-                if (val || val === 0)
+                settings.down_fader_ui = val;
+            });
+
+            $scope.$watch('astrals.onyx_fader_ui', function (val) {
+                if ((val || val === 0) && val !== settings.onyx_fader && settings.onyx_fader !== undefined)
+                    updateHouse(0, val);
+            });
+
+            $scope.$watch('astrals.pelmets_fader_ui', function (val) {
+                if ((val || val === 0) && val !== settings.pelmets_fader && settings.pelmets_fader !== undefined)
+                    updateHouse(1, val);
+            });
+
+            $scope.$watch('astrals.down_fader_ui', function (val) {
+                if ((val || val === 0) && val !== settings.down_fader && settings.down_fader !== undefined)
                     updateHouse(2, val);
             });
 

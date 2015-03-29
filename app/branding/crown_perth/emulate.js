@@ -279,7 +279,7 @@
             ],
             "selected_level": [125, 125, 125],
 
-            $select: function (rooms, selections) {
+            $selection: function (rooms, selections) {
                 var sys = this;
 
                 angular.forEach(rooms, function (room) {

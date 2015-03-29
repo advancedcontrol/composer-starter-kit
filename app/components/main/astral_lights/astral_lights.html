@@ -347,15 +347,15 @@
     <tr co-module="'Lighting'">
         <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan0_level' as astrals.onyx_fader">
             <!-- Onyx -->
-            <div co-range horizontal="false" model="astrals.onyx_fader" min="0" max="255"></div>
+            <div co-range horizontal="false" model="astrals.onyx_fader_ui" min="0" max="255"></div>
         </td>
         <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan1_level' as astrals.pelmets_fader">
             <!-- Pelmets -->
-            <div co-range horizontal="false" model="astrals.pelmets_fader" min="0" max="255"></div>
+            <div co-range horizontal="false" model="astrals.pelmets_fader_ui" min="0" max="255"></div>
         </td>
         <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan2_level' as astrals.down_fader">
             <!-- Downlights -->
-            <div co-range horizontal="false" model="astrals.down_fader" min="0" max="255"></div>
+            <div co-range horizontal="false" model="astrals.down_fader_ui" min="0" max="255"></div>
         </td>
     </tr>
     <tr style="height: 4.5em;">
