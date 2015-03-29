@@ -333,27 +333,27 @@
     <tr style="height: 4.5em;">
         <td>
             <!-- Onyx -->
-            <button class="btn" ng-click="astrals.onyx_fader = 255">Full</button>
+            <button class="btn" ng-click="astrals.onyx_fader_ui = 255">Full</button>
         </td>
         <td>
             <!-- Pelmets -->
-            <button class="btn" ng-click="astrals.pelmets_fader = 255">Full</button>
+            <button class="btn" ng-click="astrals.pelmets_fader_ui = 255">Full</button>
         </td>
         <td>
             <!-- Downlights -->
-            <button class="btn" ng-click="astrals.down_fader = 255">Full</button>
+            <button class="btn" ng-click="astrals.down_fader_ui = 255">Full</button>
         </td>
     </tr>
     <tr co-module="'Lighting'">
-        <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan0_level' as astrals.onyx_fader">
+        <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan1_level' as astrals.onyx_fader">
             <!-- Onyx -->
             <div co-range horizontal="false" model="astrals.onyx_fader_ui" min="0" max="255"></div>
         </td>
-        <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan1_level' as astrals.pelmets_fader">
+        <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan2_level' as astrals.pelmets_fader">
             <!-- Pelmets -->
             <div co-range horizontal="false" model="astrals.pelmets_fader_ui" min="0" max="255"></div>
         </td>
-        <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan2_level' as astrals.down_fader">
+        <td co-bind="'area' + astrals.area_codes[systemIndex] + '_chan3_level' as astrals.down_fader">
             <!-- Downlights -->
             <div co-range horizontal="false" model="astrals.down_fader_ui" min="0" max="255"></div>
         </td>
@@ -361,15 +361,15 @@
     <tr style="height: 4.5em;">
         <td>
             <!-- Onyx -->
-            <button class="btn" ng-click="astrals.onyx_fader = 0">Off</button>
+            <button class="btn" ng-click="astrals.onyx_fader_ui = 0">Off</button>
         </td>
         <td>
             <!-- Pelmets -->
-            <button class="btn" ng-click="astrals.pelmets_fader = 0">Off</button>
+            <button class="btn" ng-click="astrals.pelmets_fader_ui = 0">Off</button>
         </td>
         <td>
             <!-- Downlights -->
-            <button class="btn" ng-click="astrals.down_fader = 0">Off</button>
+            <button class="btn" ng-click="astrals.down_fader_ui = 0">Off</button>
         </td>
     </tr>
     <tr style="height: 2em;">
