@@ -67,6 +67,7 @@
             //"tab": "Lights",
             "tabs": {
                 "basic": [
+                    "joining",
                     "help",
                     "astral_basic_lights",
                     "start"
@@ -82,6 +83,7 @@
                     "vision", // DualVision for dual displays
                     "audio",
                     "astral_lights",
+                    "joining",
                     "end"
                 ]
             },
@@ -147,6 +149,9 @@
                 },
                 "astral_basic_lights": {
                     "title": "Lights"
+                },
+                "joining": {
+                    "title": "Room Joining"
                 }
             },
             "sources": {
@@ -250,7 +255,20 @@
             },
             "rooms": {
                 "sys_3-18": "Astral 1",
-                "sys_3-19": "Astral 2"
+                "sys_3-19": "Astral 2",
+                "sys_3-1A": "Astral 3"
+            },
+            $unjoin: function () {
+                this.joined = {
+                    rooms: ['sys_3-18'],
+                    initiator: 'sys_3-18'
+                };
+            },
+            $join: function () {
+                this.joined = {
+                    rooms: Array.prototype.slice.call(arguments),
+                    initiator: 'sys_3-18'
+                };
             }
         }],
         Lighting: [{

@@ -1,6 +1,12 @@
 
 <div ng-controller="AstralCtrl" class="expansive astral-lighting" co-module="'AstralLights'">
 
+<!-- This is where the preset binds occur -->
+<div co-bind="'presets' as astrals.current_preset"></div>
+<div co-bind="'effects' as astrals.current_effect"></div>
+<div co-bind="'chandelier_presets' as astrals.chand_transitions"></div>
+<div co-bind="'custom_numbers' as astrals.custom_range"></div>
+<div co-bind="'custom_presets' as astrals.all_presets"></div>
 
 <div ng-controller="Modals">
     <modal class="chandelier" name="lightAdjust" title="Adjust Levels and Save">
@@ -199,13 +205,6 @@
             <button class="btn" ng-click="showModal('chandelier')">Chandelier Config</button>
             <button class="btn" ng-click="showModal('lightPresets')">Recall a Preset</button>
             <button class="btn" ng-click="showModal('lightSave')">Manage Presets</button>
-
-            <!-- This is where the preset binds occur -->
-            <div co-bind="'presets' as astrals.current_preset"></div>
-            <div co-bind="'effects' as astrals.current_effect"></div>
-            <div co-bind="'chandelier_presets' as astrals.chand_transitions"></div>
-            <div co-bind="'custom_numbers' as astrals.custom_range"></div>
-            <div co-bind="'custom_presets' as astrals.all_presets"></div>
         </td>
     </tr>
     <tr class="select-light" co-bind="'selected' as astrals.selected">

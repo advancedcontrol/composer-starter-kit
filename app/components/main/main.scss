@@ -300,6 +300,10 @@ article {
         content: "\f011";
     }
 
+    &.joining::before {
+        content: "\f0c1";
+    }
+
 
     // Outputs
     &.laptop::before {

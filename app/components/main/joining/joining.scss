@@ -1,0 +1,25 @@
+@import "compass";
+
+// Joining Page
+
+div.joining-page {
+    text-align: center;
+    font-size: larger;
+
+    div.basic-wrapper {
+        display: inline-block;
+        text-align: left;
+    }
+
+    button {
+        font-size: larger;
+    }
+
+    label {
+        font-size: larger;
+        display: block;
+        margin-bottom: 1em;
+    }
+}
+
+

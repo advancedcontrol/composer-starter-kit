@@ -1,0 +1,32 @@
+
+<div co-module="'Joiner'" co-bind="'joined'" class="expansive joining-page">
+    <div class="basic-wrapper" co-bind="'rooms'">
+
+        <!-- Room is joined to others: -->
+        <div ng-if="joined.rooms.length > 1">
+            <h3>The following rooms are joined:</h3>
+
+            <ul>
+                <li ng-repeat="room in joined.rooms">
+                    {{rooms[room]}}
+                </li>
+            </ul>
+
+            <button ng-click="coModuleInstance.$exec('unjoin')">Seperate / Unjoin</button>
+        </div>
+
+        <!-- Room is independant: -->
+        <div ng-if="joined.rooms.length == 1" ng-controller="JoiningCtrl">
+            <h3>Select the rooms you would like to join.</h3>
+
+            <label ng-repeat="(id, name) in rooms">
+                <input type="checkbox" ng-model="joiner.selected[id]" />
+                {{name}}
+            </label>
+
+            <br />
+            <br />
+            <button ng-click="joinRooms()">Join Selected Rooms</button>
+        </div>
+    </div>
+</div>
