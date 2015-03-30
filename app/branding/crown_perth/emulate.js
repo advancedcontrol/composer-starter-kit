@@ -67,9 +67,8 @@
             //"tab": "Lights",
             "tabs": {
                 "basic": [
-                    "joining",
+                    "lights",
                     "help",
-                    "astral_basic_lights",
                     "start"
                 ],
                 "client": [
@@ -147,7 +146,7 @@
                 "astral_lights": {
                     "title": "Lights"
                 },
-                "astral_basic_lights": {
+                "lights": {
                     "title": "Lights"
                 },
                 "joining": {
@@ -287,6 +286,40 @@
                 this[setting] = level;
 
                 console.log('LIGHT LEVEL: ' + setting + ' = ' + level);
+            }
+        }],
+        Lights: [{
+            "light_levels": [
+                {
+                    "name": "Full",
+                    "trigger": 3,
+                    "message": "Lights are at Full"
+                },
+                {
+                    "name": "Presentation",
+                    "trigger": 2,
+                    "message": "Lights in Presentation mode",
+                },
+                {
+                    "name": "Off",
+                    "trigger": 1,
+                    "message": "Lights Off"
+                }
+            ],
+            "light_names": {
+                "Full": {
+                    "message": "Lights are at Full"
+                },
+                "Presentation": {
+                    "message": "Lights in Presentation mode"
+                },
+                "Off": {
+                    "message": "Lights Off"
+                },
+            },
+            "light_level": "Off",
+            $perform_trigger: function (level) {
+                this.light_level = level;
             }
         }],
         AstralLights: [{
