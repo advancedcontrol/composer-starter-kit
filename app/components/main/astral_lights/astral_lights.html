@@ -9,24 +9,12 @@
 <div co-bind="'custom_presets' as astrals.all_presets"></div>
 
 <div ng-controller="Modals">
-    <modal class="chandelier" name="lightAdjust" title="Adjust Levels and Save">
-        <p>Preset created! Now adjust the levels and remember to save this preset</p>
-
-        <menu>
-            <button class="ok" ng-click="closeModal('lightAdjust')">
-                Understood
-            </button>
-        </menu>
-
-        <div style="clear: both"></div>
-    </modal>
-
     <modal class="chandelier" name="lightSaved" title="Preset Saved!">
         <p>Preset "{{astrals.current_preset_name}}" has been saved!</p>
 
         <menu>
             <button class="ok" ng-click="closeModal('lightSaved')">
-                Understood
+                OK
             </button>
         </menu>
 
@@ -147,26 +135,9 @@
 
 
     <modal class="preset-save" name="lightSave" title="Save and Clear Presets">
-        <p>NOTE - To create a preset you must do the following:</p>
+        <p>Note: Presets cannot be adjusted. Just clear the existing preset and create a new one.</p>
 
         <div class="preset-buttons">
-            <ol>
-                <li>Create the preset below</li>
-                <li>Adjust the levels</li>
-                <li>Return here to save the preset</li>
-            </ol>
-
-            <div ng-if="astrals.can_save && astrals.current_preset_name">
-                <h3>
-                    Save preset: {{astrals.current_preset_name}}
-                    <span>
-                        <button ng-click="savePreset(); closeModal('lightSave'); showModal('lightSaved');">Save</button>
-                    </span>
-                </h3>
-            </div>
-            <br />
-
-
             <div ng-if="astrals.custom_preset_count > 0">
                 <h3>Delete an existing preset:</h3>
                 <select ng-options="key for (key, value) in astrals.all_presets" ng-model="clear_preset"></select>
@@ -174,14 +145,14 @@
             </div>
 
 
-            <div ng-if="astrals.unused_presets.length > 0">   
+            <div ng-if="astrals.unused_presets.length > 0"> 
                 <br />
                 <br />
                 <h3>Create a preset:</h3>
                 <input ng-model="astrals.new_preset_name" />
                 <button
                     ng-if="astrals.new_preset_name"
-                    ng-click="createPreset(astrals.new_preset_name); closeModal('lightSave'); showModal('lightAdjust');">
+                    ng-click="createPreset(astrals.new_preset_name); closeModal('lightSave'); showModal('lightSaved');">
                     Create
                 </button>
             </div>

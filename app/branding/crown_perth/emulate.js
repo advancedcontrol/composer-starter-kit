@@ -374,12 +374,6 @@
                 "Magenta": 4
             },
 
-
-
-            $save_preset: function (rooms) {
-                console.log("SAVING PRESET: " + this.presets[rooms[0]] + " on ", rooms);
-            },
-
             $create_preset: function (rooms, name) {
                 var number = Math.floor(Math.random() * (20 - 12 + 1)) + 12;
                 console.log("CREATING PRESET: ", number, name, " on ", rooms);

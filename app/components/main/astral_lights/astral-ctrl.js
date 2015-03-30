@@ -248,10 +248,6 @@
             $scope.createPreset = function (name) {
                 settings.new_preset_name = null;
                 $scope.coModuleInstance.$exec('create_preset', joinedTo, name);
-
-                $timeout(function () {
-                    $scope.coModuleInstance.$exec('call_named', joinedTo, name);
-                });
             };
 
             $scope.savePreset = function () {
