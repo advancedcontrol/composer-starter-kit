@@ -26,7 +26,7 @@
         <table class="custom-fader">
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn" ng-click="astrals.local_level = 255">Full</button>
+                    <button class="btn" ng-click="sendCurrentLevel(255)">Full</button>
                 </td>
             </tr>
             <tr>
@@ -36,7 +36,7 @@
             </tr>
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn" ng-click="astrals.local_level = 0">Off</button>
+                    <button class="btn" ng-click="sendCurrentLevel(0)">Off</button>
                 </td>
             </tr>
         </table>
@@ -274,7 +274,7 @@
     <tr class="select-all" style="height: 4.5em;">
         <!-- Select all toggle -->
         <td style="text-align: center;">
-            <button class="btn" ng-click="astrals.local_level = 0">Off</button>
+            <button class="btn" ng-click="sendCurrentLevel(0)">Off</button>
         </td>
         <td>
             <span ng-if="show_astral_1"><image-toggle model="astrals.checkBoxes[0]" on-change="toggleAll(0)"></image-toggle> All</span>
@@ -303,15 +303,15 @@
     <tr style="height: 4.5em;">
         <td>
             <!-- Onyx -->
-            <button class="btn" ng-click="astrals.onyx_fader_ui = 255">Full</button>
+            <button class="btn" ng-click="updateHouse(0, 255)">Full</button>
         </td>
         <td>
             <!-- Pelmets -->
-            <button class="btn" ng-click="astrals.pelmets_fader_ui = 255">Full</button>
+            <button class="btn" ng-click="updateHouse(1, 255)">Full</button>
         </td>
         <td>
             <!-- Downlights -->
-            <button class="btn" ng-click="astrals.down_fader_ui = 255">Full</button>
+            <button class="btn" ng-click="updateHouse(2, 255)">Full</button>
         </td>
     </tr>
     <tr co-module="'Lighting'">
@@ -331,15 +331,15 @@
     <tr style="height: 4.5em;">
         <td>
             <!-- Onyx -->
-            <button class="btn" ng-click="astrals.onyx_fader_ui = 0">Off</button>
+            <button class="btn" ng-click="updateHouse(0, 0)">Off</button>
         </td>
         <td>
             <!-- Pelmets -->
-            <button class="btn" ng-click="astrals.pelmets_fader_ui = 0">Off</button>
+            <button class="btn" ng-click="updateHouse(1, 0)">Off</button>
         </td>
         <td>
             <!-- Downlights -->
-            <button class="btn" ng-click="astrals.down_fader_ui = 0">Off</button>
+            <button class="btn" ng-click="updateHouse(2, 0)">Off</button>
         </td>
     </tr>
     <tr style="height: 2em;">
