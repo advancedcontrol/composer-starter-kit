@@ -149,9 +149,16 @@
                 }
             });
 
-            $scope.sendCurrentLevel = function (level) {
-                settings.local_level = level || settings.local_level;
+            $scope.sendCurrentLevel = function () {
                 $scope.coModuleInstance.$exec('selected_level', joinedTo, settings.local_level);
+            };
+
+            $scope.sendStaticLevel = function (level) {
+                if (settings.local_level == level) {
+                    $scope.sendCurrentLevel();
+                } else {
+                    settings.local_level = level;
+                }
             };
 
             $scope.$watch('astrals.local_level', function (level) {

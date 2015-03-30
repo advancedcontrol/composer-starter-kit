@@ -26,7 +26,7 @@
         <table class="custom-fader">
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn" ng-click="sendCurrentLevel(255)">Full</button>
+                    <button class="btn" ng-click="sendStaticLevel(255)">Full</button>
                 </td>
             </tr>
             <tr>
@@ -36,7 +36,7 @@
             </tr>
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn" ng-click="sendCurrentLevel(0)">Off</button>
+                    <button class="btn" ng-click="sendStaticLevel(0)">Off</button>
                 </td>
             </tr>
         </table>
@@ -274,7 +274,7 @@
     <tr class="select-all" style="height: 4.5em;">
         <!-- Select all toggle -->
         <td style="text-align: center;">
-            <button class="btn" ng-click="sendCurrentLevel(0)">Off</button>
+            <button class="btn" ng-click="sendStaticLevel(0)">Off</button>
         </td>
         <td>
             <span ng-if="show_astral_1"><image-toggle model="astrals.checkBoxes[0]" on-change="toggleAll(0)"></image-toggle> All</span>
