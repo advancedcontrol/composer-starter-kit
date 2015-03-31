@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div class="panel" ng-if="output">
-                <div class="center-vert" co-module="selectedOutput" co-implicit-index>
+                <div class="center-vert" co-module="output.out_id" co-implicit-index>
                     <div co-bind="'power'" exec>
                         <p>{{output.title}}</p>
                         <div toggle-switch model="power" on-label="'On'" off-label="'Off'"></div>

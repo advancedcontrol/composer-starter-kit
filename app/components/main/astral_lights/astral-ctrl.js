@@ -317,31 +317,47 @@
             });
 
 
-            // Calculate valid and unused presets
+            // Calculate valid and unused presets ----------------
+            var presetsTmp = null,
+                configure_presets = function (presets) {
+                var valid = {},
+                    unused = settings.custom_range.slice(0), // clone array
+                    count = 0;
+
+
+                presetsTmp = null;
+
+                angular.forEach(presets, function (val, name) {
+                    var index = unused.indexOf(val.number);
+
+                    if (index > -1) {
+                        // The preset is used, lets remove it from this list
+                        unused.splice(index, 1);
+                    }
+
+                    if (val.applied_to.indexOf(myIndex) > -1) {
+                        valid[name] = val.number;
+                    }
+
+                    count += 1;
+                });
+
+                settings.valid_presets = valid;
+                settings.unused_presets = unused;
+                settings.custom_preset_count = count;
+            };
+            
+            // We need to wait for both these to exist before generating the presets
             $scope.$watch('astrals.all_presets', function (presets) {
-                if (presets) {
-                    var valid = {},
-                        unused = settings.custom_range.slice(0), // clone array
-                        count = 0;
+                presetsTmp = presets;
+                if (presetsTmp && settings.custom_range) {
+                    configure_presets(presetsTmp);
+                }
+            });
 
-                    angular.forEach(presets, function (val, name) {
-                        var index = unused.indexOf(val.number);
-
-                        if (index > -1) {
-                            // The preset is used, lets remove it from this list
-                            unused.splice(index, 1);
-                        }
-
-                        if (val.applied_to.indexOf(myIndex) > -1) {
-                            valid[name] = val.number;
-                        }
-
-                        count += 1;
-                    });
-
-                    settings.valid_presets = valid;
-                    settings.unused_presets = unused;
-                    settings.custom_preset_count = count;
+            $scope.$watch('astrals.custom_range', function (range) {
+                if (presetsTmp && range) {
+                    configure_presets(presetsTmp);
                 }
             });
 
