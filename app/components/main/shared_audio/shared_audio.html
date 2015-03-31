@@ -1,0 +1,127 @@
+<div class="panels audio-pane" co-module="'Audio'" >
+    <div co-bind="'no_master'"></div>
+    <div co-bind="'in_max'"></div>
+    <div co-bind="'in_min'"></div>
+    <div co-bind="'out_max'"></div>
+    <div co-bind="'out_min'"></div>
+
+    <div class="panel large" co-bind="'inputs' as levels">
+        <div ng-if="levels" class="panels vert sliders">
+
+            <div ng-if="mixer_type !== 'basic'" class="panel" ng-repeat="level in levels">
+                <div 
+                    class="center-vert"
+                    co-module="level.mixer || 'Mixer_1'"
+                    co-implicit-index
+                    co-bind="level.type + level.id + '_' + level.index as volume"
+                    exec="fader(level.id, volume, level.index, level.type)"
+                >
+                    <table
+                        class="slider"
+                        co-bind="level.type + (level.mute_id || level.id) + '_' + (level.mute_index || level.index) + '_mute' as muted"
+                        exec="mute((level.mute_id || level.id), muted, (level.mute_index || level.index), level.type)"
+                    >
+                        <tr>
+                            <td>
+                                <span image-toggle model="muted"></span>
+                            </td>
+                            <td class="name">
+                                 {{level.name}}
+                            <td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="btn-adjust">
+                                <button class="btn" ng-click="volume = volume - 5">-5</button>
+                            </td>
+                            <td>
+                                <div co-range model="volume" min="in_min" max="in_max"></div>
+                            </td>
+                            <td class="btn-adjust">
+                                <button class="btn" ng-click="volume = volume + 5">+5</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div ng-if="mixer_type === 'basic'" class="panel" ng-repeat="level in levels">
+                <div 
+                    class="center-vert"
+                    co-module="level.mixer"
+                    co-implicit-index
+                    co-bind="'fader' + level.id as volume"
+                    exec="fader(level.id, volume)"
+                >
+                    <table
+                        class="slider"
+                        co-bind="'fader' + (level.mute_id || level.id) + '_mute' as muted"
+                        exec="mute(level.mute_id || level.id, muted)"
+                    >
+                        <tr class="name">
+                            <td>
+                                <span image-toggle model="muted"></span>
+                            </td>
+                            <td>
+                                 {{level.name}}
+                            <td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="btn-adjust">
+                                <button class="btn" ng-click="volume = volume - 5">-5</button>
+                            </td>
+                            <td>
+                                <div co-range model="volume" min="in_min" max="in_max"></div>
+                            </td>
+                            <td class="btn-adjust">
+                                <button class="btn" ng-click="volume = volume + 5">+5</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div ng-controller="SharedAudioCtrl" class="panel" co-bind="'locations'">
+        <div class="panels vert">
+            <div class="panel locations" ng-if="locations.length > 0">
+                <div>
+                    <div ng-repeat="name in locations" class="location">
+                        <label co-bind="name as enable" exec="send_to(name, enable)">
+                            <input type="checkbox" ng-model="enable" ng-init="enable = false" />
+                            Send to {{name}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="panel master-audio" ng-if="!no_master" co-bind="'fader_feedback'">
+                <div co-bind="'mixer_id'">
+                    <table
+                        class="master-fader"
+                        co-module="'Mixer'" 
+                        index="mixer_id" 
+                        co-bind="fader_feedback as track.master_remote"
+                    >
+                        <tr style="height: 4em;" co-bind="'connected'">
+                            <td>
+                                <button class="btn" ng-touch="track.master_local = track.master_local + 5">+5</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div co-range horizontal="false" model="track.master_local" min="out_min" max="out_max"></div>
+                            </td>
+                        </tr>
+                        <tr style="height: 4em;">
+                            <td>
+                                <button class="btn" ng-touch="track.master_local = track.master_local - 5">-5</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

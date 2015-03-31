@@ -292,7 +292,7 @@ article {
         content: "\f03e";
     }
 
-    &.audio::before {
+    &.audio::before, &.shared_audio::before {
         content: "\f028";
     }
 

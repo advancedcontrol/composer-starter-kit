@@ -82,7 +82,6 @@
                 ],
                 "advanced": [
                     "vision", // DualVision for dual displays
-                    "audio",
                     "astral_lights",
                     "shared_audio",
                     "joining",
@@ -232,8 +231,61 @@
                 "General support required"
             ]
         }],
+        Audio: [{
+            "inputs": [{
+                    "name": "West 23",
+                    "type": "matrix_in",
+                    "id": 1,
+                    "index": 1
+                },
+                {
+                    "name": "West 24",
+                    "type": "matrix_in",
+                    "id": 1,
+                    "index": 2
+            },
+            {
+                    "name": "West 23",
+                    "type": "matrix_in",
+                    "id": 1,
+                    "index": 1
+                },
+                {
+                    "name": "West 24",
+                    "type": "matrix_in",
+                    "id": 1,
+                    "index": 2
+            }],
+            "presets": {      // Only shown on Admin page
+                "name": 23 
+            },
+            "no_master": false,
+            "locations": ['Lobby', 'Toilets'],
+            "fader_feedback": 'fader13_1',
+            "mixer_id": '1',
+            "in_max": 12,
+            "in_min": -100,
+            "out_max": 12,
+            "out_min": -50,
+
+            $master_volume: function (level) {
+                this.$_self['Mixer'][0].fader13_1 = level;
+            },
+
+            $send_to: function (loc, yesno) {
+                this.loc = yesno;
+            },
+
+            // Location active?
+            "Lobby": false,
+            "Toilets": false
+        }],
         Switcher: [{}],
-        Mixer: [{}],
+        Mixer: [{
+            "matrix_in1_1": -100,
+            "matrix_in1_2": 10,
+            "fader13_1": 12
+        }],
         Lifter: [{
             "lifter1_rotation": 'inactive',
             $state: function (newState) {

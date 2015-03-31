@@ -16,6 +16,10 @@ div.audio-pane {
 
     @include image-toggle($trueImage: '../../../components/main/audio/volume-mute.svg', $falseImage: '../../../components/main/audio/volume.svg', $width: 2em, $height: 2em);
 
+    div.panel > div {
+        padding: 0!important;
+    }
+
     div.sliders {
         &> div.panel {
             // This is what allows 3 sliders
@@ -40,31 +44,19 @@ div.audio-pane {
         }
     }
 
-    div.master-vol {
-        text-align: center;
+    div.locations {
+        font-size: 2.3vw;
 
-        &> div.master-slider {
-            position: absolute;
-            top: 6.5em;
-            bottom: 3.5em;
-            left: 0;
-            right: 0;
+        div.location {
+            margin-bottom: 0.3em;
         }
+    }
 
-        div.plus, div.minus {
-            text-align: center;
-            font-size: smaller;
-        }
-
-        div.plus {
-            margin-top: 1em;
-        }
-
-        div.minus {
-            position: absolute;
-            bottom: 0.5em;
-            left: 0;
-            width: 100%;
+    div.master-audio {
+        flex-grow: 7!important;
+        table {
+            height: 100%;
+            margin: 0 auto;
         }
     }
 }
