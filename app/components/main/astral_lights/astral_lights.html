@@ -13,7 +13,7 @@
         <p>Preset "{{astrals.current_preset_name}}" has been saved!</p>
 
         <menu>
-            <button class="ok" ng-touch="closeModal('lightSaved')">
+            <button class="ok" ng-release="closeModal('lightSaved')">
                 OK
             </button>
         </menu>
@@ -152,7 +152,7 @@
                 <input ng-model="astrals.new_preset_name" />
                 <button
                     ng-if="astrals.new_preset_name"
-                    ng-touch="astrals.createPreset(astrals.new_preset_name); closeModal('lightSave'); showModal('lightSaved');">
+                    ng-release="astrals.createPreset(astrals.new_preset_name); closeModal('lightSave'); showModal('lightSaved');">
                     Create
                 </button>
             </div>

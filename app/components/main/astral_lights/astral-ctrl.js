@@ -253,6 +253,7 @@
 
             settings.createPreset = function (name) {
                 settings.new_preset_name = null;
+                settings.current_preset_name = name;
                 $scope.coModuleInstance.$exec('create_preset', joinedTo, name);
             };
 
