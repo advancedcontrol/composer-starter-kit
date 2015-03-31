@@ -13,7 +13,7 @@
         <p>Preset "{{astrals.current_preset_name}}" has been saved!</p>
 
         <menu>
-            <button class="ok" ng-click="closeModal('lightSaved')">
+            <button class="ok" ng-touch="closeModal('lightSaved')">
                 OK
             </button>
         </menu>
@@ -26,7 +26,7 @@
         <table class="custom-fader">
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn" ng-click="sendStaticLevel(255)">Full</button>
+                    <button class="btn" ng-touch="sendStaticLevel(255)">Full</button>
                 </td>
             </tr>
             <tr>
@@ -36,18 +36,18 @@
             </tr>
             <tr style="height: 4.5em;">
                 <td>
-                    <button class="btn" ng-click="sendStaticLevel(0)">Off</button>
+                    <button class="btn" ng-touch="sendStaticLevel(0)">Off</button>
                 </td>
             </tr>
         </table>
         <menu>
-            <button class="ok" ng-click="toggleChand(true)">
+            <button class="ok" ng-touch="toggleChand(true)">
                 Select All
             </button>
-            <button class="ok" ng-click="toggleChand(false)">
+            <button class="ok" ng-touch="toggleChand(false)">
                 Deselect All
             </button>
-            <button class="ok" ng-click="sendCurrentLevel()">
+            <button class="ok" ng-touch="sendCurrentLevel()">
                 Resend Level
             </button>
         </menu>
@@ -91,10 +91,10 @@
         <div style="clear: both"></div>
 
         <div class="chand-effects">
-            <h3>Chandelier Effects  <button ng-click="setTransition(26)">Off</button></h3>
+            <h3>Chandelier Effects  <button ng-touch="setTransition(26)">Off</button></h3>
 
             Select Effect: <select ng-options="key for (key, value) in astrals.chand_transitions" ng-model="custom_transition"></select>
-            <button ng-if="custom_transition" ng-click="setTransition(custom_transition)">Set</button>
+            <button ng-if="custom_transition" ng-touch="setTransition(custom_transition)">Set</button>
 
             <p ng-if="astrals.current_effect_name">
                 Currently Selected: {{astrals.current_effect_name}}
@@ -112,23 +112,23 @@
             </p>
 
             <h3>House and Chandeliers</h3>
-            <button ng-click="callPreset(1)">High</button>
-            <button ng-click="callPreset(2)">Medium</button>
-            <button ng-click="callPreset(3)">Low</button>
-            <button ng-click="callPreset(5)">Very Low</button>
-            <button ng-click="callPreset(4)">Off</button>
+            <button ng-touch="callPreset(1)">High</button>
+            <button ng-touch="callPreset(2)">Medium</button>
+            <button ng-touch="callPreset(3)">Low</button>
+            <button ng-touch="callPreset(5)">Very Low</button>
+            <button ng-touch="callPreset(4)">Off</button>
 
             <h3>House Only</h3>
-            <button ng-click="callPreset(6)">High</button>
-            <button ng-click="callPreset(7)">Medium</button>
-            <button ng-click="callPreset(8)">Low</button>
-            <button ng-click="callPreset(9)">Very Low</button>
+            <button ng-touch="callPreset(6)">High</button>
+            <button ng-touch="callPreset(7)">Medium</button>
+            <button ng-touch="callPreset(8)">Low</button>
+            <button ng-touch="callPreset(9)">Very Low</button>
 
             <h3>Custom Presets</h3>
             <select ng-options="key for (key, value) in astrals.valid_presets" ng-model="custom_preset">
                 <option value="">Select Preset</option>
             </select>
-            <button ng-if="custom_preset" ng-click="callPreset(custom_preset);">Recall</button>
+            <button ng-if="custom_preset" ng-touch="callPreset(custom_preset);">Recall</button>
         </div>
         <div style="clear: both"></div>
     </modal>
@@ -141,7 +141,7 @@
             <div ng-if="astrals.custom_preset_count > 0">
                 <h3>Delete an existing preset:</h3>
                 <select ng-options="key for (key, value) in astrals.all_presets" ng-model="clear_preset"></select>
-                <button ng-if="clear_preset" ng-click="clearPreset(clear_preset.number)">Delete</button>
+                <button ng-if="clear_preset" ng-touch="clearPreset(clear_preset.number)">Delete</button>
             </div>
 
 
@@ -152,7 +152,7 @@
                 <input ng-model="astrals.new_preset_name" />
                 <button
                     ng-if="astrals.new_preset_name"
-                    ng-click="createPreset(astrals.new_preset_name); closeModal('lightSave'); showModal('lightSaved');">
+                    ng-touch="createPreset(astrals.new_preset_name); closeModal('lightSave'); showModal('lightSaved');">
                     Create
                 </button>
             </div>
@@ -170,12 +170,12 @@
 <table style="height: 100%; width: 70%; float: left; text-align: center;">
     <tr style="height: 4.5em;">
         <td style="width: 5em;">
-            <button class="btn" ng-click="sendCurrentLevel()">Resend</button>
+            <button class="btn" ng-touch="sendCurrentLevel()">Resend</button>
         </td>
         <td colspan="3" ng-controller="Modals">
-            <button class="btn" ng-click="showModal('chandelier')">Chandelier Config</button>
-            <button class="btn" ng-click="showModal('lightPresets')">Recall a Preset</button>
-            <button class="btn" ng-click="showModal('lightSave')">Manage Presets</button>
+            <button class="btn" ng-touch="showModal('chandelier')">Chandelier Config</button>
+            <button class="btn" ng-touch="showModal('lightPresets')">Recall a Preset</button>
+            <button class="btn" ng-touch="showModal('lightSave')">Manage Presets</button>
         </td>
     </tr>
     <tr class="select-light" co-bind="'selected' as astrals.selected">
@@ -274,7 +274,7 @@
     <tr class="select-all" style="height: 4.5em;">
         <!-- Select all toggle -->
         <td style="text-align: center;">
-            <button class="btn" ng-click="sendStaticLevel(0)">Off</button>
+            <button class="btn" ng-touch="sendStaticLevel(0)">Off</button>
         </td>
         <td>
             <span ng-if="show_astral_1"><image-toggle model="astrals.checkBoxes[0]" on-change="toggleAll(0)"></image-toggle> All</span>
@@ -303,15 +303,15 @@
     <tr style="height: 4.5em;">
         <td>
             <!-- Onyx -->
-            <button class="btn" ng-click="updateHouse(0, 255)">Full</button>
+            <button class="btn" ng-touch="updateHouse(0, 255)">Full</button>
         </td>
         <td>
             <!-- Pelmets -->
-            <button class="btn" ng-click="updateHouse(1, 255)">Full</button>
+            <button class="btn" ng-touch="updateHouse(1, 255)">Full</button>
         </td>
         <td>
             <!-- Downlights -->
-            <button class="btn" ng-click="updateHouse(2, 255)">Full</button>
+            <button class="btn" ng-touch="updateHouse(2, 255)">Full</button>
         </td>
     </tr>
     <tr co-module="'Lighting'">
@@ -331,15 +331,15 @@
     <tr style="height: 4.5em;">
         <td>
             <!-- Onyx -->
-            <button class="btn" ng-click="updateHouse(0, 0)">Off</button>
+            <button class="btn" ng-touch="updateHouse(0, 0)">Off</button>
         </td>
         <td>
             <!-- Pelmets -->
-            <button class="btn" ng-click="updateHouse(1, 0)">Off</button>
+            <button class="btn" ng-touch="updateHouse(1, 0)">Off</button>
         </td>
         <td>
             <!-- Downlights -->
-            <button class="btn" ng-click="updateHouse(2, 0)">Off</button>
+            <button class="btn" ng-touch="updateHouse(2, 0)">Off</button>
         </td>
     </tr>
     <tr style="height: 2em;">
