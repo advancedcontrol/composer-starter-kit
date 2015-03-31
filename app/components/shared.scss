@@ -124,6 +124,10 @@ div.splash {
 
         background-color: $masterblue;
 
+/*
+    Animation is causing webkit on iOS to hang.
+    Lets not use it for now
+
         -webkit-animation: crossfade 10s linear;
         -webkit-animation-iteration-count: infinite;
         -moz-animation: crossfade 10s linear;
@@ -134,6 +138,12 @@ div.splash {
         -o-animation-iteration-count: infinite;
         animation: crossfade 10s linear;
         animation-iteration-count: infinite;
+
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        will-change: transform;
+*/
+
 
         &> div {
             display: table-row;

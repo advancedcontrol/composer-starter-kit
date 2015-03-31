@@ -62,26 +62,29 @@
             },
             "name": "Astral 1",
             "access_attempts": 1,
+            "site_name": "Crown",
             "help_msg": "For help please call <strong>0408419954</strong>",
-            //"state": "shutdown", // basic, booked, advanced
+            "state": "shutdown", // basic, booked, advanced
             //"tab": "Lights",
             "tabs": {
                 "basic": [
+                    "shared_audio",
                     "lights",
                     "help",
                     "start"
                 ],
                 "client": [
                     "vision", // DualVision for dual displays
-                    "audio",
+                    "shared_audio",
                     "help",
-                    "astral_basic_lights",
+                    "lights",
                     "end"
                 ],
                 "advanced": [
                     "vision", // DualVision for dual displays
                     "audio",
                     "astral_lights",
+                    "shared_audio",
                     "joining",
                     "end"
                 ]
@@ -151,6 +154,9 @@
                 },
                 "joining": {
                     "title": "Room Joining"
+                },
+                "shared_audio": {
+                    "title": "Audio"
                 }
             },
             "sources": {
@@ -651,12 +657,6 @@
             }
         }]
     };
-
-
-
-
-
-
 
 
 }(this, this.angular));

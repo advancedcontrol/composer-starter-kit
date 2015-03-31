@@ -1,6 +1,5 @@
 
-<!-- Show the system when online, here for performance and pre-load -->
-<article  ng-if="state && state !== 'shutdown'" co-bind="'pages'">
+<article co-bind="'pages'">
     <div co-module="'Joiner'" co-bind="'rooms' as $root.roomNames">
         <div co-bind="'joined' as $root.joinedRooms"></div>
     </div>

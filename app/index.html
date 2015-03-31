@@ -136,9 +136,9 @@
             <!-- Show a splash page when offline -->
             <div 
                 class="splash"
-                ng-if="state === 'shutdown' || !state"
+                ng-show="state === 'shutdown'"
                 co-bind="'name'"
-                ng-click="coModuleInstance.$exec('powerup')"
+                ng-release="coModuleInstance.$exec('powerup')"
             >
                 <div>
                     <div>
@@ -151,7 +151,7 @@
             </div>
 
             <!-- Display the most appropriate user interface -->
-            <div ng-if="state !== 'shutdown'" ng-controller="SharedCtrl">
+            <div ng-show="state !== 'shutdown'" ng-controller="SharedCtrl">
                 <div ng-include="'components/main/main.html'"></div>
                 <!--  <div ng-if="width >= 700 || height >= 700" ng-include="'components/mobile/mobile.html'"></div>  -->
             </div>
