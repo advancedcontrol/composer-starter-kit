@@ -141,7 +141,7 @@
             <div ng-if="astrals.custom_preset_count > 0">
                 <h3>Delete an existing preset:</h3>
                 <select ng-options="key for (key, value) in astrals.all_presets" ng-model="clear_preset"></select>
-                <button ng-if="clear_preset" ng-touch="clearPreset(clear_preset.number)">Delete</button>
+                <button ng-if="clear_preset" ng-touch="astrals.clearPreset(clear_preset.number)">Delete</button>
             </div>
 
 
@@ -152,7 +152,7 @@
                 <input ng-model="astrals.new_preset_name" />
                 <button
                     ng-if="astrals.new_preset_name"
-                    ng-touch="createPreset(astrals.new_preset_name); closeModal('lightSave'); showModal('lightSaved');">
+                    ng-touch="astrals.createPreset(astrals.new_preset_name); closeModal('lightSave'); showModal('lightSaved');">
                     Create
                 </button>
             </div>

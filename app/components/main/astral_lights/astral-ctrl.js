@@ -247,19 +247,13 @@
                 $scope.coModuleInstance.$exec('set_transition', joinedTo, number);
             };
 
-            $scope.clearPreset = function (number) {
+            settings.clearPreset = function (number) {
                 $scope.coModuleInstance.$exec('clear_preset', number);
             };
 
-
-            // Current lighting levels will be saved to the current preset
-            $scope.createPreset = function (name) {
+            settings.createPreset = function (name) {
                 settings.new_preset_name = null;
                 $scope.coModuleInstance.$exec('create_preset', joinedTo, name);
-            };
-
-            $scope.savePreset = function () {
-                $scope.coModuleInstance.$exec('save_preset', joinedTo);
             };
 
 
