@@ -20,6 +20,48 @@ div.audio-pane {
         padding: 0!important;
     }
 
+    div.joining {
+        position: relative;
+
+        // The list of rooms
+        div.rooms {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2em;
+
+            padding-right: 1.5em;
+
+            @include display-flex;
+            @include flex-direction(row);
+            @include flex-wrap(nowrap);
+
+            text-align: center;
+
+            // This is the room tab
+            &> div {
+                &.active {
+                    background-color: #aaa;
+                    @include border-radius(4px);
+                }
+
+                padding: 0.5em;
+                display: inline-block;
+                height: 100%;
+
+                @include flex-grow(1);
+            }
+        }
+
+        div.sliders {
+            height: auto !important;
+            position: absolute;
+            top: 2em;
+            bottom: 0;
+        }
+    }
+
     div.sliders {
         &> div.panel {
             // This is what allows 3 sliders

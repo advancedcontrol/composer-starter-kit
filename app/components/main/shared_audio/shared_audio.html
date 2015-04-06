@@ -1,4 +1,4 @@
-<div class="panels audio-pane" co-module="'Audio'" >
+<div class="panels audio-pane" ng-init="selectedRoom = {id: $root.controlSystem}" co-system="selectedRoom.id" co-module="'Audio'" >
     <div co-bind="'no_master'"></div>
     <div co-bind="'in_max'"></div>
     <div co-bind="'in_min'"></div>
@@ -6,42 +6,54 @@
     <div co-bind="'out_min'"></div>
 
     <div class="panel large" co-bind="'inputs' as levels">
-        <div ng-if="levels" class="panels vert sliders">
-
-            <div ng-if="mixer_type !== 'basic'" class="panel" ng-repeat="level in levels">
-                <div 
-                    class="center-vert"
-                    co-module="level.mixer || 'Mixer_1'"
-                    co-implicit-index
-                    co-bind="level.type + level.id + '_' + level.index as volume"
-                    exec="fader(level.id, volume, level.index, level.type)"
-                >
-                    <table
-                        class="slider"
-                        co-bind="level.type + (level.mute_id || level.id) + '_' + (level.mute_index || level.index) + '_mute' as muted"
-                        exec="mute((level.mute_id || level.id), muted, (level.mute_index || level.index), level.type)"
+        <div>
+            <div class="joining expansive">
+                <div class="rooms">
+                    <div ng-repeat="room in joinedRooms.rooms"
+                         ng-touch="selectedRoom.id = room"
+                         ng-class="{active: room == selectedRoom.id}"
                     >
-                        <tr>
-                            <td>
-                                <span image-toggle model="muted"></span>
-                            </td>
-                            <td class="name">
-                                 {{level.name}}
-                            <td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="btn-adjust">
-                                <button class="btn" ng-click="volume = volume - 5">-5</button>
-                            </td>
-                            <td>
-                                <div co-range model="volume" min="in_min" max="in_max"></div>
-                            </td>
-                            <td class="btn-adjust">
-                                <button class="btn" ng-click="volume = volume + 5">+5</button>
-                            </td>
-                        </tr>
-                    </table>
+                        {{roomNames[room]}}
+                    </div>
+                </div>
+                <div ng-if="levels" class="panels vert sliders">
+
+                    <div ng-if="mixer_type !== 'basic'" class="panel" ng-repeat="level in levels">
+                        <div 
+                            class="center-vert"
+                            co-module="level.mixer || 'Mixer_1'"
+                            co-implicit-index
+                            co-bind="level.type + level.id + '_' + level.index as volume"
+                            exec="fader(level.id, volume, level.index, level.type)"
+                        >
+                            <table
+                                class="slider"
+                                co-bind="level.type + (level.mute_id || level.id) + '_' + (level.mute_index || level.index) + '_mute' as muted"
+                                exec="mute((level.mute_id || level.id), muted, (level.mute_index || level.index), level.type)"
+                            >
+                                <tr>
+                                    <td>
+                                        <span image-toggle model="muted"></span>
+                                    </td>
+                                    <td class="name">
+                                         {{level.name}}
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="btn-adjust">
+                                        <button class="btn" ng-click="volume = volume - 5">-5</button>
+                                    </td>
+                                    <td>
+                                        <div co-range model="volume" min="in_min" max="in_max"></div>
+                                    </td>
+                                    <td class="btn-adjust">
+                                        <button class="btn" ng-click="volume = volume + 5">+5</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 

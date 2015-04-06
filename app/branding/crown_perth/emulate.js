@@ -245,13 +245,13 @@
                     "index": 2
             },
             {
-                    "name": "West 23",
+                    "name": "West 7",
                     "type": "matrix_in",
                     "id": 1,
                     "index": 1
                 },
                 {
-                    "name": "West 24",
+                    "name": "West 8",
                     "type": "matrix_in",
                     "id": 1,
                     "index": 2
@@ -602,9 +602,61 @@
                 }
             }
         }],
+        Audio: [{
+            "inputs": [{
+                    "name": "East 23",
+                    "type": "matrix_in",
+                    "id": 1,
+                    "index": 1
+                },
+                {
+                    "name": "East 24",
+                    "type": "matrix_in",
+                    "id": 1,
+                    "index": 2
+            },
+            {
+                    "name": "East 7",
+                    "type": "matrix_in",
+                    "id": 1,
+                    "index": 1
+                },
+                {
+                    "name": "East 8",
+                    "type": "matrix_in",
+                    "id": 1,
+                    "index": 2
+            }],
+            "presets": {      // Only shown on Admin page
+                "name": 23 
+            },
+            "no_master": false,
+            "locations": ['Lobby'],
+            "fader_feedback": 'fader13_1',
+            "mixer_id": '1',
+            "in_max": 12,
+            "in_min": -100,
+            "out_max": 12,
+            "out_min": -50,
+
+            $master_volume: function (level) {
+                this.$_self['Mixer'][0].fader13_1 = level;
+            },
+
+            $send_to: function (loc, yesno) {
+                this.loc = yesno;
+            },
+
+            // Location active?
+            "Lobby": false
+        }],
         Switcher: [{}],
         Lights: [{}],
-        Mixer: [{}],
+        Mixer: [{
+            "matrix_in1_1": -50,
+            "matrix_in1_2": -50,
+            "fader13_1": -10
+        }],
         Lifter: [{
             "lifter1_rotation": 'inactive',
             $state: function (newState) {
