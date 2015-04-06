@@ -19,6 +19,11 @@
                 <h1>&nbsp;</h1>
                 <p>
                     Please enter your access code below
+                    <button class="btn switch-mode"
+                        ng-click="coModuleInstance.$exec('changeState', pass)"
+                    >
+                        Switch Mode
+                    </button>
                 </p>
                 <input autofocus ng-focus="true" ng-model="pass" type="password" />
                 <div class="progress" ng-controller="PasscodeCtrl">
