@@ -134,6 +134,7 @@ div.splash {
 
         background-color: $masterblue;
 
+/*
         -webkit-animation: crossfade 10s linear;
         -webkit-animation-iteration-count: infinite;
         -moz-animation: crossfade 10s linear;
@@ -144,6 +145,7 @@ div.splash {
         -o-animation-iteration-count: infinite;
         animation: crossfade 10s linear;
         animation-iteration-count: infinite;
+*/
 
         &> div {
             display: table-row;
