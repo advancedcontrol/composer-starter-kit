@@ -55,7 +55,8 @@
                 });
 
                 // initialise the UI with the first language tab selected
-                $scope.tab = $scope.languages[0].name;
+                if ($scope.languages.length > 0)
+                    $scope.tab = $scope.languages[0].name;
 
                 // start loading playlists for each language
                 $scope.languages.forEach(loadLanguage);
