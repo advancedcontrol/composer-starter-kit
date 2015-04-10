@@ -56,14 +56,12 @@
 
                 // full screen images are shown on page in an image tag to work
                 // around Chrome not understanding how to deal with mjpeg
-                $scope.fullImageURL = null;
+                $scope.fullImageURL = $location.search().imageurl;
 
                 $scope.showFullImage = function(cindex, cam) {
-                    $scope.fullImageURL = "http://cam" + cindex + ".cams.vl8.ad.life.unsw.edu.au:8080/camera/" + cam + "/full";
-                }
-
-                $scope.closeFullImage = function() {
-                    $scope.fullImageURL = null;
+                    var url = "http://cam" + cindex + ".cams.vl8.ad.life.unsw.edu.au:8080/camera/" + cam + "/full";
+                    $location.path($location.path()).search({imageurl: url}).replace();
+                    window.location.reload();
                 }
             }
         ]);

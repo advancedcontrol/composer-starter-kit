@@ -7,34 +7,35 @@
 </header>
 
 <main ng-controller="MainCtrl">
-    <article ng-repeat="system in currentSystems" co-system="system">
-        <div co-module="'Recorder'" co-bind="'recording'" ng-init="cindex = nextCam()">
-            <a
-                co-bind="'cameras'"
-                href="#"
-                ng-click="showFullImage(cindex, cameras[0])"
-                target="_new"
-            >
-                <div class="recording" ng-show="recording"></div>
-                <img ng-src="http://cam{{cindex}}.cams.vl8.ad.life.unsw.edu.au:8080/camera/{{cameras[0]}}/thumbnail">
-                <h1 co-bind="'name'">{{name}}</h1>
-            </a>
+    <div ng-if="!fullImageURL">
+        <article ng-repeat="system in currentSystems" co-system="system">
+            <div co-module="'Recorder'" co-bind="'recording'" ng-init="cindex = nextCam()">
+                <a
+                    co-bind="'cameras'"
+                    href="#"
+                    ng-click="showFullImage(cindex, cameras[0])"
+                    target="_new"
+                >
+                    <div class="recording" ng-show="recording"></div>
+                    <img ng-src="http://cam{{cindex}}.cams.vl8.ad.life.unsw.edu.au:8080/camera/{{cameras[0]}}/thumbnail">
+                    <h1 co-bind="'name'">{{name}}</h1>
+                </a>
 
-            <button ng-click="coModuleInstance.$exec('toggle_recording')">
-                <span ng-if="recording">Stop Recording</span>
-                <span ng-if="!recording">Start Recording</span>
-            </button>
-        </div>
-    </article>
+                <button ng-click="coModuleInstance.$exec('toggle_recording')">
+                    <span ng-if="recording">Stop Recording</span>
+                    <span ng-if="!recording">Start Recording</span>
+                </button>
+            </div>
+        </article>
 
-    <nav>
-        <a ng-repeat="pageNum in pageNums" ng-click="gotoPage(pageNum)" href="#" ng-class="{selected: page == pageNum}">{{pageNum}}</a>
-    </nav>
+        <nav>
+            <a ng-repeat="pageNum in pageNums" ng-click="gotoPage(pageNum)" href="#" ng-class="{selected: page == pageNum}">{{pageNum}}</a>
+        </nav>
 
-    <p>Space remaining: <span>{{remaining}}</span></p>
+        <p>Space remaining: <span>{{remaining}}</span></p>
+    </div>
 
     <div id="full-image" ng-show="fullImageURL">
-        <img ng-src="fullImageURL">
-        <button ng-click="closeFullImage()">Close</button>
+        <img ng-src="{{fullImageURL}}">
     </div>
 </main>
