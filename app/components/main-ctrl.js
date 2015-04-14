@@ -25,13 +25,6 @@
                 // https://code.google.com/p/chromium/issues/detail?id=362004
                 $scope.currentSystems = [];
 
-                // There is also a connection limit per page
-                var cam = 1;
-                $scope.nextCam = function () {
-                    cam = cam + 1;
-                    return cam;
-                };
-
                 // ng-repeat only works over collections
                 $scope.pageNums = [];
                 var numPages = Math.ceil($scope.systems.length / PER_PAGE);
@@ -54,13 +47,39 @@
                     window.location.reload();
                 }
 
+                // camera urls are protected behind one time auth requests. make a request
+                // to the api to generate a camera url
+                $scope.cameraURLs = {};
+
+                $scope.generateURL = function(ip, view) {
+                    console.log('requesting URL for', ip);
+                    $http.get('http://vl8.ad.life.unsw.edu.au/api/webcams?camera_ip=' + ip + '&view=' + view)
+                    .success(
+                        function(data, status, headers, config) {
+                            $scope.cameraURLs[ip] = data.url;
+                        }
+                    );
+                }
+
+                // the reception camera is handled specially
+                $scope.generateURL('10.213.0.27', 'thumbnail');
+
                 // full screen images are shown on page in an image tag to work
                 // around Chrome not understanding how to deal with mjpeg
-                $scope.fullImageURL = $location.search().imageurl;
+                $scope.fullImageCam = $location.search().cam;
+                $scope.fullImageURL = null;
 
-                $scope.showFullImage = function(cindex, cam) {
-                    var url = "http://cam" + cindex + ".cams.vl8.ad.life.unsw.edu.au:8080/camera/" + cam + "/full";
-                    $location.path($location.path()).search({imageurl: url}).replace();
+                if ($scope.fullImageCam) {
+                    $http.get('http://vl8.ad.life.unsw.edu.au/api/webcams?camera_ip=' + $scope.fullImageCam + '&view=full')
+                    .success(
+                        function(data, status, headers, config) {
+                            $scope.fullImageURL = data.url;
+                        }
+                    );
+                }
+
+                $scope.showFullImage = function(cam) {
+                    $location.path($location.path()).search({cam: cam}).replace();
                     window.location.reload();
                 }
             }
