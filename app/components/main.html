@@ -11,14 +11,16 @@
         <div ng-if="!fullImageCam">
             <article ng-repeat="system in currentSystems" co-system="system">
                 <div co-module="'Recorder'" co-bind="'recording'">
+                    <div co-bind="'disabled'"></div>
                     <div co-bind="'cameras'"></div>
-                    <a ng-if="cameras" href="#" ng-click="showFullImage(cameras[0])" ng-init="generateURL(cameras[0], 'thumbnail')">
+
+                    <a ng-if="cameras && !disabled" href="#" ng-click="showFullImage(cameras[0])" ng-init="generateURL(cameras[0], 'thumbnail')">
                         <div class="recording" ng-show="recording"></div>
                         <img ng-src="{{cameraURLs[cameras[0]]}}">
                         <h1 co-bind="'name'">{{name}}</h1>
                     </a>
 
-                    <button ng-click="coModuleInstance.$exec('toggle_recording')">
+                    <button ng-if="!disabled" ng-click="coModuleInstance.$exec('toggle_recording')">
                         <span ng-if="recording">Stop Recording</span>
                         <span ng-if="!recording">Start Recording</span>
                     </button>
