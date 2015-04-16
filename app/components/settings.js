@@ -70,13 +70,20 @@
             'cacheman',
             'User',
             '$rootScope',
+            '$location'
             '$conductor',
 
-        function ($window, cacheman, User, $rootScope) {
+        function ($window, cacheman, User, $rootScope, $location) {
             User.get_current().then(function (user) {
-                // Check the user has the appropriate permissions
+                // admins are allowed access to all cameras
                 if (user.sys_admin || user.support) {
                     $rootScope.authorised = true;
+
+                // other users can see the waiting room camera
+                } else if ($location.search().cam == '10.213.0.27') {
+                    $rootScope.authorised = true;
+
+                // all other requests are denied
                 } else {
                     document.location = document.location.pathname + '403.html';
                 }

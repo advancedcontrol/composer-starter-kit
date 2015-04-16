@@ -79,8 +79,9 @@
                 }
 
                 $scope.showFullImage = function(cam) {
-                    $location.path($location.path()).search({cam: cam}).replace();
-                    window.location.reload();
+                    var url = $location.path($location.path()).search({cam: cam}).absUrl();
+                    var newWindow = window.open(url, '_blank');
+                    newWindow.focus();
                 }
             }
         ]);
