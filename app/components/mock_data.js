@@ -10,8 +10,30 @@
         Television: [{
             "channelName": "Some example channel",
             "channelNames": [
-                "channel 7",
-                "channel 10"
+               "ABC News 24",
+                "ABC 1",
+                "ABC 2",
+                "ABC 3",
+                "One",
+                "SBS One",
+                "SBS 2",
+                "7Mate",
+                "Seven",
+                "Nine",
+                "Ten",
+                "Eleven",
+                "GO",
+                "GEM",
+                "Colour Bars",
+                "Concert Hall Long View Camera",
+                "AUX SDI 1",
+                "Joan Sutherland Theatre Long View Camera",
+                "AUX SDI 2",
+                "Drama Theatre Long View Camera",
+                "The Studio Long View Camera",
+                "Play House Theatre Long View Camera",
+                "Utzon Room Long View Camera",
+                "AUX HDMI 1"
             ],
             $goto: function(name) {
                 this.channelName = name;

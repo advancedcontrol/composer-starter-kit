@@ -10,10 +10,22 @@
 
             function ($scope, $http, $location) {
                 var hasIcon = {
-                    channel_name: true
+                    "ABC News 24": true,
+                    "ABC 1": true,
+                    "ABC 2": true,
+                    "ABC 3": true,
+                    "One": true,
+                    "SBS One": true,
+                    "SBS 2": true,
+                    "7Mate": true,
+                    "Seven": true,
+                    "Nine": true,
+                    "Ten": true,
+                    "Eleven": true,
+                    "GO": true,
+                    "GEM": true
                 };
 
-                // disk space remaining
                 $scope.data = {};
                 $scope.watch('data.channelNames', function (newVal) {
                     if (newVal) {
