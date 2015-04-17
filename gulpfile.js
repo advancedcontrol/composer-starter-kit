@@ -73,22 +73,6 @@ gulp.task('dev:styles', function () {
   });
 });
 
-// optimise Images
-gulp.task('dev:images', function () {
-  return gulp.src([
-        'app/**/*.png',
-        'app/**/*.jpg',
-        'app/**/*.gif',
-        'app/**/*.svg',
-        '!app/branding/fonts/**/*.svg'
-    ]).pipe($.cache($.imagemin({
-      progressive: true,
-      interlaced: true
-    })))
-    .pipe(gulp.dest('.tmp'))
-    .pipe($.size({title: 'dev:images'}));
-});
-
 // Watch Files For Changes & Reload
 gulp.task('browser-sync', function () {
   var baseDirs = ['.tmp', 'app', 'bower_components'];
@@ -157,10 +141,10 @@ gulp.task('browser-sync', function () {
     'app/**/*.jpg',
     'app/**/*.svg',
     'app/**/*.gif'
-  ], ['dev:images', reload]);
+  ], reload);
 });
 
-gulp.task('serve', ['dev:styles', 'dev:images', 'browser-sync']);
+gulp.task('serve', ['dev:styles', 'browser-sync']);
 
 
 
