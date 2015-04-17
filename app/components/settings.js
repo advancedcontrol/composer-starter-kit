@@ -70,7 +70,7 @@
             'cacheman',
             'User',
             '$rootScope',
-            '$location'
+            '$location',
             '$conductor',
 
         function ($window, cacheman, User, $rootScope, $location) {
