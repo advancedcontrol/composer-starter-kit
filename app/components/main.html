@@ -1,41 +1,22 @@
-<div ng-controller="MainCtrl">
+<div ng-controller="MainCtrl" co-module="'Television'">
     <header>
         <img src="branding/images/logo.png">
-        <h1>Psychology Level 8<br>Camera Grid View</h1>
-        <a style="float: right;" href="#" ng-click="showFullImage('10.213.0.27')">
-            <img ng-src="{{cameraURLs['10.213.0.27']}}" style="height: 120;">
-        </a>
+        <h1>Opera House TV Control</h1>
+        <span co-bind="'channelName'">Currently watching {{channelName}}</span>
     </header>
-
     <main>
-        <div ng-if="!fullImageCam">
-            <article ng-repeat="system in currentSystems" co-system="system">
-                <div co-module="'Recorder'" co-bind="'recording'">
-                    <div co-bind="'disabled'"></div>
-                    <div co-bind="'cameras'"></div>
+        <div co-bind="channelNames as data.channelNames"></div>
 
-                    <a ng-if="cameras && !disabled" href="#" ng-click="showFullImage(cameras[0])" ng-init="generateURL(cameras[0], 'thumbnail')">
-                        <div class="recording" ng-show="recording"></div>
-                        <img ng-src="{{cameraURLs[cameras[0]]}}">
-                        <h1 co-bind="'name'">{{name}}</h1>
-                    </a>
-
-                    <button ng-if="!disabled" ng-click="coModuleInstance.$exec('toggle_recording')">
-                        <span ng-if="recording">Stop Recording</span>
-                        <span ng-if="!recording">Start Recording</span>
-                    </button>
-                </div>
-            </article>
-
-            <nav>
-                <a ng-repeat="pageNum in pageNums" ng-click="gotoPage(pageNum)" href="#" ng-class="{selected: page == pageNum}">{{pageNum}}</a>
-            </nav>
-
-            <p>Space remaining: <span>{{remaining}}</span></p>
+        <div class="tv">
+            <div ng-repeat="name in icons" ng-touch="coModuleInstance.$exec('goto', name)">
+                <div ng-class="build_css_class(name)"></div>
+            </div>
         </div>
 
-        <div id="full-image" ng-show="fullImageCam">
-            <img ng-src="{{fullImageURL}}">
+        <div class="other">
+            <div ng-repeat="name in others" ng-touch="coModuleInstance.$exec('goto', name)">
+                <span>{{name}}</span>
+            </div>
         </div>
     </main>
 </div>
