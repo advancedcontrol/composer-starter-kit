@@ -17,6 +17,7 @@
                     "SBS 2": true,
                     "7Mate": true,
                     "Seven": true,
+                    "7TWO": true,
                     "Nine": true,
                     "Ten": true,
                     "Eleven": true,
