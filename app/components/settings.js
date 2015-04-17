@@ -1,28 +1,6 @@
 (function (window, angular) {
     'use strict';
 
-
-    window.systemsList = window.systemsList || [
-        'sys_7-10', // 802 - Trauma 1
-        'sys_7-11', // 803 - Trauma 2
-        'sys_7-12', // 806 - T01
-        'sys_7-13', // 807 - T02
-        'sys_7-14', // 808 - T03
-        'sys_7-15', // 809 - T04
-        'sys_7-18', // 810 - T05
-        'sys_7-19', // 824 - T06
-        'sys_7-1A', // 823 - T07
-        'sys_7-1B', // 811 - T08
-        'sys_7-1C', // 812 - T09
-        'sys_7-1D', // 813 - Family 1
-        'sys_7-1E', // 814 - Family 2
-        'sys_7-1F', // 820 - Group 1
-        'sys_7-1G', // 819 - Group 2
-        'sys_7-1H', // 827 - Neuro 1
-        'sys_7-1I'  // 827A - Neuro 2
-    ];
-
-
     angular.module('AcaEngine')
     
         // The authentication service doesn't have to be hosted on the same domain

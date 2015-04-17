@@ -8,9 +8,9 @@
 
     window.systemData['sys-B0'] = {
         Television: [{
-            "channelName": "Some example channel",
+            "channelName": "ABC News 24",
             "channelNames": [
-               "ABC News 24",
+                "ABC News 24",
                 "ABC 1",
                 "ABC 2",
                 "ABC 3",
@@ -19,6 +19,7 @@
                 "SBS 2",
                 "7Mate",
                 "Seven",
+                "7TWO",
                 "Nine",
                 "Ten",
                 "Eleven",

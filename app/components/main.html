@@ -1,22 +1,24 @@
 <div ng-controller="MainCtrl" co-module="'Television'">
     <header>
-        <img src="branding/images/logo.png">
+        <img src="branding/images/oh_logo.png">
         <h1>Opera House TV Control</h1>
-        <span co-bind="'channelName'">Currently watching {{channelName}}</span>
+        <p co-bind="'channelName'">{{channelName}}</p>
     </header>
     <main>
-        <div co-bind="channelNames as data.channelNames"></div>
+        <div co-bind="'channelNames' as data.channelNames"></div>
 
-        <div class="tv">
-            <div ng-repeat="name in icons" ng-touch="coModuleInstance.$exec('goto', name)">
+        <h1>TV</h1>
+        <ul id="tv">
+            <li ng-repeat="name in icons" ng-touch="coModuleInstance.$exec('goto', name)">
                 <div ng-class="build_css_class(name)"></div>
-            </div>
-        </div>
+            </li>
+        </ul>
 
-        <div class="other">
-            <div ng-repeat="name in others" ng-touch="coModuleInstance.$exec('goto', name)">
+        <h1>Other</h1>
+        <ul id="others">
+            <li ng-repeat="name in others" ng-touch="coModuleInstance.$exec('goto', name)">
                 <span>{{name}}</span>
-            </div>
-        </div>
+            </li>
+        </ul>
     </main>
 </div>

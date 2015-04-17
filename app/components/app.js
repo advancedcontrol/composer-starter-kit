@@ -79,17 +79,16 @@
         '$comms',
 
     function ($window, $location, $rootScope, cacheman) {
-
         // Grab the system id from the URL
         $rootScope.$watch(function () {
             return $location.search();
         }, function (value) {
-            if (value.ctrl === '') {
+            if (value.tv === '') {
                 // default system?
                 $rootScope.noSystemSelected = true;
             } else {
                 $rootScope.noSystemSelected = false;
-                $rootScope.controlSystem = value.ctrl;
+                $rootScope.controlSystem = value.tv;
             };
         });
 

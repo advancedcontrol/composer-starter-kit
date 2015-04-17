@@ -5,10 +5,8 @@
     angular.module('AcaEngine')
         .controller('MainCtrl', [
             '$scope',
-            '$http',
-            '$location',
 
-            function ($scope, $http, $location) {
+            function ($scope) {
                 var hasIcon = {
                     "ABC News 24": true,
                     "ABC 1": true,
@@ -27,22 +25,26 @@
                 };
 
                 $scope.data = {};
-                $scope.watch('data.channelNames', function (newVal) {
+                $scope.$watch('data.channelNames', function (newVal) {
                     if (newVal) {
                         $scope.icons = [];
-                        $scope.dropdown = [];
+                        $scope.others = [];
                         angular.forEach(newVal, function (name) {
-                            if (hasIcon[name]) {
+                            if (name in hasIcon)
                                 $scope.icons.push(name);
-                            } else {
-                                $scope.dropdown.push(name);
-                            }
+                            else
+                                $scope.others.push(name);
                         })
                     }
                 });
 
                 $scope.build_css_class = function (name) {
-                    return name.gsub(/\s+/g, '_');
+                    if (name == '7Mate')
+                        return 'seven_mate';
+                    else if (name == '7TWO')
+                        return 'seven_two';
+                    else
+                        return name.replace(/\s+/g, '_').toLowerCase();
                 };
             }
         ]);
