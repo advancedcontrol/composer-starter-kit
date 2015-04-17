@@ -9,14 +9,14 @@
 
         <h1>TV</h1>
         <ul id="tv">
-            <li ng-repeat="name in icons" ng-touch="coModuleInstance.$exec('goto', name)">
+            <li ng-repeat="name in icons" ng-click="coModuleInstance.$exec('goto', name)">
                 <div ng-class="build_css_class(name)"></div>
             </li>
         </ul>
 
         <h1>Other</h1>
         <ul id="others">
-            <li ng-repeat="name in others" ng-touch="coModuleInstance.$exec('goto', name)">
+            <li ng-repeat="name in others" ng-click="coModuleInstance.$exec('goto', name)">
                 <span>{{name}}</span>
             </li>
         </ul>
