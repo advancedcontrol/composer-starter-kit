@@ -7,7 +7,7 @@
     window.systemData = window.systemData || {};
     window.systemData['sys-B0'] = {
         System: [{
-            "title": "InvoCare Demo Room 1",
+            "title": "White Lady Demo Room 1",
 
             // power on/off
             "state": "shutdown",

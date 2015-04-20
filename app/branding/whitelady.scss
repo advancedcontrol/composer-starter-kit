@@ -41,26 +41,19 @@
 
 
 // telstra font
-@import "branding/fonts/gravur/style";
-
 html, body {
-    font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, sans-serif;
+    font-family: "Open Sans", Helvetica, sans-serif;
 }
-
-h1, h2, h3 {
-    font-family: "Gravur";
-}
-
 
 // splash
 #system {
-    background-image: url(images/bg.svg);
+    background-image: url(images/white-lady-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 
     #splash h1, #splash h2 {
-        color: white !important;
+        //color: white !important;
     }
 
     #splash-container {
