@@ -1,0 +1,29 @@
+@import "compass";
+@import "../common";
+
+#content #pincode-panel {
+    > div {
+        #pin-input input[type=password] {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding-bottom: 1px;
+        }
+
+        #clear-pin {
+            top: 10px;
+        }
+
+        #numpad {
+            background-color: rgba(255,255,255,0.6);
+            border-bottom: none;
+
+            button {
+                background-color: rgba(0, 0, 0, 0.25);
+                color: white;
+                outline: none;
+                font-size: 28px;
+                font-weight: 300;
+                height: 60px;
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+$header-height: 80px;
+$primary-colour: #9b1e34;
+
+// up arrow mixin from cotag ui
+@mixin up-arrow($width, $left: 50%, $border-colour: #e5e5e5) {
+    &:after, &:before {
+        top: -(2 * $width);
+        left: $left;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        z-index: 4;
+    }
+
+    &:after {
+        border-color: rgba(255, 255, 255, 0);
+        border-bottom-color: white;
+        border-width: $width;
+        margin-left: -$width;
+    }
+
+    &:before {
+        border-color: rgba(229, 229, 229, 0);
+        border-bottom-color: $border-colour;
+        border-width: $width + 2px;
+        margin-left: -($width + 2px);
+        margin-top: -4px;
+    }
+}

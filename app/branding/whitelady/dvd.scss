@@ -1,0 +1,45 @@
+@import "compass";
+@import "../common";
+
+div.dvd-controls {
+    text-align: center;
+    table {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        margin-bottom: 1.5em;
+
+        font-family: FontAwesome;
+
+        tr {
+            height: 45px;
+
+            &> td {
+                width: 33.3%;
+                font-size: 30px;
+                vertical-align: middle;
+
+                &.up:before {
+                    content: "\f077";
+                }
+                
+                &.left:before {
+                    content: "\f053";
+                }
+
+                &.right:before {
+                    content: "\f054";
+                }
+
+                &.down:before {
+                    content: "\f078";
+                }
+
+
+                &.center:before {
+                    content: "\f192";
+                }
+            }
+        }
+    }
+}

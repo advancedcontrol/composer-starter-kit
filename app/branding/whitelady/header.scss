@@ -1,0 +1,66 @@
+@import "compass";
+@import "../common";
+
+#content header {
+    background-color: white;
+    height: $header-height;
+    line-height: $header-height;
+
+    img {
+        height: $header-height - 40px;
+        vertical-align: middle;
+        margin-left: 40px;
+    }
+
+    menu {
+        display: inline-block;
+        position: absolute;
+        right: 40px;
+        top: -2px;
+        font-size: 0px;
+
+        a {
+            display: inline-block;
+            border: 1px solid #d8cab8;
+            @include border-radius(3px);
+            
+            padding: 5px 12px 5px 10px;
+            box-sizing: content-box;
+            height: 25px;
+            line-height: 25px;
+            margin-left: 30px;
+
+            text-decoration: none;
+            background-color: #f6f3ef;
+            color: #333;
+
+            span {
+                font-size: 18px;
+                font-weight: 400;
+                vertical-align: middle;
+            }
+
+            i {
+                vertical-align: middle;
+                font-size: 25px;
+                margin-right: 10px;
+
+                &.pe-7s-micro {
+                    font-size: 20px;
+                }
+
+                &.pe-7s-display1 {
+                    font-size: 22px;
+                }
+            }
+
+            &#finish {
+                padding-right: 0px;
+
+                i {
+                    margin-right: 4px;
+                }
+            }
+        }
+    }
+}
