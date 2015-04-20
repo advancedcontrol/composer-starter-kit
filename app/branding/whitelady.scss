@@ -1,7 +1,7 @@
 @import "compass";
 
 
-// telstra colours
+// white lady colours
 @import "../../bower_components/angular-named-toggle/ios-toggle.scss";
 @include ios-toggle(25px, #F05A00);
 
@@ -40,7 +40,7 @@
 }
 
 
-// telstra font
+// white lady font
 html, body {
     font-family: "Open Sans", Helvetica, sans-serif;
 }
@@ -51,10 +51,6 @@ html, body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-
-    #splash h1, #splash h2 {
-        //color: white !important;
-    }
 
     #splash-container {
         width: 100%;
@@ -67,7 +63,10 @@ html, body {
 $header-height: 80px;
 
 #content {
-    @include background-image(linear-gradient(#EA2359, #FD960C));
+    background-image: url(images/white-lady-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 
     header {
         background-color: white;
@@ -75,7 +74,7 @@ $header-height: 80px;
         line-height: $header-height;
 
         img {
-            height: $header-height - 20px;
+            height: $header-height - 40px;
             vertical-align: middle;
             margin-left: 40px;
         }
@@ -97,34 +96,27 @@ $header-height: 80px;
 
     #pincode-panel {
         > div {
-            h1 {
-                color: white !important;
-            }
-
             #pin-input input[type=password] {
                 background-color: rgba(255, 255, 255, 0.9);
-                border: none;
                 padding-bottom: 1px;
             }
 
             #clear-pin {
-                top: 7px;
+                top: 10px;
             }
 
             #numpad {
-                background-color: rgba(255,255,255,0.4);
+                background-color: rgba(255,255,255,0.6);
                 border-bottom: none;
 
                 button {
-                    background-color: rgba(0, 0, 0, 0.2);
+                    background-color: rgba(0, 0, 0, 0.25);
                     color: white;
                     outline: none;
+                    font-size: 28px;
+                    font-weight: 300;
+                    height: 60px;
                 }
-            }
-
-            #cancel-pin {
-                color: white;
-                font-family: Gravur;
             }
         }
     }
@@ -141,7 +133,6 @@ $header-height: 80px;
 
     // control panel
     > menu {
-
         &#controls {
             @include up-arrow(10px, 425px);
             position: absolute;
