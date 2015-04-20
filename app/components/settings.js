@@ -109,7 +109,7 @@
 
                 $rootScope.showDvd = false;
                 $rootScope.showMics = false;
-                $rootScope.showControls = false;
+                $rootScope.showDisplay = false;
                 $rootScope.showCamera = false;
 
                 $rootScope[name] = newVal;

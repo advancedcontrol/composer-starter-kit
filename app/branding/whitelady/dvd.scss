@@ -1,6 +1,22 @@
 @import "compass";
 @import "../common";
 
+menu#dvd {
+    table {
+        width: 100%;
+        font-size: 90%;
+        margin-top: 0.5em;
+
+        tr.bold {
+            font-weight: bold;
+
+            td {
+                padding-top: 0.3em;
+            }
+        }
+    }
+}
+
 div.dvd-controls {
     text-align: center;
     table {

@@ -53,7 +53,7 @@
             <menu ng-controller="Modals">
                 <a href="#" ng-click="showPopup('showDvd')"><i class="pe-7s-disk"></i><span>DVD</span></a>
                 <a href="#" ng-click="showPopup('showMics')"><i class="pe-7s-micro"></i><span>Mic</span></a>
-                <a href="#" ng-click="showPopup('showControls')"><i class="pe-7s-display1"></i><span>Display</span></a>
+                <a href="#" ng-click="showPopup('showDisplay')"><i class="pe-7s-display1"></i><span>Display</span></a>
                 <a href="#" ng-click="showPopup('showCamera')"><i class="pe-7s-video"></i><span>Camera</span></a>
                 <a href="#" id="finish" ng-click="showModal('finish')"><i class="pe-7s-power"></i><span>&nbsp;</span></a>
             </menu>
@@ -217,7 +217,7 @@
             </div>
         </menu>
 
-        <menu id="controls" ng-show="$root.showControls">
+        <menu id="display" ng-show="$root.showDisplay">
             <div co-module="'Switcher'" co-bind="'connected'">
                 <h1>Video</h1>
                 <div co-bind="'video'" exec="switch_video(video)">
