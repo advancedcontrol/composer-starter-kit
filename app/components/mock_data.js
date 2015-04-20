@@ -25,16 +25,16 @@
                 "Eleven",
                 "GO",
                 "GEM",
-                "Colour Bars",
                 "Concert Hall Long View Camera",
-                "AUX SDI 1",
                 "Joan Sutherland Theatre Long View Camera",
-                "AUX SDI 2",
                 "Drama Theatre Long View Camera",
                 "The Studio Long View Camera",
                 "Play House Theatre Long View Camera",
                 "Utzon Room Long View Camera",
-                "AUX HDMI 1"
+                "AUX SDI 1",
+                "AUX SDI 2",
+                "AUX HDMI 1",
+                "Colour Bars"
             ],
             $goto: function(name) {
                 this.channelName = name;
