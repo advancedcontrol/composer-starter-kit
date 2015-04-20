@@ -2,10 +2,10 @@
 @import "../common";
 
 #content header {
-    background-color: white;
+    background-color: rgba(255,255,255,0.8);
     height: $header-height;
     line-height: $header-height;
-    border-bottom: 1px solid #ddd;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.05);
 
     img {
         height: $header-height - 40px;
@@ -31,12 +31,12 @@
             margin-left: 30px;
 
             text-decoration: none;
-            background-color: #ddd;
+            background-color: #e5e5e5;
             color: #555;
 
             span {
                 font-size: 16px;
-                font-weight: 400;
+                font-weight: 300;
                 vertical-align: middle;
             }
 
