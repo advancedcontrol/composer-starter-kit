@@ -97,41 +97,43 @@
         </div>
     </div>
     <div ng-controller="SharedAudioCtrl" class="panel" co-bind="'locations'">
-        <div class="panels vert">
-            <div class="panel locations" ng-if="locations.length > 0">
-                <div>
-                    <div ng-repeat="name in locations" class="location">
-                        <label co-bind="name as enable" exec="send_to(name, enable)">
-                            <input type="checkbox" ng-model="enable" ng-init="enable = false" />
-                            Send to {{name}}
-                        </label>
+        <div class="master-out">
+            <div class="expansive">
+                <div class="panel locations" ng-if="locations.length > 0">
+                    <div>
+                        <div ng-repeat="name in locations" class="location">
+                            <label co-bind="name as enable" exec="send_to(name, enable)">
+                                <input type="checkbox" ng-model="enable" ng-init="enable = false" />
+                                Send to {{name}}
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="panel master-audio" ng-if="!no_master" co-bind="'fader_feedback'">
-                <div co-bind="'mixer_id'">
-                    <table
-                        class="master-fader"
-                        co-module="'Mixer'" 
-                        index="mixer_id" 
-                        co-bind="fader_feedback as track.master_remote"
-                    >
-                        <tr style="height: 4em;" co-bind="'connected'">
-                            <td>
-                                <button class="btn" ng-touch="track.master_local = track.master_local + 5">+5</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div co-range horizontal="false" model="track.master_local" min="out_min" max="out_max"></div>
-                            </td>
-                        </tr>
-                        <tr style="height: 4em;">
-                            <td>
-                                <button class="btn" ng-touch="track.master_local = track.master_local - 5">-5</button>
-                            </td>
-                        </tr>
-                    </table>
+                <div class="panel master-audio" ng-if="!no_master" co-bind="'fader_feedback'">
+                    <div co-bind="'mixer_id'">
+                        <table
+                            class="master-fader"
+                            co-module="'Mixer'" 
+                            index="mixer_id" 
+                            co-bind="fader_feedback as track.master_remote"
+                        >
+                            <tr style="height: 4em;" co-bind="'connected'">
+                                <td>
+                                    <button class="btn" ng-touch="track.master_local = track.master_local + 5">+5</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div co-range horizontal="false" model="track.master_local" min="out_min" max="out_max"></div>
+                                </td>
+                            </tr>
+                            <tr style="height: 4em;">
+                                <td>
+                                    <button class="btn" ng-touch="track.master_local = track.master_local - 5">-5</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

@@ -181,8 +181,9 @@ article {
                     vertical-align: top;
 
                     height: 100%;
-                    width: 18%;
-                    max-width: 200px;
+                    width: 25%;
+                    max-width: 180px;
+                    min-width: 140px;
 
                     @include border-top-right-radius($radius);
                     @include border-top-left-radius($radius);
@@ -408,12 +409,6 @@ $tab-max-width: 200px;
 tabs {
     &> div {
         &> nav {
-
-            @include display-flex();
-            @include flex-direction(row);
-            @include flex-wrap(nowrap);
-            @include justify-content(flex-start);
-
             // This is the tab
             &> div {
                 position: relative;
@@ -421,7 +416,6 @@ tabs {
 
                 overflow: hidden;
 
-                @include flex-grow(1);
                 max-width: $tab-max-width;
                 min-width: $tab-min-width;
 
