@@ -96,15 +96,34 @@
 
         </div>
     </div>
-    <div ng-controller="SharedAudioCtrl" class="panel" co-bind="'locations'">
-        <div class="master-out">
-            <div class="expansive">
+    <div ng-controller="SharedAudioCtrl" class="panel">
+        <div class="master-out" co-bind="'locations'">
+            <div class="expansive" co-bind="'aux_mutes'">
                 <div class="panel locations" ng-if="locations.length > 0">
                     <div>
                         <div ng-repeat="name in locations" class="location">
                             <label co-bind="name as enable" exec="send_to(name, enable)">
-                                <input type="checkbox" ng-model="enable" ng-init="enable = false" />
+                                <input type="checkbox" ng-model="enable" />
                                 Send to {{name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel locations" ng-if="aux_mutes.length > 0">
+                    <div>
+                        <div ng-repeat="mute in aux_mutes" class="location">
+                            <label
+                                co-module="mute.mixer || 'Mixer_1'"
+                                co-implicit-index
+
+                                co-bind="mute.type + mute.id + '_' + mute.index + '_mute' as muted"
+                                exec="mute(mute.id, muted, mute.index, mute.type)"
+                            >
+                                <input
+                                    type="checkbox"
+                                    ng-model="muted"
+                                />
+                                Mute {{mute.name}}
                             </label>
                         </div>
                     </div>

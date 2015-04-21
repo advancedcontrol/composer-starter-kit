@@ -256,6 +256,18 @@
                     "id": 1,
                     "index": 2
             }],
+            "aux_mutes": [{
+                    "name": "Stage West",
+                    "type": "matrix_out",
+                    "id": 5,
+                    "index": 1
+                },
+                {
+                    "name": "Stage North",
+                    "type": "matrix_out",
+                    "id": 5,
+                    "index": 2
+            }],
             "presets": {      // Only shown on Admin page
                 "name": 23 
             },
