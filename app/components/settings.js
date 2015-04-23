@@ -76,7 +76,7 @@
         function ($window, cacheman, User, $rootScope, $location) {
             User.get_current().then(function (user) {
                 // admins are allowed access to all cameras
-                if (user.sys_admin || user.support) {
+                if (user.sys_admin || user.support || user.supervisor) {
                     $rootScope.authorised = true;
 
                 // other users can see the waiting room camera
