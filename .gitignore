@@ -4,4 +4,3 @@ node_modules
 demo/style.css
 .DS_Store
 .tmp
-dist*

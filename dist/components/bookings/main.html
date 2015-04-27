@@ -1,0 +1,48 @@
+<div ng-controller="BookingsCtrl" id="bookings">
+    <h1 ng-hide="$root.meeting">Services</h1>
+    <nav id="listing" ng-hide="$root.meeting">
+        <a href="#" ng-repeat="booking in bookings" ng-click="selectBooking(booking)">{{booking.name}}</a>
+    </nav>
+    <article ng-controller="Modals" id="meeting" ng-if="$root.meeting" ng-include="'components/meeting/main.html'"></article>
+
+    <div ng-controller="Modals">
+        <modal name="finish" title="Finish Presentation?">
+            <p>
+                <b>Pressing finish will blank the display</b>
+            </p>
+            <menu>
+                <button class="cancel" ng-touch="closeModal('finish')">Cancel</button>
+                <button class="ok" ng-touch="showPopup(''); coModuleInstance.$exec('shutdown');">Finish</button>
+            </menu>
+            <div style="clear: both"></div>
+        </modal>
+
+        <modal name="scheduling" title="Scheduling Presentation" no-close="true">
+            <p>
+                <b>Please Wait...</b>
+            </p>
+            <div style="clear: both"></div>
+        </modal>
+
+        <modal name="scheduled" title="Presentation Scheduled">
+            <p>
+                <b>The video will begin playing momentarily</b>
+            </p>
+            <menu>
+                <button class="ok" ng-touch="closeModal('scheduled')">OK</button>
+            </menu>
+            <div style="clear: both"></div>
+        </modal>
+
+        <modal name="schedfailed" title="Failed to Schedule">
+            <p>
+                <b>An error occured whilst trying to schedule the playlist</b>
+                <br /> Click OK to try scheduling again.
+            </p>
+            <menu>
+                <button class="ok" ng-touch="closeModal('schedfailed')">OK</button>
+            </menu>
+            <div style="clear: both"></div>
+        </modal>
+    </div>
+</div>
