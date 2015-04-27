@@ -4,7 +4,7 @@
 
 <header ng-controller="Modals">
     <img src="branding/images/oh_logo.png">
-    <button ng-touch="coModuleInstance.$exec('toggle_mute')" id="picture-mute"><i class="fa fa-desktop"></i><i ng-show="muted" class="fa fa-ban"></i><i ng-show="!muted" class="fa fa-circle-o"></i></button>
+    <button ng-touch="coModuleInstance.$exec('toggle_mute')" id="picture-mute"><i class="fa fa-desktop"></i><i ng-show="muted" class="fa fa-circle-o"></i><i ng-show="!muted" class="fa fa-ban"></i></button>
     <button ng-touch="showModal('finish')" id="power-off"><i class="fa fa-power-off"></i></button>
     <modal name="finish" title="Finish Presentation?">
         <p>
