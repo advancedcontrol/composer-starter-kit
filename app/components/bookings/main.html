@@ -1,6 +1,6 @@
 <div ng-controller="BookingsCtrl" id="bookings">
-    <h1>Services</h1>
-    <nav id="listing">
+    <h1 ng-hide="$root.meeting">Services</h1>
+    <nav id="listing" ng-hide="$root.meeting">
         <a href="#" ng-repeat="booking in bookings" ng-click="selectBooking(booking)">{{booking.name}}</a>
     </nav>
     <article ng-controller="Modals" id="meeting" ng-if="$root.meeting" ng-include="'components/meeting/main.html'"></article>

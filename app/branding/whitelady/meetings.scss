@@ -1,41 +1,11 @@
 @import "compass";
 @import "../common";
 
+$top: 100px;
+
 #meeting {
-    nav > a {
-        background-color: rgba(255,255,255,0.8);
-        margin: 0px 40px 40px 40px;
-        list-style-type: none;
-        padding: 20px;
-        border-radius: 3px;
-        font-family: Gravur;
-        color: #444;
-        font-size: 21px;
-        display: block;
-        text-decoration: none;
-
-        aside {
-            display: inline-block;
-            font-weight: bold;
-            color: #000;
-            font-size: 15px;
-            margin-right: 15px;
-            vertical-align: top;
-            position: relative;
-            top: 4px;
-        }
-    }
-    
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    @include background-image(linear-gradient(#EA2359, #FD960C));
-    padding: 30px;
-
+    // page heading
     > h1 {
-        border-bottom: 1px solid rgba(255,255,255,0.6);
         padding-left: 0px;
         padding-bottom: 7px;
 
@@ -45,27 +15,49 @@
             top: -3px;
 
             a {
-                color: white;
+                color: $primary-colour;
                 text-decoration: none;
-                font-size: 16px;
+                font-size: 15px;
+                font-weight: 300;
+                background-color: rgba(255, 255, 255, 0.8);
+                
                 margin-left: 15px;
+                padding: 8px 12px;
+                @include border-radius(3px);
 
                 i {
                     font-size: 20px;
                     vertical-align: top;
                     position: relative;
-                    top: 5px;
+                    top: 7px;
                     left: -2px;
                 }
             }
         }
     }
 
+    // list of playlists
     #playlists {
+        position: absolute;
+        top: $top;
+        bottom: 40px;
+        left: 40px;
         width: 30vw;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-top: 1px solid #eee;
+        //border: 1px solid #eee;
+        //box-shadow: 0px 0px 4px rgba(0,0,0,0.05);
 
         a {
-            margin: 10px 0px;
+            list-style-type: none;
+            padding: 20px;
+            display: block;
+            
+            color: #333;
+            font-size: 21px;
+            text-decoration: none;
+            font-weight: 300;
+            border-bottom: 1px solid #eee;
 
             &.active {
                 background-color: white;
@@ -79,6 +71,15 @@
             }
 
             aside {
+                display: inline-block;
+                font-weight: bold;
+                color: #000;
+                font-size: 15px;
+                margin-right: 15px;
+                vertical-align: top;
+                position: relative;
+                top: 4px;
+
                 float: right;
                 display: block;
                 position: relative;
@@ -94,14 +95,16 @@
         }
     }
 
+
+
     #entries {
         position: absolute;
-        top: 94px;
-        bottom: 30px;
-        right: 30px;
-        width: 62vw;
-        border-radius: 3px;
-        background-color: rgba(255,255,255,1);
+        top: $top;
+        bottom: 40px;
+        right: 40px;
+        width: 65vw;
+        background-color: white;
+        border-top: 1px solid #eee;
 
         #no-selected {
             display: table;
@@ -125,40 +128,40 @@
             overflow: auto;
 
             h1 {
-                text-transform: none;
-                color: #222;
-                font-weight: normal;
+                text-transform: uppercase;
+                color: #333;
+                font-weight: 300;
                 font-size: 22px;
                 padding-left: 0px;
                 line-height: 40px;
+                margin-bottom: 20px;
 
                 button {
                     float: right;
                     background-color: rgba(0,0,0,0.10);
-                    padding: 10px 15px;
+                    padding: 8px 12px;
                     border-radius: 3px;
-                    font-family: Gravur;
-                    color: #222;
-                    font-size: 18px;
+                    color: #444;
+                    font-size: 15px;
                     border: none;
                     outline: none;
                     position: relative;
                     left: -2px;
-                    height: 38px;
-                    line-height: 16px;
+                    line-height: 15px;
+                    text-transform: uppercase;
+                    font-weight: 300;
                 }
             }
 
             ul {
-                border-top: 1px solid rgba(0,0,0,0.2);
+                border-top: 1px solid #ddd;
 
                 li {
                     list-style-type: none;
                     padding-left: 0px;
                     line-height: 60px;
-                    border-bottom: 1px solid rgba(0,0,0,0.2);
+                    border-bottom: 1px solid #ddd;
                     clear: both;
-                    font-family: Gravur;
                     position: relative;
 
                     .transition {
@@ -172,7 +175,7 @@
                         background-color: white;
                         display: inline;
                         border-radius: 3px;
-                        opacity: 0.6
+                        color: #777;
                     }
 
                     span {

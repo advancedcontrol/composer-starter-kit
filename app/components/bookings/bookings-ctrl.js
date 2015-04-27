@@ -2,7 +2,7 @@
     'use strict';
 
     var scheduleCreateURL = '/api/schedules';
-    var groupQueryURL = '/api/groups?mine=true&offset=0&q=Service';
+    var groupQueryURL = '/api/groups?mine=true&offset=0';
     var playlistsQueryPrefix = '/api/groups/';
 
     angular.module('AcaEngine')
