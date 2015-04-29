@@ -161,6 +161,7 @@
 
             <!-- Authentication -->
             <script src="angular-safeapply/safe-apply.js"></script>
+            <script src="oauth-interceptor/intercept/endpoint.js"></script>
             <script src="oauth-interceptor/intercept/communication.js"></script>
             <script src="oauth-interceptor/intercept/providers/coauth.js"></script>
 
@@ -168,14 +169,14 @@
             <script src="spark-md5/spark-md5.js"></script>
             <script src="composer/src/ba-debug.js"></script>
             <script src="composer/src/composer.js"></script>
+            <script src="composer/src/resources.js"></script>
             <!--
                 Replace mocksocket with resources and websocket to
                 connect to a live server.
-                NOTE: You may also have to enable auth in settings. -->
+                NOTE: You may also have to enable auth in settings.
             
-            <script src="composer/src/resources.js"></script>
-            <script src="composer/src/websocket.js"></script>
-            <!-- script src="composer/src/mocksocket.js"></script -->
+            <script src="composer/src/websocket.js"></script> -->
+            <script src="composer/src/mocksocket.js"></script>
             <script src="composer/src/directives.js"></script>
             <script src="composer/src/default_settings.js"></script>
 
@@ -199,6 +200,7 @@
             <script src="components/settings.js"></script>
             <script src="components/joystick.js"></script>
             <script src="components/main-ctrl.js"></script>
+            <script src="components/cotag-ctrl.js"></script>
             <script src="components/bookings/bookings-ctrl.js"></script>
             <script src="components/meeting/meeting-ctrl.js"></script>
         <!-- endbuild -->

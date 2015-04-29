@@ -33,6 +33,9 @@ var AUTOPREFIXER_BROWSERS = [
 // This proxy works better as updates the hostname
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
+proxy.on('error', function(err) {
+    console.log('Proxy error', err);
+});
 
 
 // -------------------------------------------

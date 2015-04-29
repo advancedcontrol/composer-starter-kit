@@ -29,7 +29,7 @@
             $scope.selectPlaylist = function(playlist) {
                 $scope.selected = $rootScope.playlistData[playlist.id];
 
-                $http.get('/api/playlists/' + playlist.id + '/playlist_revisions/published', {
+                $http.get($rootScope.cotag + '/api/playlists/' + playlist.id + '/playlist_revisions/published', {
                     responseType: 'json',
                     headers: {
                         'Accept': 'application/json'

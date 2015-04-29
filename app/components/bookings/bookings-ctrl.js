@@ -16,7 +16,7 @@
             $rootScope.playlists = $rootScope.playlists || {};
 
             function loadPlaylists(group) {
-                var url = playlistsQueryPrefix + group.id + '/playlists';
+                var url = $rootScope.cotag + playlistsQueryPrefix + group.id + '/playlists';
 
                 $http.get(url, {
                     responseType: 'json',
@@ -29,7 +29,7 @@
             }
 
 
-            $http.get(groupQueryURL, {
+            $http.get($rootScope.cotag + groupQueryURL, {
                 responseType: 'json',
                 headers: {
                     'Accept': 'application/json'

@@ -8,6 +8,7 @@
     window.systemData['sys-B0'] = {
         System: [{
             "title": "White Lady Demo Room 1",
+            "cotag_domain": "http://localhost:3000",
 
             // power on/off
             "state": "shutdown",
