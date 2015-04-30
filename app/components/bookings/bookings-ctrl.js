@@ -1,7 +1,6 @@
 (function (angular) {
     'use strict';
 
-    var scheduleCreateURL = '/api/schedules';
     var groupQueryURL = '/api/groups?mine=true&offset=0';
     var playlistsQueryPrefix = '/api/groups/';
 
@@ -15,26 +14,32 @@
         function ($rootScope, $scope, $http) {
             $rootScope.playlists = $rootScope.playlists || {};
 
+            // ------------------------
+            // playlists/meeting
+            // ------------------------
             function loadPlaylists(group) {
                 var url = $rootScope.cotag + playlistsQueryPrefix + group.id + '/playlists';
 
-                $http.get(url, {
-                    responseType: 'json',
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }).success(function(data, status, headers, config) {
+                if ($rootScope.debug) {
+                    var data = window.cotagData.playlist;
                     $rootScope.playlists[data.id] = data;
-                });
+                } else {
+                    $http.get(url, {
+                        responseType: 'json',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).success(function(data, status, headers, config) {
+                        $rootScope.playlists[data.id] = data;
+                    });
+                }
             }
 
 
-            $http.get($rootScope.cotag + groupQueryURL, {
-                responseType: 'json',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).success(function(data, status, headers, config) {
+            // ------------------------
+            // groups/bookings
+            // ------------------------
+            function processGroups(data, status, headers, config) {
                 $scope.bookings = [];
                 
                 // each group represents a language option
@@ -49,7 +54,20 @@
 
                 // start loading playlists for each language
                 $scope.bookings.forEach(loadPlaylists);
-            });
+            }
+
+            if ($rootScope.debug) {
+                processGroups(window.cotagData.groups);
+            } else {
+                $http.get($rootScope.cotag + groupQueryURL, {
+                    responseType: 'json',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).success(function(data, status, headers, config) {
+                    processGroups(data, status, headers, config);
+                });
+            }
 
             $scope.selectBooking = function(booking) {
                 $rootScope.meeting = $rootScope.playlists[booking.id];

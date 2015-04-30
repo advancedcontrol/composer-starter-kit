@@ -46,6 +46,20 @@
         }]
     };
 
+    window.cotagData = {
+        groups: {
+            results: [
+                {name: 'Service 1', id: 'grp-srv1'},
+                {name: 'Service 2', id: 'grp-srv2'},
+                {name: 'Service 3', id: 'grp-srv3'}
+            ]
+        },
+
+        playlist: {
+            
+        }
+    }
+
     angular.module('AcaEngine')
         .run([
             '$window',
@@ -63,6 +77,7 @@
             }, function (value) {
                 $rootScope.controlSystem = value.channel || 'sys-B0';
                 $rootScope.groupID = value.group;
+                $rootScope.debug = value.debug;
             });
 
 
