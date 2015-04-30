@@ -15,14 +15,14 @@
             $rootScope.playlists = $rootScope.playlists || {};
 
             // ------------------------
-            // playlists/meeting
+            // playlists for a group
             // ------------------------
             function loadPlaylists(group) {
                 var url = $rootScope.cotag + playlistsQueryPrefix + group.id + '/playlists';
 
                 if ($rootScope.debug) {
-                    var data = window.cotagData.playlist;
-                    $rootScope.playlists[data.id] = data;
+                    var data = window.cotagData.group_playlists;
+                    $rootScope.playlists[group.id] = data;
                 } else {
                     $http.get(url, {
                         responseType: 'json',

@@ -26,23 +26,39 @@
                 $rootScope.meeting = null;
             };
 
+            // ------------------------
+            // playlists
+            // ------------------------
+            function processPlaylist(playlist, data, status, headers, config) {
+                angular.extend(data, playlist);
+                $rootScope.playlistData[playlist.id] = data;
+                $scope.selected = data;
+            }
+
             $scope.selectPlaylist = function(playlist) {
                 $scope.selected = $rootScope.playlistData[playlist.id];
 
-                $http.get($rootScope.cotag + '/api/playlists/' + playlist.id + '/playlist_revisions/published', {
-                    responseType: 'json',
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }).success(function(data, status, headers, config) {
-                    angular.extend(data, playlist);
-
-                    $rootScope.playlistData[playlist.id] = data;
-                    $scope.selected = data;
-                });
+                if ($rootScope.debug) {
+                    processPlaylist(playlist, window.cotagData.playlist);
+                } else {
+                    $http.get($rootScope.cotag + '/api/playlists/' + playlist.id + '/playlist_revisions/published', {
+                        responseType: 'json',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).success(function(data, status, headers, config) {
+                        processPlaylist(playlist, data, status, headers, config);
+                    });
+                }
             };
 
+            // ------------------------
+            // start playback
+            // ------------------------
             $scope.play = function(playlist, count) {
+                if ($rootScope.debug)
+                    return;
+
                 /*if ($scope.playing && (playlist.id == $scope.playing.id)) {
                     $scope.playing = null;
                 } else {

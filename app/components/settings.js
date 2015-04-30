@@ -55,8 +55,22 @@
             ]
         },
 
+        group_playlists: {
+            playlists: [
+                {name: 'Part 1', id: 'ply-part1'},
+                {name: 'Part 2', id: 'ply-part1'},
+                {name: 'Part 3', id: 'ply-part1'}
+            ]
+        },
+
         playlist: {
-            
+            name: 'Part 1',
+            id: 'ply-part1',
+            entries: [
+                {article_title: 'Image 1', duration: 10},
+                {article_title: 'Image 2', duration: 30},
+                {article_title: 'Image 3', duration: 10}
+            ]
         }
     }
 
