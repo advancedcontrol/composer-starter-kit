@@ -319,7 +319,7 @@
         }],
         Joiner: [{
             "joined": {
-                rooms: ['sys_3-18', 'sys_3-19'],
+                rooms: ['sys_3-18'],
                 initiator: 'sys_3-18'
             },
             "rooms": {
@@ -662,6 +662,18 @@
             // Location active?
             "Lobby": false
         }],
+        Joiner: [{
+            "joined": {
+                rooms: ['sys_3-19', 'sys_3-1A'],
+                initiator: 'sys_3-1A'
+            },
+            $unjoin: function () {
+                this.joined = {
+                    rooms: ['sys_3-19'],
+                    initiator: 'sys_3-19'
+                };
+            }
+        }],
         Switcher: [{}],
         Lights: [{}],
         Mixer: [{
@@ -749,6 +761,18 @@
                     ],
                     "title": "Projector in Rm3"
                 }
+            }
+        }],
+        Joiner: [{
+            "joined": {
+                rooms: ['sys_3-19', 'sys_3-1A'],
+                initiator: 'sys_3-1A'
+            },
+            $unjoin: function () {
+                this.joined = {
+                    rooms: ['sys_3-19'],
+                    initiator: 'sys_3-19'
+                };
             }
         }],
         Switcher: [{}],

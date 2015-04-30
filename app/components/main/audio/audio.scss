@@ -66,7 +66,7 @@ div.audio-pane {
         &> div.panel {
             // This is what allows 3 sliders
             // per column 
-            @include flex-basis(30%);
+            @include flex-basis(50%);
         }
 
         // Slider should take up the full width

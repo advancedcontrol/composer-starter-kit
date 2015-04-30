@@ -20,8 +20,36 @@
             <h3>Select the rooms you would like to join.</h3>
 
             <label ng-repeat="(id, name) in rooms">
-                <input type="checkbox" ng-model="joiner.selected[id]" />
-                {{name}}
+                <div co-system="id" co-module="'Joiner'" co-bind="'joined' as remoteJoin">
+                    <label ng-if="remoteJoin.rooms.length <= 1">
+                        <input type="checkbox" ng-model="joiner.selected[id]" />
+                        {{name}}
+                    </label>
+                    <label ng-if="remoteJoin.rooms.length > 1" ng-controller="Modals" ng-init="popupName = 'remoteUnjoin' + id">
+                        {{name}} is currently joined
+                        <button ng-click="showModal(popupName)">unjoin with care</button>
+
+                        <modal class="confirm-unjoin" name="{{popupName}}" title="Perform Remote Unjoin?">
+                            <p>Warning! Please ensure that the following rooms are not in use:</p>
+
+                            <ul>
+                                <li ng-repeat="room in remoteJoin.rooms">{{rooms[room]}}</li>
+                            </ul>
+
+                            <menu>
+                                <button class="ok" ng-click="coModuleInstance.$exec('unjoin'); closeModal(popupName)">
+                                    Continue Unjoining
+                                </button>
+
+                                <button ng-click="closeModal(popupName)">
+                                    Cancel
+                                </button>
+                            </menu>
+
+                            <div style="clear: both"></div>
+                        </modal>
+                    </label>
+                </div>
             </label>
 
             <br />
