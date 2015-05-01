@@ -164,11 +164,25 @@
 
 
     <!-- build:remove -->
-    <!-- 
-        Place emulation references here so they are not included in the build.
-        Composer Websocket.js is automatically replaced by mocksocket in development
-     -->
-    <script src="branding/usyd/preview.js"></script>
+        <!-- 
+            Place emulation references here so they are not included in the build.
+            Composer Websocket.js is automatically replaced by mocksocket in development
+         -->
+
+        <!-- sys-B0 == POD System -->
+        <script src="branding/usyd/single.js"></script>
+
+        <!-- sys-B1 == Single Projector Room (with preview) -->
+        <script src="branding/usyd/preview.js"></script>
+
+        <!-- sys-B2 == POD System with Teacher Sharing -->
+        <script src="branding/usyd/shared_pod.js"></script>
+
+        <!-- sys-B3 == Multi Projector Room -->
+        <script src="branding/usyd/multi_out.js"></script>
+
+        <!-- sys-B4 == Room Linking -->
+        <script src="branding/usyd/linking.js"></script>
     <!-- endbuild -->
 
 
