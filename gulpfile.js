@@ -33,6 +33,9 @@ var AUTOPREFIXER_BROWSERS = [
 // This proxy works better as updates the hostname
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
+proxy.on('error', function(err) {
+    console.log('Proxy error', err);
+});
 
 
 // -------------------------------------------
@@ -106,8 +109,14 @@ gulp.task('browser-sync', function () {
             fileName = fileName.slice(1);
 
           // short circuit on requests to static files (i.e with extensions)
-          if (path.extname(fileName) != '')
+          if (path.extname(fileName) != '') {
+            // Replace composer/websocket with mocksocket for development
+            if (req.url === "/composer/src/websocket.js") {
+              req.url = "/composer/src/mocksocket.js";
+            }
+
             return next();
+          }
 
           // try and serve the path or an index file within it
           for (var i = 0; i < baseDirs.length; ++i) {

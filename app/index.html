@@ -163,9 +163,19 @@
     </main>
 
 
+    <!-- build:remove -->
+    <!-- 
+        Place emulation references here so they are not included in the build.
+        Composer Websocket.js is automatically replaced by mocksocket in development
+     -->
+    <script src="branding/usyd/preview.js"></script>
+    <!-- endbuild -->
+
+
     <!-- build:js ./app.js -->
 
     <!-- AngularJS Core -->
+    <script src="spark-md5/spark-md5.js"></script>
     <script src="jquery/dist/jquery.js"></script>
     <script src="localforage/dist/localforage.js"></script>
     <script src="angular/angular.js"></script>
@@ -185,15 +195,17 @@
 
     <!-- Authentication -->
     <script src="angular-safeapply/safe-apply.js"></script>
+    <script src="oauth-interceptor/intercept/endpoint.js"></script>
     <script src="oauth-interceptor/intercept/communication.js"></script>
 
     <!-- ACA Engine Library -->
-    <script src="branding/usyd/preview.js"></script>
     <script src="composer/src/ba-debug.js"></script>
     <script src="composer/src/composer.js"></script>
     <script src="composer/src/resources.js"></script>
     <script src="composer/src/websocket.js"></script>
+
     <script src="composer/src/directives.js"></script>
+    <script src="composer/src/default_settings.js"></script>
 
     <!-- Optional Helpers -->
     <script src="easy-animate/requestAnimationFrame.js"></script>
@@ -213,7 +225,6 @@
     <!-- Application Components -->
     <script src="components/app.js"></script>
     <script src="components/joystick.js"></script>  <!-- TODO:: isolate -->
-    <script src="branding/usyd/settings.js"></script>
     <script src="components/shared-ctrl.js"></script>
     <script src="components/shared/cam-ctrl.js"></script>
     <script src="components/shared/audio-ctrl.js"></script>
@@ -224,7 +235,6 @@
     <script src="components/mobile/sidebar-ctrl.js"></script>
     <script src="components/mobile/options-ctrl.js"></script>
     <script src="components/mobile/sources/tabs-ctrl.js"></script>
-
 
     <!-- endbuild -->
   </body>
