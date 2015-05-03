@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    var groupQueryURL = '/api/groups?mine=true&offset=0';
+    var groupQueryURL = '/api/groups?mine=true&offset=0&q=Service';
     var playlistsQueryPrefix = '/api/groups/';
 
     angular.module('AcaEngine')

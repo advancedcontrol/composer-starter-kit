@@ -3,6 +3,12 @@
     <div co-bind="'title'"></div>
     <div co-bind="'state'"></div>
 
+    <div ng-controller="CotagCtrl">
+        <div co-bind="'cotag_domain'"></div>
+        <div co-bind="'cotag_user'"></div>
+        <div co-bind="'cotag_password'"></div>
+    </div>
+
     <!-- show a splash page when offline -->
     <div ng-if="state != 'online'" ng-controller="MainCtrl" id="splash-container">
         <div id="splash" ng-if="!validating" ng-click="$parent.validating = true">
