@@ -35,8 +35,14 @@ div.vision {
                 width: 100%;
                 height: 3em;
 
+                @include display-flex();
+                @include flex-direction(row);
+                @include flex-wrap(nowrap);
+                @include justify-content(flex-start);
+
                 &> div {
                     max-width: none;
+                    @include flex-grow(1);
 
                     &.active {
                         background-color: #aaa;
