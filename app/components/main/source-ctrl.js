@@ -24,7 +24,9 @@
 
             $scope.output = null;
             $scope.selectOutput = function (out) {
-                $scope.output = out;
+                if (out) {
+                    $scope.output = out;
+                }
             };
 
             // Ensure the selected room is valid
@@ -83,7 +85,9 @@
         function ($scope) {
 
             $scope.$watch('output', function (out) {
-                $scope.out = out;
+                if (out) {
+                    $scope.out = out;
+                }
             });
 
         }]);
