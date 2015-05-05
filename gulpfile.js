@@ -50,46 +50,26 @@ gulp.task('jshint', function () {
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
-// use compass watch to only compile files when necessary
-gulp.task('dev:styles', function () {
-  var options = ['watch',
-    process.cwd(),
-    '--relative-assets',
-    '--output-style',
-    'nested',
-    '--css-dir',
-    '.tmp',
-    '--sass-dir',
-    'app',
-    '--boring'
-  ];
-
-  var child = spawn('compass', options, process.cwd());
-  child.stdout.setEncoding('utf8');
-  child.stdout.on('data', function (data) {
-    console.log(data);
-  });
-
-  child.stderr.setEncoding('utf8');
-  child.stderr.on('data', function (data) {
-    console.log(data);
-  });
-});
-
 // optimise Images
 gulp.task('dev:images', function () {
   return gulp.src([
         'app/**/*.png',
         'app/**/*.jpg',
-        'app/**/*.gif',
-        'app/**/*.svg',
-        '!app/branding/fonts/**/*.svg'
+        'app/**/*.gif'
     ]).pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true
     })))
     .pipe(gulp.dest('.tmp'))
     .pipe($.size({title: 'dev:images'}));
+});
+
+gulp.task('dev:svg', function () {
+  return gulp.src([
+        'app/**/*.svg',
+        '!app/branding/fonts/**/*.svg'
+    ])
+    .pipe(gulp.dest('.tmp'));
 });
 
 // Watch Files For Changes & Reload
@@ -129,8 +109,14 @@ gulp.task('browser-sync', function () {
             fileName = fileName.slice(1);
 
           // short circuit on requests to static files (i.e with extensions)
-          if (path.extname(fileName) != '')
+          if (path.extname(fileName) != '') {
+            // Replace composer/websocket with mocksocket for development
+            if (req.url === "/composer/src/websocket.js") {
+              req.url = "/composer/src/mocksocket.js";
+            }
+
             return next();
+          }
 
           // try and serve the path or an index file within it
           for (var i = 0; i < baseDirs.length; ++i) {
@@ -163,7 +149,7 @@ gulp.task('browser-sync', function () {
   ], ['dev:images', reload]);
 });
 
-gulp.task('serve', ['dev:styles', 'dev:images', 'browser-sync']);
+gulp.task('serve', ['prod:styles', 'dev:images', 'dev:svg', 'browser-sync']);
 
 
 
@@ -257,10 +243,11 @@ gulp.task('prod:manifest', function() {
 
 // Clean Output Directory
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+gulp.task('clean-tmp', del.bind(null, ['.tmp']));
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('prod:styles', 'rebase', 'dev:images', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', cb);
+  runSequence('prod:styles', 'rebase', 'dev:images', 'dev:svg', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', 'clean-tmp', cb);
 });
 
 // Load custom tasks from the `tasks` directory
