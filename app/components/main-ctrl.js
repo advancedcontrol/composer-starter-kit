@@ -66,8 +66,9 @@
 
                 // full screen images are shown on page in an image tag to work
                 // around Chrome not understanding how to deal with mjpeg
-                $scope.fullImageCam = $location.search().cam;
-                $scope.fullImageURL = null;
+                $scope.fullImageCam  = $location.search().cam;
+                $scope.fullImageRTSP = $location.search().rtsp;
+                $scope.fullImageURL  = null;
 
                 if ($scope.fullImageCam) {
                     $http.get('http://vl8.ad.life.unsw.edu.au/api/webcams?camera_ip=' + $scope.fullImageCam + '&view=full')
