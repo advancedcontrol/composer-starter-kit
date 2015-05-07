@@ -26,7 +26,7 @@
     angular.module('AcaEngine')
 
         .config([
-            '$compileProvider'
+            '$compileProvider',
 
         function ($compileProvider) {
             // Allow the RTSP links to be displayed
