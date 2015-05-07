@@ -25,6 +25,14 @@
 
     angular.module('AcaEngine')
 
+        .config([
+            '$compileProvider'
+
+        function ($compileProvider) {
+            // Allow the RTSP links to be displayed
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|rtsp):/);
+        }])
+
         .run([
             '$window',
             'cacheman',
