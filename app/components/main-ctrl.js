@@ -79,8 +79,12 @@
                     );
                 }
 
-                $scope.showFullImage = function(cam) {
-                    var url = $location.path($location.path()).search({cam: cam}).absUrl();
+                $scope.showFullImage = function(cam, rtsp) {
+                    var params = {cam: cam};
+                    if (rtsp)
+                        params.rtsp = rtsp;
+
+                    var url = $location.path($location.path()).search(params).absUrl();
                     var newWindow = window.open(url, '_blank');
                     newWindow.focus();
                 }
