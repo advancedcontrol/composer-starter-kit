@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\rtsp]
+@="URL:rtsp"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\rtsp\DefaultIcon]
+@="\"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe\",0"
+
+[HKEY_CLASSES_ROOT\rtsp\shell]
+@="open"
+
+[HKEY_CLASSES_ROOT\rtsp\shell\Open]
+[HKEY_CLASSES_ROOT\rtsp\shell\Open\command]
+@="\"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe\" %1"
