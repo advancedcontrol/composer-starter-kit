@@ -5,6 +5,7 @@
         <a style="float: right;" href="#" ng-click="showFullImage('10.213.0.27')">
             <img ng-src="{{cameraURLs['10.213.0.27']}}" style="height: 120;">
         </a>
+        <a style="float: right; padding-right:2em" href="/auth/logout?continue=/login_ldap">Logout</a>
     </header>
 
     <main>
@@ -15,7 +16,7 @@
                     <div co-bind="'cameras'"></div>
                     <div co-bind="'rtsp'"></div>
 
-                    <a ng-if="cameras && !disabled" href="#" ng-click="showFullImage(cameras[0], rtsp)" ng-init="generateURL(cameras[0], 'thumbnail')">
+                    <a ng-if="cameras && !disabled" ng-href="{{rtsp}}" ng-init="generateURL(cameras[0], 'thumbnail')">
                         <div class="recording" ng-show="recording"></div>
                         <img ng-src="{{cameraURLs[cameras[0]]}}">
                         <h1 co-bind="'name'">{{name}}</h1>
@@ -33,11 +34,6 @@
             </nav>
             <p><a href="ActivateVLC.reg">Activate "View in VLC" link</a></p>
             <p>Space remaining: <span>{{remaining}}</span></p>
-        </div>
-
-        <div id="full-image" ng-show="fullImageCam">
-            <img ng-src="{{fullImageURL}}">
-            <a id="rtsp-url" ng-href="{{fullImageRTSP}}" ng-if="fullImageRTSP">View in VLC</a>
         </div>
     </main>
 </div>
