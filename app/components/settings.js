@@ -30,15 +30,15 @@
             comms.useService({
                 id: 'Cotag',
                 scope: 'public',
-                oauth_server: 'http://vl8.ad.life.unsw.edu.au/auth/oauth/authorize',
-                oauth_tokens: 'http://vl8.ad.life.unsw.edu.au/auth/token',
-                redirect_uri: 'http://vl8.ad.life.unsw.edu.au/oauth-resp.html',
-                client_id: '3de2f53e51dce42e1acc023706a95ea4108a397b62eb4b494bc8a866ee8517a9',
+                oauth_server: 'http://sohiptva.soh.com/auth/oauth/authorize',
+                oauth_tokens: 'http://sohiptva.soh.com/auth/token',
+                redirect_uri: 'http://sohiptva.soh.com/oauth-resp.html',
+                client_id: 'df46d04043f6fe1d9949d9effba43b25b664064addfe4670aae8a24fe3f3f570',
                 login_redirect: function () {
                     var url = encodeURIComponent(document.location.href);
-                    return '/login_ldap?continue=' + url;
+                    return '/login_soh/?continue=' + url;
                 },
-                api_endpoint: '/api',
+                api_endpoint: '/api/',
                 proactive: true
             });
         }])
