@@ -50,6 +50,8 @@ main {
 
     ul {
         list-style-type: none;
+        max-width: 500px;
+        margin: 0px auto;
 
         li {
             cursor: pointer;
@@ -59,7 +61,7 @@ main {
         }
 
         &#tv {
-            margin-left: 10px;
+            padding-left: 10px;
 
             li {
                 display: inline-block;
