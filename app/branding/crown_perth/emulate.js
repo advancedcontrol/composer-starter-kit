@@ -362,18 +362,15 @@
             "light_levels": [
                 {
                     "name": "Full",
-                    "trigger": 3,
-                    "message": "Lights are at Full"
+                    "trigger": 3
                 },
                 {
                     "name": "Presentation",
-                    "trigger": 2,
-                    "message": "Lights in Presentation mode",
+                    "trigger": 2
                 },
                 {
                     "name": "Off",
-                    "trigger": 1,
-                    "message": "Lights Off"
+                    "trigger": 1
                 }
             ],
             "light_names": {
