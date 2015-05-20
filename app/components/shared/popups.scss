@@ -87,6 +87,14 @@ modal {
             height: 40px;
         }
     }
+
+    &> div > div p {
+        font-size: 16px;
+    }
+
+    &> div > div h1 {
+        font-size: 18px;
+    }
 }
 
 
@@ -179,8 +187,8 @@ modal[name=mics] {
                 @include image-toggle(
                     $trueImage: "../../components/images/microphone-mute.svg", 
                     $falseImage: "../../components/images/microphone.svg",
-                    $width: 30px,
-                    $height: 30px
+                    $width: 50px,
+                    $height: 50px
                 );
                 padding-right: 15px;
             }
