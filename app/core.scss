@@ -45,6 +45,13 @@ textarea {
     backface-visibility: hidden;
 }
 
+// Hide coauth iframe
+#coauth, .coauth {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+}
+
 html, body {
     margin: 0;
     padding: 0;

@@ -16,7 +16,7 @@
     <div ng-if="sources" co-bind="'inputs'">
         <div co-bind="'tab'" exec>
             <!-- Tabs -->
-            <tabs current="tab" auto-select="false">
+            <tabs current="tab" auto-select="false" type="touch">
                 <pane ng-repeat="input in inputs" title="{{input}}" icon="{{input}}" co-bind="input + '_hide' as hide" hide="hide">
                     <div ng-include="'components/main/' + input + '/' + input + '.html'">
                     </div>
