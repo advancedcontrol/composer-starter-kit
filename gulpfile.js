@@ -220,11 +220,11 @@ gulp.task('fonts', function () {
 // Copy optimised images from tmp to dist
 gulp.task('prod:images', function () {
   return gulp.src([
-        '.tmp/**/*.png',
-        '.tmp/**/*.jpg',
-        '.tmp/**/*.gif',
-        '.tmp/**/*.svg',
-        '!.tmp/branding/fonts/**/*.svg'
+        'app/**/*.png',
+        'app/**/*.jpg',
+        'app/**/*.gif',
+        'app/**/*.svg',
+        'app/branding/fonts/**/*.svg'
     ], {dot: false}).pipe(gulp.dest('dist'))
     .pipe($.size({title: 'prod:images'}));
 });
@@ -271,11 +271,11 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('prod:styles', 'rebase', 'dev:images', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', cb);
+  runSequence('prod:styles', 'rebase', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', cb);
 });
 
 gulp.task('build:staging', ['clean'], function(cb) {
-  runSequence('prod:styles', 'staging:styles', 'dev:images', 'prod:images', 'staging:js', 'staging:html', 'staging:fonts', 'copy', 'staging:plugins', cb);
+  runSequence('prod:styles', 'staging:styles', 'prod:images', 'staging:js', 'staging:html', 'staging:fonts', 'copy', 'staging:plugins', cb);
 });
 
 // Load custom tasks from the `tasks` directory
