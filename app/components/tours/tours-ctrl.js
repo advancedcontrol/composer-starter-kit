@@ -87,6 +87,7 @@
                 $http.post($rootScope.scheduleCreateURL, {
                     group_id: $scope.group_id,
                     playlist_id: playlist.id,
+                    name: 'tourism',
                     once: true,
                     priority: 1,
                     start_date: startDate,
