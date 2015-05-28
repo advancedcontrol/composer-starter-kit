@@ -80,7 +80,7 @@
                     str += '0';
                 str += month + '/';
 
-                str += date.getYear() + ' ';
+                str += date.getFullYear() + ' ';
 
                 // time component
                 var hour = date.getHours();
