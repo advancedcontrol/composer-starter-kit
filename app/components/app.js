@@ -25,8 +25,10 @@
         '$window',
         '$document',
         '$rootScope',
+        '$timeout',
+        '$interval',
 
-    function($window, $document, $rootScope) {
+    function($window, $document, $rootScope, $timeout, $interval) {
         var elWindow = angular.element($window),
             elHtml = angular.element('html'),
 
@@ -74,8 +76,40 @@
             $rootScope.height = $window.innerHeight;
         });
 
+        //
         // Remove the loading indicator
+        //
         $rootScope.loaded = true;
+
+        //
+        // Try to ensure we are always connected
+        //
+        var refreshTimer = null;
+        $rootScope.$watch('$composerConnected', function (value) {
+            if (refreshTimer) {
+                $timeout.cancel(refreshTimer);
+            }
+
+            if (!value) {
+                // Reload the page after 3min of being disconnected
+                refreshTimer = $timeout(function () {
+                    $window.location.reload();
+                }, 180000);
+            }
+        });
+
+        //
+        // Prevent iOS from going into deep sleep
+        //
+        var keepAlive = angular.element('<div class="keep-alive" />');
+        $interval(function () {
+            // Modifies the DOM
+            elBody.append(keepAlive);
+
+            $timeout(function () {
+                keepAlive.detach();
+            }, 15000);
+        }, 30000);
     }])
 
 

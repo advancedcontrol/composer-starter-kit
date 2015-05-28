@@ -111,7 +111,7 @@
 
     <!-- endbuild -->
   </head>
-  <body ng-app="AcaEngine">
+  <body ng-app="AcaEngine" ng-click="bodyClick=true" touch-action="none" user-select="true">
     <!-- Loading Indicator -->
     <div id="loading" ng-if="$composerConnected !== true">
         <h1 ng-if="loaded !== true">Loading...</h1>
@@ -143,6 +143,7 @@
                 ng-if="state !== 'online'"
                 co-bind="'name'"
                 ng-release="coModuleInstance.$exec('powerup')"
+                touch-action="none"
             >
                 <div>
                     <div>
