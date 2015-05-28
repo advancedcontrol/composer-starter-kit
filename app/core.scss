@@ -63,7 +63,7 @@ body {
     }
 
     // Authentication occurs in the background
-    &> div.background-oauth {
+    &> div.background-oauth, div.keep-alive {
         width: 2px;
         height: 2px;
 

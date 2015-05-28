@@ -18,7 +18,7 @@
     <div co-bind="'tabs'">
         <div co-bind="'tab'" exec>
             <!-- Tabs -->
-            <tabs current="tab">
+            <tabs current="tab" type="touch">
                 <pane ng-repeat="tabType in tabs[state]" title="{{pages[tabType].title}}" icon="{{tabType}}" name="tabType">
                     <div ng-include="'components/main/' + tabType + '/' + tabType + '.html'">
                     </div>
