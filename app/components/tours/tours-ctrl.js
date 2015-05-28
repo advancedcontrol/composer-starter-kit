@@ -65,6 +65,50 @@
             var playCount = 0,
                 playing;
 
+            function formatDate(date) {
+                // format date as DD/MM/YYYY HH:MM(am|pm)
+                var str = '';
+
+                // date component
+                var day = date.getDate();
+                if (day < 10)
+                    str += '0';
+                str += day + '/';
+
+                var month = date.getMonth() + 1;
+                if (month < 10)
+                    str += '0';
+                str += month + '/';
+
+                str += date.getYear() + ' ';
+
+                // time component
+                var hour = date.getHours();
+                var adjusted = hour;
+
+                // adjust to 12hr time
+                if (adjusted == 0)
+                    adjusted = '12';
+                else if (adjusted > 12)
+                    adjusted -= 12;
+
+                if (adjusted <= 9)
+                    str += '0';
+                str += adjusted + ':';
+
+                var min = date.getMinutes();
+                if (min < 10)
+                    str += '0';
+                str += min;
+
+                if (hour < 12)
+                    str += 'am';
+                else
+                    str += 'pm';
+
+                return str;
+            }
+
             // Updates the currently selected source
             $scope.play = function(playlist, count) {
                 playCount = count || 0;
@@ -77,12 +121,12 @@
                 // time sync issues (phones with times out of sync)
                 var now = new Date();
                 now.setDate(now.getDate() - 1);
-                var startDate = now.toISOString();
+                var startDate = formatDate(now);
 
                 // end the schedule 1 day in the future - this will be enough
                 // time to play the content.
                 now.setDate(now.getDate() + 2);
-                var endDate = now.toISOString();
+                var endDate = formatDate(now);
 
                 $http.post($rootScope.scheduleCreateURL, {
                     group_id: $scope.group_id,
