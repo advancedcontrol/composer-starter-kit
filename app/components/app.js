@@ -31,6 +31,7 @@
     function($window, $document, $rootScope, $timeout, $interval) {
         var elWindow = angular.element($window),
             elHtml = angular.element('html'),
+            elBody = angular.element('body'),
 
             setHeightWidth = function() {
                     elHtml
