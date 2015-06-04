@@ -103,14 +103,14 @@
     <link rel="stylesheet" href="components/main/astral_lights/astral_lights.css">
     <link rel="stylesheet" href="components/main/joining/joining.css">
 
-    <link rel="stylesheet" href="branding/twin_waters/main.css">
+    <link rel="stylesheet" href="branding/crown_perth/main.css">
 
     <!-- Provide styles for common animations -->
     <link rel="stylesheet" href="animate.css/animate.css">
 
     <!-- endbuild -->
   </head>
-  <body ng-app="AcaEngine" ng-click="bodyClick=true" touch-action="none" user-select="true">
+  <body ng-app="AcaEngine" drag-begin="$event.preventDefault()" touch-action="pan-x" user-select="true">
     <!-- Loading Indicator -->
     <div id="loading" ng-if="$composerConnected !== true">
         <h1 ng-if="loaded !== true">Loading...</h1>
