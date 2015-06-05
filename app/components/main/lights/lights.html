@@ -2,15 +2,21 @@
 
 <div class="expansive" co-module="'Lights'" co-bind="'light_level'" exec="inform_trigger(light_level)">
     <div class="panels lighting" co-bind="'light_names' as lights">
-        <div class="panel large">
-            <div class="center-both">
-                <div ng-if="lights[light_level].message"
-                     ng-bind-html="lights[light_level].message"
-                ></div>
-                <div class="expansive"
-                     ng-if="lights[light_level].custom"
-                     ng-include="'components/main/lights/' + lights[light_level].custom + '.html'"
-                ></div>
+        <div class="panel large" co-bind="'simple_faders'">
+            <div class="center-both" co-bind="'range_faders'">
+                <table class="simple_fader">
+                    <tr>
+                        <td colspan="3">{{lights[light_level].message}}</td>
+                    </tr>
+                    <tr ng-repeat="fader in simple_faders">
+                        
+                        <td>{{fader.name}}</td>
+                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_up', fader.area, fader.channel)" ng-release="coModuleInstance.$exec('ramp_stop', fader.area, fader.channel)">UP</button></td>
+                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_down', fader.area, fader.channel)" ng-release="coModuleInstance.$exec('ramp_stop', fader.area, fader.channel)">Down</button></td>
+
+                    </tr>
+                </table>
+                <div class="range_faders"></div>
             </div>
         </div>
         <div class="panel" co-bind="'light_levels'">

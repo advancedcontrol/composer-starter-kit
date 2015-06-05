@@ -210,14 +210,29 @@
                     "message": "Lights Off"
                 }
             ],
-
-
             "light_names": {
-                "Full": 1,
-                "Presentation": 2,
-                "Low": 3,
-                "Off": 4,
+                "Full": {"message": "Lights are at Full"},
+                "Presentation": {"message": "Lights in Presentation mode"},
+                "Low": {"message": "Lights are dimmed"},
+                "Off": {"message": "Lights Off"}
             },
+            "simple_faders": [
+                {
+                    "name": "Downlights",
+                    "area": 3,
+                    "channel": 1
+                },
+                {
+                    "name": "Wall Lights",
+                    "area": 3,
+                    "channel": 1
+                },
+                {
+                    "name": "Chandeliers",
+                    "area": 3,
+                    "channel": 1
+                }
+            ],
             "light_level": "Off",
             $perform_trigger: function (level) {
                 this.light_level = level;
