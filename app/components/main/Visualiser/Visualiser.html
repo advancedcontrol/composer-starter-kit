@@ -42,10 +42,15 @@
         </div>
         <div class="sources" co-module="'Visualiser'" >
             <div co-bind="'frozen'">
-                <button class="toggle" ng-class="{disabled: frozen}" ng-touch="coModuleInstance.$exec('auto_focus')"><i class="fa fa-eye"></i>Auto Focus</button>
+                <button class="toggle" ng-class="{disabled: frozen}" ng-touch="frozen ? nil : coModuleInstance.$exec('auto_focus')"><i class="fa fa-eye"></i>Auto Focus</button>
                 <button class="toggle" ng-class="{active: lamp, disabled: frozen}" co-bind="'lamp'" exec ng-touch="lamp = frozen ? lamp : !lamp"><i class="fa fa-lightbulb-o"></i>Lamp</button>
                 <button class="toggle" ng-class="{active: sharp, disabled: frozen}" co-bind="'sharp'" exec ng-touch="sharp = frozen ? sharp : !sharp"><i class="fa fa-file-text-o"></i>Sharp Text</button>
-                <button class="toggle" ng-class="{disabled: frozen}" ng-click="coModuleInstance.$exec('reset')"><i class="fa fa-refresh"></i>Reset</button>
+                <button class="toggle" ng-class="{disabled: frozen}" ng-click="frozen ? nil : coModuleInstance.$exec('reset')"><i class="fa fa-refresh"></i>Reset</button>
+            </div>
+            
+            <!-- Power on the visualiser -->
+            <div co-bind="'power' as vis_power">
+                <div ng-if="vis_power === false" ng-init="coModuleInstance.$exec('power', true)"></div>
             </div>
         </div>
     </div>

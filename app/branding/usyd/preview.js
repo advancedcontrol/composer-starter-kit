@@ -168,7 +168,9 @@
             $sharp: function (freeze) {
                 if (!this.frozen)
                     this.sharp = freeze;
-            }
+            },
+            zoom: 30,
+            power: false
         }]
     };
 
