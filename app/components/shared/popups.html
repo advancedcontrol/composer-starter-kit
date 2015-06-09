@@ -124,7 +124,9 @@
                     <div class="mic_level">
                         <div
                             co-bind="'fader' + mic.id + '_' + (mic.index || 1) as level"
-                            exec="fader(mic.id, level, (mic.index || 1))">
+                            exec="fader(mic.id, level, (mic.index || 1))"
+                            init-val="mic.min"
+                        >
                             <div>
                                 <div co-range model="level" min="mic.min" max="mic.max"></div>
                             </div>
@@ -153,7 +155,9 @@
                     <div class="mic_level">
                         <div
                             co-bind="'fader' + (mic.feedback_id || mic.id) as level"
-                            exec="fader(mic.id, level)">
+                            exec="fader(mic.id, level)"
+                            init-val="mic.min"
+                        >
                             <div>
                                 <div co-range model="level" min="mic.min" max="mic.max"></div>
                             </div>
