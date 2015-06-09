@@ -7,7 +7,7 @@
     >
         
         <div co-module="'Visualiser'">
-            <div co-bind="'zoom_max'">
+            <div co-bind="'zoom'" exec>
                 <div co-bind="'zoom_min'">
                     <button
                         class="freezeBtn toggle"
@@ -18,7 +18,7 @@
                         <span ng-show="frozen">un-</span>freeze
                     </button>
 
-                    <table co-bind="'zoom'" exec>
+                    <table co-bind="'zoom_max'">
                         <tr>
                             <td class="zoom-icon"
                                 ng-touch="coModuleInstance.$exec('zoom_out')"
