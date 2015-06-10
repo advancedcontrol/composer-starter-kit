@@ -77,7 +77,7 @@
     ng-init="mute = false"
 >
     <div ng-if="output.no_mute" class="mute" >
-        <div image-toggle model="mute"></div>
+        <div image-toggle model="$parent.mute"></div>
     </div>
     <div ng-if="!output.no_mute"
         class="mute" 

@@ -128,22 +128,23 @@
                     "mixer_id": 105,
                     "type": "projector",
                     "pri": 1,
-                    "title": "Projector"
+                    "title": "Projector",
+                    "basic_mixer": true
                 }
             },
             "has_preview": 4,
-            "vol_max": 3,
+            "vol_max": -10,
             "vol_min": -50,
             $lights_to: function (level) {
                 this.light_level = level;
             }
         }],
         Mixer: [{
-            fader_106: 1,
-            fader_107: 2,
-            fader_105: -25,
-            fader_32: -30,
-            fader_107_mute: true, 
+            fader106: 1,
+            fader107: 2,
+            fader105: -25,
+            fader32: -30,
+            fader107_mute: true, 
             $fader: function (fader, volume) {
                 this['fader_' + fader] = volume;
             },

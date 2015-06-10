@@ -134,16 +134,13 @@
             },
             "outputs": {
                 "Display_1": {
-                    "output": [
-                        3,
-                        23
-                    ],
                     "type": "lcd",
                     "pri": 1,
-                    "title": "Pod Display"
+                    "title": "Pod Display",
+                    "no_mute": true
                 }
             },
-            "vol_max": 3,
+            "vol_max": -20,
             "vol_min": -50,
             "Presenter_hide": true,
             $lights_to: function (level) {
@@ -165,8 +162,9 @@
         }],
         Computer: [{}],
         Display: [{
-            $mute: function (mute) {
+            $mute_audio: function (mute) {
                 this.mute = mute;
+                this.volume = 0;
             }
         }]
     };
