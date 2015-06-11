@@ -2,7 +2,7 @@
     'use strict';
 
     window.systemData = window.systemData || {};
-    window.systemData['sys-B1'] = {
+    window.systemData['sys-B7'] = {
         System: [{
             "$powerup": function () {
                 this.state = "online";
@@ -151,7 +151,8 @@
                 }
             },
             "vol_max": 60,
-            "vol_min": 0
+            "vol_min": 0,
+            "pc_control": true
         }],
         Computer: [{name: 'testname'}],
         Camera: [{

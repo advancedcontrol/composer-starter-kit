@@ -1,7 +1,8 @@
 (function (window, angular) {
     'use strict';
 
-    window.systemData['sys-B1'] = {
+    window.systemData = window.systemData || {};
+    window.systemData['sys-B6'] = {
         System: [{
             "$powerup": function () {
                 this.state = "online";
@@ -150,7 +151,8 @@
                 }
             },
             "vol_max": 60,
-            "vol_min": 0
+            "vol_min": 0,
+            "pc_control": true
         }],
         Computer: [{}],
         Camera: [{

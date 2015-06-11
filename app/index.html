@@ -164,29 +164,6 @@
     </main>
 
 
-    <!-- build:remove -->
-        <!-- 
-            Place emulation references here so they are not included in the build.
-            Composer Websocket.js is automatically replaced by mocksocket in development
-         -->
-
-        <!-- sys-B0 == POD System -->
-        <script src="branding/usyd/single.js"></script>
-
-        <!-- sys-B1 == Single Projector Room (with preview) -->
-        <script src="branding/usyd/preview.js"></script>
-
-        <!-- sys-B2 == POD System with Teacher Sharing -->
-        <script src="branding/usyd/shared_pod.js"></script>
-
-        <!-- sys-B3 == Multi Projector Room -->
-        <script src="branding/usyd/multi_out.js"></script>
-
-        <!-- sys-B4 == Room Linking -->
-        <script src="branding/usyd/linking.js"></script>
-    <!-- endbuild -->
-
-
     <!-- build:js ./app.js -->
 
     <!-- AngularJS Core -->
@@ -249,6 +226,37 @@
     <script src="components/mobile/options-ctrl.js"></script>
     <script src="components/mobile/sources/tabs-ctrl.js"></script>
 
+    <!-- endbuild -->
+
+    <!-- build:remove -->
+        <!-- 
+            Place emulation references here so they are not included in the build.
+            Composer Websocket.js is automatically replaced by mocksocket in development
+         -->
+
+        <!-- sys-B0 == POD System -->
+        <script src="branding/usyd/single.js"></script>
+
+        <!-- sys-B1 == Single Projector Room (with preview) -->
+        <script src="branding/usyd/preview.js"></script>
+
+        <!-- sys-B2 == POD System with Teacher Sharing -->
+        <script src="branding/usyd/shared_pod.js"></script>
+
+        <!-- sys-B3 == Multi Projector Room -->
+        <script src="branding/usyd/multi_out.js"></script>
+
+        <!-- sys-B4 == Room Linking -->
+        <script src="branding/usyd/linking.js"></script>
+
+        <!-- sys-B5 == Main Lecture Room at Tafe -->
+        <script src="branding/tafesa/lecture.js"></script>
+
+        <!-- sys-B6 == Staff board room -->
+        <script src="branding/tafesa/dual.js"></script>
+
+        <!-- sys-B7 == Basic pod system -->
+        <script src="branding/tafesa/pod.js"></script>
     <!-- endbuild -->
   </body>
 </html>

@@ -10,7 +10,7 @@
             zoom: 999
         },{},{},{}]
     };
-    window.systemData['sys-B0'] = {
+    window.systemData['sys-B5'] = {
         System: [{
             "$powerup": function () {
                 this.state = "online";
@@ -365,7 +365,8 @@
             }],
             $lights_to: function (level) {
                 this.light_level = level;
-            }
+            },
+            "pc_control": true
         }],
         Mixer: [{
             fader106_1: 1,

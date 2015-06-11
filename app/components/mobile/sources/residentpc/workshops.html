@@ -8,7 +8,8 @@
     >
         <option value="">Select a Camera</option>
     </select>
-    <button ng-show="camera" ng-click="coModuleInstance.$exec('show_camera', cameras[camera], selectedSource.source)">Open</button>
+    <button ng-show="camera" ng-click="coModuleInstance.$exec('show_camera', cameras[camera], selectedSource.source)">View</button>
+    <button ng-show="camera" ng-click="coModuleInstance.$exec('record_camera', cameras[camera], selectedSource.source)">View and Record</button>
 
     <div
         ng-if="camera"
