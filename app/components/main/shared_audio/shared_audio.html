@@ -6,7 +6,7 @@
     <div co-bind="'out_min'"></div>
 
     <div class="panel large" co-bind="'inputs' as levels">
-        <div>
+        <div co-bind="'mixer_type'">
             <div class="joining expansive">
                 <div class="rooms">
                     <div ng-repeat="room in joinedRooms.rooms"
@@ -54,46 +54,46 @@
                             </table>
                         </div>
                     </div>
+
+                    <div ng-if="mixer_type === 'basic'" class="panel" ng-repeat="level in levels">
+                        <div 
+                            class="center-vert"
+                            co-module="level.mixer"
+                            co-implicit-index
+                            co-bind="'fader' + level.id as volume"
+                            exec="fader(level.id, volume)"
+                        >
+                            <table
+                                class="slider"
+                                co-bind="'fader' + (level.mute_id || level.id) + '_mute' as muted"
+                                exec="mute(level.mute_id || level.id, muted)"
+                            >
+                                <tr class="name">
+                                    <td>
+                                        <span image-toggle model="muted"></span>
+                                    </td>
+                                    <td>
+                                         {{level.name}}
+                                    <td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="btn-adjust">
+                                        <button class="btn" ng-click="volume = volume - 5">-5</button>
+                                    </td>
+                                    <td>
+                                        <div co-range model="volume" min="in_min" max="in_max"></div>
+                                    </td>
+                                    <td class="btn-adjust">
+                                        <button class="btn" ng-click="volume = volume + 5">+5</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <div ng-if="mixer_type === 'basic'" class="panel" ng-repeat="level in levels">
-                <div 
-                    class="center-vert"
-                    co-module="level.mixer"
-                    co-implicit-index
-                    co-bind="'fader' + level.id as volume"
-                    exec="fader(level.id, volume)"
-                >
-                    <table
-                        class="slider"
-                        co-bind="'fader' + (level.mute_id || level.id) + '_mute' as muted"
-                        exec="mute(level.mute_id || level.id, muted)"
-                    >
-                        <tr class="name">
-                            <td>
-                                <span image-toggle model="muted"></span>
-                            </td>
-                            <td>
-                                 {{level.name}}
-                            <td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="btn-adjust">
-                                <button class="btn" ng-click="volume = volume - 5">-5</button>
-                            </td>
-                            <td>
-                                <div co-range model="volume" min="in_min" max="in_max"></div>
-                            </td>
-                            <td class="btn-adjust">
-                                <button class="btn" ng-click="volume = volume + 5">+5</button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
         </div>
     </div>
     <div ng-controller="SharedAudioCtrl" class="panel">
