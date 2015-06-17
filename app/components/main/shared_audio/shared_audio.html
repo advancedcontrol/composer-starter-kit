@@ -58,7 +58,7 @@
                     <div ng-if="mixer_type === 'basic'" class="panel" ng-repeat="level in levels">
                         <div 
                             class="center-vert"
-                            co-module="level.mixer"
+                            co-module="level.mixer || 'Mixer_1'"
                             co-implicit-index
                             co-bind="'fader' + level.id as volume"
                             exec="fader(level.id, volume)"
