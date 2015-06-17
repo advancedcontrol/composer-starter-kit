@@ -109,12 +109,16 @@
                 return str;
             }
 
+            $scope.scheduling = false;
+            $scope.scheduled_id = null;
+            $scope.clear_scheduled_timer = null;
+
             // Updates the currently selected source
             $scope.play = function(playlist, count) {
                 playCount = count || 0;
 
                 if (playCount === 0) {
-                    $scope.showModal('scheduling');
+                    $scope.scheduling = true;
                 }
 
                 // start the schedule 1 day in the past to work around any
@@ -143,8 +147,27 @@
                     }
                 }).success(function(data, status, headers, config) {
                     console.log('success', data, status, config);
-                    $scope.closeModal('scheduling');
-                    $scope.showModal('scheduled');
+
+                    // to ensure UI draws smoothly, trigger the UI changes in half a
+                    // second. the scheduling will generally be almost instant, so the
+                    // fade in/out of #scheduling wouldn't normally complete otherwise
+                    setTimeout(function() {
+                        $scope.scheduling = false;
+                        $scope.scheduled_id = playlist.id;
+                        $scope.$apply();
+
+                        // if another video had previously been selected, clear its
+                        // 30s timer since it's already un-highlighted.
+                        if ($scope.clear_scheduled_timer)
+                            clearTimeout($scope.clear_scheduled_timer);
+
+                        // clear the highlighting on $scope.scheduled_id in 30s
+                        $scope.clear_scheduled_timer = setTimeout(function() {
+                            $scope.scheduled_id = null;
+                            $scope.clear_scheduled_timer = null;
+                            $scope.$apply();
+                        }, 30 * 1000);
+                    }, 500);
 
                 }).error(function(data, status, headers, config) {
                     console.log('error', data, status, config);

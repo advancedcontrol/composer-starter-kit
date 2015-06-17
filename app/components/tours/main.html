@@ -17,13 +17,6 @@
         <div style="clear: both"></div>
     </modal>
 
-    <modal name="scheduling" title="Scheduling Presentation" no-close="true">
-        <p>
-            <b>Please Wait...</b>
-        </p>
-        <div style="clear: both"></div>
-    </modal>
-
     <modal name="scheduled" title="Presentation Scheduled">
         <p>
             <b>The video will begin playing momentarily</b>
@@ -57,11 +50,14 @@
                         <button ng-repeat="playlist in playlists[lang.id]" btn="loop" ng-click="play(playlist)">
                             <div class="img"><img ng-src="{{playlist.poster_url}}"></div>
                             <h1 class="desc">{{playlist.name}}</h1>
+                            <div class="cover" ng-if="scheduled_id == playlist.id" ng-click="$event.stopPropagation()"><i class="pe-7s-check"></i></div>
                         </button>
                     </div>
                 </div>
 
             </pane>
         </tabs>
+        <div id="scheduling" ng-class="{visible: scheduling}"><div class="spinner"></div>hello: {{scheduling}}</div>
     </div>
 </div>
+
