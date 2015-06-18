@@ -50,8 +50,12 @@
                 });
 
                 // sort languages by name, ascending
-                $scope.languages = $scope.languages.sort(function (a, b) {
-                    return ((a.name < b.name) ? -1 : (b.name > a.name) ? 1 : 0);
+                $scope.languages.sort(function (a, b) {
+                    if (a.name < b.name)
+                        return -1;
+                    if (a.name > b.name)
+                        return 1;
+                    return 0;
                 });
 
                 // initialise the UI with the first language tab selected

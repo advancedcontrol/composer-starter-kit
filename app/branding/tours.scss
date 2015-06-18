@@ -1,7 +1,7 @@
 @import "compass";
 
 $header-height: 80px;
-$tab-width: 160px;
+$tab-width: 200px;
 $tab-height: 60px;
 $margin: 30px;
 
@@ -74,6 +74,7 @@ main.tours {
             left: 0px;
             bottom: 0px;
             width: $tab-width;
+            overflow: auto;
 
             > div {
                 display: block;
@@ -85,6 +86,14 @@ main.tours {
                 &.active {
                     color: white;
                     background-color: #d75509;
+                }
+
+                span {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: block;
+                    width: 100%;
                 }
             }
         }
