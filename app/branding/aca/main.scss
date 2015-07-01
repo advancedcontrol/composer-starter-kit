@@ -1,0 +1,56 @@
+@import "compass";
+@import "variables";
+
+body {
+    background-color: #172A3E;   //currently, dark blue - was #f9cf66 (yellow)
+}
+
+$header-color: darken(#145C9A, 10%); //#145C9A; //#12416F;
+
+
+article.main {
+    > div > div > tabs {
+        top: 110px;
+    }
+
+    > header {
+        background-color: $header-color;
+
+        div.logo {
+            background-color: #CE1126;
+            width: 150px;
+            margin-top: 0px;
+            padding: 5px 5px 5px 5px;
+            height: 90px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+
+            > div {
+                background-image: url("../../branding/aca/logo.svg");
+            }
+        }
+    }
+}
+
+
+// Mobile styles
+article.mobile {
+    header {
+        background-color: $header-color;
+
+        #show-menu {
+            padding: 5px 5px 5px 5px;
+        }
+
+        span > div.logo {
+            background-image: url("../../branding/aca/logo-small.svg");
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    }
+
+    aside div#nav-buffer {
+        background-color: darken($header-color, 10%);
+    }
+}
