@@ -50,7 +50,7 @@
 <section ng-touch="$event.stopPropagation()" on-target>
     <div> <!-- ng-switch -->
         <div> <!-- ng-switch-when -->
-            <div ng-if="power" ng-include="'components/mobile/sources/residentpc/' + tab + '.html'">
+            <div ng-if="power && tab" ng-include="'components/mobile/sources/residentpc/' + tab + '.html'">
             </div>
             <div ng-if="pc_control && !power">
                 <br />Unable to connect to the computer.<br />
