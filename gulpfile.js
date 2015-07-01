@@ -250,5 +250,39 @@ gulp.task('default', ['clean'], function (cb) {
   runSequence('prod:styles', 'rebase', 'dev:images', 'dev:svg', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', 'clean-tmp', cb);
 });
 
+
+// -------------------------------------------
+// staging
+// -------------------------------------------
+gulp.task('staging:html', function () {
+  return gulp.src('app/**/*.html', {dot: false}).pipe(gulp.dest('dist'))
+  .pipe($.size({title: 'staging:html'}));
+});
+
+gulp.task('staging:styles', function () {
+  return gulp.src('.tmp/**/*.css', {dot: false}).pipe(gulp.dest('dist'))
+  .pipe($.size({title: 'staging:styles'}));
+});
+
+gulp.task('staging:js', function () {
+  return gulp.src('app/**/*.js', {dot: false}).pipe(gulp.dest('dist'))
+  .pipe($.size({title: 'staging:js'}));
+});
+
+gulp.task('staging:fonts', function () {
+  return gulp.src('app/branding/fonts/**/*', {dot: false}).pipe(gulp.dest('dist/branding/fonts'))
+  .pipe($.size({title: 'staging:fonts'}));
+});
+
+gulp.task('staging:plugins', function () {
+  return gulp.src('bower_components/**/*', {dot: false}).pipe(gulp.dest('dist'))
+  .pipe($.size({title: 'staging:plugins'}));
+});
+
+gulp.task('build:staging', ['clean'], function(cb) {
+  runSequence('prod:styles', 'staging:styles', 'dev:images', 'prod:images', 'staging:js', 'staging:html', 'staging:fonts', 'copy', 'staging:plugins', cb);
+});
+
+
 // Load custom tasks from the `tasks` directory
 try { require('require-dir')('tasks'); } catch (err) {}
