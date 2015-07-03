@@ -1,0 +1,139 @@
+<!doctype html>
+<html manifest="app.appcache">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ACA Rooms</title>
+    <meta name="description" content="buildings made easy">
+    
+
+    <!--
+      https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+      https://developer.chrome.com/multidevice/android/installtohomescreen
+
+      http://blogs.msdn.com/b/ie/archive/2014/05/21/support-a-live-tile-for-your-website-on-windows-and-windows-phone-8-1.aspx
+      http://blogs.msdn.com/b/ie/archive/2012/04/03/pinned-sites-in-windows-8.aspx
+      http://blogs.msdn.com/b/ie/archive/2012/06/08/high-quality-visuals-for-pinned-sites-in-windows-8.aspx
+      http://www.xiconeditor.com/
+     -->
+    <link rel="icon" type="image/png" href="branding/favicon/w3c_48.png" sizes="48x48">
+    <link rel="icon" type="image/png" href="branding/favicon/64.png" sizes="64x64">
+    <link rel="icon" type="image/png" href="branding/favicon/128.png" sizes="128x128">
+    <link rel="icon" type="image/png" href="branding/favicon/w3c_192.png" sizes="192x192">
+
+    <!-- W3C Icons -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- MS Application Icon -->
+    <meta name="application-name" content="ACA Rooms">
+    <meta name="msapplication-tooltip" content="buildings made easy">
+    <meta name="msapplication-starturl" content="./">
+    <meta name="msapplication-navbutton-color" content="#b72706">
+    <meta name="msapplication-TileColor" content="#b72706" />
+    <!-- Win8 -->
+    <meta name="msapplication-TileImage" content="branding/favicon/win_144.png" />
+    <!-- Win8.1 -->
+    <meta name="msapplication-square70x70logo" content="branding/favicon/win_70.png" />
+    <meta name="msapplication-square150x150logo" content="branding/favicon/win_150.png" />
+    <meta name="msapplication-square310x310logo" content="branding/favicon/win_310.png" />
+
+    <!-- Apple Application Icon -->
+    <link rel="apple-touch-icon" href="branding/favicon/ios_76.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="branding/favicon/ios_76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="branding/favicon/ios_120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="branding/favicon/ios_152.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+    <!-- Hide content until page is loaded -->
+    <style>
+        div#loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding-top: 4em;
+            text-align: center;
+
+            background-color: white;
+            color: black;
+            z-index: 999999;
+
+            -webkit-transition: opacity linear 0.3s;
+            transition: opacity linear 0.3s;
+            opacity: 1;
+        }
+
+        div#loading.ng-leave {
+          opacity: 1;
+        }
+
+        div#loading.ng-leave.ng-leave-active {
+          opacity: 0;
+        }
+
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+
+    <!-- build:css ./bootstrap.css -->
+
+    <link rel="stylesheet" href="branding/spinner.css">
+    <link rel="stylesheet" href="add-to-homescreen/style/addtohomescreen.css">
+    <link rel="stylesheet" href="core.css">
+    <link rel="stylesheet" href="bootstrap/setup.css">
+
+    <!-- endbuild -->
+  </head>
+  <body ng-app="AcaBootstrap">
+    <!-- Loading Indicator -->
+    <div id="loading" ng-if="loaded !== true">
+        <h1>Loading...</h1>
+        <div>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+
+    <!-- System definition -->
+    <main ng-if="loaded" ng-controller="SetupCtrl">
+        <div>
+            <div>
+                <h1>ACA Control Setup</h1>
+                <p>Please enter the system ID below:</p>
+                <input ng-model="system_id" ng-trim="true" ng-required="true" ng-minlength="5" />
+                <button ng-click="configure(system_id)">Finish Setup</button>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- build:js ./bootstrap.js -->
+
+    <!-- AngularJS Core -->
+    <script src="add-to-homescreen/src/addtohomescreen.js"></script>
+    <script src="angular/angular.js"></script>
+
+    <!-- Gesture support -->
+    <script src="pointerevents-polyfill/pointerevents.dev.js"></script>
+    <script src="angular-gesture/ngGesture/gesture.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngClick.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngHold.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngSwipe.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngTouch.js"></script>
+    <script src="angular-gesture/ngGesture/directive/ngDrag.js"></script>
+
+    <!-- Application Components -->
+    <script src="bootstrap/setup-ctrl.js"></script>
+
+    <!-- endbuild -->
+  </body>
+</html>

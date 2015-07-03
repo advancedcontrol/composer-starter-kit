@@ -1,0 +1,19 @@
+@import "compass";
+
+// Center the content on the page
+main {
+    &> div {
+        display: table;
+        height: 100%;
+        width: 100%;
+
+        color: black;
+
+        &> div {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+    }
+}
+
