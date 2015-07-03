@@ -384,6 +384,15 @@
                     "message": "Lights Off"
                 },
             },
+            "range_faders": [{
+                "name": "Custom Level",
+                "max": 255,
+                "min": 0
+            }],
+            "simple_faders": [{
+                "name": "Down Lights",
+                "name": "Spot Lights"
+            }],
             "light_level": "Off",
             $perform_trigger: function (level) {
                 this.light_level = level;

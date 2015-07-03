@@ -1,9 +1,9 @@
 
 
-<div class="expansive" co-module="'Lights'" co-bind="'light_level'" exec="inform_trigger(light_level)">
+<div class="expansive" co-module="'Lights'" co-bind="'light_level'">
     <div class="panels lighting" co-bind="'light_names' as lights">
         <div class="panel large" co-bind="'simple_faders'">
-            <div class="center-both" co-bind="'range_faders'">
+            <div co-bind="'range_faders'">
                 <table class="simple_fader">
                     <tr>
                         <td colspan="3">{{lights[light_level].message}}</td>
@@ -11,17 +11,29 @@
                     <tr ng-repeat="fader in simple_faders">
                         
                         <td>{{fader.name}}</td>
-                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_up', fader.area, fader.channel); $event.preventDefault();" ng-release="coModuleInstance.$exec('ramp_stop', fader.area, fader.channel)">UP</button></td>
-                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_down', fader.area, fader.channel); $event.preventDefault();" ng-release="coModuleInstance.$exec('ramp_stop', fader.area, fader.channel)">Down</button></td>
+                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_up', fader.name); $event.preventDefault();" ng-release="coModuleInstance.$exec('ramp_stop', fader.name)">UP</button></td>
+                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_down', fader.name); $event.preventDefault();" ng-release="coModuleInstance.$exec('ramp_stop', fader.name)">Down</button></td>
 
                     </tr>
                 </table>
-                <div class="range_faders"></div>
+                <div class="range_faders">
+                    <div ng-repeat="fader in range_faders">
+                        <div ng-controller="BasicLightsCtrl">
+                            <span>{{fader.name}}</span>
+                            <div co-range model="fader.level" min="fader.min" max="fader.max" user-callback=""></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="panel" co-bind="'light_levels'">
             <div btn-group="light_level" class="vert-button-group" btn-class="btn">
-                <button ng-repeat="level in light_levels" btn="level.name" ng-touch="$parent.light_level = level.name" class="toggle">{{level.name}}</button>
+                <button 
+                    ng-repeat="level in light_levels"
+                    btn="level.name"
+                    ng-touch="$parent.light_level = level.name; coModuleInstance.$exec('inform_trigger', level.name)"
+                    class="toggle"
+                >{{level.name}}</button>
             </div>
         </div>
     </div>
