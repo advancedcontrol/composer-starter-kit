@@ -11,8 +11,8 @@
                     <tr ng-repeat="fader in simple_faders">
                         
                         <td>{{fader.name}}</td>
-                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_up', fader.area, fader.channel)" ng-release="coModuleInstance.$exec('ramp_stop', fader.area, fader.channel)">UP</button></td>
-                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_down', fader.area, fader.channel)" ng-release="coModuleInstance.$exec('ramp_stop', fader.area, fader.channel)">Down</button></td>
+                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_up', fader.area, fader.channel); $event.preventDefault();" ng-release="coModuleInstance.$exec('ramp_stop', fader.area, fader.channel)">UP</button></td>
+                        <td><button class="btn" ng-touch="coModuleInstance.$exec('ramp_down', fader.area, fader.channel); $event.preventDefault();" ng-release="coModuleInstance.$exec('ramp_stop', fader.area, fader.channel)">Down</button></td>
 
                     </tr>
                 </table>
