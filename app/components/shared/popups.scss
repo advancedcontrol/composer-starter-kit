@@ -57,6 +57,10 @@ div.tray {
             &.mics::before {
                 content: "\f130";
             }
+
+            &.joining::before {
+                content: "\f0c1";
+            }
         }
     }
 }

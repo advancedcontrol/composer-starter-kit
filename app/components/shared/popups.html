@@ -33,6 +33,23 @@
 </div>
 
 <!-- 
+    Room Joining Pop up
+ -->
+<div co-bind="'joining_rooms'">
+    <div ng-if="joining_rooms" class="joining" ng-touch="showModal('joining')">
+        <modal name="joining" title="Select Rooms to Link">
+            <div ng-repeat="room in joining_rooms">
+                <div co-system="room">
+                    <div co-module="'System'" co-bind="'name'">
+                        <div co-bind="''" ng-touch="coModuleInstance.$exec('do_share', true)">{{name}}</div>
+                    </div>
+                </div>
+            </div>
+        </modal>
+    </div>
+</div>
+
+<!-- 
     Screen Control Pop up
  -->
 <div>

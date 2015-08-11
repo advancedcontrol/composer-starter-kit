@@ -70,6 +70,7 @@
                 }
             },
             "name": "Multi Display Room",
+            "joining_rooms": ['sys-B0', 'sys-B1', 'sys-B2'],
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "PC",
