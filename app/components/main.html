@@ -1,7 +1,7 @@
 <div ng-controller="MainCtrl" co-module="'Television'">
     <header>
         <img src="branding/images/oh_logo.png">
-        <h1>Opera House TV Control</h1>
+        <h1><span co-bind="'name'">{{name}}</span> Control</h1>
         <p co-bind="'channelName'">{{channelName}}</p>
     </header>
     <main>
