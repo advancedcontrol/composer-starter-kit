@@ -23,11 +23,11 @@
                         muted = val;
 
                         if (val === true) {
-                            $scope.volume = ($scope.volume_min || 0);
+                            $scope.volume = ($scope.vol_min || 0);
                         } else if (previousVolume !== null) {
-                            if (previousVolume === ($scope.volume_min || 0)) {
+                            if (previousVolume === ($scope.vol_min || 0)) {
                                 // Unmute to 50% if muted by volume === vol min
-                                $scope.volume = Math.ceil(($scope.volume_max || 100) / 2);
+                                $scope.volume = Math.ceil(($scope.vol_max || 100) / 2);
                             } else {
                                 $scope.volume = previousVolume;
                             }
@@ -38,7 +38,7 @@
                         if (!muted && val !== undefined) {
                             previousVolume = val;
 
-                            if (val === ($scope.volume_min || 0)) {
+                            if (val === ($scope.vol_min || 0)) {
                                 $scope.mute = true;
                             } else {
                                 $scope.mute = false;

@@ -70,8 +70,6 @@
 -->
 <div
     ng-if="output && output.mixer_id === undefined && !output.no_audio"
-    co-module="output.$key"
-    co-implicit-index
     co-bind="'vol_min'"
     volume-mute
     ng-init="mute = false"
@@ -88,11 +86,13 @@
     </div>
     <div class="volume" co-bind="'vol_max'">
         <div
-            co-bind="'volume' as volume"
+            co-module="output.$key"
+            co-implicit-index
+            co-bind="'volume' as $parent.volume"
             exec
         >
             <div>
-                <div co-range model="volume" min="vol_min" max="vol_max"></div>
+                <div co-range model="$parent.volume" min="vol_min" max="vol_max"></div>
             </div>
         </div>
     </div>
