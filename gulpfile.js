@@ -213,6 +213,36 @@ gulp.task('prod:styles', function () {
     }));
 });
 
+// use compass watch to only compile files when necessary
+gulp.task('dev:styles', function () {
+  var options = ['watch',
+    process.cwd(),
+    '--relative-assets',
+    '--output-style',
+    'nested',
+    '--css-dir',
+    '.tmp',
+    '--sass-dir',
+    'app',
+    '--boring',
+    '--import-path',
+    'bower_components'
+  ];
+
+  var child = spawn('compass', options, {
+    cwd: process.cwd()
+  });
+  child.stdout.setEncoding('utf8');
+  child.stdout.on('data', function (data) {
+    console.log(data);
+  });
+
+  child.stderr.setEncoding('utf8');
+  child.stderr.on('data', function (data) {
+    console.log(data);
+  });
+});
+
 gulp.task('rebase', function () {
   return gulp.src(['.tmp/**/*.css'])
     .pipe(rebaseUrls({
@@ -247,7 +277,7 @@ gulp.task('clean-tmp', del.bind(null, ['.tmp']));
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('prod:styles', 'rebase', 'dev:images', 'dev:svg', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', 'clean-tmp', cb);
+  runSequence('dev:styles', 'rebase', 'dev:images', 'dev:svg', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', 'clean-tmp', cb);
 });
 
 
