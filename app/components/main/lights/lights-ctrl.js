@@ -14,7 +14,7 @@
 
             $scope.$watch('fader.level', function (newVal) {
                 if (newVal !== undefined) { // 0 is falsey
-                    $scope.coModuleInstance.$exec('perform_fade', $scope.fader.name, newVal);
+                    $scope.coModuleInstance.$exec('fade', $scope.fader.name, newVal);
                 }
             });
 
