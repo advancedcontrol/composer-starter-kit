@@ -69,6 +69,29 @@
                     this.$_self[parts.module][parts.index - 1].mute = true;
                 }
             },
+
+            "joined": {
+                rooms: ['sys-B4'],
+                initiator: 'sys-B4'
+            },
+            "rooms": {
+                "sys-B0": "B0 Pod Systems",
+                "sys-B1": "B1 Carslaw 1234",
+                "sys-B2": "B2 Some other crazy system"
+            },
+            $unjoin: function () {
+                this.joined = {
+                    rooms: ['sys_3-18'],
+                    initiator: 'sys_3-18'
+                };
+            },
+            $join: function () {
+                this.joined = {
+                    rooms: Array.prototype.slice.call(arguments),
+                    initiator: 'sys_3-18'
+                };
+            },
+
             "name": "Linking Room",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",

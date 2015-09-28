@@ -149,7 +149,7 @@ gulp.task('browser-sync', function () {
   ], ['dev:images', reload]);
 });
 
-gulp.task('serve', ['prod:styles', 'dev:images', 'dev:svg', 'browser-sync']);
+gulp.task('serve', ['dev:styles', 'dev:images', 'dev:svg', 'browser-sync']);
 
 
 
@@ -158,8 +158,10 @@ gulp.task('serve', ['prod:styles', 'dev:images', 'dev:svg', 'browser-sync']);
 // -------------------------------------------
 // Scan Your HTML For Assets & Optimize Them
 gulp.task('html', function () {
+  var assets = $.useref.assets({searchPath: '{.tmp,app,bower_components}'});
+  
   return gulp.src('app/**/*.html')
-    .pipe($.useref.assets({searchPath: '{.tmp,app,bower_components}'}))
+    .pipe(assets)
     
     // Concatenate And Minify JavaScript
     .pipe($.if('*.js', $.uglify({
@@ -170,7 +172,7 @@ gulp.task('html', function () {
     
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.csso()))
-    .pipe($.useref.restore())
+    .pipe(assets.restore())
     .pipe($.useref())
     
     // Minify Any HTML
@@ -209,7 +211,8 @@ gulp.task('prod:styles', function () {
   return gulp.src(['app/**/*.scss'])
     .pipe(compass({
       css: '.tmp',
-      sass: 'app'
+      sass: 'app',
+      import_path: 'bower_components'
     }));
 });
 

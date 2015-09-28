@@ -91,6 +91,10 @@
                 "TEN",
                 "ABC Dig"
             ],
+            "joined": { // here for joinging room emulation
+                rooms: ['sys-B0'],
+                initiator: 'sys-B0'
+            },
             "inputs": [
                 "PC",
                 "Laptop",

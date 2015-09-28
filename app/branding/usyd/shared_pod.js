@@ -71,6 +71,10 @@
                 }
             },
             "name": "Teacher Sharing Pod",
+            "joined": { // here for joinging room emulation
+                rooms: ['sys-B2'],
+                initiator: 'sys-B2'
+            },
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "PC",

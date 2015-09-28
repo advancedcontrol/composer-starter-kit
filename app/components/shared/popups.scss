@@ -211,3 +211,14 @@ modal[name=mics] {
     }
 }
 
+
+modal[name=joining] {
+    div.basic-wrapper {
+        padding-left: 1.5em;
+
+        label > div {
+            padding-bottom: 0.8em;
+        }
+    }
+}
+

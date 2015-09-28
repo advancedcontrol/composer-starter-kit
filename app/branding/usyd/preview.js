@@ -70,6 +70,10 @@
                 }
             },
             "name": "Carslaw Pod 158",
+            "joined": { // here for joinging room emulation
+                rooms: ['sys-B1'],
+                initiator: 'sys-B1'
+            },
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "PC",

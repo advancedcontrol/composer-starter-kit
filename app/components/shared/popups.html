@@ -11,9 +11,15 @@
                 <b>Are you sure you want to turn off the system?</b>
                 <br />It may take up to 5min to restart.
             </p>
-            <menu>
+            <menu co-bind="'joined'">
                 <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
                 <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
+                <button 
+                    class="ok"
+                    ng-if="joined.rooms.length > 1"
+                    ng-touch="coModuleInstance.$exec('shutdown', true)"
+                    style="margin-right: 1em;"
+                >Shutdown All</button>
             </menu>
             <div style="clear: both"></div>
         </modal>
@@ -35,14 +41,63 @@
 <!-- 
     Room Joining Pop up
  -->
-<div co-bind="'joining_rooms'">
-    <div ng-if="joining_rooms" class="joining" ng-touch="showModal('joining')">
+<div co-bind="'rooms'">
+    <div ng-if="rooms" class="joining" ng-touch="showModal('joining')">
         <modal name="joining" title="Select Rooms to Link">
-            <div ng-repeat="room in joining_rooms">
-                <div co-system="room">
-                    <div co-module="'System'" co-bind="'name'">
-                        <div co-bind="''" ng-touch="coModuleInstance.$exec('do_share', true)">{{name}}</div>
-                    </div>
+            <div class="basic-wrapper" co-bind="'joined'">
+                <!-- Room is joined to others: -->
+                <div ng-if="joined.rooms.length > 1">
+                    <h3>The following rooms are joined:</h3>
+
+                    <ul>
+                        <li ng-repeat="room in joined.rooms">
+                            {{rooms[room]}}
+                        </li>
+                    </ul>
+
+                    <button ng-click="coModuleInstance.$exec('unjoin')">Seperate / Unjoin</button>
+                </div>
+
+                <!-- Room is independant: -->
+                <div ng-if="joined.rooms.length == 1" ng-controller="JoiningCtrl">
+                    <h3>Select the rooms you would like to join.</h3>
+
+                    <label ng-repeat="(id, name) in rooms">
+                        <div co-system="id" co-module="'System'" co-bind="'joined' as remoteJoin">
+                            <label ng-if="remoteJoin.rooms.length <= 1">
+                                <input type="checkbox" ng-model="joiner.selected[id]" />
+                                {{name}}
+                            </label>
+                            <label ng-if="remoteJoin.rooms.length > 1" ng-controller="Modals" ng-init="popupName = 'remoteUnjoin' + id">
+                                {{name}} is currently joined
+                                <button ng-click="showModal(popupName)">unjoin with care</button>
+
+                                <modal class="confirm-unjoin" name="{{popupName}}" title="Perform Remote Unjoin?">
+                                    <p>Warning! Please ensure that the following rooms are not in use:</p>
+
+                                    <ul>
+                                        <li ng-repeat="room in remoteJoin.rooms">{{rooms[room]}}</li>
+                                    </ul>
+
+                                    <menu>
+                                        <button class="ok" ng-click="coModuleInstance.$exec('unjoin'); closeModal(popupName)">
+                                            Continue Unjoining
+                                        </button>
+
+                                        <button ng-click="closeModal(popupName)">
+                                            Cancel
+                                        </button>
+                                    </menu>
+
+                                    <div style="clear: both"></div>
+                                </modal>
+                            </label>
+                        </div>
+                    </label>
+
+                    <br />
+                    <br />
+                    <button ng-click="joinRooms()">Join Selected Rooms</button>
                 </div>
             </div>
         </modal>
