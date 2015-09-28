@@ -280,7 +280,7 @@ gulp.task('clean-tmp', del.bind(null, ['.tmp']));
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('dev:styles', 'rebase', 'dev:images', 'dev:svg', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', 'clean-tmp', cb);
+  runSequence('prod:styles', 'rebase', 'dev:images', 'dev:svg', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', 'clean-tmp', cb);
 });
 
 
