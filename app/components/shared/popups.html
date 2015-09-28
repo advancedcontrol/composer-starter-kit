@@ -41,8 +41,8 @@
 <!-- 
     Room Joining Pop up
  -->
-<div co-bind="'rooms'">
-    <div ng-if="rooms" class="joining" ng-touch="showModal('joining')">
+<div co-bind="'room_ids'">
+    <div ng-if="room_ids.length > 1" co-bind="'rooms'" class="joining" ng-touch="showModal('joining')">
         <modal name="joining" title="Select Rooms to Link">
             <div class="basic-wrapper" co-bind="'joined'">
                 <!-- Room is joined to others: -->
