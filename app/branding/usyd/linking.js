@@ -89,7 +89,6 @@
             ],
             $unjoin: function () {
                 this.joined = {
-                    initiator: 'sys_3-18'
                     rooms: ['sys-B4'],
                     initiator: 'sys-B4'
                 };
