@@ -24,6 +24,7 @@
             </tabs>
 
             <!-- Show when more than one output available -->
+            <span co-bind="'joined'"></span>
             <footer ng-if="outputs && (numOutputs > 1 || has_preview)">
                 <div>
                     <!-- 
@@ -35,7 +36,11 @@
                          co-bind="output.$key as source"
                          ng-init="source = {source: 'none'}"
                          ng-class="output.type"
+                         ng-controller="JointAudioCtrl"
                     >
+                        <span co-bind="output.$key + '_volume' as shared.volume" exec="share_volume(output.$key, shared.volume)"></span>
+                        <span co-bind="output.$key + '_amute' as audio.mute" exec="share_mute(output.$key, audio.mute)"></span>
+
                         <div class="icon" touch-action="pan-x" ng-click="presetSource()">
                             <div class="outer"></div>
                             <div class="inner" ng-class="{pulse: doPulse}">
@@ -78,10 +83,14 @@
                     </div>
                 </div>
             </footer>
-            <footer ng-if="outputs && numOutputs === 1 && !has_preview">
+            <footer ng-if="outputs && numOutputs === 1 && !has_preview" ng-controller="JointAudioCtrl">
                 <div ng-repeat="output in outputs | orderObjectBy:'pri'"
                      co-bind="output.$key as source"
+                     ng-controller="JointAudioCtrl"
                 >
+                    <span co-bind="output.$key + '_volume' as shared.volume" exec="share_volume(output.$key, shared.volume)"></span>
+                    <span co-bind="output.$key + '_amute' as audio.mute" exec="share_mute(output.$key, audio.mute)"></span>
+
                     <h1>Volume:</h1>
                     <div
                         class="audio"
