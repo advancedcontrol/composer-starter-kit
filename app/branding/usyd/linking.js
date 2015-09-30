@@ -10,7 +10,8 @@
             "$powerup": function () {
                 this.state = "online";
             },
-            "$shutdown": function () {
+            "$shutdown": function (all) {
+                this.$unjoin();
                 this.state = "shutdown";
             },
             $tab: function (tab) {
@@ -77,19 +78,31 @@
             "rooms": {
                 "sys-B0": "B0 Pod Systems",
                 "sys-B1": "B1 Carslaw 1234",
-                "sys-B2": "B2 Some other crazy system"
+                "sys-B2": "B2 Some other crazy system",
+                "sys-B4": "Linking room"
             },
+            "room_ids": [
+                "sys-B2",
+                "sys-B0",
+                "sys-B1",
+                "sys-B4"
+            ],
             $unjoin: function () {
                 this.joined = {
-                    rooms: ['sys_3-18'],
                     initiator: 'sys_3-18'
+                    rooms: ['sys-B4'],
+                    initiator: 'sys-B4'
                 };
             },
             $join: function () {
                 this.joined = {
                     rooms: Array.prototype.slice.call(arguments),
-                    initiator: 'sys_3-18'
+                    initiator: 'sys-B4'
                 };
+
+                this.joined.rooms.push('sys-B4');
+
+                console.log(this.joined);
             },
 
             "name": "Linking Room",

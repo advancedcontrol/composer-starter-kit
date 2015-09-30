@@ -42,9 +42,10 @@
     Room Joining Pop up
  -->
 <div co-bind="'room_ids'">
-    <div ng-if="room_ids.length > 1" co-bind="'rooms'" class="joining" ng-touch="showModal('joining')">
+    <div ng-if="room_ids.length > 1" co-bind="'joined'" class="joining" ng-class="{active: joined.rooms.length > 1}" ng-touch="showModal('joining')" ng-controller="JoiningCtrl">
+        <div co-bind="'rooms'"></div>
         <modal name="joining" title="Select Rooms to Link">
-            <div class="basic-wrapper" co-bind="'joined'">
+            <div class="basic-wrapper">
                 <!-- Room is joined to others: -->
                 <div ng-if="joined.rooms.length > 1">
                     <h3>The following rooms are joined:</h3>
@@ -59,17 +60,17 @@
                 </div>
 
                 <!-- Room is independant: -->
-                <div ng-if="joined.rooms.length == 1" ng-controller="JoiningCtrl">
-                    <h3>Select the rooms you would like to join.</h3>
+                <div ng-if="joined.rooms.length == 1">
+                    <h3>Select the rooms you would like to link with.</h3>
 
-                    <label ng-repeat="(id, name) in rooms">
+                    <label ng-repeat="id in room_ids" ng-if="id !== controlSystem">
                         <div co-system="id" co-module="'System'" co-bind="'joined' as remoteJoin">
                             <label ng-if="remoteJoin.rooms.length <= 1">
                                 <input type="checkbox" ng-model="joiner.selected[id]" />
-                                {{name}}
+                                {{rooms[id]}}
                             </label>
                             <label ng-if="remoteJoin.rooms.length > 1" ng-controller="Modals" ng-init="popupName = 'remoteUnjoin' + id">
-                                {{name}} is currently joined
+                                {{rooms[id]}} is currently joined
                                 <button ng-click="showModal(popupName)">unjoin with care</button>
 
                                 <modal class="confirm-unjoin" name="{{popupName}}" title="Perform Remote Unjoin?">
@@ -97,9 +98,21 @@
 
                     <br />
                     <br />
-                    <button ng-click="joinRooms()">Join Selected Rooms</button>
+                    <button ng-click="joinRooms()">Join to This room</button>
                 </div>
             </div>
+        </modal>
+
+        <modal name="notify_joining" title="Linking Notice">
+            <p>This room has been linked to: {{rooms[joined.initiator]}}</p>
+
+            <menu>
+                <button class="ok" ng-click="closeModal('notify_joining')">
+                    Got it
+                </button>
+            </menu>
+
+            <div style="clear: both"></div>
         </modal>
     </div>
 </div>

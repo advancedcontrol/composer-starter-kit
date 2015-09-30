@@ -25,6 +25,13 @@
                 $scope.coModuleInstance.$exec.apply($scope.coModuleInstance, rooms);
             };
 
+            $scope.$watch('joined.initiator', function (newId) {
+                if (newId && $scope.controlSystem !== newId)
+                    $scope.showModal('notify_joining');
+                else
+                    $scope.closeModal('notify_joining');
+            });
+
         }]);
 
 }(this.angular));
