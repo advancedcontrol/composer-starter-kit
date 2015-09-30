@@ -220,9 +220,12 @@ modal[name=mics] {
 
 modal[name=joining] {
     div.basic-wrapper {
-        padding-left: 1.5em;
+        h3 {
+            padding-left: 1.5em;
+        }
 
         label > div {
+            padding-left: 1.5em;
             padding-bottom: 0.8em;
         }
     }

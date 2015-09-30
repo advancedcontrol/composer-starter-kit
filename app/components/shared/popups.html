@@ -48,7 +48,7 @@
             <div class="basic-wrapper">
                 <!-- Room is joined to others: -->
                 <div ng-if="joined.rooms.length > 1">
-                    <h3>The following rooms are joined:</h3>
+                    <h3>The following rooms are Linked:</h3>
 
                     <ul>
                         <li ng-repeat="room in joined.rooms">
@@ -56,7 +56,15 @@
                         </li>
                     </ul>
 
-                    <button ng-click="coModuleInstance.$exec('unjoin'); closeModal('joining')">Seperate / Unjoin</button>
+                    <menu>
+                        <button ng-click="coModuleInstance.$exec('unjoin'); closeModal('joining')">
+                            Seperate / Unlink
+                        </button>
+
+                        <button class="ok" ng-click="closeModal('joining')">
+                            Close
+                        </button>
+                    </menu>
                 </div>
 
                 <!-- Room is independant: -->
@@ -70,8 +78,8 @@
                                 {{rooms[id]}}
                             </label>
                             <label ng-if="remoteJoin.rooms.length > 1" ng-controller="Modals" ng-init="popupName = 'remoteUnjoin' + id">
-                                {{rooms[id]}} is currently joined
-                                <button ng-click="showModal(popupName)">unjoin with care</button>
+                                {{rooms[id]}} is currently linked to another room
+                                <button ng-click="showModal(popupName)">unlink with care</button>
 
                                 <modal class="confirm-unjoin" name="{{popupName}}" title="Perform Remote Unjoin?">
                                     <p>Warning! Please ensure that the following rooms are not in use:</p>
@@ -82,7 +90,7 @@
 
                                     <menu>
                                         <button class="ok" ng-click="coModuleInstance.$exec('unjoin'); closeModal(popupName)">
-                                            Continue Unjoining
+                                            Continue Unlinking
                                         </button>
 
                                         <button ng-click="closeModal(popupName)">
@@ -98,7 +106,11 @@
 
                     <br />
                     <br />
-                    <button ng-click="joinRooms()">Join to This room</button>
+                    <menu>
+                        <button ng-click="joinRooms()">Link selected to This room</button>
+                    </menu>
+
+                    <div style="clear: both"></div>
                 </div>
             </div>
         </modal>
