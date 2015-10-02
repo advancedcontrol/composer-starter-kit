@@ -42,7 +42,8 @@
     Room Joining Pop up
  -->
 <div co-bind="'room_ids'">
-    <div ng-if="room_ids.length > 1" co-bind="'joined'" class="joining" ng-class="{active: joined.rooms.length > 1}" ng-touch="showModal('joining')" ng-controller="JoiningCtrl">
+    <span co-bind="'is_slave_system'"></span>
+    <div ng-if="room_ids.length > 1" ng-show="!is_slave_system" co-bind="'joined'" class="joining" ng-class="{active: joined.rooms.length > 1}" ng-touch="showModal('joining')" ng-controller="JoiningCtrl">
         <div co-bind="'rooms'"></div>
         <modal name="joining" title="Select Rooms to Link">
             <div class="basic-wrapper">
@@ -115,12 +116,15 @@
             </div>
         </modal>
 
-        <modal name="notify_joining" title="Linking Notice">
+        <modal name="notify_joining" title="Linking Notice" no-close="true">
             <p>This room has been linked to: {{rooms[joined.initiator]}}</p>
 
             <menu>
-                <button class="ok" ng-click="closeModal('notify_joining')">
+                <button ng-if="!is_slave_system" class="ok" ng-click="closeModal('notify_joining')">
                     Got it
+                </button>
+                <button ng-if="is_slave_system" class="ok" ng-click="coModuleInstance.$exec('unjoin'); closeModal('notify_joining')">
+                    Unlink
                 </button>
             </menu>
 

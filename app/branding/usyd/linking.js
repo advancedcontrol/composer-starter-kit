@@ -70,7 +70,7 @@
                     this.$_self[parts.module][parts.index - 1].mute = true;
                 }
             },
-
+            //"is_slave_system": true,
             "joined": {
                 rooms: ['sys-B4'],
                 initiator: 'sys-B4'

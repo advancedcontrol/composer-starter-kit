@@ -78,6 +78,8 @@
         <div image-toggle model="audio.virtual_mute"></div>
     </div>
     <div ng-if="!output.no_mute"
+        co-module="output.$key"
+        co-implicit-index
         class="mute" 
         co-bind="'audio_mute' as audio.mute"
         exec="mute_audio(audio.mute)"
