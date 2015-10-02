@@ -75,9 +75,11 @@
                     <label ng-repeat="id in room_ids" ng-if="id !== controlSystem">
                         <div co-system="id" co-module="'System'" co-bind="'joined' as remoteJoin">
                             <label ng-if="remoteJoin.rooms.length <= 1">
-                                <input type="checkbox" ng-model="joiner.selected[id]" />
-                                {{rooms[id]}}
+                                <div image-toggle model="joiner.selected[id]"></div>
+                                <span ng-touch="joiner.selected[id] = !joiner.selected[id]">{{rooms[id]}}</span>
                             </label>
+
+
                             <label ng-if="remoteJoin.rooms.length > 1" ng-controller="Modals" ng-init="popupName = 'remoteUnjoin' + id">
                                 {{rooms[id]}} is currently linked to another room
                                 <button ng-click="showModal(popupName)">unlink with care</button>
