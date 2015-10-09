@@ -23,11 +23,11 @@
                         muted = val;
 
                         if (val === true) {
-                            $scope.audio.volume = ($scope.audio.min || 0);
+                            $scope.audio.volume = ($scope.audio.min_actual || 0);
                         } else if (previousVolume !== null) {
-                            if (previousVolume === ($scope.audio.min || 0)) {
+                            if (previousVolume === ($scope.audio.min_actual || 0)) {
                                 // Unmute to 50% if muted by volume === vol min
-                                $scope.audio.volume = Math.ceil(($scope.audio.max || 100) / 2);
+                                $scope.audio.volume = Math.ceil(($scope.audio.max_actual || 100) / 2);
                             } else {
                                 $scope.audio.volume = previousVolume;
                             }
@@ -38,7 +38,7 @@
                         if (!muted && val !== undefined) {
                             previousVolume = val;
 
-                            if (val === ($scope.audio.min || 0)) {
+                            if (val === ($scope.audio.min_actual || 0)) {
                                 $scope.audio.virtual_mute = true;
                             } else {
                                 $scope.audio.virtual_mute = false;
@@ -62,8 +62,8 @@
                     return !isNaN(parseFloat(n)) && isFinite(n);
                 },
                 check_level = function (level) {
-                    var min = audio.min,
-                        max = audio.max,
+                    var min = audio.min_actual,
+                        max = audio.max_actual,
                         percent;
 
                     // Prevent a feedback loop due to value rounding
@@ -76,8 +76,8 @@
                     }
                 },
                 convert_level = function (percent) {
-                    var min = audio.min,
-                        max = audio.max,
+                    var min = audio.min_actual,
+                        max = audio.max_actual,
                         value;
 
                     if (isNum(max) && isNum(min)) {
@@ -102,6 +102,35 @@
                 // Local Change
                 if (isNum(level)) {
                     audio.volume = convert_level(level);
+                }
+            });
+
+
+            $scope.$watch('audio.devmin', function (level) {
+                // Local Change
+                if (isNum(level) && !isNum(audio.min)) {
+                    audio.min_actual = level;
+                }
+            });
+
+            $scope.$watch('audio.devmax', function (level) {
+                // Local Change
+                if (isNum(level) && !isNum(audio.max)) {
+                    audio.max_actual = level;
+                }
+            });
+
+            $scope.$watch('audio.min', function (level) {
+                // Local Change
+                if (isNum(level)) {
+                    audio.min_actual = level;
+                }
+            });
+
+            $scope.$watch('audio.max', function (level) {
+                // Local Change
+                if (isNum(level)) {
+                    audio.max_actual = level;
                 }
             });
 

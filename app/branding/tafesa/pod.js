@@ -150,8 +150,6 @@
                     "title": "Display"
                 }
             },
-            "vol_max": 60,
-            "vol_min": 0,
             "pc_control": true
         }],
         Computer: [{name: 'testname'}],

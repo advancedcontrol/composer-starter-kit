@@ -93,8 +93,10 @@
             co-bind="'volume' as audio.volume"
             exec
         >
+            <span co-bind="'volume_min' as audio.devmin"></span>
+            <span co-bind="'volume_max' as audio.devmax"></span>
             <div>
-                <div co-range model="audio.volume" min="audio.min" max="audio.max"></div>
+                <div co-range model="audio.volume" min="audio.min_actual" max="audio.max_actual"></div>
             </div>
         </div>
     </div>
