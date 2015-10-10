@@ -59,7 +59,7 @@
             <div ng-controller="OptionsCtrl" id="source-info">
                 <h1 ng-if="selectedSource.title">{{selectedSource.title}} on {{output.title || 'All Displays'}}</h1>
                 <h1 ng-if="!selectedSource.title">No source selected</h1>
-                <div ng-if="selectedSource.title && !output.no_audio" class="source-volume">
+                <div ng-if="selectedSource.title && !output.no_audio" class="source-volume" ng-controller="JointAudioCtrl">
                     <h2>Volume</h2>
                     <div ng-include="'components/shared/audio.html'"></div>
                 </div>

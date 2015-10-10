@@ -14,7 +14,7 @@
         <div
             co-module="'Mixer'"
             co-bind="'fader' + (output.feedback_id || output.mixer_id) + '_' + (output.mixer_index || 1) as audio.volume"
-            exec="fader(output.mixer_id, volume, output.mixer_index || 1)"
+            exec="fader(output.mixer_id, audio.volume, output.mixer_index || 1)"
         >
             <div>
                 <div co-range model="audio.volume" min="audio.min" max="audio.max"></div>
