@@ -69,7 +69,7 @@
                     this.$_self[parts.module][parts.index - 1].mute = true;
                 }
             },
-            "name": "Carslaw Pod 158",
+            "name": "Meeting Room 13A",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "PC",
@@ -106,19 +106,22 @@
                     "title": "1G1 PC-1",
                     "input": 14,
                     "source": "hdmi",
-                    "type": "residentpc"
+                    "type": "residentpc",
+                    "colour": "#90D1E3"
                 },
                 "laptop_g1": {
                     "title": "Laptop HDMI",
                     "input": 11,
                     "source": "hdmi",
-                    "type": "aux_hdmi"
+                    "type": "aux_hdmi",
+                    "colour": "#80BA27"
                 },
                 "laptop_g2": {
                     "title": "Laptop VGA",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "aux_hdmi"
+                    "type": "aux_hdmi",
+                    "colour": "#D6083B"
                 }
             },
             "outputs": {

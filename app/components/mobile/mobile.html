@@ -45,10 +45,9 @@
         </span>
     </header>
 
-    <aside class="promote-layer">
+    <aside ng-controller="OptionsCtrl"  class="promote-layer" ng-style="{'background-color': selectedSource.colour}">
         <div 
-            id="aside-wrapper" 
-            ng-controller="OptionsCtrl" 
+            id="aside-wrapper"
             ng-class="{hasVolume: selectedSource.title && !output.no_audio}"
         >
             <div id="nav-buffer">
@@ -126,7 +125,7 @@
             ng-controller="OptionsCtrl"
         >
             <div btn-group="selectedSource.source" class="sources">
-                <button ng-repeat="(key, info) in sources" btn="key" ng-click="selectSource(key)" class="toggle">
+                <button ng-repeat="(key, info) in sources" btn="key" ng-click="selectSource(key)" class="toggle" ng-style="{'background-color': info.colour}">
                     <span ng-class="info.type"></span>{{info.title}}
                 </button>
             </div>
