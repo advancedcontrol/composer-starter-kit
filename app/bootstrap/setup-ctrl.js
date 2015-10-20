@@ -9,7 +9,7 @@
 
             newUrl = window.location.href;
             index = newUrl.lastIndexOf('/') + 1;
-            newUrl = newUrl.substr(0, index) + '#/?trust=true&ctrl=' + system_id;
+            newUrl = newUrl.substr(0, index) + '#/?fixed_device=true&trust=true&ctrl=' + system_id;
 
             // Perform the redirect
             window.location.href = newUrl;
