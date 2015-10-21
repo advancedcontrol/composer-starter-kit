@@ -22,7 +22,7 @@
                         <!-- Tabs to select inputs here -->
 
                         <tabs class="room-sources">
-                            <pane ng-repeat="room in joinedRooms.rooms" title="{{roomNames[room]}}" name="room">
+                            <pane ng-repeat="room in joinedRooms.rooms" text="{{roomNames[room]}}" name="room">
                                 <div co-system="room" co-module="'System'" co-bind="'sources'" ng-init="selectRoom(room)">
 
                                     <!-- Sources from each room -->
