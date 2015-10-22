@@ -5,7 +5,7 @@
     //  In production the interface will obtain this information from the server
     //  
     window.systemData = window.systemData || {};
-    window.systemData['sys-B0'] = {
+    window.systemData['sys-B8'] = {
         System: [{
             "$powerup": function () {
                 this.state = "online";
@@ -92,7 +92,8 @@
             ],
             "inputs": [
                 "PC",
-                "Laptop"
+                "Laptop",
+                "VC"
             ],
             "PC": [
                 "g1_pc1"
@@ -101,27 +102,37 @@
                 "laptop_g1",
                 "laptop_g2"
             ],
+            "VC": [
+                "video_conf"
+            ],
             "sources": {
                 "g1_pc1": {
-                    "title": "1G1 PC-1",
+                    "title": "Resident PC",
                     "input": 14,
                     "source": "hdmi",
                     "type": "residentpc",
                     "colour": "#90D1E3"
                 },
                 "laptop_g1": {
-                    "title": "Laptop HDMI",
+                    "title": "Laptop (HDMI Audio)",
                     "input": 11,
                     "source": "hdmi",
                     "type": "aux_hdmi",
                     "colour": "#80BA27"
                 },
                 "laptop_g2": {
-                    "title": "Laptop VGA",
+                    "title": "Laptop (3.5mm Audio)",
                     "input": 2,
                     "source": "hdmi",
                     "type": "aux_hdmi",
                     "colour": "#D6083B"
+                },
+                "video_conf": {
+                    "title": "Video Conference",
+                    "input": 9,
+                    "source": "hdmi",
+                    "type": "presenter",
+                    "colour": "#C8009C"
                 }
             },
             "outputs": {
@@ -136,9 +147,9 @@
                     ],
                     "audio_out": 21,
                     "mixer_id": 105,
-                    "type": "projector",
+                    "type": "lcd",
                     "pri": 1,
-                    "title": "Pod Display"
+                    "title": "Display"
                 }
             },
             "vol_max": 3,
