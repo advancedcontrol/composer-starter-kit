@@ -137,10 +137,6 @@
             },
             "outputs": {
                 "Display_1": {
-                    "screen": {
-                        "module": "Screen_1",
-                        "index": 1
-                    },
                     "output": [
                         3,
                         23
@@ -151,6 +147,27 @@
                     "pri": 1,
                     "title": "Display"
                 }
+            },
+            "light_level": "Off",
+            "lights": {
+                "levels": [
+                    {
+                        "name": "Full",
+                        "trigger": 3
+                    },
+                    {
+                        "name": "Presentation",
+                        "trigger": 2
+                    },
+                    {
+                        "name": "Off",
+                        "trigger": 1
+                    }
+                ],
+                "default": 3,
+                "shutdown": 0,
+                "present": 2,
+                "group": 12
             },
             "vol_max": 3,
             "vol_min": -50,
