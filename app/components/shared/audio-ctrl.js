@@ -134,6 +134,15 @@
                 }
             });
 
+            // ---------------------------------------------
+            // This tracks the current source for Analytics:
+            // ---------------------------------------------
+            $scope.$watch('source.source', function (source) {
+                if (source) {
+                    $scope.$emit('$track', 'present', $scope.output.$key, source);
+                }
+            });
+
         }]);
 
 }(this.angular));

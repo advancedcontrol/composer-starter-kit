@@ -23,7 +23,6 @@
                 } else if ($scope.numOutputs === 1) {
                     var key = Object.keys($scope.outputs)[0];
                     $scope.coModuleInstance.$exec('present', $scope.selectedSource.source, key);
-                    $scope.$emit('$track', 'present', key, $scope.selectedSource.source);
                 }
 
                 // Update the scopes

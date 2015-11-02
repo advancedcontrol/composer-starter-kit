@@ -32,7 +32,7 @@
                         }
 
                         // Update the source timer
-                        if (source_name !== 'mute') {
+                        if (source_name !== 'none') {
                             // Must be presented for 2min to count towards stats
                             // This allows monitoring of around 600 spaces that are in use constantly for 8hours a day for free
                             // or 1200 spaces that are used for around 4 hours a day etc
