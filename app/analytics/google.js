@@ -18,6 +18,17 @@
                 configured = false,
                 types = {
                     present: function (output_name, source_name) {
+                        // Clear existing timers
+                        if (timers[output_name]) {
+                            clearInterval(timers[output_name]);
+                            delete timers[output_name];
+                        }
+
+                        // Just in case
+                        if (!source_name) {
+                            source_name = 'none';
+                        }
+
                         ga('set', 'dimension5', source_name);
                         ga('set', 'dimension6', output_name);
 
@@ -25,11 +36,6 @@
                         ga('set', 'page', '/present/' + source_name);
                         ga('set', 'title', source_name);
                         ga('send', 'pageview');
-
-                        // Clear existing timers
-                        if (timers[output_name]) {
-                            clearInterval(timers[output_name]);
-                        }
 
                         // Update the source timer
                         if (source_name !== 'none') {
