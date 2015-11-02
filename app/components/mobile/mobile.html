@@ -38,7 +38,7 @@
         user-select="true" 
         no-capture
     >
-        <span co-bind="'name'" class="name">{{name}}</span>
+        <span co-bind="'name' as $root.SystemName" class="name">{{SystemName}}</span>
 
         <span id="show-menu" ng-touch="toggleNav()">
             <div class="logo"></div>
@@ -125,7 +125,7 @@
             ng-controller="OptionsCtrl"
         >
             <div btn-group="selectedSource.source" class="sources">
-                <button ng-repeat="(key, info) in sources" btn="key" ng-click="selectSource(key)" class="toggle" ng-style="{'background-color': info.colour}">
+                <button ng-repeat="(key, info) in sources" btn="key" ng-click="selectSource(key); $root.$emit('$track', 'present', current_output || 'all_displays', key);" class="toggle" ng-style="{'background-color': info.colour}">
                     <span ng-class="info.type"></span>{{info.title}}
                 </button>
             </div>

@@ -1,5 +1,5 @@
 
-<span class="name">{{name}}</span>
+<span class="name">{{SystemName}}</span>
 
 <!-- 
     POWER Pop up
@@ -30,10 +30,10 @@
     HELP Pop up
  -->
 <div>
-    <div class="help" ng-touch="showModal('help')">
+    <div class="help" ng-touch="showModal('help'); $root.$emit('$track', 'popup', 'help')">
         <modal name="help" title="Need Support?" co-bind="'help_msg'">
             <p ng-bind-html="help_msg"></p>
-            <p>The room or system name is: <b>{{name}}</b></p>
+            <p>The room or system name is: <b>{{SystemName}}</b></p>
         </modal>
     </div>
 </div>
@@ -43,7 +43,7 @@
  -->
 <div co-bind="'room_ids'">
     <span co-bind="'is_slave_system'"></span>
-    <div ng-if="room_ids.length > 1" ng-show="!is_slave_system" co-bind="'joined'" class="joining" ng-class="{active: joined.rooms.length > 1}" ng-touch="showModal('joining')" ng-controller="JoiningCtrl">
+    <div ng-if="room_ids.length > 1" ng-show="!is_slave_system" co-bind="'joined'" class="joining" ng-class="{active: joined.rooms.length > 1}" ng-touch="showModal('joining'); $root.$emit('$track', 'popup', 'joining')" ng-controller="JoiningCtrl">
         <div co-bind="'rooms'"></div>
         <modal name="joining" title="Select Rooms to Link">
             <div class="basic-wrapper">
@@ -139,7 +139,7 @@
     Screen Control Pop up
  -->
 <div>
-    <div ng-if="hasScreens || hasLifters" class="screens" ng-touch="showModal('screens')">
+    <div ng-if="hasScreens || hasLifters" class="screens" ng-touch="showModal('screens'); $root.$emit('$track', 'popup', 'screens')">
         <modal name="screens" title="Raise/Lower Control">
             <h2 ng-if="hasScreens">Screens:</h2>
 
@@ -182,7 +182,7 @@
     Manual Control Pop up
  -->
 <div>
-    <div ng-if="has_preview || poweredOutputs > 1" class="displays" ng-touch="showModal('displays')">
+    <div ng-if="has_preview || poweredOutputs > 1" class="displays" ng-touch="showModal('displays'); $root.$emit('$track', 'popup', 'manual')">
         <modal name="displays" title="Display Control">
             <h2>Displays:</h2>
 
@@ -208,7 +208,7 @@
     Microphone popup
  -->
 <div co-bind="'mics'">
-    <div class="mics" ng-if="mics && mics[0].basic_mixer === undefined" co-module="'Mixer'" ng-touch="showModal('mics')">
+    <div class="mics" ng-if="mics && mics[0].basic_mixer === undefined" co-module="'Mixer'" ng-touch="showModal('mics'); $root.$emit('$track', 'popup', 'microphones')">
         <modal name="mics" title="Microphones">
             <div 
                 class="mic"
@@ -239,7 +239,7 @@
             </div>
         </modal>
     </div>
-    <div class="mics" ng-if="mics && mics[0].basic_mixer === true" co-module="'Mixer'" ng-touch="showModal('mics')">
+    <div class="mics" ng-if="mics && mics[0].basic_mixer === true" co-module="'Mixer'" ng-touch="showModal('mics'); $root.$emit('$track', 'popup', 'microphones')">
         <modal name="mics" title="Microphones">
             <div 
                 class="mic"
@@ -276,7 +276,7 @@
     Lighting Pop up
  -->
 <div co-bind="'lights'">
-    <div class="lights" ng-if="lights" co-bind="'light_level'" exec ng-touch="showModal('lights')">
+    <div class="lights" ng-if="lights" co-bind="'light_level'" exec ng-touch="showModal('lights'); $root.$emit('$track', 'popup', 'lighting')">
         <modal name="lights" title="Lighting Modes">
             <div btn-group="light_level">
                 <button ng-repeat="level in lights.levels" btn="level.name" ng-touch="coModuleInstance.$exec('lights_to', level.name)" class="{{level.name}} toggle"><i class="fa fa-lightbulb-o"></i>{{level.name}}</button>

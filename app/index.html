@@ -103,7 +103,7 @@
     <link rel="stylesheet" href="components/mobile/mobile.css">
 
     <!-- Define branding in its own style sheet -->
-    <link rel="stylesheet" href="branding/rabobank/main.css">
+    <link rel="stylesheet" href="branding/usyd/main.css">
     
 
     <!-- Provide styles for common animations -->
@@ -137,19 +137,22 @@
             <h2>No System Selected</h2>
         </div>
         <div ng-if="coSystem.id" co-module="'System'" co-bind="'state'">
+            <span co-bind="'analytics' as $root.analytics"></span>
+
             <!-- Show a splash page when offline -->
             <div 
                 class="splash"
                 ng-if="state !== 'online'"
-                co-bind="'name'"
+                co-bind="'name' as $root.SystemName"
                 ng-release="coModuleInstance.$exec('powerup')"
                 touch-action="none"
+                ng-init="$root.$emit('$track', 'state', 'offline')"
             >
                 <div>
                     <div>
                         <div>
                             <h1>Touch to Start</h1>
-                            <h2>{{name}}</h2>
+                            <h2>{{SystemName}}</h2>
                         </div>
                     </div>
                 </div>
@@ -227,9 +230,13 @@
     <script src="components/mobile/options-ctrl.js"></script>
     <script src="components/mobile/sources/tabs-ctrl.js"></script>
 
+    <script src="analytics/google.js"></script>
+
     <!-- endbuild -->
 
     <!-- build:remove -->
+        <script src="analytics/tracking_test.js"></script>
+
         <!-- 
             Place emulation references here so they are not included in the build.
             Composer Websocket.js is automatically replaced by mocksocket in development

@@ -8,16 +8,22 @@
             '$rootScope',
 
         function ($scope, $rootScope) {
+            // Provide analytics tracking data
+            $scope.$emit('$track', 'state', 'online', 'desktop');
+
             // Updates the currently selected source
             $scope.selectSource = function (src) {
                 $scope.selectedSource = $scope.sources[src];
                 $scope.selectedSource.source = src;
 
                 if ($scope.has_preview) {
+                    // Provide analytics tracking data
                     $scope.coModuleInstance.$exec('preview', $scope.selectedSource.source);
+                    $scope.$emit('$track', 'preview', $scope.selectedSource.source);
                 } else if ($scope.numOutputs === 1) {
                     var key = Object.keys($scope.outputs)[0];
                     $scope.coModuleInstance.$exec('present', $scope.selectedSource.source, key);
+                    $scope.$emit('$track', 'present', key, $scope.selectedSource.source);
                 }
 
                 // Update the scopes

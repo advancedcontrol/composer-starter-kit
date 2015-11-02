@@ -24,9 +24,11 @@
                             // We want to mute the display
                             $scope.coModuleInstance.$exec('video_mute', $scope.output.$key);
                             $scope.source = {source: 'none'};
+                            $scope.$emit('$track', 'present', $scope.output.$key, 'mute');
                         } else {
                             // We want to present the display
                             $scope.coModuleInstance.$exec('present', source, $scope.output.$key);
+                            $scope.$emit('$track', 'present', $scope.output.$key, source);
 
                             // This is our guess as to what the server will respond with
                             // We set it here to keep the interface reactive

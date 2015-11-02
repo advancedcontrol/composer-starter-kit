@@ -56,6 +56,10 @@
             $scope.navDecorate = false;
 
 
+            // Provide analytics tracking data
+            $scope.$emit('$track', 'state', 'online', 'mobile');
+
+
             elContent = angular.element('article > header, article > div#mobile-sources');
 
 

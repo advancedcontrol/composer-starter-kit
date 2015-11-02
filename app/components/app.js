@@ -43,8 +43,8 @@
 
                     // We no longer need to listen for these events
                     elWindow
-                        .unbind('orientationchange', setHeightWidth)
-                        .unbind('resize', setHeightWidth);
+                        .off('orientationchange', setHeightWidth)
+                        .off('resize', setHeightWidth);
             };
 
         // Ang Smith (iOS god)
@@ -61,7 +61,7 @@
 
             // Undo these ludicrous changes as soon as iOS is ready to allow it
             elWindow
-                .bind('orientationchange resize', setHeightWidth);
+                .on('orientationchange resize', setHeightWidth);
         }
 
         // Support iOS Application mode
@@ -72,9 +72,10 @@
         $rootScope.width = $window.innerWidth;
         $rootScope.height = $window.innerHeight;
         
-        elWindow.bind('orientationchange resize', function () {
+        elWindow.on('orientationchange resize', function () {
             $rootScope.width = $window.innerWidth;
             $rootScope.height = $window.innerHeight;
+            $rootScope.$apply();
         });
 
         //

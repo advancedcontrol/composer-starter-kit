@@ -7,7 +7,7 @@
     co-bind="'sources'"
     ng-class="{single: numOutputs === 1 && !has_preview}"
 >
-    <header co-bind="'name'">
+    <header co-bind="'name' as $root.SystemName">
         <div class="logo"><div></div></div>
 
         <div class="tray" ng-include="'components/shared/popups.html'"  ng-controller="Modals"></div>
