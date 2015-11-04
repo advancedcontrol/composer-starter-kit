@@ -7,6 +7,7 @@
     window.systemData = window.systemData || {};
     window.systemData['sys-B8'] = {
         System: [{
+            analytics: 'UA-69533861-1',
             "$powerup": function () {
                 this.state = "online";
             },

@@ -12,6 +12,7 @@
     };
     window.systemData['sys-B5'] = {
         System: [{
+            analytics: 'UA-69533861-1',
             "$powerup": function () {
                 this.state = "online";
             },

@@ -95,6 +95,7 @@
                         
                         ga('set', 'dimension2', fixed_panel);
                         ga('set', 'dimension3', sys_id);
+                        ga('set', 'dimension7', system_name);
 
                         configured = true;
                         console.log('Google Analytics: Loaded');
@@ -163,7 +164,7 @@
                         configure_analytics();
                     } else {
                         // Update analytics here
-                        ga('set', 'title', system_name);
+                        ga('set', 'dimension7', system_name);
                     }
                 }
             });
