@@ -80,8 +80,7 @@
                             trackingId: analytics_id,
                             cookieDomain: 'auto',
                             userId: user.id,
-                            anonymizeIp: false,
-                            title: system_name
+                            anonymizeIp: false
                         });
 
                         // Track interesting data about this connection
