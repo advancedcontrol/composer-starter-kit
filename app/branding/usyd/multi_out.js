@@ -30,6 +30,10 @@
                     type: src.type
                 };
 
+                if (src.record_as) {
+                    this[display].record_as = src.record_as;
+                }
+
                 // Clear mute
                 if (this.outputs[display] && !this.outputs[display].no_mod) {
                     var parts = getModuleParts(display);
@@ -95,19 +99,22 @@
                     "title": "Resident PC",
                     "input": 14,
                     "source": "hdmi",
-                    "type": "residentpc"
+                    "type": "residentpc",
+                    "record_as": "pc"
                 },
                 "laptop_g1": {
                     "title": "Laptop HDMI",
                     "input": 11,
                     "source": "hdmi",
-                    "type": "aux_hdmi"
+                    "type": "aux_hdmi",
+                    "record_as": "hdmi"
                 },
                 "laptop_g2": {
                     "title": "Laptop 2 HDMI",
                     "input": 11,
                     "source": "hdmi",
-                    "type": "aux_hdmi"
+                    "type": "aux_hdmi",
+                    "record_as": "hdmi"
                 },
                 "vis" : {
                     "title": "Visualiser",

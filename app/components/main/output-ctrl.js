@@ -36,6 +36,10 @@
                                 type: $scope.selectedSource.type
                             };
 
+                            if ($scope.selectedSource.record_as) {
+                                $scope.source.record_as = $scope.selectedSource.record_as;
+                            }
+
                             // Force stop pulsing before the animation is complete
                             if (pulsing) {
                                 queued = false;

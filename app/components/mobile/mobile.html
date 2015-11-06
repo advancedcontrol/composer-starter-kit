@@ -125,7 +125,7 @@
             ng-controller="OptionsCtrl"
         >
             <div btn-group="selectedSource.source" class="sources">
-                <button ng-repeat="(key, info) in sources" btn="key" ng-click="selectSource(key); $root.$emit('$track', 'present', current_output || 'all_displays', key);" class="toggle" ng-style="{'background-color': info.colour}">
+                <button ng-repeat="(key, info) in sources" btn="key" ng-click="selectSource(key); $root.$emit('$track', 'present', current_output || 'all_displays', info.record_as || key);" class="toggle" ng-style="{'background-color': info.colour}">
                     <span ng-class="info.type"></span>{{info.title}}
                 </button>
             </div>

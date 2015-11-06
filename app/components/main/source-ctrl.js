@@ -19,7 +19,7 @@
                 if ($scope.has_preview) {
                     // Provide analytics tracking data
                     $scope.coModuleInstance.$exec('preview', $scope.selectedSource.source);
-                    $scope.$emit('$track', 'preview', $scope.selectedSource.source);
+                    $scope.$emit('$track', 'preview', $scope.selectedSource.record_as || $scope.selectedSource.source);
                 } else if ($scope.numOutputs === 1) {
                     var key = Object.keys($scope.outputs)[0];
                     $scope.coModuleInstance.$exec('present', $scope.selectedSource.source, key);

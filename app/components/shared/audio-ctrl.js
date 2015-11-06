@@ -139,7 +139,7 @@
             // ---------------------------------------------
             $scope.$watch('source.source', function (source) {
                 if (source) {
-                    $scope.$emit('$track', 'present', $scope.output.$key, source);
+                    $scope.$emit('$track', 'present', $scope.output.$key, $scope.source.record_as || source);
                 }
             });
 
