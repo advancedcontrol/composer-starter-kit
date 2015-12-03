@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </footer>
-            <footer ng-if="outputs && numOutputs === 1 && !has_preview" ng-controller="JointAudioCtrl">
+            <footer ng-if="outputs && numOutputs === 1 && !has_preview" ng-controller="JointAudioCtrl" class="audio-only">
                 <div ng-repeat="output in outputs | orderObjectBy:'pri'"
                      co-bind="output.$key as source"
                      ng-controller="JointAudioCtrl"

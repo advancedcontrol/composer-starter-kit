@@ -2,16 +2,16 @@
 @import "variables";
 
 body {
-    background-color: #133359;
+    background-color: #000;
 }
 
-$header-color: #FD6400;
+$header-color: #303642;
 
 div.splash > div {
-    background-image: url("../../branding/rabobank/background.png");
-    background-size: contain;
+    //background-image: url("../../branding/rabobank/background.png");
+    //background-size: contain;
     background-color: black;
-    background-repeat: no-repeat;
+    //background-repeat: no-repeat;
 }
 
 article.main {
@@ -23,15 +23,39 @@ article.main {
         background-color: $header-color;
 
         div.logo {
-            background-color: #FFF;
-            width: 150px;
+            //background-color: #303642;
+            width: 200px;
             margin-top: 0px;
             padding: 5px 5px 5px 5px;
-            height: 90px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+            height: 70px;
 
             > div {
                 background-image: url("../../branding/rabobank/logo.png");
+            }
+        }
+    }
+
+    footer {
+        h1 {
+            display: none;
+        }
+
+        &.audio-only {
+            &> div {
+                display: table;
+                width: 100%;
+                
+                &> div {
+                    display: table-row;
+                    height: 100% !important;
+
+                    &> div {
+                        display: table-cell;
+                        vertical-align: middle;
+
+                        padding-left: 1em;
+                    }
+                }
             }
         }
     }
@@ -55,6 +79,8 @@ article.mobile {
             &#show-menu {
                 height: 40px !important;
                 margin-top: 20px;
+                width: 120px;
+                padding-right: 0.5em;
             }
 
             > div.logo {
@@ -63,7 +89,6 @@ article.mobile {
                 background-size: contain;
                 background-repeat: no-repeat;
                 background-position: center center;
-                -webkit-filter: grayscale(1);
             }
         }
     }
@@ -73,7 +98,7 @@ article.mobile {
     }
 
     > div#mobile-sources {
-        background-color: #133359;
+        background-color: $header-color;
         padding-left: 0px;
         padding-right: 0px;
         padding-top: 80px;

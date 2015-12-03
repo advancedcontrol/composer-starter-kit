@@ -189,6 +189,8 @@ gulp.task('fonts', function () {
         'app/branding/fonts/**/*.ttf',
         'app/branding/fonts/**/*.svg',
         'app/branding/fonts/**/*.woff',
+        'app/branding/fonts/**/*.woff2',
+        'app/branding/fonts/**/*.otf',
         'app/branding/fonts/**/*.eot'
     ]).pipe(gulp.dest('dist/branding/fonts'))
     .pipe($.size({title: 'fonts'}));

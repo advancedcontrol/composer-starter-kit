@@ -73,6 +73,7 @@
     co-bind="'vol_min' as audio.min"
     volume-mute
     ng-init="audio.virtual_mute = false"
+    class="audio-only"
 >
     <div ng-if="output.no_mute" class="mute" >
         <div image-toggle model="audio.virtual_mute"></div>

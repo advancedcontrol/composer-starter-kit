@@ -129,28 +129,28 @@
                     "input": 14,
                     "source": "hdmi",
                     "type": "residentpc",
-                    "colour": "#90D1E3"
+                    "colour": "#F58172"
                 },
                 "laptop_g1": {
                     "title": "Laptop (HDMI Audio)",
                     "input": 11,
                     "source": "hdmi",
                     "type": "aux_hdmi",
-                    "colour": "#80BA27"
+                    "colour": "#7BB5D0"
                 },
                 "laptop_g2": {
                     "title": "Laptop (3.5mm Audio)",
                     "input": 2,
                     "source": "hdmi",
                     "type": "aux_hdmi",
-                    "colour": "#D6083B"
+                    "colour": "#FFDB8E"
                 },
                 "video_conf": {
                     "title": "Video Conference",
                     "input": 9,
                     "source": "hdmi",
                     "type": "presenter",
-                    "colour": "#C8009C"
+                    "colour": "#65DCC7"
                 }
             },
             "outputs": {
