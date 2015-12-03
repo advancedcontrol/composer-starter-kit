@@ -7,7 +7,7 @@
     window.systemData = window.systemData || {};
     window.systemData['sys-B8'] = {
         System: [{
-            analytics: 'UA-69533861-1',
+            analytics: 'UA-69533861-111',
             "$powerup": function () {
                 this.state = "online";
             },
@@ -16,6 +16,14 @@
             },
             $tab: function (tab) {
                 this.tab = tab;
+            },
+
+            $init_vc: function () {
+                console.log('phantom on + raising mics + unmuting mics');
+            },
+
+            $off_vc: function () {
+                console.log('muting mics + phantom off + lower mics');
             },
 
             $show: function (source, display) {
@@ -70,6 +78,14 @@
                     this.$_self[parts.module][parts.index - 1].mute = true;
                 }
             },
+            "phone_settings": {
+                "phone_module": "Mixer_1",
+                "number_id": "16-10pVcRoomPhoneDialString",
+                "dial_id": "16-10pVcRoomPhoneConnect",
+                "hangup_id": "16-10pVcRoomPhoneDisconnect",
+                "status_id": "16-10pVcRoomPhoneProgress",
+                "query_ids": ["16-10pVcRoomPhoneProgress", "16-10pVcRoomPhoneRinging", "16-10pVcRoomPhoneOffHook"]
+            },
             "name": "Meeting Room 13A",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
@@ -94,7 +110,8 @@
             "inputs": [
                 "PC",
                 "Laptop",
-                "VC"
+                "VC",
+                "Phone"
             ],
             "PC": [
                 "g1_pc1"
@@ -181,13 +198,27 @@
             fader_107: 2,
             fader_105: -25,
             fader_32: -30,
-            fader_107_mute: true, 
+            fader_107_mute: true,
+            "16-10pVcRoomPhoneDialString": '1234',
             $fader: function (fader, volume) {
                 this['fader_' + fader] = volume;
             },
             $mute: function (fader, mute) {
                 this['fader_' + fader + '_mute'] = mute;
-            } 
+            },
+            $phone_number: function (number, id) {
+                this[id] = number;
+            },
+            $phone_dial: function (id) {
+                var local = this;
+                this["16-10pVcRoomPhoneProgress"] = 'Dialing number';
+                window.setTimeout(function () {
+                    local["16-10pVcRoomPhoneProgress"] = 'In call';
+                }, 4000);
+            },
+            $phone_hangup: function (id) {
+                this["16-10pVcRoomPhoneProgress"] = '';
+            }
         }],
         Computer: [{}],
         Display: [{

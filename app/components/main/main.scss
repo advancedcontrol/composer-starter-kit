@@ -528,6 +528,10 @@ article.main {
             content: "\f109";
         }
 
+        &.Phone::before {
+            content: "\f095";
+        }
+
         &.Camera::before, &.vc-camera::before {
             content: "\f03d";
         }

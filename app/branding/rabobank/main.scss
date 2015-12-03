@@ -7,6 +7,13 @@ body {
 
 $header-color: #FD6400;
 
+div.splash > div {
+    background-image: url("../../branding/rabobank/background.png");
+    background-size: contain;
+    background-color: black;
+    background-repeat: no-repeat;
+}
+
 article.main {
     > div > div > tabs {
         top: 110px;
