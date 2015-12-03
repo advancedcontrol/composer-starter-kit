@@ -84,6 +84,8 @@
                 "dial_id": "16-10pVcRoomPhoneConnect",
                 "hangup_id": "16-10pVcRoomPhoneDisconnect",
                 "status_id": "16-10pVcRoomPhoneProgress",
+                "ringing_id": "16-10pVcRoomPhoneRinging",
+                "offhook_id": "16-10pVcRoomPhoneOffHook",
                 "query_ids": ["16-10pVcRoomPhoneProgress", "16-10pVcRoomPhoneRinging", "16-10pVcRoomPhoneOffHook"]
             },
             "name": "Meeting Room 13A",
@@ -212,12 +214,11 @@
             $phone_dial: function (id) {
                 var local = this;
                 this["16-10pVcRoomPhoneProgress"] = 'Dialing number';
-                window.setTimeout(function () {
-                    local["16-10pVcRoomPhoneProgress"] = 'In call';
-                }, 4000);
+                this["16-10pVcRoomPhoneRinging"] = true;
             },
             $phone_hangup: function (id) {
                 this["16-10pVcRoomPhoneProgress"] = '';
+                this["16-10pVcRoomPhoneRinging"] = false;
             }
         }],
         Computer: [{}],

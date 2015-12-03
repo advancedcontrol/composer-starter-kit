@@ -7,9 +7,9 @@
         ng-controller="PhoneCtrl"
     >
         
-        <div>
+        <div co-bind="phone_settings.ringing_id as phone.ringing">
             <div class="numpad">
-                <div>
+                <div co-bind="phone_settings.offhook_id as phone.incall">
                     <div>
                         <h1>Number to Dial</h1>
                         <div class="number"
@@ -33,9 +33,9 @@
                             <button ng-click="addNum(8)">8</button>
                             <button ng-click="addNum(9)">9</button>
 
-                            
+                            <button ng-click="addNum('*')">*</button>
                             <button ng-click="addNum(0)">0</button>
-                            
+                            <button ng-click="addNum('#')">#</button>
                         </menu>
                     </div>
                 </div>
@@ -44,13 +44,13 @@
         <div class="sources">
             <div>
                 <button class="toggle"
-                    ng-class="{disabled: phone.dialing || !phone.number.length}"
-                    ng-touch="phone.dialing = true; coModuleInstance.$exec('phone_dial', phone_settings.dial_id)"
+                    ng-class="{disabled: phone.ringing || phone.incall || !phone.number.length}"
+                    ng-touch="coModuleInstance.$exec('phone_dial', phone_settings.dial_id)"
                 >
                     <i class="fa fa-hand-pointer-o"></i>Dial
                 </button>
-                <button class="toggle" ng-class="{disabled: !phone.dialing}"
-                    ng-touch="phone.dialing = false; coModuleInstance.$exec('phone_hangup', phone_settings.hangup_id)"
+                <button class="toggle" ng-class="{disabled: !(phone.ringing || phone.incall)}"
+                    ng-touch="coModuleInstance.$exec('phone_hangup', phone_settings.hangup_id)"
                 >
                     <i class="fa fa-tty"></i>Hang Up
                 </button>
