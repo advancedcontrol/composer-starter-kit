@@ -470,6 +470,10 @@ article.mobile {
                 content: "\f03d";
             }
 
+            &.soft-phone::before {
+                content: "\f095";
+            }
+
             &.vc-active::before {
                 content: "\f0c0";
             }
@@ -550,6 +554,10 @@ article.mobile {
                         background-size: auto 2.3em;
                         background-repeat: no-repeat;
                         background-position: center center;
+                    }
+
+                    &.phone::before {
+                        content: "\f095";
                     }
 
                     &:hover {

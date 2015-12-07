@@ -1,0 +1,66 @@
+<nav>
+    <span class="phone active"></span>
+</nav>
+
+<!-- stopPropagation here supports scrolling -->
+<section ng-touch="$event.stopPropagation()" on-target>
+    <div co-bind="'phone_settings'" ng-init="coModuleInstance.$exec('init_vc')">
+        <div
+            ng-if="phone_settings"
+            co-module="phone_settings.phone_module" co-implicit-index
+            class="standard-panel"
+            ng-controller="PhoneCtrl"
+        >
+            <div id="phonemobile" co-bind="phone_settings.ringing_id as phone.ringing">
+
+                <div class="numpad">
+                    <div co-bind="phone_settings.offhook_id as phone.incall">
+                        <div>
+                            <h1>Number to Dial</h1>
+                            <div class="number"
+                                co-bind="phone_settings.number_id as phone.number"
+                                exec="phone_number(phone.number, phone_settings.number_id)"
+                            >
+                                <input ng-model="phone.number">
+                                <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="backspace()" ng-show="phone.number.length"></span>
+                            </div>
+
+                            <menu class="numpad">
+                                <button ng-click="addNum(1)">1</button>
+                                <button ng-click="addNum(2)">2</button>
+                                <button ng-click="addNum(3)">3</button>
+
+                                <button ng-click="addNum(4)">4</button>
+                                <button ng-click="addNum(5)">5</button>
+                                <button ng-click="addNum(6)">6</button>
+
+                                <button ng-click="addNum(7)">7</button>
+                                <button ng-click="addNum(8)">8</button>
+                                <button ng-click="addNum(9)">9</button>
+
+                                <button ng-click="addNum('*')">*</button>
+                                <button ng-click="addNum(0)">0</button>
+                                <button ng-click="addNum('#')">#</button>
+                            </menu>
+                        </div>
+                    </div>
+                </div>
+
+                <span class="status" co-bind="phone_settings.status_id as phone.status">{{phone.status}} &nbsp;</span>
+
+                <button class="toggle"
+                    ng-class="{disabled: phone.ringing || phone.incall || !phone.number.length}"
+                    ng-touch="coModuleInstance.$exec('phone_dial', phone_settings.dial_id)"
+                >
+                    <i class="fa fa-hand-pointer-o"></i>Dial
+                </button>
+                <button class="toggle" ng-class="{disabled: !(phone.ringing || phone.incall)}"
+                    ng-touch="coModuleInstance.$exec('phone_hangup', phone_settings.hangup_id)"
+                >
+                    <i class="fa fa-tty"></i>Hang Up
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+

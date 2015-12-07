@@ -6,6 +6,12 @@
     //  
     window.systemData = window.systemData || {};
     window.systemData['sys-B8'] = {
+        Camera: [{
+            joy_right: 0x14,
+            joy_left: 0x14,
+            joy_center: 0,
+            zoom: 25
+        }],
         System: [{
             analytics: 'UA-69533861-111',
             "$powerup": function () {
@@ -112,8 +118,9 @@
             "inputs": [
                 "PC",
                 "Laptop",
+                "Phone",
                 "VC",
-                "Phone"
+                "Camera"
             ],
             "PC": [
                 "g1_pc1"
@@ -124,6 +131,9 @@
             ],
             "VC": [
                 "video_conf"
+            ],
+            "Camera": [
+                "training_cam"
             ],
             "sources": {
                 "g1_pc1": {
@@ -153,6 +163,18 @@
                     "source": "hdmi",
                     "type": "presenter",
                     "colour": "#65DCC7"
+                },
+                "training_cam": {
+                    "title": "Camera Front",
+                    "type": "vc-camera",
+                    "mod": "Camera",
+                    "index": 1,
+                    "ignore": true
+                },
+                "soft_phone": {
+                    "title": "Phone",
+                    "type": "soft-phone",
+                    "ignore": true
                 }
             },
             "outputs": {
