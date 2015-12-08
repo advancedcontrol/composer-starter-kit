@@ -10,12 +10,13 @@ div.camera-control {
         padding-right: 20px;
         height: 100%;
 
-        // Firefox seems to need this
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        // Firefox seems to need this if table cell is not
+        // The div above, was not also 100%;
+        //position: absolute;
+        //top: 0;
+        //left: 0;
+        //right: 0;
+        //bottom: 0;
 
         &> div {
             position: relative;

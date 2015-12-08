@@ -321,6 +321,9 @@ article.main {
             display: table-cell;
             text-align: center;
             vertical-align: middle;
+
+            // Required for firefox
+            height: 100%;
         }
 
         div.sources {
