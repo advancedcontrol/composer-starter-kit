@@ -116,8 +116,9 @@
                 "ABC Dig"
             ],
             "inputs": [
-                "PC",
+                "Lectern",
                 "Laptop",
+                "Wireless",
                 "Phone",
                 "VC",
                 "Camera"
@@ -125,9 +126,16 @@
             "PC": [
                 "g1_pc1"
             ],
-            "Laptop": [
+            "Lectern": [
                 "laptop_g1",
                 "laptop_g2"
+            ],
+            "Wireless": [
+                "laptop_wireless"
+            ],
+            "Laptop": [
+                "laptop_usb",
+                "laptop_wireless"
             ],
             "VC": [
                 "video_conf"
@@ -157,6 +165,20 @@
                     "type": "aux_hdmi",
                     "colour": "#FFDB8E"
                 },
+                "laptop_usb": {
+                    "title": "Laptop Wireless",
+                    "input": 2,
+                    "source": "hdmi",
+                    "type": "wireless",
+                    "colour": "#FFDB8E"
+                },
+                "laptop_wireless": {
+                    "title": "Laptop USB",
+                    "input": 2,
+                    "source": "hdmi",
+                    "type": "usb",
+                    "colour": "#FFDB8E"
+                },
                 "video_conf": {
                     "title": "Video Conference",
                     "input": 9,
@@ -179,6 +201,17 @@
             },
             "outputs": {
                 "Display_1": {
+                    "output": [
+                        3,
+                        23
+                    ],
+                    "audio_out": 21,
+                    "mixer_id": 105,
+                    "type": "lcd",
+                    "pri": 1,
+                    "title": "Display"
+                },
+                "Display_2": {
                     "output": [
                         3,
                         23
@@ -245,6 +278,10 @@
         }],
         Computer: [{}],
         Display: [{
+            $mute: function (mute) {
+                this.mute = mute;
+            }
+        },{
             $mute: function (mute) {
                 this.mute = mute;
             }

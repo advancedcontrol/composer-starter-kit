@@ -1,0 +1,43 @@
+
+
+#wirelessmain {
+
+    > div {
+        width: 800px;
+        margin: 0 auto;
+    }
+    
+    img {
+        float: left;
+        margin-left: 2em;
+        margin-right: 4em;
+    }
+
+    ol {
+        padding-top: 2em;
+        text-align: left;
+        font-size: larger;
+
+        li {
+            padding-bottom: 0.5em;
+        }
+    }
+
+}
+
+#wirelessmobile {
+    #wirelessmain {
+
+        > div {
+            width: 100%!important;
+            margin: 0!important;
+            margin-bottom: 3em!important;
+            margin-top: 3em!important;
+        }
+
+        ol {
+            clear: both;
+        }
+
+    }
+}

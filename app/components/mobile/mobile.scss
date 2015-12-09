@@ -481,6 +481,14 @@ article.mobile {
             &.presenter::before {
                 content: "\f1e7";
             }
+
+            &.usb::before {
+                content: "\f287";
+            }
+
+            &.wireless::before {
+                content: "\f1eb";
+            }
         }
     }
 
@@ -554,6 +562,14 @@ article.mobile {
                         background-size: auto 2.3em;
                         background-repeat: no-repeat;
                         background-position: center center;
+                    }
+
+                    &.usb::before {
+                        content: "\f287";
+                    }
+
+                    &.wireless::before {
+                        content: "\f1eb";
                     }
 
                     &.phone::before {

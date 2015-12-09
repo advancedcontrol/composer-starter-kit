@@ -11,6 +11,8 @@
         function ($scope, $rootScope) {
             // Updates the currently selected source
             $scope.selectSource = function (src) {
+                if (!$scope.sources) return;
+
                 // Update the source (basically matches what the server will return)
                 var selectedSource = $scope.sources[src];
                 selectedSource.source = src;

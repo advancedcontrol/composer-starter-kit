@@ -90,6 +90,7 @@
 #phonemobile {
     div.numpad {
         width: 100%;
+        max-width: 300px;  // Keeps the num pad form
         height: 100%;
         text-align: center;
         display: table;

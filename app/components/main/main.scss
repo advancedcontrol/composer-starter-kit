@@ -145,7 +145,7 @@ article.main {
                         width: 100%;
                         font-size: 6vh;
 
-                        &.Visualiser {
+                        &.Visualiser, &.Lectern {
                             font-size: 5.8vh
                         }
                     }
@@ -338,6 +338,20 @@ article.main {
                     float: left;
                     margin-left: 20px;
                     font-size: 3vh;
+                    font-family: FontAwesome;
+                    font-style: normal;
+
+                    &.aux_hdmi::before {
+                        content: "\f109";
+                    }
+
+                    &.usb::before {
+                        content: "\f287";
+                    }
+
+                    &.wireless::before {
+                        content: "\f1eb";
+                    }
                 }
             }
         }
@@ -547,14 +561,35 @@ article.main {
             content: "\f1e7";
         }
 
+        &.Wireless::before, &.wireless::before {
+            content: "\f1eb";
+        }
+
         // Give the DIV a height
-        &.Visualiser::before, &.visualiser::before {
+        &.Visualiser::before, &.visualiser::before,
+        &.Lectern::before, &.lectern::before {
             content: "\00A0";
+        }
+
+        &.usb::before {
+            content: "\f287";
+        }
+
+        &.wireless::before {
+            content: "\f1eb";
         }
 
         // Fill the DIV with an image
         &.Visualiser, &.visualiser {
             background-image: url("../../components/main/Visualiser/visualiser.svg");
+
+            background-size: auto 1em;
+            background-repeat: no-repeat;
+            background-position: center top;
+        }
+
+        &.Lectern, &.lectern {
+            background-image: url("../../components/main/Lectern/lectern.svg");
 
             background-size: auto 1em;
             background-repeat: no-repeat;
@@ -566,6 +601,10 @@ article.main {
     .source-image, tabs nav > div.active > div {
         &.Visualiser, &.visualiser {
             background-image: url("../../components/main/Visualiser/visualiser-active.svg") !important;
+        }
+
+        &.Lectern, &.lectern {
+            background-image: url("../../components/main/Lectern/lectern-active.svg") !important;
         }
     }
 }
