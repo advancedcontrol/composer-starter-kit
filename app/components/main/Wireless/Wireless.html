@@ -2,13 +2,17 @@
 <div co-bind="'Wireless' as source_names">
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div id="wirelessmain">
+            <span ng-if="numOutputs > 1 || has_preview">
+                You can project on one or both displays in this room.<br />
+                Touch the screens below to select the display for your presentation.<br /><br />
+            </span>
             <div>
                 <img src="components/main/Wireless/wireless.jpg" title="wireless presenter">
                 <ol>
-                    <li>Connect the USB button to your laptop</li>
-                    <li>It appears as a USB stick, view the files</li>
-                    <li>Double click 'Clickshare_for_windows'</li>
-                    <li>Press the now flashing button to present</li>
+                    <li>Connect the Clickshare device to your laptop via the USB port</li>
+                    <li>Wait for the device to connect.<br />The button will flash white whilst the device is connecting</li>
+                    <li>When the button stops flashing, click the button to present</li>
+                    <li>The button is red when you are presenting</li>
                 </ol>
             </div>
         </div>

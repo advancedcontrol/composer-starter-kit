@@ -3,20 +3,21 @@
 #wirelessmain {
 
     > div {
-        width: 800px;
+        width: 900px;
         margin: 0 auto;
     }
     
     img {
         float: left;
         margin-left: 2em;
-        margin-right: 4em;
+        margin-right: 3em;
     }
 
     ol {
-        padding-top: 2em;
+        padding-top: 1em;
         text-align: left;
         font-size: larger;
+        float: left;
 
         li {
             padding-bottom: 0.5em;
