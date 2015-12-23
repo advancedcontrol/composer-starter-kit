@@ -1,5 +1,6 @@
 
 <div id="phonemain" co-bind="'phone_settings'" ng-init="coModuleInstance.$exec('init_vc')">
+    <span co-bind="'mics_mutes'"></span>
     <div
         ng-if="phone_settings"
         co-module="phone_settings.phone_module" co-implicit-index
@@ -54,6 +55,15 @@
                 >
                     <i class="fa fa-tty"></i>Hang Up
                 </button>
+                <span ng-if="mics_mutes" co-module="'Mixer'">
+                    <span co-bind="'fader' + mics_mutes[0] + '_mute' as phone.muted"></span>
+                    <button class="toggle" ng-class="{disabled: !(phone.ringing || phone.incall), muted: phone.muted}"
+                        ng-touch="coModuleInstance.$exec('mute', mics_mutes, !phone.muted)"
+                    >
+                        <span ng-if="!phone.muted"><i class="fa fa-microphone"></i>Mute Mics</span>
+                        <span ng-if="phone.muted"><i class="fa fa-microphone-slash"></i>Unmute Mics</span>
+                    </button>
+                </span>
                 <span class="status" co-bind="phone_settings.status_id as phone.status"><br />{{phone.status}}</span>
             </div>
         </div>

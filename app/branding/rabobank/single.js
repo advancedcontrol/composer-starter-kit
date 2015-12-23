@@ -94,6 +94,7 @@
                 "offhook_id": "16-10pVcRoomPhoneOffHook",
                 "query_ids": ["16-10pVcRoomPhoneProgress", "16-10pVcRoomPhoneRinging", "16-10pVcRoomPhoneOffHook"]
             },
+            "mics_mutes": [105, 106, 107],
             "name": "Meeting Room 13A",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
@@ -261,7 +262,14 @@
                 this['fader_' + fader] = volume;
             },
             $mute: function (fader, mute) {
-                this['fader_' + fader + '_mute'] = mute;
+                var self = this;
+                if (fader[0]) {
+                    angular.forEach(fader, function (fad) {
+                        self['fader' + fad + '_mute'] = mute;
+                    });
+                } else {
+                    this['fader' + fader + '_mute'] = mute;
+                }
             },
             $phone_number: function (number, id) {
                 this[id] = number;
