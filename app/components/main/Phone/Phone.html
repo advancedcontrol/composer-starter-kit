@@ -1,5 +1,5 @@
 
-<div id="phonemain" co-bind="'phone_settings'" ng-init="coModuleInstance.$exec('init_vc')">
+<div class="phonemain" co-bind="'phone_settings'" ng-init="coModuleInstance.$exec('init_vc')">
     <span co-bind="'mics_mutes'"></span>
     <div
         ng-if="phone_settings"
@@ -17,7 +17,11 @@
                             co-bind="phone_settings.number_id as phone.number"
                             exec="phone_number(phone.number, phone_settings.number_id)"
                         >
-                            <input ng-model="phone.number">
+                            <input ng-model="phone.number"
+                                ng-touch="$event.stopPropagation()"
+                                user-select="true" 
+                                no-capture
+                            >
                             <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="backspace()" ng-show="phone.number.length"></span>
                         </div>
 
