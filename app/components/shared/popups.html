@@ -150,7 +150,7 @@
                     ng-if="display.screen"
                     co-module="display.screen.module"
                     co-implicit-index
-                    co-bind="'lifter' + (display.screen.index || 1) as screen" exec="state(screen, display.screen.index)"
+                    co-bind="'screen' + (display.screen.index || 1) as screen" exec="state(screen, display.screen.index)"
                 >
                     <td>{{display.title}}</td>
                     <td ><div ios-toggle model="screen" true-value="'down'" false-value="'up'"></div></td>
@@ -281,6 +281,29 @@
             <div btn-group="light_level">
                 <button ng-repeat="level in lights.levels" btn="level.name" ng-touch="coModuleInstance.$exec('lights_to', level.name)" class="{{level.name}} toggle"><i class="fa fa-lightbulb-o"></i>{{level.name}}</button>
             </div>
+        </modal>
+    </div>
+</div>
+
+<!--
+    CISCO VC Pop up
+ -->
+<div ng-show="false" co-bind="'show_vc_popup'">
+    <span ng-if="show_vc_popup" ng-init="showModal('vc_accept')"></span>
+    <span ng-if="!show_vc_popup" ng-init="closeModal('vc_accept')"></span>
+
+    <div co-module="'VidConf'">
+        <modal name="vc_accept" title="Accept VC Call?" no-close="true">
+            <p co-bind="'call_status'">
+                <b>Incomming call from {{call_status.displayname}}</b>
+                <br />Call type: {{call_status.calltype}}
+                <br />Number: {{call_status.remotenumber}}
+            </p>
+            <menu>
+                <button class="cancel" ng-touch="coModuleInstance.$exec('call', 'reject')">Reject</button>
+                <button class="ok" ng-touch="coModuleInstance.$exec('call', 'accept')">Accept</button>
+            </menu>
+            <div style="clear: both"></div>
         </modal>
     </div>
 </div>

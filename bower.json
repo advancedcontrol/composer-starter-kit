@@ -25,7 +25,8 @@
     "angular-fancy-tab": "latest",
     "angular-button-group": "latest",
     "angular-progress": "latest",
-    "co-modals": "latest"
+    "co-modals": "latest",
+    "angular-virtual-keyboard": "latest"
   },
   "devDependencies": {}
 }

@@ -7,7 +7,7 @@
     window.systemData = window.systemData || {};
     window.systemData['sys-B8'] = {
         Camera: [{
-            joy_right: 0x14,
+            joy_right: -0x14,
             joy_left: 0x14,
             joy_center: 0,
             zoom: 25
@@ -30,6 +30,10 @@
 
             $off_vc: function () {
                 console.log('muting mics + phantom off + lower mics');
+            },
+
+            $vc_content: function (out, inp) {
+                this.vc_content_source = inp;
             },
 
             $show: function (source, display) {
@@ -292,6 +296,96 @@
         },{
             $mute: function (mute) {
                 this.mute = mute;
+            }
+        }],
+        VidConf: [{
+            results_total: 0,
+            search_results: [
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.232",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Garden Amphitheater",
+                    contactid: "localContactId-3",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.230",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Macarthur Room",
+                    contactid: "localContactId-1",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.232",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Garden Amphitheater",
+                    contactid: "localContactId-3",
+                    title: "Rabobank Sydney"
+                }
+            ],
+            call_status: {
+                id: 12
+                
+            },
+            $show_camera_pip: function (val) {
+                this.camera_pip = val;
+            },
+            $dial: function (str) {
+                this.call_status = {
+                    answerstate: "Unanswered",
+                    callbacknumber: "h323:10.243.218.235",
+                    callpriority: "None",
+                    calltype: "Video",
+                    devicetype: "Endpoint",
+                    direction: "Incoming",
+                    displayname: "RAIFFEISEN",
+                    duration: "3647017",
+                    encryption: "Aes-128",
+                    facilityserviceid: "0",
+                    id: 11,
+                    modifystate: "Idle",
+                    placedonhold: "False",
+                    protocol: "h323",
+                    receivecallrate: "1920",
+                    remotenumber: "10.243.218.235",
+                    status: "Ringing",
+                    transmitcallrate: "1920",
+                };
+            },
+            $call: function (func, val) {
+                if (func == 'disconnect') {
+                    this.call_status = {};
+                } else if (func == 'hold' || func == 'resume') {
+                    this.call_status = {
+                        answerstate: "Unanswered",
+                        callbacknumber: "h323:10.243.218.235",
+                        callpriority: "None",
+                        calltype: "Video",
+                        devicetype: "Endpoint",
+                        direction: "Incoming",
+                        displayname: "RAIFFEISEN",
+                        duration: "3647017",
+                        encryption: "Aes-128",
+                        facilityserviceid: "0",
+                        id: 11,
+                        modifystate: "Idle",
+                        placedonhold: "False",
+                        protocol: "h323",
+                        receivecallrate: "1920",
+                        remotenumber: "10.243.218.235",
+                        status: func == 'hold' ? "OnHold" : "Ringing",
+                        transmitcallrate: "1920",
+                    };
+                }
             }
         }]
     };

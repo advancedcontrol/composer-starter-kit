@@ -4,6 +4,7 @@
     angular.module('AcaEngine', [
         'ngSanitize', // AngularJS text sanitation support
         'ngAnimate',  // AngularJS Animation support
+        'angular-virtual-keyboard',
 
         'ngGesture',  // Gesture events
         'coAnimate',  // Key frame animations
