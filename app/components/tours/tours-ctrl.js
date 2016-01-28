@@ -17,8 +17,11 @@
             $scope.playlists = {};
             $scope.tab = null;
 
-            function loadLanguage(lang) {
+            function loadLanguage(lang, count) {
+                count = count || 0;
+
                 var url = $rootScope.playlistsQueryPrefix + lang.id + '/playlists';
+
                 $http.get(url, {
                     responseType: 'json',
                     headers: {
@@ -26,6 +29,19 @@
                     }
                 }).success(function(data, status, headers, config) {
                     $scope.playlists[data.id] = data.playlists;
+                }).error(function(data, status, headers, config) {
+                    console.log('error', data, status, config);
+
+                    if (count >= 2) {
+
+                        // Refresh the page if this fails too many times
+                        location.reload();
+
+                    } else {
+                        $timeout(function () {
+                            loadLanguage(lang, count + 1);
+                        }, 1000);
+                    }
                 });
             }
 
@@ -33,38 +49,58 @@
             // to represent the language options available to tour guides. The
             // playlists in each group represent the videos available in each
             // language.
-            $http.get($rootScope.languagesQueryURL, {
-                responseType: 'json',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).success(function(data, status, headers, config) {
-                $scope.languages = [];
-                
-                // each group represents a language option
-                data.results.forEach(function(group) {
-                    $scope.languages.push({
-                        name: group.name.replace('ToursGroup: ', ''),
-                        id: group.id
+            function loadAllLanguages(count) {
+                count = count || 0;
+
+                $http.get($rootScope.languagesQueryURL, {
+                    responseType: 'json',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).success(function(data, status, headers, config) {
+                    $scope.languages = [];
+                    
+                    // each group represents a language option
+                    data.results.forEach(function(group) {
+                        $scope.languages.push({
+                            name: group.name.replace('ToursGroup: ', ''),
+                            id: group.id
+                        });
                     });
+
+                    // sort languages by name, ascending
+                    $scope.languages.sort(function (a, b) {
+                        if (a.name < b.name)
+                            return -1;
+                        if (a.name > b.name)
+                            return 1;
+                        return 0;
+                    });
+
+                    // initialise the UI with the first language tab selected
+                    if ($scope.languages.length > 0)
+                        $scope.tab = $scope.languages[0].name;
+
+                    // start loading playlists for each language
+                    $scope.languages.forEach(loadLanguage);
+                }).error(function(data, status, headers, config) {
+                    console.log('error', data, status, config);
+
+                    if (count >= 2) {
+
+                        // Refresh the page if this fails too many times
+                        location.reload();
+
+                    } else {
+                        $timeout(function () {
+                            loadAllLanguages(count + 1);
+                        }, 1000);
+                    }
                 });
+            }
 
-                // sort languages by name, ascending
-                $scope.languages.sort(function (a, b) {
-                    if (a.name < b.name)
-                        return -1;
-                    if (a.name > b.name)
-                        return 1;
-                    return 0;
-                });
-
-                // initialise the UI with the first language tab selected
-                if ($scope.languages.length > 0)
-                    $scope.tab = $scope.languages[0].name;
-
-                // start loading playlists for each language
-                $scope.languages.forEach(loadLanguage);
-            });
+            loadAllLanguages();
+            
 
             var playCount = 0,
                 playing;
@@ -121,10 +157,6 @@
             $scope.play = function(playlist, count) {
                 playCount = count || 0;
 
-                if (playCount === 0) {
-                    $scope.scheduling = true;
-                }
-
                 // start the schedule 1 day in the past to work around any
                 // time sync issues (phones with times out of sync)
                 var now = new Date();
@@ -155,21 +187,19 @@
                     // to ensure UI draws smoothly, trigger the UI changes in half a
                     // second. the scheduling will generally be almost instant, so the
                     // fade in/out of #scheduling wouldn't normally complete otherwise
-                    setTimeout(function() {
+                    $timeout(function() {
                         $scope.scheduling = false;
                         $scope.scheduled_id = playlist.id;
-                        $scope.$apply();
 
                         // if another video had previously been selected, clear its
                         // 30s timer since it's already un-highlighted.
                         if ($scope.clear_scheduled_timer)
-                            clearTimeout($scope.clear_scheduled_timer);
+                            $timeout.cancel($scope.clear_scheduled_timer);
 
                         // clear the highlighting on $scope.scheduled_id in 30s
-                        $scope.clear_scheduled_timer = setTimeout(function() {
+                        $scope.clear_scheduled_timer = $timeout(function() {
                             $scope.scheduled_id = null;
                             $scope.clear_scheduled_timer = null;
-                            $scope.$apply();
                         }, 30 * 1000);
                     }, 500);
 
@@ -177,6 +207,7 @@
                     console.log('error', data, status, config);
 
                     if (playCount >= 2) {
+                        $scope.scheduling = false;
                         $scope.showModal('schedfailed');
 
                     } else {
@@ -185,6 +216,11 @@
                         }, 1000);
                     }
                 });
+
+                // Just in case an error is thrown before we reach this point
+                if (playCount === 0) {
+                    $scope.scheduling = true;
+                }
             };
 
             $scope.currentTab = function (tab) {
