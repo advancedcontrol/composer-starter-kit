@@ -34,7 +34,7 @@ var AUTOPREFIXER_BROWSERS = [
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer({});
 proxy.on('error', function(err) {
-        console.log('Proxy error', err);
+    console.log('Proxy error', err);
 });
 
 
@@ -50,46 +50,26 @@ gulp.task('jshint', function () {
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
-// use compass watch to only compile files when necessary
-gulp.task('dev:styles', function () {
-  var options = ['watch',
-    process.cwd(),
-    '--relative-assets',
-    '--output-style',
-    'nested',
-    '--css-dir',
-    '.tmp',
-    '--sass-dir',
-    'app',
-    '--boring'
-  ];
-
-  var child = spawn('compass', options, process.cwd());
-  child.stdout.setEncoding('utf8');
-  child.stdout.on('data', function (data) {
-    console.log(data);
-  });
-
-  child.stderr.setEncoding('utf8');
-  child.stderr.on('data', function (data) {
-    console.log(data);
-  });
-});
-
 // optimise Images
 gulp.task('dev:images', function () {
   return gulp.src([
         'app/**/*.png',
         'app/**/*.jpg',
-        'app/**/*.gif',
-        'app/**/*.svg',
-        '!app/branding/fonts/**/*.svg'
+        'app/**/*.gif'
     ]).pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true
     })))
     .pipe(gulp.dest('.tmp'))
     .pipe($.size({title: 'dev:images'}));
+});
+
+gulp.task('dev:svg', function () {
+  return gulp.src([
+        'app/**/*.svg',
+        '!app/branding/fonts/**/*.svg'
+    ])
+    .pipe(gulp.dest('.tmp'));
 });
 
 // Watch Files For Changes & Reload
@@ -169,37 +149,7 @@ gulp.task('browser-sync', function () {
   ], ['dev:images', reload]);
 });
 
-gulp.task('serve', ['dev:styles', 'dev:images', 'browser-sync']);
-
-
-
-// -------------------------------------------
-// staging
-// -------------------------------------------
-gulp.task('staging:html', function () {
-  return gulp.src('app/**/*.html', {dot: false}).pipe(gulp.dest('dist'))
-  .pipe($.size({title: 'staging:html'}));
-});
-
-gulp.task('staging:styles', function () {
-  return gulp.src(['.tmp/**/*.css', 'app/**/*.css'], {dot: false}).pipe(gulp.dest('dist'))
-  .pipe($.size({title: 'staging:styles'}));
-});
-
-gulp.task('staging:js', function () {
-  return gulp.src('app/**/*.js', {dot: false}).pipe(gulp.dest('dist'))
-  .pipe($.size({title: 'staging:js'}));
-});
-
-gulp.task('staging:fonts', function () {
-  return gulp.src('app/branding/fonts/**/*', {dot: false}).pipe(gulp.dest('dist/branding/fonts'))
-  .pipe($.size({title: 'staging:plugins'}));
-});
-
-gulp.task('staging:plugins', function () {
-  return gulp.src('bower_components/**/*', {dot: false}).pipe(gulp.dest('dist'))
-  .pipe($.size({title: 'staging:plugins'}));
-});
+gulp.task('serve', ['dev:styles', 'dev:images', 'dev:svg', 'browser-sync']);
 
 
 
@@ -208,8 +158,10 @@ gulp.task('staging:plugins', function () {
 // -------------------------------------------
 // Scan Your HTML For Assets & Optimize Them
 gulp.task('html', function () {
+  var assets = $.useref.assets({searchPath: '{.tmp,app,bower_components}'});
+  
   return gulp.src('app/**/*.html')
-    .pipe($.useref.assets({searchPath: '{.tmp,app,bower_components}'}))
+    .pipe(assets)
     
     // Concatenate And Minify JavaScript
     .pipe($.if('*.js', $.uglify({
@@ -220,7 +172,7 @@ gulp.task('html', function () {
     
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.csso()))
-    .pipe($.useref.restore())
+    .pipe(assets.restore())
     .pipe($.useref())
     
     // Minify Any HTML
@@ -237,6 +189,8 @@ gulp.task('fonts', function () {
         'app/branding/fonts/**/*.ttf',
         'app/branding/fonts/**/*.svg',
         'app/branding/fonts/**/*.woff',
+        'app/branding/fonts/**/*.woff2',
+        'app/branding/fonts/**/*.otf',
         'app/branding/fonts/**/*.eot'
     ]).pipe(gulp.dest('dist/branding/fonts'))
     .pipe($.size({title: 'fonts'}));
@@ -259,8 +213,39 @@ gulp.task('prod:styles', function () {
   return gulp.src(['app/**/*.scss'])
     .pipe(compass({
       css: '.tmp',
-      sass: 'app'
+      sass: 'app',
+      import_path: 'bower_components'
     }));
+});
+
+// use compass watch to only compile files when necessary
+gulp.task('dev:styles', function () {
+  var options = ['watch',
+    process.cwd(),
+    '--relative-assets',
+    '--output-style',
+    'nested',
+    '--css-dir',
+    '.tmp',
+    '--sass-dir',
+    'app',
+    '--boring',
+    '--import-path',
+    'bower_components'
+  ];
+
+  var child = spawn('compass', options, {
+    cwd: process.cwd()
+  });
+  child.stdout.setEncoding('utf8');
+  child.stdout.on('data', function (data) {
+    console.log(data);
+  });
+
+  child.stderr.setEncoding('utf8');
+  child.stderr.on('data', function (data) {
+    console.log(data);
+  });
 });
 
 gulp.task('rebase', function () {
@@ -293,15 +278,46 @@ gulp.task('prod:manifest', function() {
 
 // Clean Output Directory
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+gulp.task('clean-tmp', del.bind(null, ['.tmp']));
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('prod:styles', 'rebase', 'dev:images', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', cb);
+  runSequence('prod:styles', 'rebase', 'dev:images', 'dev:svg', 'prod:images', 'jshint', 'html', 'fonts', 'copy', 'prod:manifest', 'clean-tmp', cb);
+});
+
+
+// -------------------------------------------
+// staging
+// -------------------------------------------
+gulp.task('staging:html', function () {
+  return gulp.src('app/**/*.html', {dot: false}).pipe(gulp.dest('dist'))
+  .pipe($.size({title: 'staging:html'}));
+});
+
+gulp.task('staging:styles', function () {
+  return gulp.src('.tmp/**/*.css', {dot: false}).pipe(gulp.dest('dist'))
+  .pipe($.size({title: 'staging:styles'}));
+});
+
+gulp.task('staging:js', function () {
+  return gulp.src('app/**/*.js', {dot: false}).pipe(gulp.dest('dist'))
+  .pipe($.size({title: 'staging:js'}));
+});
+
+gulp.task('staging:fonts', function () {
+  return gulp.src('app/branding/fonts/**/*', {dot: false}).pipe(gulp.dest('dist/branding/fonts'))
+  .pipe($.size({title: 'staging:fonts'}));
+});
+
+gulp.task('staging:plugins', function () {
+  return gulp.src('bower_components/**/*', {dot: false}).pipe(gulp.dest('dist'))
+  .pipe($.size({title: 'staging:plugins'}));
 });
 
 gulp.task('build:staging', ['clean'], function(cb) {
   runSequence('prod:styles', 'staging:styles', 'dev:images', 'prod:images', 'staging:js', 'staging:html', 'staging:fonts', 'copy', 'staging:plugins', cb);
 });
+
 
 // Load custom tasks from the `tasks` directory
 try { require('require-dir')('tasks'); } catch (err) {}
