@@ -42,7 +42,7 @@
 <div co-bind="'group_id'" ng-controller="Modals">
     <div ng-controller="ToursCtrl">
         <tabs current="tab" auto-select="false">
-            <pane ng-repeat="lang in languages" title="{{lang.name}}">
+            <pane ng-repeat="lang in languages" text="{{lang.name}}">
 
                 <div>
                     <h1>{{lang.name}}</h1>
