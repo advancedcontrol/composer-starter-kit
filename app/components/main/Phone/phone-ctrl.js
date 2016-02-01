@@ -8,7 +8,8 @@
             '$timeout',
 
         function ($scope, $timeout) {
-            var phone = {};
+            var phone = {},
+                sendSpace = false;
             $scope.phone = phone;
 
             $scope.$watch('phone_settings', function (val) {
@@ -20,10 +21,18 @@
             });
 
             $scope.addNum = function (val) {
-                if (phone.number && phone.number.length)
-                    phone.number += val;
-                else
-                    phone.number = '' + val;
+                if (phone.ringing || phone.incall) {
+                    if (sendSpace) {
+                        val = val + ' ';
+                    }
+                    $scope.coModuleInstance.$exec('set_string', $scope.phone_settings.dtmf, val);
+                    sendSpace = !sendSpace;
+                } else {
+                    if (phone.number && phone.number.length)
+                        phone.number += val;
+                    else
+                        phone.number = '' + val;
+                }
             };
 
             $scope.backspace = function () {
