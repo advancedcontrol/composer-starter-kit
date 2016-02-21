@@ -25,6 +25,11 @@
                     $scope.coModuleInstance.$exec('present', $scope.selectedSource.source, key);
                 }
 
+                // Support VC camera selection
+                if ($scope.selectedSource.vc_input) {
+                    $scope.coModuleInstance.$exec('select_camera', $scope.selectedSource.vc_input);
+                }
+
                 // Update the scopes
                 $rootScope.$broadcast('updateSource', $scope.selectedSource);
             };

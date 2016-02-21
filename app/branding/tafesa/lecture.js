@@ -207,7 +207,8 @@
                     "mod": "Camera",
                     "index": 1,
                     "input": 12,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "vc_input": 2
                 },
                 "cam_f_g1": {
                     "title": "1G1 Front",
@@ -215,7 +216,8 @@
                     "mod": "Camera",
                     "index": 2,
                     "input": 13,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "vc_input": 1
                 },
                 "cam_r_g2": {
                     "title": "1G2 Rear",
@@ -223,7 +225,8 @@
                     "mod": "Camera",
                     "index": 3,
                     "input": 10,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "vc_input": 3
                 },
                 "cam_f_g2": {
                     "title": "1G2 Front",
@@ -231,7 +234,8 @@
                     "mod": "Camera",
                     "index": 4,
                     "input": 9,
-                    "source": "hdmi"
+                    "source": "hdmi",
+                    "vc_input": 4
                 },
                 "vc1": {
                     "title": "1G1 VC",
