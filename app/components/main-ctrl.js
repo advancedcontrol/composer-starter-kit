@@ -6,6 +6,7 @@
 
         .controller('StateCtrl', ['$scope', function ($scope) {
             $scope.state = 'shutdown';
+            $scope.settings = {};
             $scope.setState = function (val) {
                 $scope.state = val;
             };
@@ -21,7 +22,13 @@
                 // ---------------------------------------------
                 // pin code
                 // ---------------------------------------------
-                $scope.validated = false;
+                if ($scope.settings.skip_pin) {
+                    $scope.validated = 'tours';
+                    $scope.coModuleInstance.$exec('powerup');
+                } else {
+                    $scope.validated = false;
+                }
+                
                 $scope.incorrect = false;
                 $scope.pin = '';
 

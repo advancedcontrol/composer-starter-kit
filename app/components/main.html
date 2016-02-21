@@ -3,6 +3,7 @@
     <div co-bind="'title'"></div>
     <div co-bind="'tech_pin'"></div>
     <div co-bind="'tours_pin'"></div>
+    <div co-bind="'skip_pin' as settings.skip_pin"></div>
 
     <!-- show a splash page when offline -->
     <div id="splash" ng-if="state === 'shutdown'" ng-release="setState('online')">

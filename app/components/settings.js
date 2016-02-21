@@ -11,6 +11,8 @@
             "tours_pin": "1234",
             "tech_pin": "1978",
 
+            "skip_pin": true,
+
             // power on/off
             "state": "shutdown",
             $powerup: function() {
