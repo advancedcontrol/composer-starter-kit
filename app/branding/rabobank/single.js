@@ -11,6 +11,12 @@
             joy_left: 0x14,
             joy_center: 0,
             zoom: 25
+        },
+        {
+            joy_right: -0x14,
+            joy_left: 0x14,
+            joy_center: 0,
+            zoom: 80
         }],
         System: [{
             analytics: 'UA-69533861-111',
@@ -146,7 +152,8 @@
                 "video_conf"
             ],
             "Camera": [
-                "training_cam"
+                "training_cam",
+                "training_cam2"
             ],
             "sources": {
                 "g1_pc1": {
@@ -196,7 +203,25 @@
                     "type": "vc-camera",
                     "mod": "Camera",
                     "index": 1,
-                    "ignore": true
+                    "ignore": true,
+                    "presets": [{
+                        "name": "Wide Right",
+                        "number": 2
+                    }, {
+                        "name": "Zoom Lectern",
+                        "lookup": "wide_right"
+                    }]
+                },
+                "training_cam2": {
+                    "title": "Camera Rear",
+                    "type": "vc-camera",
+                    "mod": "Camera",
+                    "index": 2,
+                    "ignore": true,
+                    "presets": [{
+                        "name": "Window Shot",
+                        "number": 1
+                    }]
                 },
                 "soft_phone": {
                     "title": "Phone",

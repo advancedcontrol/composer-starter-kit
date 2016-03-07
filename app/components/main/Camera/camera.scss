@@ -2,6 +2,19 @@
 @import "../../../../bower_components/angular-range-slider/angular-range-slider.scss";
 
 
+#camera-inputs {
+    div.presets {
+        width: 180px;
+        vertical-align: top!important;
+
+        button {
+            clear: both;
+            margin-bottom: 1em;
+        }
+    }
+}
+
+
 // Used for workshop cameras too
 div.camera-control {
     position: relative;
@@ -84,14 +97,38 @@ div.camera-control {
 }
 
 
-#cameramobile.camera-select {
+#cameramobile {
+    color: white;
+
+    div.presets {
+        width: 100%;
+        margin-bottom: 10px;
+
+        button {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    }
+
     div.camera-control {
-        top: 12em;
-        bottom: 4em;
+        // Reset the desktop styles
+        position: static!important;
+        margin-bottom: 0;
         height: auto;
 
-        text-align: center;
-        color: white;
+        > div > div { 
+            > span.zoom-text {
+                position: static;
+            }
+
+            > div {
+                position: static;
+            }
+        }
+    }
+
+    div.sources {
+        display: none;
     }
 }
 
