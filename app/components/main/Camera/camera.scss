@@ -8,6 +8,8 @@
         vertical-align: top!important;
 
         button {
+            font-size: larger;
+
             clear: both;
             margin-bottom: 1em;
         }
@@ -105,6 +107,7 @@ div.camera-control {
         margin-bottom: 10px;
 
         button {
+            font-size: inherit;
             margin-right: 10px;
             margin-bottom: 10px;
         }
