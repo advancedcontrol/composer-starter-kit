@@ -18,6 +18,55 @@
             joy_center: 0,
             zoom: 80
         }],
+        Bookings: [{
+            order_status: 'idle',
+            waiter_call: false,
+            $waiter_call: function (state) {
+                this.waiter_call = state;
+                if (state) {
+                    this.order_status = 'accepted';
+                } else {
+                    this.order_status = 'idle';
+                }
+            },
+            $commit_order: function () {
+                this.order_status = 'pending';
+            },
+            catering: 'sys-Catering',
+            "menu": [{
+                "name": "Coffee",
+                "options": [{
+                    "name": "Flat White",
+                    "subinfo": "Milk type?",
+                    "options": [{
+                        "name": "Full cream"
+                    },
+                    {
+                        "name": "Skim milk"
+                    }]
+                },{
+                    "name": "Cappuccino",
+                    "subinfo": "Milk type?",
+                    "options": [{
+                        "name": "Full cream"
+                    },
+                    {
+                        "name": "Skim milk"
+                    }]
+                }]
+            }, {
+                "name": "Juice",
+                "options": [{
+                    "name": "Apple"
+                }, {
+                    "name": "Orange"
+                }, {
+                    "name": "Pineapple"
+                }, {
+                    "name": "Blood Orange"
+                }]
+            }]
+        }],
         System: [{
             analytics: 'UA-69533861-111',
             "$powerup": function () {

@@ -58,6 +58,20 @@ div.tray {
                 content: "\f130";
             }
 
+            &.catering {
+                &::before {
+                    content: "\f0f4";
+                }
+
+                &.pending {
+                    background-color: rgba(255, 255, 0, 0.5);
+                }
+
+                &.accepted {
+                    background-color: rgba(0, 255, 0, 0.5);
+                }
+            }
+
             &.joining {
                 &::before {
                     content: "\f0c1";
@@ -242,6 +256,31 @@ modal[name=joining] {
 
             cursor: pointer;
         }
+    }
+}
+
+
+modal[name=catering] {
+    h2, table {
+        margin-left: 30px;
+    }
+
+    table {
+        margin-bottom: 2em;
+    }
+
+    div.ordering {
+        padding: 0 30px;
+
+        button {
+                top: -1em;
+                position: relative;
+        }
+    }
+
+    select {
+        padding: 0.5em;
+        -webkit-appearance: none;
     }
 }
 

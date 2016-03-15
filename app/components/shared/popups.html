@@ -285,6 +285,74 @@
     </div>
 </div>
 
+<!-- 
+    Waiter Call
+ -->
+<div co-module="'Bookings'" co-bind="'catering'" ng-controller="OrderCtrl">
+    <span ng-init="book = {item: [], drinks: []}" co-bind="'waiter_call' as book.waiter" exec></span>
+    <span co-bind="'order_status'"></span>
+
+    <div class="catering" ng-if="catering" ng-touch="showModal('catering'); $root.$emit('$track', 'popup', 'catering')" ng-class="order_status">
+        <modal name="catering" title="Catering" no-close="true">
+            <p>
+                <b>Service Required:</b> <span ios-toggle model="book.waiter"></span>
+                <span ng-show="book.waiter">&nbsp;staff have been notified</span>
+            </p>
+
+            <h2 co-bind="'menu' as book.menu">Beverage Request</h2>
+            <div ng-if="book.menu" class="ordering">
+                <select ng-model="book.item.qty" required="required" ng-init="book.item.qty='1'">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+
+                <select ng-model="book.item[0]" ng-options="item as item.name for item in book.menu" ng-init="book.item[0] = book.menu[0]"></select>
+                <select ng-if="book.item[0].options" ng-model="book.item[1]" ng-options="item as item.name for item in book.item[0].options"></select>
+                <select ng-if="book.item[1].options" ng-model="book.item[2]" ng-options="item as item.name for item in book.item[1].options"></select>
+                <select ng-if="book.item[2].options" ng-model="book.item[3]" ng-options="item as item.name for item in book.item[2].options"></select>
+                <br /><br />
+                <textarea ng-virtual-keyboard="{kt: 'US International', relative: false, size: 5}"
+                    ng-model="book.item.notes"
+                    rows="3"
+                    cols="35"
+                    placeholder="additional information">
+                </textarea>&nbsp;&nbsp;
+                <button ng-touch="book.drinks.push(book.item); book.item = []; book.item[0] = book.menu[0]; book.item.qty = '1';">Add to Order</button>
+            </div>
+
+            <table ng-if="book.drinks.length > 0">
+                <tr>
+                    <th>Qty</th>
+                    <th>Beverage</th>
+                    <th>Notes</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in book.drinks">
+                    <td>{{item.qty}}</td>
+                    <td>{{generateName(item)}}</td>
+                    <td>{{item.notes.substr(0, 30)}}</td>
+                    <td><button ng-click="book.item = item; removeItem(book.drinks, item);">Edit / Remove</button></td>
+                </tr>
+            </table>
+
+
+            <menu>
+                <button class="cancel" ng-click="closeModal('catering'); book.item = []; book.item[0] = book.menu[0]; book.item.qty = '1'; book.drinks = [];">Dismiss / Close</button>
+                <button class="ok" ng-if="book.drinks.length > 0" ng-click="coModuleInstance.$exec('commit_order', buildOrder(book.drinks)); closeModal('catering'); book.item = []; book.item[0] = book.menu[0]; book.item.qty = '1'; book.drinks = [];">Confirm Order</button>
+            </menu>
+            <div style="clear: both"></div>
+        </modal>
+    </div>
+</div>
+
 <!--
     CISCO VC Pop up
  -->
