@@ -90,6 +90,7 @@
     <link rel="stylesheet" href="add-to-homescreen/style/addtohomescreen.css">
     <link rel="stylesheet" href="core.css">
     <link rel="stylesheet" href="bootstrap/setup.css">
+    <link rel="stylesheet" href="angular-virtual-keyboard/release/angular-virtual-keyboard.css">
 
     <!-- endbuild -->
   </head>
@@ -109,7 +110,7 @@
             <div>
                 <h1>ACA Control Setup</h1>
                 <p>Please enter the system ID below:</p>
-                <input ng-model="system_id" ng-trim="true" ng-required="true" ng-minlength="5" />
+                <input ng-virtual-keyboard="{kt: 'US International', relative: false, size: 5}" ng-model="system_id" ng-trim="true" ng-required="true" ng-minlength="5" />
                 <button ng-click="configure(system_id)">Finish Setup</button>
             </div>
         </div>
@@ -130,6 +131,7 @@
     <script src="angular-gesture/ngGesture/directive/ngSwipe.js"></script>
     <script src="angular-gesture/ngGesture/directive/ngTouch.js"></script>
     <script src="angular-gesture/ngGesture/directive/ngDrag.js"></script>
+    <script src="angular-virtual-keyboard/release/angular-virtual-keyboard.js"></script>
 
     <!-- Application Components -->
     <script src="bootstrap/setup-ctrl.js"></script>

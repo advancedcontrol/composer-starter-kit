@@ -17,6 +17,7 @@
 
 
     angular.module('AcaBootstrap', [
+        'angular-virtual-keyboard',
         'ngGesture'  // Gesture events
     ])
 
