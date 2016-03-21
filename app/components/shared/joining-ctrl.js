@@ -32,6 +32,27 @@
                     $scope.closeModal('notify_joining');
             });
 
+        }])
+
+
+        .controller('BlindCtrl', [
+            '$scope',
+
+        function ($scope) {
+
+            $scope.blindChanged = function () {
+                var blind = $scope.blind,
+                    args = [blind.func];
+
+                blind.args.forEach(function (arg) {
+                    args.push(arg);
+                });
+
+                args.push($scope.state);
+
+                $scope.coModuleInstance.$exec.apply($scope.coModuleInstance, args);
+            };
+
         }]);
 
 }(this.angular));

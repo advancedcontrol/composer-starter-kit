@@ -138,13 +138,13 @@
 <!-- 
     Screen Control Pop up
  -->
-<div>
-    <div ng-if="hasScreens || hasLifters" class="screens" ng-touch="showModal('screens'); $root.$emit('$track', 'popup', 'screens')">
+<div co-bind="'blinds'">
+    <div ng-if="hasScreens || hasLifters || blinds" class="screens" ng-touch="showModal('screens'); $root.$emit('$track', 'popup', 'screens')">
         <modal name="screens" title="Raise/Lower Control">
             <h2 ng-if="hasScreens">Screens:</h2>
 
             <!-- Get the number of screens and list them -->
-            <table ng-if="hasScreens" class="entries" co-module="'Screen'">
+            <table ng-if="hasScreens" class="entries">
                 <tr
                     ng-repeat="display in outputs | orderObjectBy:'pri'"
                     ng-if="display.screen"
@@ -161,7 +161,7 @@
             <h2 ng-if="hasLifters">Lifters:</h2>
 
             <!-- Get the number of screens and list them -->
-            <table ng-if="hasLifters" class="entries" co-module="'Lifter'">
+            <table ng-if="hasLifters" class="entries">
                 <tr
                     ng-repeat="display in outputs | orderObjectBy:'pri'"
                     ng-if="display.lifter"
@@ -172,6 +172,23 @@
                     <td>{{display.title}}</td>
                     <td ><div ios-toggle model="lifter" true-value="'down'" false-value="'up'"></div></td>
                     <td class="onoff">{{lifter === 'down' ? 'Down' : 'Up'}}</td>
+                </tr>
+            </table>
+
+            <h2 ng-if="blinds">Blinds:</h2>
+
+            <!-- Get the number of screens and list them -->
+            <table ng-if="blinds" class="entries" >
+                <tr
+                    ng-repeat="blind in blinds"
+                    co-module="blind.module"
+                    co-implicit-index
+                    co-bind="blind.feedback as state"
+                >
+                    <td>{{blind.title}}</td>
+                    <!-- Controller in Joining Control due to laziness -->
+                    <td ng-controller="BlindCtrl"><div ios-toggle model="state" true-value="blind.closed_value" false-value="blind.open_value" on-change="blindChanged()"></div></td>
+                    <td class="onoff">{{state === blind.closed_value ? 'Closed' : 'Open'}}</td>
                 </tr>
             </table>
         </modal>
@@ -187,7 +204,7 @@
             <h2>Displays:</h2>
 
             <!-- Get the number of displays and list them -->
-            <table class="entries" co-module="'Display'">
+            <table class="entries">
                 <tr
                     ng-repeat="display in outputs | orderObjectBy:'pri'"
                     ng-if="!display.no_mod"

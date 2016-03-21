@@ -67,7 +67,30 @@
                 }]
             }]
         }],
+        DigitalIO: [{
+            $relay: function (index, state) {
+                this.relay1 = state;
+            }
+        }],
         System: [{
+            "blinds": [{
+                "title": "Glass",
+                "module": "DigitalIO_1",
+                "feedback": "relay1",
+                "closed_value": true,
+                "open_value": false,
+                "func": "relay",
+                "args": [1]
+            },
+            {
+                "title": "Windows",
+                "module": "DigitalIO_1",
+                "feedback": "relay1",
+                "closed_value": true,
+                "open_value": false,
+                "func": "relay",
+                "args": [1]
+            }],
             analytics: 'UA-69533861-111',
             "$powerup": function () {
                 this.state = "online";
