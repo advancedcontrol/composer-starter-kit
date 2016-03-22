@@ -1,0 +1,12 @@
+
+<div co-bind="'Chromebox' as source_names" id="laptop-inputs">
+    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+        <div ng-if="numOutputs > 1 || has_preview">
+            You can present on one or both displays in this room.<br /><br />
+            Touch the screens below to present hangouts.
+        </div>
+        <div ng-if="numOutputs === 1 && !has_preview">
+            <span >Hangouts is now being presented</span>
+        </div>
+    </div>
+</div>

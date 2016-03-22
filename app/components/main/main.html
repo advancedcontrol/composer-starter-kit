@@ -76,7 +76,7 @@
                             An output may not output any audio (VC for example)
                         -->
                         <div
-                            ng-if="!output.no_audio"
+                            ng-if="!(output.no_audio || output.hide_audio)"
                             class="audio"
                             ng-include="'components/shared/audio.html'"
                         ></div>

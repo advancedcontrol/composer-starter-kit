@@ -199,14 +199,19 @@
                 "ABC Dig"
             ],
             "inputs": [
+            "Chromebox",
                 "Lectern",
                 "Laptop",
                 "Wireless",
                 "Phone",
                 "VC",
-                "Camera"
+                "Camera",
+                "Wired"
             ],
             "PC": [
+                "g1_pc1"
+            ],
+            "Chromebox": [
                 "g1_pc1"
             ],
             "Lectern": [
@@ -217,6 +222,10 @@
                 "laptop_wireless"
             ],
             "Laptop": [
+                "laptop_usb",
+                "laptop_wireless"
+            ],
+            "Wired": [
                 "laptop_usb",
                 "laptop_wireless"
             ],

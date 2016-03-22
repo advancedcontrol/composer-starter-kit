@@ -565,7 +565,12 @@ article.main {
             content: "\f1eb";
         }
 
+        &.Chromebox::before, &.chromebox::before {
+            content: "\f268";
+        }
+
         // Give the DIV a height
+        &.Wired::before, &.wired::before,
         &.Visualiser::before, &.visualiser::before,
         &.Lectern::before, &.lectern::before {
             content: "\00A0";
@@ -588,6 +593,14 @@ article.main {
             background-position: center top;
         }
 
+        &.Wired, &.wired {
+            background-image: url("../../components/main/Wired/usb.svg");
+
+            background-size: auto 1em;
+            background-repeat: no-repeat;
+            background-position: center top;
+        }
+
         &.Lectern, &.lectern {
             background-image: url("../../components/main/Lectern/lectern.svg");
 
@@ -599,6 +612,10 @@ article.main {
 
 
     .source-image, tabs nav > div.active > div {
+        &.Wired, &.wired {
+            background-image: url("../../components/main/Wired/usb-active.svg") !important;
+        }
+
         &.Visualiser, &.visualiser {
             background-image: url("../../components/main/Visualiser/visualiser-active.svg") !important;
         }

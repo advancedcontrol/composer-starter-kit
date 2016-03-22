@@ -279,7 +279,8 @@
                     "mixer_id": 32,
                     "type": "projector",
                     "pri": 2,
-                    "title": "G1 Rear"
+                    "title": "G1 Rear",
+                    "hide_audio": true
                 },
                 "VidConf_1": {
                     "output": [

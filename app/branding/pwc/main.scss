@@ -16,15 +16,14 @@ article.main {
         background-color: darken($header-color, 10%);
 
         div.logo {
-            background-color: white;
             width: 150px;
             margin-top: 0px;
-            padding: 5px 5px 5px 5px;
-            height: 90px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+            padding: 15px 15px 15px 0px;
+            height: 80px;
 
             > div {
-                background-image: url("../../branding/pwc/logo.png");
+                background-image: url("../../branding/pwc/logo2.png");
+                background-position: left center;
             }
         }
     }
@@ -34,6 +33,11 @@ article.main {
         &:not(.active) {
             @include box-shadow(rgba(0, 0, 0, 0.2) 0px -4px 14px inset);
         }
+    }
+
+    // Volume slider
+    div.volume > div div.co-range-slider > div .progress {
+        background-color: #DC6900;
     }
 }
 

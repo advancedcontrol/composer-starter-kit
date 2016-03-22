@@ -1,0 +1,20 @@
+<div co-bind="'Wired' as source_names" id="laptop-inputs">
+    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+        <div ng-if="numOutputs > 1 || has_preview">
+            You can project on one or both displays in this room.<br /><br />
+            <span ng-if="source_names.length > 1">
+                Select a laptop connection point, then<br />
+            </span>
+            Touch the screens below to select the display for your presentation.
+        </div>
+        <div ng-if="numOutputs === 1 && !has_preview">
+            <span ng-if="source_names.length === 1">The laptop connection is now being presented</span>
+            <span ng-if="source_names.length > 1">The selected laptop connection will display.</span>
+        </div>
+        <div class="sources" ng-if="source_names.length > 1">
+            <div btn-group="selectedSource.source">
+                <button ng-repeat="lap in source_names" btn="lap" ng-touch="selectSource(lap)" class="toggle"><i ng-class="sources[lap].type"></i>{{sources[lap].title}}</button>
+            </div>
+        </div>
+    </div>
+</div>
