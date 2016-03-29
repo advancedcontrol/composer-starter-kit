@@ -110,4 +110,16 @@ article.mobile {
     aside div#nav-buffer {
         background-color: darken($header-color, 10%);
     }
+
+    div#mobile-sources div.sources > button > span {
+        &.wepresent {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-image: url("../../components/main/WePresent/wepresent-active.svg");
+        }
+    }
 }

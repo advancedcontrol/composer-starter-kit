@@ -489,6 +489,10 @@ article.mobile {
             &.wireless::before {
                 content: "\f1eb";
             }
+
+            &.chromebox::before {
+                content: "\f268";
+            }
         }
     }
 
@@ -570,6 +574,10 @@ article.mobile {
 
                     &.wireless::before {
                         content: "\f1eb";
+                    }
+
+                    &.chromebox::before {
+                        content: "\f268";
                     }
 
                     &.phone::before {

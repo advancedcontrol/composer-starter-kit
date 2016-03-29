@@ -232,7 +232,7 @@
                     "title": "Resident PC",
                     "input": 14,
                     "source": "hdmi",
-                    "type": "residentpc",
+                    "type": "chromebox",
                     "colour": "#F58172"
                 },
                 "laptop_g1": {
