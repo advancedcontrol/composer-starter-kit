@@ -39,6 +39,57 @@ article.main {
     div.volume > div div.co-range-slider > div .progress {
         background-color: #DC6900;
     }
+
+
+    // We Present Styles
+    .source-image, tabs nav > div > div {
+        &.WePresent::before, &.wepresent::before {
+            content: "\00A0";
+        }
+        
+        &.WePresent, &.wepresent {
+            background-image: url("../../components/main/WePresent/wepresent.svg");
+
+            background-size: auto 1em;
+            background-repeat: no-repeat;
+            background-position: center top;
+
+            &+ span {
+                font-size: 0;
+                &::before {
+                    font-size: 16px;
+                    content: 'Wireless Presenter';
+                }
+            }
+        }
+
+        &.Wired, &.wired {
+            &+ span {
+                font-size: 0;
+                &::before {
+                    font-size: 16px;
+                    content: 'Wired Presenter';
+                }
+            }
+        }
+    }
+
+    .source-image, tabs nav > div.active > div {
+        &.WePresent, &.wepresent {
+            background-image: url("../../components/main/WePresent/wepresent-active.svg") !important;
+        }
+    }
+
+    div.standard-panel div.sources button > i {
+        &.WePresent, &.wepresent {
+            height: 1em;
+            width: 1em;
+            background-image: url("../../components/main/WePresent/wepresent-active.svg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+        }
+    }
 }
 
 
