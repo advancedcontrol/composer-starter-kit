@@ -572,7 +572,8 @@ article.main {
         // Give the DIV a height
         &.Wired::before, &.wired::before,
         &.Visualiser::before, &.visualiser::before,
-        &.Lectern::before, &.lectern::before {
+        &.Lectern::before, &.lectern::before {,
+        &.Wepresent::before, &.wepresent::before {
             content: "\00A0";
         }
 
@@ -612,6 +613,10 @@ article.main {
 
 
     .source-image, tabs nav > div.active > div {
+        &.Wepresent, &.wepresent {
+            background-image: url("../../components/main/Wireless Presenter/wepresent-active.svg") !important;
+        }
+        
         &.Wired, &.wired {
             background-image: url("../../components/main/Wired/usb-active.svg") !important;
         }
