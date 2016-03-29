@@ -26,9 +26,8 @@
 
 }
 
-#wirelessmobile {
-    #wirelessmain {
-
+#wirelessmobile, #wepresentmobile, #chromeboxmobile {
+    #wirelessmain, #wepresentmain, #chromeboxmain {
         > div {
             width: 100%!important;
             margin: 0!important;
@@ -39,6 +38,5 @@
         ol {
             clear: both;
         }
-
     }
 }

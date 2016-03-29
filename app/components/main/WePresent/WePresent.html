@@ -1,5 +1,5 @@
 
-<div co-bind="'WePresent' as source_names">
+<div co-bind="'WePresent' as source_names" id="wepresentmain">
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div id="wirelessmain">
             <span ng-if="numOutputs > 1 || has_preview">
