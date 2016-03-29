@@ -48,7 +48,7 @@
                     args.push(arg);
                 });
 
-                args.push($scope.state);
+                args.push($scope.result.state);
 
                 $scope.coModuleInstance.$exec.apply($scope.coModuleInstance, args);
             };

@@ -77,17 +77,8 @@
                 "title": "Glass",
                 "module": "DigitalIO_1",
                 "feedback": "relay1",
-                "closed_value": true,
-                "open_value": false,
-                "func": "relay",
-                "args": [1]
-            },
-            {
-                "title": "Windows",
-                "module": "DigitalIO_1",
-                "feedback": "relay1",
-                "closed_value": true,
-                "open_value": false,
+                "closed_value": false,
+                "open_value": true,
                 "func": "relay",
                 "args": [1]
             }],
@@ -318,6 +309,7 @@
                     ],
                     "audio_out": 21,
                     "mixer_id": 105,
+                    "basic_mixer": true,
                     "type": "lcd",
                     "pri": 1,
                     "title": "Display"
@@ -329,6 +321,7 @@
                     ],
                     "audio_out": 21,
                     "mixer_id": 105,
+                    "basic_mixer": true,
                     "type": "lcd",
                     "pri": 1,
                     "title": "Display"
@@ -362,14 +355,14 @@
             }
         }],
         Mixer: [{
-            fader_106: 1,
-            fader_107: 2,
-            fader_105: -25,
-            fader_32: -30,
-            fader_107_mute: true,
+            fader106: 1,
+            fader107: 2,
+            fader105: -25,
+            fader32: -30,
+            fader107_mute: true,
             "16-10pVcRoomPhoneDialString": '1234',
             $fader: function (fader, volume) {
-                this['fader_' + fader] = volume;
+                this['fader' + fader] = volume;
             },
             $mute: function (fader, mute) {
                 var self = this;
