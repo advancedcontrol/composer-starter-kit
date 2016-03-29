@@ -1,3 +1,16 @@
+<nav>
+    <span class="info active"></span>
+</nav>
 
-<div id="chromeboxmobile" ng-include="'components/main/Chromebox/Chromebox.html'">
-</div>
+<!-- stopPropagation here supports scrolling -->
+<section ng-touch="$event.stopPropagation()" on-target>
+    <div > <!-- ng-switch -->
+        <div > <!-- ng-switch-when -->
+            <div > <!-- ng-include -->
+                <!-- sidebar content -->
+
+                Chromebox is now being displayed
+            </div>
+        </div>
+    </div>
+</section>
