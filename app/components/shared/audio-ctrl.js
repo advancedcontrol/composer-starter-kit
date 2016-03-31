@@ -1,6 +1,13 @@
 (function (angular) {
     'use strict';
 
+    Number.prototype.between = function(a, b) {
+        var min = Math.min(a, b),
+            max = Math.max(a, b);
+
+        return this > min && this < max;
+    };
+
     var source = {};
 
     angular.module('AcaEngine')
@@ -101,7 +108,13 @@
             $scope.$watch('shared.volume', function (level) {
                 // Local Change
                 if (isNum(level)) {
-                    audio.volume = convert_level(level);
+                    var current_level = audio.volume,
+                        proposed = convert_level(level),
+                        error = (Math.abs(audio.max_actual - audio.min_actual) / 100) / 2;
+                
+                    if (!proposed.between(current_level - error, current_level + error)) {
+                        audio.volume = proposed;
+                    }
                 }
             });
 

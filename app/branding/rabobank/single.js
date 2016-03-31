@@ -348,10 +348,13 @@
                 "present": 2,
                 "group": 12
             },
-            "vol_max": 3,
-            "vol_min": -50,
+            "vol_max": 650000,
+            "vol_min": -650000,
             $lights_to: function (level) {
                 this.light_level = level;
+            },
+            $share_volume: function (disp, vol) {
+                this[disp + '_volume'] = parseInt(vol);
             }
         }],
         Mixer: [{
