@@ -312,11 +312,6 @@
 
     <div class="catering" ng-if="catering" ng-touch="showModal('catering'); $root.$emit('$track', 'popup', 'catering')" ng-class="order_status">
         <modal name="catering" title="Catering" no-close="true">
-            <p>
-                <b>Service Required:</b> <span ios-toggle model="book.waiter"></span>
-                <span ng-show="book.waiter">&nbsp;staff have been notified</span>
-            </p>
-
             <h2 co-bind="'menu' as book.menu">Beverage Request</h2>
             <div ng-if="book.menu" class="ordering">
                 <select ng-model="book.item.qty" required="required" ng-init="book.item.qty='1'">
@@ -367,6 +362,27 @@
                 <button class="ok" ng-if="book.drinks.length > 0" ng-click="coModuleInstance.$exec('commit_order', buildOrder(book.drinks)); closeModal('catering'); book.item = []; book.item[0] = book.menu[0]; book.item.qty = '1'; book.drinks = [];">Confirm Order</button>
             </menu>
             <div style="clear: both"></div>
+        </modal>
+    </div>
+</div>
+
+<!-- 
+    Waiter Call
+ -->
+<div co-module="'Bookings'" co-bind="'catering'" ng-controller="OrderCtrl">
+    <span ng-init="book = {item: [], drinks: []}" co-bind="'waiter_call' as book.waiter" exec></span>
+    <span co-bind="'waiter_status'"></span>
+    <div
+        ng-touch="showModal('waiter_call'); $root.$emit('$track', 'popup', 'waiter_call')"
+        class="waiter"
+        ng-if="catering"
+        ng-class="waiter_status"
+    >
+        <modal name="waiter_call" title="Waiter Call">
+            <p>
+                <b>Service Required:</b> <span ios-toggle model="book.waiter"></span>
+                <span ng-show="book.waiter">&nbsp;staff have been notified</span>
+            </p>
         </modal>
     </div>
 </div>

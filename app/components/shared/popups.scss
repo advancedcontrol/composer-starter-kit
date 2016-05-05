@@ -72,6 +72,21 @@ div.tray {
                 }
             }
 
+            &.waiter {
+                background-image: url("../../components/images/waiter.svg");
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: auto 60%;
+
+                &.pending {
+                    background-color: rgba(255, 255, 0, 0.5);
+                }
+
+                &.accepted {
+                    background-color: rgba(0, 255, 0, 0.5);
+                }
+            }
+
             &.joining {
                 &::before {
                     content: "\f0c1";
