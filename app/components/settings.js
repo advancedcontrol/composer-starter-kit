@@ -6,6 +6,9 @@
     //  
     window.systemData = window.systemData || {};
     window.systemData['sys-B0'] = {
+        Computer: [{
+            authenticated: 1
+        }],
         System: [{
             "title": "Studio Projector",
             "tours_pin": "1234",
