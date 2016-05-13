@@ -3,7 +3,7 @@
 
     // NOTE:: window.systemData is used for development.
     //  In production the interface will obtain this information from the server
-    //  
+    //
     window.systemData = window.systemData || {};
     window.systemData['sys-B8'] = {
         Camera: [{
@@ -20,13 +20,14 @@
         }],
         Bookings: [{
             order_status: 'idle',
-            waiter_call: false,
+            waiter_status: 'idle',
+            waiter_call: true,
             $waiter_call: function (state) {
                 this.waiter_call = state;
                 if (state) {
-                    this.order_status = 'accepted';
+                    this.waiter_status = 'pending';
                 } else {
-                    this.order_status = 'idle';
+                    this.waiter_status = 'idle';
                 }
             },
             $commit_order: function () {
@@ -436,7 +437,7 @@
             ],
             call_status: {
                 id: 12
-                
+
             },
             $show_camera_pip: function (val) {
                 this.camera_pip = val;

@@ -64,7 +64,7 @@ div.tray {
                 }
 
                 &.pending {
-                    background-color: rgba(255, 255, 0, 0.5);
+                    background-color: rgba(255, 100, 0, 1);
                 }
 
                 &.accepted {
@@ -79,7 +79,7 @@ div.tray {
                 background-size: auto 60%;
 
                 &.pending {
-                    background-color: rgba(255, 255, 0, 0.5);
+                    background-color: rgba(255, 100, 0, 1);
                 }
 
                 &.accepted {
@@ -224,7 +224,7 @@ modal[name=mics] {
                 width: 40px;
 
                 @include image-toggle(
-                    $trueImage: "../../components/images/microphone-mute.svg", 
+                    $trueImage: "../../components/images/microphone-mute.svg",
                     $falseImage: "../../components/images/microphone.svg",
                     $width: 50px,
                     $height: 50px
@@ -298,4 +298,3 @@ modal[name=catering] {
         -webkit-appearance: none;
     }
 }
-

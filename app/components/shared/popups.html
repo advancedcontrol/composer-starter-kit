@@ -1,7 +1,7 @@
 
 <span class="name">{{SystemName}}</span>
 
-<!-- 
+<!--
     POWER Pop up
  -->
 <div>
@@ -14,7 +14,7 @@
             <menu co-bind="'joined'">
                 <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
                 <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
-                <button 
+                <button
                     class="ok"
                     ng-if="joined.rooms.length > 1"
                     ng-touch="coModuleInstance.$exec('shutdown', true)"
@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<!-- 
+<!--
     HELP Pop up
  -->
 <div>
@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<!-- 
+<!--
     Room Joining Pop up
  -->
 <div co-bind="'room_ids'">
@@ -135,7 +135,7 @@
     </div>
 </div>
 
-<!-- 
+<!--
     Screen Control Pop up
  -->
 <div co-bind="'blinds'">
@@ -196,7 +196,7 @@
     </div>
 </div>
 
-<!-- 
+<!--
     Manual Control Pop up
  -->
 <div>
@@ -222,20 +222,20 @@
     </div>
 </div>
 
-<!-- 
+<!--
     Microphone popup
  -->
 <div co-bind="'mics'">
     <div class="mics" ng-if="mics && mics[0].basic_mixer === undefined" co-module="'Mixer'" ng-touch="showModal('mics'); $root.$emit('$track', 'popup', 'microphones')">
         <modal name="mics" title="Microphones">
-            <div 
+            <div
                 class="mic"
                 ng-repeat="mic in mics"
                 co-index="mic.mixer || 1"
             >
                 <h2>{{mic.name}}</h2>
                 <div>
-                    <div 
+                    <div
                         class="mute"
                         co-bind="'fader' + (mic.feedback_id || mic.id) + '_' + (mic.mute_index || mic.index || 1) + '_mute' as mute"
                         exec="mute(mic.id, mute, mic.mute_index || mic.index || 1)"
@@ -259,14 +259,14 @@
     </div>
     <div class="mics" ng-if="mics && mics[0].basic_mixer === true" co-module="'Mixer'" ng-touch="showModal('mics'); $root.$emit('$track', 'popup', 'microphones')">
         <modal name="mics" title="Microphones">
-            <div 
+            <div
                 class="mic"
                 ng-repeat="mic in mics"
                 co-index="mic.mixer || 1"
             >
                 <h2>{{mic.name}}</h2>
                 <div>
-                    <div 
+                    <div
                         class="mute"
                         co-bind="'fader' + (mic.mute_feedback_id || mic.mute_id || mic.feedback_id || mic.id) + '_mute' as mute"
                         exec="mute(mic.mute_id || mic.id, mute)"
@@ -290,7 +290,7 @@
     </div>
 </div>
 
-<!-- 
+<!--
     Lighting Pop up
  -->
 <div co-bind="'lights'">
@@ -303,11 +303,11 @@
     </div>
 </div>
 
-<!-- 
+<!--
     Waiter Call
  -->
 <div co-module="'Bookings'" co-bind="'catering'" ng-controller="OrderCtrl">
-    <span ng-init="book = {item: [], drinks: []}" co-bind="'waiter_call' as book.waiter" exec></span>
+    <span ng-init="book = {item: [], drinks: []}"></span>
     <span co-bind="'order_status'"></span>
 
     <div class="catering" ng-if="catering" ng-touch="showModal('catering'); $root.$emit('$track', 'popup', 'catering')" ng-class="order_status">
@@ -366,22 +366,22 @@
     </div>
 </div>
 
-<!-- 
+<!--
     Waiter Call
  -->
-<div co-module="'Bookings'" co-bind="'catering'" ng-controller="OrderCtrl">
-    <span ng-init="book = {item: [], drinks: []}" co-bind="'waiter_call' as book.waiter" exec></span>
-    <span co-bind="'waiter_status'"></span>
+<div ng-init="booking = {}" co-module="'Bookings'" co-bind="'catering'">
+    <span co-bind="'waiter_call' as booking.waiter" exec></span>
+    <span co-bind="'waiter_status' as booking.waiter_status"></span>
     <div
         ng-touch="showModal('waiter_call'); $root.$emit('$track', 'popup', 'waiter_call')"
         class="waiter"
         ng-if="catering"
-        ng-class="waiter_status"
+        ng-class="booking.waiter_status"
     >
         <modal name="waiter_call" title="Waiter Call">
             <p>
-                <b>Service Required:</b> <span ios-toggle model="book.waiter"></span>
-                <span ng-show="book.waiter">&nbsp;staff have been notified</span>
+                <b>Service Required:</b> <span ios-toggle model="booking.waiter"></span>
+                <span ng-show="booking.waiter">&nbsp;staff have been notified</span>
             </p>
         </modal>
     </div>

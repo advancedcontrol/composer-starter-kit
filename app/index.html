@@ -7,7 +7,7 @@
 
     <title>ACA Rooms</title>
     <meta name="description" content="buildings made easy">
-    
+
 
     <!--
       https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
@@ -103,13 +103,13 @@
     <link rel="stylesheet" href="components/main/Phone/phone.css">
     <link rel="stylesheet" href="components/main/Wireless/wireless.css">
     <link rel="stylesheet" href="components/main/VC/vc.css">
-    
+
     <!-- Mobile styles -->
     <link rel="stylesheet" href="components/mobile/mobile.css">
 
     <!-- Define branding in its own style sheet -->
     <link rel="stylesheet" href="branding/rabobank/main.css">
-    
+
 
     <!-- Provide styles for common animations -->
     <link rel="stylesheet" href="animate.css/animate.css">
@@ -147,7 +147,7 @@
             <span co-bind="'analytics' as $root.analytics"></span>
 
             <!-- Show a splash page when offline -->
-            <div 
+            <div
                 class="splash"
                 ng-if="state !== 'online'"
                 co-bind="'name' as $root.SystemName"
@@ -231,7 +231,7 @@
     <script src="components/shared/audio-ctrl.js"></script>
     <script src="components/shared/order-ctrl.js"></script>
     <script src="components/shared/joining-ctrl.js"></script>
-    
+
     <script src="components/main/source-ctrl.js"></script>
     <script src="components/main/output-ctrl.js"></script>
     <script src="components/main/Phone/phone-ctrl.js"></script>
@@ -248,7 +248,7 @@
     <!-- build:remove -->
         <script src="analytics/tracking_test.js"></script>
 
-        <!-- 
+        <!--
             Place emulation references here so they are not included in the build.
             Composer Websocket.js is automatically replaced by mocksocket in development
          -->
