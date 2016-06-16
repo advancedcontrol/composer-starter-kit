@@ -3,7 +3,7 @@
 
     // Define the controller
     angular.module('AcaEngine')
-    
+
         .controller('JoiningCtrl', [
             '$scope',
 
@@ -53,6 +53,16 @@
                 $scope.coModuleInstance.$exec.apply($scope.coModuleInstance, args);
             };
 
+            $scope.blindMove = function (direction) {
+                var blind = $scope.blind,
+                    args = [blind[direction].func];
+
+                blind[direction].args.forEach(function (arg) {
+                    args.push(arg);
+                });
+
+                $scope.coModuleInstance.$exec.apply($scope.coModuleInstance, args);
+            };
         }]);
 
 }(this.angular));

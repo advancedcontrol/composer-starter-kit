@@ -188,8 +188,16 @@
                 >
                     <td>{{blind.title}}</td>
                     <!-- Controller in Joining Control due to laziness -->
-                    <td ng-controller="BlindCtrl"><div ios-toggle model="result.state" true-value="blind.closed_value" false-value="blind.open_value" on-change="blindChanged()"></div></td>
-                    <td class="onoff">{{result.state === blind.closed_value ? 'Closed' : 'Open'}}</td>
+                    <td ng-controller="BlindCtrl">
+                        <div ng-if="!blind.manual" ios-toggle model="result.state" true-value="blind.closed_value" false-value="blind.open_value" on-change="blindChanged()"></div>
+                        <div ng-if="blind.manual">
+                            <button ng-touch="blindMove('up')">Up</button>
+                        </div>
+                    </td>
+                    <td ng-if="!blind.manual" class="onoff">{{result.state === blind.closed_value ? 'Closed' : 'Open'}}</td>
+                    <td ng-if="blind.manual" ng-controller="BlindCtrl">
+                        <button ng-touch="blindMove('down')">Down</button>
+                    </td>
                 </tr>
             </table>
         </modal>

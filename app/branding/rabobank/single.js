@@ -82,6 +82,19 @@
                 "open_value": true,
                 "func": "relay",
                 "args": [1]
+            },
+            {
+                "title": "Blackout",
+                "module": "DigitalIO_1",
+                "manual": true,
+                "up": {
+                    "func": "toggle_group",
+                    "args": [1,34,false,"blackout_room"]
+                },
+                "down": {
+                    "func": "toggle_group",
+                    "args": [1,35,true,"blackout_room"]
+                }
             }],
             analytics: 'UA-69533861-111',
             "$powerup": function () {
