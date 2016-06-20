@@ -214,7 +214,7 @@ article.main {
                     display: block;
 
                     text-align: left;
-                    
+
 
                     nav {
                         display: block;
@@ -266,7 +266,7 @@ article.main {
                                 &.apps:before {
                                     content: "\f022";
                                 }
-                                
+
                                 &.tv:before {
                                     content: "\f03e";
                                 }
@@ -453,7 +453,7 @@ article.main {
                         &> div {
                             display: table-cell;
                             vertical-align: middle;
-                            
+
 
                             // Mute and Volume are here
                         }
@@ -467,7 +467,7 @@ article.main {
         width: 40px;
 
         @include image-toggle(
-            $trueImage: "../../components/images/volume-mute.svg", 
+            $trueImage: "../../components/images/volume-mute.svg",
             $falseImage: "../../components/images/volume.svg",
             $width: 30px,
             $height: 30px
@@ -547,6 +547,10 @@ article.main {
 
         &.Phone::before {
             content: "\f095";
+        }
+
+        &.TV::before {
+            content: "\f26c";
         }
 
         &.Camera::before, &.vc-camera::before {

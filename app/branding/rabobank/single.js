@@ -6,6 +6,43 @@
     //
     window.systemData = window.systemData || {};
     window.systemData['sys-B8'] = {
+        Television: [{
+            "name": "L16 Stairs",
+            "box_id": 23,
+            "channelName": "ABC News 24",
+            "channelNames": [
+                "ABC News 24",
+                "ABC 1",
+                "ABC 2",
+                "ABC 3",
+                "One",
+                "SBS One",
+                "SBS 2",
+                "7Mate",
+                "Seven",
+                "7TWO",
+                "Nine",
+                "Ten",
+                "Eleven",
+                "GO",
+                "GEM",
+                "Bloomberg",
+                "CNN",
+                "CNBC",
+                "BBC World",
+                "Sky News",
+                "Nick Jr.",
+                "Some other channel"
+            ],
+            $goto: function(name) {
+                this.channelName = name;
+            },
+            "input_list": {
+                hdmi: "HDMI",
+                vga: "VGA",
+                display_port: "Display Port"
+            }
+        }],
         Camera: [{
             joy_right: -0x14,
             joy_left: 0x14,
@@ -204,14 +241,18 @@
                 "ABC Dig"
             ],
             "inputs": [
-            "Chromebox",
+                "Chromebox",
                 "Lectern",
                 "Laptop",
                 "Wireless",
                 "Phone",
                 "VC",
                 "Camera",
-                "Wired"
+                "Wired",
+                "TV"
+            ],
+            "TV": [
+                "tv_input"
             ],
             "PC": [
                 "g1_pc1"
@@ -244,6 +285,13 @@
             "sources": {
                 "g1_pc1": {
                     "title": "Resident PC",
+                    "input": 14,
+                    "source": "hdmi",
+                    "type": "residentpc",
+                    "colour": "#F58172"
+                },
+                "tv_input": {
+                    "title": "TV",
                     "input": 14,
                     "source": "hdmi",
                     "type": "residentpc",

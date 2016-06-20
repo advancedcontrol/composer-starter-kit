@@ -1,0 +1,155 @@
+
+#tv-inputs {
+    text-align: center;
+    overflow: scroll;
+
+    h1 {
+        margin-bottom: 15px;
+        margin-top: 30px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 1em auto;
+
+        li {
+            cursor: pointer;
+            border: 1px solid #999;
+            background-color: #f9f9f9;
+            border-radius: 3px;
+
+            &.highlight {
+                background-color: #fdfd96;
+            }
+        }
+
+        &#tv {
+            padding-left: 10px;
+
+            li {
+                display: inline-block;
+                width: 90px;
+                height: 90px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                overflow: hidden;
+
+                div {
+                    width: 70px;
+                    height: 70px;
+                    margin-top: 10px;
+                    margin-left: 10px;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center center;
+
+                    // abc
+                    &.abc_1 {
+                        background-image: url(../../../components/images/tv/abc_1.svg);
+                    }
+
+                    &.abc_2 {
+                        background-image: url(../../../components/images/tv/abc_2.svg);
+                    }
+
+                    &.abc_3 {
+                        background-image: url(../../../components/images/tv/abc_3.svg);
+                    }
+
+                    &.abc_news_24 {
+                        background-image: url(../../../components/images/tv/abc_news_24.svg);
+                    }
+
+
+                    // sbs
+                    &.sbs_one {
+                        background-image: url(../../../components/images/tv/sbs_one.svg);
+                    }
+
+                    &.sbs_2 {
+                        background-image: url(../../../components/images/tv/sbs_2.svg);
+                    }
+
+
+                    // 10
+                    &.one {
+                        background-image: url(../../../components/images/tv/one.svg);
+                    }
+
+                    &.ten {
+                        background-image: url(../../../components/images/tv/ten.svg);
+                    }
+
+                    &.eleven {
+                        background-image: url(../../../components/images/tv/eleven.svg);
+                    }
+
+
+                    // 9
+                    &.nine {
+                        background-image: url(../../../components/images/tv/nine.svg);
+                    }
+
+                    &.gem {
+                        background-image: url(../../../components/images/tv/gem.svg);
+                    }
+
+                    &.go {
+                        background-image: url(../../../components/images/tv/go.svg);
+                    }
+
+
+                    // 7
+                    &.seven {
+                        background-image: url(../../../components/images/tv/seven.svg);
+                    }
+
+                    &.seven_mate {
+                        background-image: url(../../../components/images/tv/seven_mate.svg);
+                    }
+
+                    &.seven_two {
+                        background-image: url(../../../components/images/tv/seven_two.svg);
+                    }
+
+                    // Foxtel
+                    &.bloomberg {
+                        background-image: url(../../../components/images/tv/bloomberg_logo.svg);
+                    }
+
+                    &.cnn {
+                        background-image: url(../../../components/images/tv/cnn.svg);
+                    }
+
+                    &.cnbc {
+                        background-image: url(../../../components/images/tv/cnbc_logo.svg);
+                    }
+
+                    &.bbc_world {
+                        background-image: url(../../../components/images/tv/bbc_world_news.svg);
+                    }
+
+                    &.sky_news {
+                        background-image: url(../../../components/images/tv/sky_news.svg);
+                    }
+
+                    &.nick_jr_ {
+                        background-image: url(../../../components/images/tv/nick_jr.svg);
+                    }
+                }
+            }
+        }
+
+        &#others {
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+
+            li {
+                padding: 8px;
+                margin-top: 7px;
+                font-size: 16px;
+            }
+        }
+    }
+}
