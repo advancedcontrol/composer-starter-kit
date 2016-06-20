@@ -219,3 +219,23 @@ main.tours {
         }
     }
 }
+
+
+#captioning {
+    div.modal-content {
+        margin: 0em 1em;
+
+        > div {
+            padding-bottom: 1em;
+        }
+
+        button {
+            font-size: larger;
+            margin: 0.5em;
+        }
+
+        #captionslide {
+            padding: 0.8em;
+        }
+    }
+}

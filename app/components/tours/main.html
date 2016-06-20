@@ -20,16 +20,37 @@
         <div style="clear: both"></div>
     </modal>
 
-    <modal name="captioning" title="Captioning Control">
-        <p co-module="'Lifter'" co-bind="'connected'">
-            <button ng-touch="coModuleInstance.$exec('down'); ">Open</button>
-            <button ng-touch="coModuleInstance.$exec('up'); ">Close</button>
-            <br /><br /><button ng-touch="coModuleInstance.$exec('stop'); ">Stop</button>
-        </p>
-        <menu co-module="'Computer'" co-bind="'connected'">
-            <button class="cancel" ng-touch="coModuleInstance.$exec('launch_application', 'c:\\aca-apps\\operahouse\\aca-caption.bat'); closeModal('captioning'); ">Captioning</button>
-            <button class="ok" ng-touch="coModuleInstance.$exec('launch_application', 'c:\\aca-apps\\operahouse\\aca-kiosk.bat'); closeModal('captioning'); ">Tours</button>
-        </menu>
+    <modal id="captioning" name="captioning" title="Captioning Control">
+        <span co-bind="'explicit_stop'"></span>
+        <div class="screen" co-module="'Lifter'" co-bind="'connected'">
+            <h3>Screen Mounting</h3>
+            <table>
+                <tr>
+                    <td><button ng-touch="coModuleInstance.$exec('down'); ">Open</button></td>
+                    <td><button ng-touch="coModuleInstance.$exec('up'); ">Close</button></td>
+                </tr>
+                <tr ng-if="explicit_stop">
+                    <td colspan="2" style="text-align: center"><button ng-touch="coModuleInstance.$exec('stop'); ">Stop</button></td>
+                </tr>
+            </table>
+        </div>
+        <div co-module="'Display'" co-bind="'power'">
+            <b>Display Power:</b>&nbsp;&nbsp;&nbsp;<div ios-toggle model="power"></div>
+            <span class="onoff">{{power ? 'On' : 'Off'}}</span>
+        </div>
+        <div co-module="'Computer'" co-bind="'connected'">
+            <h3>Select Mode:</h3>
+            <button ng-touch="coModuleInstance.$exec('launch_application', 'c:\\aca-apps\\operahouse\\aca-kiosk.bat');">Tours</button>
+            <button ng-touch="coModuleInstance.$exec('launch_application', 'c:\\aca-apps\\operahouse\\aca-caption.bat');">Captioning</button>
+        </div>
+        <div>
+            <h3 co-bind="'show_volume'">Select Audio:</h3>
+            <button ng-touch="coModuleInstance.$exec('speaker_select', 'external');">Tours Headset</button>
+            <button ng-touch="coModuleInstance.$exec('speaker_select', 'internal');">Speakers</button>
+            <div id="captionslide" ng-show="show_volume" co-module="'Display'" co-bind="'volume'" exec>
+                <div co-range model="volume"></div>
+            </div>
+        </div>
         <div style="clear: both"></div>
     </modal>
 
@@ -76,4 +97,3 @@
         <div id="scheduling" ng-class="{visible: scheduling}"><div class="spinner"></div></div>
     </div>
 </div>
-

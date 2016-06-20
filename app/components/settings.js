@@ -3,7 +3,7 @@
 
     // NOTE:: window.systemData is used for development.
     //  In production the interface will obtain this information from the server
-    //  
+    //
     window.systemData = window.systemData || {};
     window.systemData['sys-B0'] = {
         Computer: [{
@@ -26,6 +26,14 @@
                 this.state = 'shutdown';
                 for (var i = 0; i < this.$_self.Display.length; i += 1) {
                     this.$_self.Display[i].power = false;
+                }
+            },
+
+            $speaker_select: function (mode) {
+                if (mode === 'internal') {
+                    this.show_volume = true;
+                } else {
+                    this.show_volume = false;
                 }
             },
 
