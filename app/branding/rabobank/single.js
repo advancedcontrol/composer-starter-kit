@@ -59,6 +59,12 @@
             order_status: 'idle',
             waiter_status: 'idle',
             waiter_call: true,
+
+            //meeting_ending: true,
+            last_meeting_started: 23,
+            meeting_pending: 24,
+            meeting_pending_notice: true,
+
             $waiter_call: function (state) {
                 this.waiter_call = state;
                 if (state) {

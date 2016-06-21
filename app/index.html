@@ -147,6 +147,45 @@
         <div ng-if="coSystem.id" co-module="'System'" co-bind="'state'">
             <span co-bind="'analytics' as $root.analytics"></span>
 
+            <span ng-controller="Modals" ng-init="bookings = {}" co-module="'Bookings'">
+                <span co-bind="'meeting_ending' as bookings.ending"></span>
+                <span co-bind="'last_meeting_started' as bookings.last_started"></span>
+                <span co-bind="'meeting_pending' as bookings.pending"></span>
+                <span co-bind="'meeting_pending_notice' as bookings.pending_notice"></span>
+
+                <span ng-if="bookings.ending === true" ng-init="showModal('meeting_ending')"></span>
+                <span ng-if="bookings.ending !== true" ng-init="closeModal('meeting_ending')"></span>
+
+                <modal name="meeting_ending" title="Meeting Ending" no-close="true">
+                    <p><b>There are back to back meetings scheduled for this room.<br />Please start wrapping up your meeting.</b></p>
+                    <menu>
+                        <button
+                            class="ok"
+                            ng-touch="coModuleInstance.$exec('clear_end_meeting_warning'); closeModal('meeting_ending')"
+                        >Dismiss</button>
+                    </menu>
+                    <div style="clear: both"></div>
+                    <audio ng-if="bookings.ending === true" ng-attr-autoplay="{{bookings.ending === true}}" loop>
+                        <source src="alert.aac" type="audio/aac">
+                        <source src="alert.mp3" type="audio/mp3">
+                    </audio>
+                </modal>
+
+                <span ng-if="bookings.pending_notice === true" ng-init="showModal('start_meeting')"></span>
+                <span ng-if="bookings.pending_notice !== true || bookings.last_started === bookings.pending" ng-init="closeModal('start_meeting')"></span>
+
+                <modal name="start_meeting" title="Start Meeting?" no-close="true">
+                    <p><b>There is a meeting scheduled to start in this room.<br />The meeting will be cancelled if it is not started.</b></p>
+                    <menu>
+                        <button
+                            class="ok"
+                            ng-touch="coModuleInstance.$exec('start_meeting', bookings.pending); closeModal('start_meeting')"
+                        >Start Meeting</button>
+                    </menu>
+                    <div style="clear: both"></div>
+                </modal>
+            </span>
+
             <!-- Show a splash page when offline -->
             <div
                 class="splash"
