@@ -28,7 +28,11 @@
                     "CNBC": true,
                     "BBC World": true,
                     "Sky News": true,
-                    "Nick Jr.": true
+                    "Nick Jr.": true,
+                    "Fox Sports": true,
+                    "ESPN": true,
+                    "Fox Sports News": true,
+                    "Fox Footy": true
                 };
 
                 $scope.data = {};

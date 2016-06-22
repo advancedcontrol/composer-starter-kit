@@ -32,6 +32,13 @@
                 "BBC World",
                 "Sky News",
                 "Nick Jr.",
+                "Fox Sports",
+                "Fox Sports 2",
+                "Fox Sports 3",
+                "ESPN",
+                "ESPN 1",
+                "Fox Sports News",
+                "Fox Footy",
                 "Some other channel"
             ],
             $goto: function(name) {
