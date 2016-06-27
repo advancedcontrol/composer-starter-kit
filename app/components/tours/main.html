@@ -7,7 +7,11 @@
     <span co-module="'Computer'" co-bind="'authenticated'">
         <button ng-show="authenticated >= 0" id="captioning" ng-touch="showModal('captioning')"><i class="fa fa-cog"></i></button>
     </span>
-    <button ng-touch="coModuleInstance.$exec('toggle_mute')" id="picture-mute"><i class="fa fa-desktop"></i><i ng-show="muted" class="fa fa-circle-o"></i><i ng-show="!muted" class="fa fa-ban"></i></button>
+    <button ng-touch="coModuleInstance.$exec('toggle_mute')" id="picture-mute">
+        <i class="fa fa-desktop"></i>
+        <i ng-show="!muted" class="fa fa-circle-o"></i>
+        <i ng-show="muted" class="fa fa-ban"></i>
+    </button>
     <button ng-touch="showModal('finish')" id="power-off"><i class="fa fa-power-off"></i></button>
     <modal name="finish" title="Finish Presentation?">
         <p>
@@ -22,15 +26,15 @@
 
     <modal id="captioning" name="captioning" title="Captioning Control">
         <span co-bind="'explicit_stop'"></span>
-        <div class="screen" co-module="'Lifter'" co-bind="'connected'">
+        <div class="screen">
             <h3>Screen Mounting</h3>
             <table>
                 <tr>
-                    <td><button ng-touch="coModuleInstance.$exec('down'); ">Open</button></td>
-                    <td><button ng-touch="coModuleInstance.$exec('up'); ">Close</button></td>
+                    <td><button ng-touch="coModuleInstance.$exec('open_mounting'); ">Open</button></td>
+                    <td><button ng-touch="coModuleInstance.$exec('close_mounting'); ">Close</button></td>
                 </tr>
                 <tr ng-if="explicit_stop">
-                    <td colspan="2" style="text-align: center"><button ng-touch="coModuleInstance.$exec('stop'); ">Stop</button></td>
+                    <td colspan="2" style="text-align: center"><button ng-touch="coModuleInstance.$exec('stop_mounting'); ">Stop</button></td>
                 </tr>
             </table>
         </div>
@@ -84,7 +88,7 @@
                 <div>
                     <h1>{{lang.name}}</h1>
                     <div btn-group="lang.name">
-                        <button ng-repeat="playlist in playlists[lang.id]" btn="loop" ng-click="play(playlist)">
+                        <button ng-repeat="playlist in playlists[lang.id]" btn="loop" ng-click="play(playlist); coModuleInstance.$exec('display_on');">
                             <div class="img"><img ng-src="{{playlist.poster_url}}"></div>
                             <h1 class="desc">{{playlist.name}}</h1>
                             <div class="cover" ng-if="scheduled_id == playlist.id" ng-click="$event.stopPropagation()"><i class="pe-7s-check"></i></div>
