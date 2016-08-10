@@ -41,6 +41,10 @@ article.main {
     }
 
 
+    // ================================
+    // We Present and other PwC sources
+    // ================================
+
     // We Present Styles
     .source-image, tabs nav > div > div {
         &.WePresent::before, &.wepresent::before {
@@ -96,14 +100,94 @@ article.main {
 // Mobile styles
 article.mobile {
     header {
-        background-color: #942836;
+        background-color: $header-color;
 
-        span > div.logo {
-            background-image: url("../../branding/pwc/logo.png");
+        text-align: left;
+        height: 80px;
+        line-height: 80px;
 
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
+        &.name {
+            display: inline-block;
+            padding-left: 20px;
+        }
+
+        &#show-menu {
+            height: 40px !important;
+            margin-top: 20px;
+            width: 120px;
+            padding-right: 0.5em;
+        }
+
+        span {
+            > div.logo {
+                background-image: url("../../branding/pwc/logo.png");
+
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+        }
+    }
+
+    &.navDecorate > div#mobile-sources {
+        @include box-shadow(3px 0px 5px 0px rgba(0,0,0,0.1));
+    }
+
+    > div#mobile-sources {
+        background-color: $header-color;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 80px;
+        @include box-shadow(3px 0px 5px 0px rgba(0,0,0,0.1));
+
+        h2 {
+            display: none;
+        }
+
+        p {
+            margin-top: 0px;
+            font-weight: 300;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .sources button {
+            margin-bottom: 0px;
+            border-radius: 0px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            outline: none;
+
+            color: white;
+            font-size: 130%!important;
+
+            &.active {
+                @include box-shadow(inset 0 0 10px rgba(0,0,0,0.6));
+            }
+
+            > span {
+                font-size: 130%!important;
+            }
+        }
+    }
+
+    > aside #aside-wrapper {
+        #nav-wrapper {
+            > nav {
+                display: none !important;
+            }
+
+            > section {
+                box-shadow: none !important;
+                margin-right: 0 !important;
+            }
+        }
+
+        #source-info {
+            h1 {
+                margin: 10px 0px 15px 0px;
+            }
         }
     }
 
@@ -111,6 +195,20 @@ article.mobile {
         background-color: darken($header-color, 10%);
     }
 
+
+    // ----------------
+    // CAMERA CONTROL
+    // ----------------
+    div.camera-select {
+        div.camera-control {
+            width: 100%;
+        }
+    }
+
+
+    // ============
+    // We Present!!
+    // ============
     div#mobile-sources div.sources > button > span {
         &.wepresent {
             display: inline-block;

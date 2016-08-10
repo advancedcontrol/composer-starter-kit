@@ -70,7 +70,7 @@
             //meeting_ending: true,
             last_meeting_started: 23,
             meeting_pending: 24,
-            meeting_pending_notice: true,
+            meeting_ending: true,
 
             $waiter_call: function (state) {
                 this.waiter_call = state;
@@ -84,37 +84,119 @@
                 this.order_status = 'pending';
             },
             catering: 'sys-Catering',
-            "menu": [{
-                "name": "Coffee",
+            "menu": [
+            {
+                "name": "Favourites",
+                "icon": "star",
                 "options": [{
                     "name": "Flat White",
-                    "subinfo": "Milk type?",
-                    "options": [{
-                        "name": "Full cream"
-                    },
-                    {
-                        "name": "Skim milk"
-                    }]
+                    "extras": true
                 },{
                     "name": "Cappuccino",
-                    "subinfo": "Milk type?",
-                    "options": [{
-                        "name": "Full cream"
-                    },
-                    {
-                        "name": "Skim milk"
-                    }]
-                }]
-            }, {
-                "name": "Juice",
+                    "extras": true
+                },{
+                    "name": "Long Black"
+                },{
+                    "name": "line-break"
+                },{
+                    "name": "Sparkling Water"
+                },{
+                    "name": "Cranberry Juice"
+                },{
+                    "name": "line-break"
+                },{
+                    "name": "English Breakfast",
+                    "extras": true
+                },{
+                    "name": "Lemon Ginger"
+                },{
+                    "name": "Peppermint"
+                },{
+                    "name": "line-break"
+                },{
+                    "name": "Hot Chocolate"
+                }],
+                "extras": {
+                    "milk": ["Full Cream", "Skim", "Soy", "none"],
+                    "sugar": ["none", "Brown", "White", "Artificial"]
+                }
+            },
+            {
+                "name": "Coffee",
+                "icon": "coffee",
                 "options": [{
-                    "name": "Apple"
+                    "name": "Short Black"
+                },{
+                    "name": "Long Black"
+                },{
+                    "name": "Piccolo"
+                },{
+                    "name": "line-break"
+                },{
+                    "name": "Flat White",
+                    "extras": true
+                },{
+                    "name": "Latte",
+                    "extras": true
+                },{
+                    "name": "Cappuccino",
+                    "extras": true
+                },{
+                    "name": "Mocha"
+                }],
+                "extras": {
+                    "milk": ["Full Cream", "Skim", "Soy", "none"],
+                    "sugar": ["none", "Brown", "White", "Artificial"]
+                }
+            },
+            {
+                "name": "Tea",
+                "icon": "tea",
+                "options": [{
+                    "name": "English Breakfast",
+                    "extras": true
+                },{
+                    "name": "line-break"
+                },{
+                    "name": "Chai Latte"
+                },{
+                    "name": "Chai"
+                },{
+                    "name": "Camomile"
+                },{
+                    "name": "Green"
+                },{
+                    "name": "line-break"
+                },{
+                    "name": "Lemon Ginger"
+                },{
+                    "name": "Peppermint"
+                }],
+                "extras": {
+                    "milk": ["Skim", "Soy", "Full Cream", "none"],
+                    "sugar": ["none", "Brown", "White", "Artificial"]
+                }
+            }, {
+                "name": "Cold Drinks",
+                "icon": "lemonade",
+                "options": [{
+                    "name": "Sparkling Water"
+                },{
+                    "name": "line-break"
                 }, {
-                    "name": "Orange"
+                    "name": "Coca Cola"
                 }, {
-                    "name": "Pineapple"
+                    "name": "Coke Zero"
                 }, {
-                    "name": "Blood Orange"
+                    "name": "Diet Coke"
+                },{
+                    "name": "line-break"
+                }, {
+                    "name": "Apple Juice"
+                }, {
+                    "name": "Orange Juice"
+                }, {
+                    "name": "Cranberry Juice"
                 }]
             }]
         }],
@@ -125,13 +207,17 @@
         }],
         System: [{
             "blinds": [{
-                "title": "Glass",
+                "title": "Shades",
                 "module": "DigitalIO_1",
-                "feedback": "relay1",
-                "closed_value": false,
-                "open_value": true,
-                "func": "relay",
-                "args": [1]
+                "manual": true,
+                "up": {
+                    "func": "toggle_group",
+                    "args": [1,34,false,"blackout_room"]
+                },
+                "down": {
+                    "func": "toggle_group",
+                    "args": [1,35,true,"blackout_room"]
+                }
             },
             {
                 "title": "Blackout",
@@ -232,7 +318,7 @@
                 "query_ids": ["16-10pVcRoomPhoneProgress", "16-10pVcRoomPhoneRinging", "16-10pVcRoomPhoneOffHook"]
             },
             "mics_mutes": [105, 106, 107],
-            "name": "Meeting Room 13A",
+            "name": "Meeting Room",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "PC",
@@ -254,15 +340,18 @@
                 "ABC Dig"
             ],
             "inputs": [
-                "Chromebox",
-                "Lectern",
-                "Laptop",
                 "Wireless",
                 "Phone",
                 "VC",
                 "Camera",
+                "TV"
+/*
+                "Lectern",
+                
+                
                 "Wired",
                 "TV"
+    */
             ],
             "TV": [
                 "tv_input"
@@ -325,10 +414,10 @@
                     "colour": "#FFDB8E"
                 },
                 "laptop_usb": {
-                    "title": "Laptop Wireless",
+                    "title": "Laptop HDMI",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "wireless",
+                    "type": "aux_hdmi",
                     "colour": "#FFDB8E"
                 },
                 "laptop_wireless": {
@@ -378,18 +467,6 @@
             },
             "outputs": {
                 "Display_1": {
-                    "output": [
-                        3,
-                        23
-                    ],
-                    "audio_out": 21,
-                    "mixer_id": 105,
-                    "basic_mixer": true,
-                    "type": "lcd",
-                    "pri": 1,
-                    "title": "Display"
-                },
-                "Display_2": {
                     "output": [
                         3,
                         23

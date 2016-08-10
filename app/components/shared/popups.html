@@ -312,64 +312,66 @@
 </div>
 
 <!--
-    Waiter Call
+    Coffee Ordering
  -->
 <div co-module="'Bookings'" co-bind="'catering'" ng-controller="OrderCtrl">
-    <span ng-init="book = {item: [], drinks: []}"></span>
     <span co-bind="'order_status'"></span>
+    <span co-bind="'waiter_call' as book.waiter" exec></span>
+    <span co-bind="'waiter_status' as book.waiter_status"></span>
 
-    <div class="catering" ng-if="catering" ng-touch="showModal('catering'); $root.$emit('$track', 'popup', 'catering')" ng-class="order_status">
-        <modal name="catering" title="Catering" no-close="true">
-            <h2 co-bind="'menu' as book.menu">Beverage Request</h2>
-            <div ng-if="book.menu" class="ordering">
-                <select ng-model="book.item.qty" required="required" ng-init="book.item.qty='1'">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
+    <div class="catering" ng-if="catering" ng-touch="reset(); showModal('catering'); $root.$emit('$track', 'popup', 'catering')" ng-class="order_status">
+        <modal name="catering" title="Beverage Request" no-close="true">
+            <div class="selection">
+                <tabs type="touch" co-bind="'menu' as book.menu" >
+                    <pane ng-repeat="category in book.menu" text="{{category.name}}" icon="{{category.icon}}">
+                        <div class="menu-item" ng-repeat="beverage in category.options" ng-class="{lineBreak: beverage.name === 'line-break'}">
+                            <label ng-if="beverage.name !== 'line-break'">
+                                <input type="radio" ng-model="book.selected.name" ng-value="beverage.name" ng-change="selected(category, beverage, beverage.selected)" /> {{beverage.name}}
+                            </label>
+                        </div>
 
-                <select ng-model="book.item[0]" ng-options="item as item.name for item in book.menu" ng-init="book.item[0] = book.menu[0]"></select>
-                <select ng-if="book.item[0].options" ng-model="book.item[1]" ng-options="item as item.name for item in book.item[0].options"></select>
-                <select ng-if="book.item[1].options" ng-model="book.item[2]" ng-options="item as item.name for item in book.item[1].options"></select>
-                <select ng-if="book.item[2].options" ng-model="book.item[3]" ng-options="item as item.name for item in book.item[2].options"></select>
-                <br /><br />
-                <textarea ng-virtual-keyboard="{kt: 'US International', relative: false, size: 5}"
-                    ng-model="book.item.notes"
-                    rows="3"
-                    cols="35"
-                    placeholder="additional information">
-                </textarea>&nbsp;&nbsp;
-                <button ng-touch="book.drinks.push(book.item); book.item = []; book.item[0] = book.menu[0]; book.item.qty = '1';">Add to Order</button>
+                        <div class="extras" ng-if="category.extras && book.selected.extras">
+                            <h3>Options:</h3>
+                            <table>
+                                <tr ng-repeat="(title, options) in category.extras">
+                                    <td class="title">{{title}}:</td>
+                                    <td class="option" ng-repeat="extra in options">
+                                        <label>
+                                            <input type="radio" ng-model="book.selected.items[title]" ng-value="extra" />
+                                            {{extra}}
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </pane>
+                </tabs>
+
+                <menu>
+                    <button class="cancel" ng-click="closeModal('catering');">Cancel Order</button>
+                    <button class="add" ng-touch="addToOrder()">Add to Order</button>
+                </menu>
             </div>
 
-            <table ng-if="book.drinks.length > 0">
-                <tr>
-                    <th>Qty</th>
-                    <th>Beverage</th>
-                    <th>Notes</th>
-                    <th></th>
-                </tr>
-                <tr ng-repeat="item in book.drinks">
-                    <td>{{item.qty}}</td>
-                    <td>{{generateName(item)}}</td>
-                    <td>{{item.notes.substr(0, 30)}}</td>
-                    <td><button ng-click="book.item = item; removeItem(book.drinks, item);">Edit / Remove</button></td>
-                </tr>
-            </table>
+            <div id="orderoverview">
+                <b>Order:</b>
 
+                <table>
+                    <tr ng-repeat="item in book.drinks">
+                        <td>{{generateName(item)}}</td>
+                        <td><button ng-click="removeItem($index);">Remove</button></td>
+                    </tr>
+                </table>
 
-            <menu>
-                <button class="cancel" ng-click="closeModal('catering'); book.item = []; book.item[0] = book.menu[0]; book.item.qty = '1'; book.drinks = [];">Dismiss / Close</button>
-                <button class="ok" ng-if="book.drinks.length > 0" ng-click="coModuleInstance.$exec('commit_order', buildOrder(book.drinks)); closeModal('catering'); book.item = []; book.item[0] = book.menu[0]; book.item.qty = '1'; book.drinks = [];">Confirm Order</button>
-            </menu>
+                <menu>
+                    <button class="ok" ng-click="submit_order() && closeModal('catering')">Submit Order</button>
+                </menu>
+            </div>
             <div style="clear: both"></div>
+            <div id="orderwaiter">
+                <b>Service Required:</b> <span ios-toggle model="booking.waiter"></span>
+                <span ng-show="booking.waiter">&nbsp;staff have been notified</span>
+            </div>
         </modal>
     </div>
 </div>
