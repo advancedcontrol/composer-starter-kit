@@ -12,7 +12,7 @@
                 if (val) {
                     $scope.outputNames = Object.keys(val);
                     $scope.numOutputs = $scope.outputNames.length;
-                    $scope.poweredOutputs = 0
+                    $scope.poweredOutputs = 0;
 
                     $scope.hasScreens = false;
                     $scope.hasLifters = false;
