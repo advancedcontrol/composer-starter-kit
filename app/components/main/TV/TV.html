@@ -5,7 +5,6 @@
             <span co-bind="'channelName'"></span>
             <div co-bind="'channelNames' as data.channelNames"></div>
 
-            <h1>TV</h1>
             <ul id="tv">
                 <li ng-repeat="name in icons" ng-click="coModuleInstance.$exec('goto', name)" ng-class="{highlight: name === channelName}">
                     <div ng-class="build_css_class(name)"></div>

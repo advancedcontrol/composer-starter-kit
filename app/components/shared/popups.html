@@ -195,6 +195,9 @@
                         </div>
                     </td>
                     <td ng-if="!blind.manual" class="onoff">{{result.state === blind.closed_value ? 'Closed' : 'Open'}}</td>
+                    <td ng-if="blind.manual && blind.stop" ng-controller="BlindCtrl">
+                        <button ng-touch="blindMove('stop')">Stop</button>
+                    </td>
                     <td ng-if="blind.manual" ng-controller="BlindCtrl">
                         <button ng-touch="blindMove('down')">Down</button>
                     </td>
