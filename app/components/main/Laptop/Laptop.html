@@ -2,7 +2,7 @@
 <div co-bind="'Laptop' as source_names" id="laptop-inputs">
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div ng-if="numOutputs > 1 || has_preview">
-            You can project on one or both displays in this room.<br /><br />
+            You can project on one or more displays in this room.<br /><br />
             <span ng-if="source_names.length > 1">
                 Select a laptop connection point, then<br />
             </span>

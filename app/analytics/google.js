@@ -10,6 +10,7 @@
             var fixed_panel = $location.search().hasOwnProperty('fixed_device'),
                 sys_id = $location.search().ctrl,
                 system_name,
+                zones,
                 queue = [],
                 timers = {},
                 self = this,
@@ -53,6 +54,9 @@
                     popup: function (name) {
                         ga('send', 'event', 'popup', name);
                     },
+                    iptv: function (channel) {
+                        ga('send', 'event', 'iptv', channel);
+                    },
                     state: function (state, mode) {
                         if (state === 'online') {
                             ga('set', 'dimension4', mode);
@@ -74,7 +78,7 @@
                     types[type](arg1, arg2, arg3);
                 },
                 configure_analytics = function () {
-                    if (user && analytics_id && sys_id && system_name) {
+                    if (user && analytics_id && sys_id && system_name && zones) {
                         // Configure Analytics here
                         ga('create', {
                             trackingId: analytics_id,
@@ -95,6 +99,7 @@
                         ga('set', 'dimension2', fixed_panel);
                         ga('set', 'dimension3', sys_id);
                         ga('set', 'dimension7', system_name);
+                        ga('set', 'dimension8', zones);
 
                         configured = true;
                         console.log('Google Analytics: Loaded');
@@ -164,6 +169,20 @@
                     } else {
                         // Update analytics here
                         ga('set', 'dimension7', system_name);
+                    }
+                }
+            });
+
+            $rootScope.$on('SystemZones', function (event, val) {
+                if (val) {
+                    // Convert array such as: ['zone_1', 'zone_2'] into a string: "zone_1 zone_2"
+                    zones = JSON.stringify(val).split(/"|\[|\]/).join('').split(',').join(' ');
+
+                    if (!configured) {
+                        configure_analytics();
+                    } else {
+                        // Update zones here
+                        ga('set', 'dimension8', zones);
                     }
                 }
             });

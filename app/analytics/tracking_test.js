@@ -14,6 +14,7 @@
                 user,
                 analytics_id,
                 system_name,
+                zones,
                 configured = false,
                 types = {
                     present: function (output_name, source_name) {
@@ -24,6 +25,9 @@
                     },
                     popup: function (name) {
                         console.warn('Event popup', name);
+                    },
+                    iptv: function (channel) {
+                        console.warn('IPTV channel', channel);
                     },
                     state: function (state, mode) {
                         if (state === 'online') {
@@ -39,10 +43,11 @@
                     types[type](arg1, arg2, arg3);
                 },
                 configure_analytics = function () {
-                    if (user && analytics_id && sys_id && system_name) {
+                    if (zones && !configured) {
                         // Configure Analytics here
 
                         configured = true;
+                        console.warn('tracking zones', zones);
 
                         var i;
                         for (i = 0; i < queue.length; i += 1) {
@@ -84,6 +89,19 @@
             $rootScope.$watch('SystemName', function (val) {
                 if (val) {
                     system_name = val;
+
+                    if (!configured) {
+                        configure_analytics();
+                    } else {
+                        // Update analytics here
+                    }
+                }
+            });
+
+            $rootScope.$on('SystemZones', function (event, val) {
+                if (val) {
+                    // Convert array such as: ['zone_1', 'zone_2'] into a string: "zone_1 zone_2"
+                    zones = JSON.stringify(val).split(/"|\[|\]/).join('').split(',').join(' ');
 
                     if (!configured) {
                         configure_analytics();
