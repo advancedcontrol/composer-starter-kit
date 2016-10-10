@@ -87,7 +87,7 @@
                 $scope.$watch('state', function (val) {
                     if (val === 'online') {
                         startTimeout = $timeout(function () {
-                            state = 'shutdown';
+                            $scope.state = 'shutdown';
                             startTimeout = null;
                         }, 60000);
                     } else if (startTimeout) {

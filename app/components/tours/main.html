@@ -26,15 +26,23 @@
 
     <modal id="captioning" name="captioning" title="Captioning Control">
         <span co-bind="'explicit_stop'"></span>
+        <span co-bind="'has_screen'"></span>
+        <span co-bind="'can_blind'"></span>
+        <span co-bind="'can_mount'"></span>
         <div class="screen">
             <h3>Screen Mounting</h3>
-            <table>
+            <table ng-if="has_screen && can_blind">
                 <tr>
-                    <td><button ng-touch="coModuleInstance.$exec('open_mounting'); ">Open</button></td>
-                    <td><button ng-touch="coModuleInstance.$exec('close_mounting'); ">Close</button></td>
+                    <td><button ng-touch="coModuleInstance.$exec('blind_up'); ">Blind Up</button></td>
+                    <td><button ng-touch="coModuleInstance.$exec('blind_down'); ">Blind Down</button></td>
+                    <td ><button ng-touch="coModuleInstance.$exec('blind_stop'); ">Stop</button></td>
                 </tr>
-                <tr ng-if="explicit_stop">
-                    <td colspan="2" style="text-align: center"><button ng-touch="coModuleInstance.$exec('stop_mounting'); ">Stop</button></td>
+            </table>
+            <table ng-if="(has_screen && can_mount) || !has_screen">
+                <tr>
+                    <td><button ng-touch="coModuleInstance.$exec('open_mounting'); ">Open TV</button></td>
+                    <td><button ng-touch="coModuleInstance.$exec('close_mounting'); ">Close TV</button></td>
+                    <td ng-if="explicit_stop"><button ng-touch="coModuleInstance.$exec('stop_mounting'); ">Stop</button></td>
                 </tr>
             </table>
         </div>

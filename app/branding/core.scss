@@ -12,7 +12,7 @@
 @include named-toggle();
 
 @import "../../bower_components/angular-named-toggle/ios-toggle.scss";
-@include ios-toggle();
+@include ios-toggle($height: 40px);
 
 @import "../../bower_components/angular-range-slider/angular-range-slider.scss";
 @include co-range-slider($handle-size: 40px, $track-girth: 20px);

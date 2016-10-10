@@ -229,8 +229,22 @@ main.tours {
             padding-bottom: 1em;
         }
 
+        h3 {
+            font-size: 30px;
+        }
+
+        > div { 
+            > b {
+                font-size: 24px;
+            }
+
+            > span {
+                font-size: 24px;
+            }
+        }
+
         button {
-            font-size: larger;
+            font-size: 30px;
             margin: 0.5em;
         }
 
