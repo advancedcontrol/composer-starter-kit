@@ -59,6 +59,56 @@ article.main {
             }
         }
     }
+
+    // ==============================
+    // Use Styles to change the names
+    // ==============================
+    .source-image, tabs nav > div > div {
+        &.PC, &.residentpc {
+            &+ span {
+                font-size: 0;
+                &::before {
+                    font-size: 2.5vh!important;
+                    content: 'Room';
+
+                    @media all and (orientation: portrait) {
+                        font-size: 2.2vw!important;
+                    }
+                }
+            }
+        }
+
+
+        &.Laptop, &.aux_hdmi {
+            &+ span {
+                font-size: 0;
+                &::before {
+                    font-size: 2.5vh!important;;
+                    content: 'Wired';
+
+                    @media all and (orientation: portrait) {
+                        font-size: 2.2vw!important;
+                    }
+                }
+            }
+
+            background-image: url("../../components/main/Wired/usb.svg");
+
+            background-size: auto 1em;
+            background-repeat: no-repeat;
+            background-position: center top;
+
+            &::before {
+                content: "\00A0";
+            }
+        }
+    }
+
+    .source-image, tabs nav > div.active > div {
+        &.Laptop, &.aux_hdmi {
+            background-image: url("../../components/main/Wired/usb-active.svg") !important;
+        }
+    }
 }
 
 

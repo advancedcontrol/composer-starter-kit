@@ -14,15 +14,22 @@
 
             > div {
                 display: inline-block;
-                width: 320px;
+                width: 36vh;
+
+                text-align: center;
+
+                > menu {
+                    width: 32vh;
+                    display: inline-block;
+                }
             }
 
             h1 {
-                font-size: 20px;
+                font-size: 2.5vh;
                 color: #555;
                 text-transform: uppercase;
                 font-weight: 300;
-                margin-bottom: 10px;
+                margin-bottom: 3px;
                 margin-top: 0;
             }
 
@@ -34,7 +41,7 @@
                     text-align: center;
                     border: none;
                     line-height: 10px;
-                    font-size: 30px;
+                    font-size: 3vh;
                     padding-bottom: 5px;
                     outline: none;
                     background-color: #f9f9f9;
@@ -53,7 +60,7 @@
                     top: 6px;
                     right: 8px;
 
-                    font-size: 30px;
+                    font-size: 3vh;
                     cursor: pointer;
                 }
             }
@@ -64,9 +71,9 @@
 
                 button {
                     margin: 2px 0px;
-                    height: 65px;
-                    width: 80px;
-                    font-size: 32px;
+                    height: 7vh;
+                    width: 8vh;
+                    font-size: 4.5vh;
                     font-weight: 300;
                     border: none;
                     background-color: rgba(0,0,0,0.04);
