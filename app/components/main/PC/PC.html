@@ -1,57 +1,11 @@
 
 <div co-bind="'PC' as source_names" id="pc-inputs" ng-init="hasTabs = false">
-    <div co-bind="'pc_control'" ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
-        <div co-bind="'cameras'" ng-class="{hasTabs: hasTabs}">
-            <!-- SUB Tabs for the PC -->
-            <div co-bind="'channels'" >
-                <div co-bind="'apps'">
-                    <div class="instructions">
-                        <div ng-if="numOutputs > 1 || has_preview">
-                            <span ng-if="source_names.length === 1">Select a display to show this source</span>
-                            <span ng-if="source_names.length > 1">Select a PC then select a display.</span>
-                        </div>
-                        <div ng-if="numOutputs === 1 && !has_preview">
-                            <span ng-if="source_names.length === 1">The PC is now displaying</span>
-                            <span ng-if="source_names.length > 1">The selected PC will display.</span>
-                        </div>
-                    </div>
-
-                    <div
-                        co-module="selectedSource.mod || 'Computer'"
-                        co-index="selectedSource.index || 1"
-                        co-bind="'connected' as $parent.power"
-                    ></div>
-                    <div ng-if="pc_control && !power">
-                        <br />Unable to connect to the computer.<br />
-                        <button ng-touch="coModuleInstance.$exec('wake_pcs')">Attempt Power On</button>
-                    </div>
-
-                    <tabs ng-if="pc_control && power && (apps || channels || cameras)" ng-init="$parent.$parent.hasTabs = true">
-                        <pane hide="!apps" text="Applications" icon="apps">
-                            <div ng-include="'components/mobile/sources/residentpc/apps.html'">
-                            </div>
-                        </pane>     
-                        <pane hide="!cameras" text="Workshops" icon="workshops">
-                            <div ng-include="'components/mobile/sources/residentpc/workshops.html'">
-                            </div>
-                        </pane>
-                        <pane hide="!channels" text="Channels" icon="tv">
-                            <div ng-include="'components/mobile/sources/residentpc/tv.html'">
-                            </div>
-                        </pane>
-                        <pane hide="!selectedSource.hasWebCam" text="Camera" icon="webcam">
-                            <div ng-include="'components/mobile/sources/residentpc/webcam.html'">
-                            </div>
-                        </pane>
-                        <pane hide="!selectedSource.hasPTZ" text="Camera" icon="webcam">
-                            <div ng-include="'components/mobile/sources/residentpc/ptzcam.html'">
-                            </div>
-                        </pane>          
-                    </tabs>
-
-                    <div ng-if="!power || !apps && !channels && !cameras" ng-init="hasTabs = false"></div>
-                </div>
-            </div>
+    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+        <div>
+            <p>
+                To start in-room session, use room keyboard and <b>press space bar</b> or <b>enter</b>.
+                <br /><b>Tip:</b> you need to book the room to use the room functionality.
+            </p>
         </div>
         <div class="sources" ng-if="source_names.length > 1">
             <div btn-group="selectedSource.source">

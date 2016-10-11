@@ -8,12 +8,11 @@
     <div class="power" ng-touch="showModal('power')">
         <modal name="power" title="Shutdown?">
             <p>
-                <b>Are you sure you want to turn off the system?</b>
-                <br />It may take up to 5min to restart.
+                <b>Are you sure you want to finish your meeting?</b>
             </p>
             <menu co-bind="'joined'">
                 <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
-                <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Shutdown</button>
+                <button class="ok" ng-touch="coModuleInstance.$exec('shutdown')">Yes</button>
                 <button
                     class="ok"
                     ng-if="joined.rooms.length > 1"
@@ -32,8 +31,22 @@
 <div>
     <div class="help" ng-touch="showModal('help'); $root.$emit('$track', 'popup', 'help')">
         <modal name="help" title="Need Support?" co-bind="'help_msg'">
-            <p ng-bind-html="help_msg"></p>
-            <p>The room or system name is: <b>{{SystemName}}</b></p>
+            <p>
+                <span ng-bind-html="help_msg"></span><br />
+                The room or system name is: <b>{{SystemName}}</b>
+            </p>
+            <p>
+                <b>FAQs</b><br /><br />
+                <b>Wireless ClickShare not working?</b><br />
+                Use Wired option HDMI or USB and remember to report the problem.
+                <br /><br />
+                <b>Which connection is best for conferencing (Lync video or phone)?</b><br />
+                USB as it connects to the room webcam and audio.
+                <br /><br />
+                <b>Can’t hear any audio?</b><br />
+                Check audio device settings in the application you are using e.g. Skype for
+                Business/Avaya Soft phone.
+            </p>
         </modal>
     </div>
 </div>
