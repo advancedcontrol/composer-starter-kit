@@ -129,9 +129,15 @@ article.main {
 
                     &> span {
                         position: absolute;
-                        bottom: 10px;
+                        bottom: 12%;
                         left: 0;
                         right: 0;
+
+                        font-size: 2.5vh;
+
+                        @media all and (orientation: portrait) {
+                            font-size: 2.2vw;
+                        }
                     }
 
                     &.active {
@@ -141,7 +147,7 @@ article.main {
 
                     > div {
                         position: absolute;
-                        top: 20%;
+                        top: 10%;
                         width: 100%;
                         font-size: 6vh;
 
@@ -433,6 +439,10 @@ article.main {
                                         font-size: 2.5vh;
                                         font-family: $default-font;
                                         display: block;
+
+                                        @media all and (orientation: portrait) {
+                                            font-size: 2.2vw;
+                                        }
                                     }
                                 }
                             }
@@ -495,6 +505,8 @@ article.main {
                 margin: 0;
                 padding-top: 10px;
                 padding-left: 30px;
+
+                font-size: 3vh;
             }
 
             // This is the volume slider container

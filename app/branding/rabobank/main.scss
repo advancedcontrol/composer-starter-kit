@@ -68,8 +68,12 @@ article.main {
             &+ span {
                 font-size: 0;
                 &::before {
-                    font-size: 16px;
+                    font-size: 2.5vh!important;
                     content: 'Room';
+
+                    @media all and (orientation: portrait) {
+                        font-size: 2.2vw!important;
+                    }
                 }
             }
         }
@@ -79,8 +83,12 @@ article.main {
             &+ span {
                 font-size: 0;
                 &::before {
-                    font-size: 16px;
+                    font-size: 2.5vh!important;;
                     content: 'Wired';
+
+                    @media all and (orientation: portrait) {
+                        font-size: 2.2vw!important;
+                    }
                 }
             }
 
