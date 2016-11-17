@@ -35,5 +35,10 @@
             <p><a href="ActivateVLC.reg">Activate "View in VLC" link</a></p>
             <p>Space remaining: <span>{{remaining}}</span></p>
         </div>
+
+        <div id="full-image" ng-show="fullImageCam">
+            <img ng-src="{{fullImageURL}}">
+            <a id="rtsp-url" ng-href="{{fullImageRTSP}}" ng-if="fullImageRTSP">View in VLC</a>
+        </div>
     </main>
 </div>
