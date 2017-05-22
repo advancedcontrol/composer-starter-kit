@@ -1,0 +1,45 @@
+
+<div class="phonemain" co-bind="'Skype' as source_names">
+    <span ng-if="source_names" ng-init="selectSource(source_names[0])"></span>
+
+    <div class="standard-panel" init="skype = {}" co-module="'Skype'">
+        <div co-bind="'in_call' as skype.in_call">
+            <div co-bind="'room_user' as skype.room_user">
+                <div id="wirelessmain" co-bind="'mute' as skype.muted">
+                    <div>
+                        <h1>Use the skype client on your laptop to start<br />a wireless presentation with this room</h1>
+                        <img src="components/main/Skype/skype.svg" width="280px" style="margin-top: 2em" title="skype">
+                        <ol>
+                            <li>Search for the room in Skype<br />Room: <b>{{skype.room_user}}</b></li>
+                            <li>Start a call with the room from your laptop</li>
+                            <li>Accept the call from this touch panel</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sources">
+            <div>
+                <button class="toggle"
+                    ng-class="{disabled: true}"
+                    ng-touch="coModuleInstance.$exec('dial_link', skype.dial_string)"
+                >
+                    <i class="fa fa-phone"></i>Join scheduled meeting
+                </button>
+                <button class="toggle" ng-class="{disabled: !skype.in_call}"
+                    ng-touch="coModuleInstance.$exec('hang_up')"
+                >
+                    <i class="fa fa-tty"></i>End current call
+                </button>
+                <span>
+                    <button class="toggle" ng-class="{disabled: !skype.in_call, muted: skype.muted}"
+                        ng-touch="coModuleInstance.$exec('mute', !skype.muted)"
+                    >
+                        <span ng-if="!skype.muted"><i class="fa fa-microphone"></i>Mute room mics</span>
+                        <span ng-if="skype.muted"><i class="fa fa-microphone-slash"></i>Unmute room mics</span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

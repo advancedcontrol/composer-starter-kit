@@ -344,7 +344,8 @@
                 "Phone",
                 "VC",
                 "Camera",
-                "TV"
+                "TV",
+                "Skype"
 /*
                 "Lectern",
                 
@@ -355,6 +356,9 @@
             ],
             "TV": [
                 "tv_input"
+            ],
+            "Skype": [
+                "skype"
             ],
             "PC": [
                 "g1_pc1"
@@ -391,6 +395,12 @@
                     "source": "hdmi",
                     "type": "residentpc",
                     "colour": "#F58172"
+                },
+                "skype": {
+                    "title": "Skype",
+                    "input": 12,
+                    "source": "hdmi",
+                    "type": "skype"
                 },
                 "tv_input": {
                     "title": "TV",
@@ -543,6 +553,9 @@
             }
         }],
         Computer: [{}],
+        Skype: [{
+            room_user: "meeting.room.email"
+        }],
         Display: [{
             $mute: function (mute) {
                 this.mute = mute;

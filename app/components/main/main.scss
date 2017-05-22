@@ -288,6 +288,10 @@ article.main {
                                 &.info:before {
                                     content: "\f05a";
                                 }
+
+                                &.skype::before {
+                                    content: "\f17e";
+                                }
                             }
                         }
 
@@ -583,6 +587,10 @@ article.main {
 
         &.Chromebox::before, &.chromebox::before {
             content: "\f268";
+        }
+
+        &.Skype::before, &.skype::before {
+            content: "\f17e";
         }
 
         // Give the DIV a height

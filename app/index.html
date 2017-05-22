@@ -147,6 +147,21 @@
         <div ng-if="coSystem.id" co-module="'System'" co-bind="'state'">
             <span co-bind="'analytics' as $root.analytics"></span>
 
+            <span ng-init="skype = {}" co-module="'Skype'">
+                <span co-bind="'incomming_call' as skype.incomming_call"></span>
+
+                <modal name="skype_accept" title="Accept Skype Call?" no-close="true">
+                    <p co-bind="'call_status'">
+                        <b>Incomming Skype call</b>
+                    </p>
+                    <menu>
+                        <button class="cancel" ng-touch="coModuleInstance.$exec('hang_up')">Reject</button>
+                        <button class="ok" ng-touch="coModuleInstance.$exec('accept_call')">Accept</button>
+                    </menu>
+                    <div style="clear: both"></div>
+                </modal>
+            </span>
+
             <span ng-controller="Modals" ng-init="bookings = {}" co-module="'Bookings'">
                 <span co-bind="'meeting_ending' as bookings.ending"></span>
                 <span co-bind="'last_meeting_started' as bookings.last_started"></span>
