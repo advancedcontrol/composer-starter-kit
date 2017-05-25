@@ -147,9 +147,7 @@
         <div ng-if="coSystem.id" co-module="'System'" co-bind="'state'">
             <span co-bind="'analytics' as $root.analytics"></span>
 
-            <span ng-init="skype = {}" co-module="'Skype'">
-                <span co-bind="'incomming_call' as skype.incomming_call"></span>
-
+            <span ng-controller="Modals" ng-init="skype = {}" co-module="'Skype'">
                 <modal name="skype_accept" title="Accept Skype Call?" no-close="true">
                     <p co-bind="'call_status'">
                         <b>Incomming Skype call</b>
@@ -160,6 +158,10 @@
                     </menu>
                     <div style="clear: both"></div>
                 </modal>
+
+                <span co-bind="'incoming_call' as skype.incoming_call"></span>
+                <span ng-if="skype.incoming_call" ng-init="showModal('skype_accept')"></span>
+                <span ng-if="!skype.incoming_call" ng-init="closeModal('skype_accept')"></span>
             </span>
 
             <span ng-controller="Modals" ng-init="bookings = {}" co-module="'Bookings'">

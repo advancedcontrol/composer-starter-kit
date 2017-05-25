@@ -554,7 +554,13 @@
         }],
         Computer: [{}],
         Skype: [{
-            room_user: "meeting.room.email"
+            room_user: "meeting.room.email",
+            incoming_call: true,
+            $mute: function () {
+                console.log('testing');
+                self.incomming_call = true;
+                self.incoming_call = true;
+            }
         }],
         Display: [{
             $mute: function (mute) {
