@@ -19,10 +19,10 @@
             </div>
         </div>
         <div class="sources">
-            <div>
+            <div co-bind="'uri' as skype.dial_string">
                 <button class="toggle"
-                    ng-class="{disabled: true}"
-                    ng-touch="coModuleInstance.$exec('dial_link', skype.dial_string)"
+                    ng-class="{disabled: !skype.dial_string}"
+                    ng-touch="coModuleInstance.$exec('call_uri')"
                 >
                     <i class="fa fa-phone"></i>Join scheduled meeting
                 </button>
