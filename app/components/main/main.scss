@@ -334,6 +334,13 @@ article.main {
 
             // Required for firefox
             height: 100%;
+
+            ul {
+                font-size: 1.2em;
+                margin: 0 auto;
+                text-align: left;
+                width: 60%;
+            }
         }
 
         div.sources {
@@ -361,6 +368,17 @@ article.main {
 
                     &.wireless::before {
                         content: "\f1eb";
+                    }
+
+                    &.wired {
+                        background-image: url("../../components/main/Wired/usb-active.svg");
+
+                        background-size: auto 1em;
+                        background-repeat: no-repeat;
+                        background-position: left center;
+
+                        height: 1em;
+                        width: 1em;
                     }
                 }
             }
@@ -557,7 +575,7 @@ article.main {
             content: "\f108";
         }
 
-        &.Laptop::before, &.aux_hdmi::before {
+        &.Presentation::before, &.Laptop::before, &.aux_hdmi::before {
             content: "\f109";
         }
 

@@ -82,12 +82,21 @@
             "inputs": [
                 "PC",
                 "Laptop",
-                "Visualiser"
+                "Visualiser",
+                "Presentation",
+                "Skype",
+            ],
+            "Skype": [
+                "skype"
             ],
             "PC": [
                 "g1_pc1"
             ],
             "Laptop": [
+                "laptop_g1",
+                "laptop_g2"
+            ],
+            "Presentation": [
                 "laptop_g1",
                 "laptop_g2"
             ],
@@ -102,18 +111,24 @@
                     "type": "residentpc",
                     "record_as": "pc"
                 },
+                "skype": {
+                    "title": "Skype",
+                    "input": 12,
+                    "source": "hdmi",
+                    "type": "skype"
+                },
                 "laptop_g1": {
-                    "title": "Laptop HDMI",
+                    "title": "Wireless",
                     "input": 11,
                     "source": "hdmi",
-                    "type": "aux_hdmi",
+                    "type": "wireless",
                     "record_as": "hdmi"
                 },
                 "laptop_g2": {
-                    "title": "Laptop 2 HDMI",
+                    "title": "Wired",
                     "input": 11,
                     "source": "hdmi",
-                    "type": "aux_hdmi",
+                    "type": "wired",
                     "record_as": "hdmi"
                 },
                 "vis" : {
