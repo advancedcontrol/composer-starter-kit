@@ -98,7 +98,7 @@
             "inputs": [
                 "PC",
                 "Laptop",
-                "Presenter"
+                "Receiver"
             ],
             "PC": [
                 "g1_pc1"
@@ -107,8 +107,8 @@
                 "laptop_g1",
                 "laptop_g2"
             ],
-            "Presenter": [
-                "sharing_input"
+            "Receiver": [
+                "tv_receiver"
             ],
             "sources": {
                 "g1_pc1": {
@@ -129,10 +129,10 @@
                     "source": "hdmi",
                     "type": "aux_hdmi"
                 },
-                "sharing_input": {
-                    "title": "Presenters PC",
+                "tv_receiver": {
+                    "title": "TV Receiver",
                     "input": 2,
-                    "source": "hdmi",
+                    "source": "tv",
                     "type": "presenter"
                 }
             },

@@ -9,7 +9,7 @@
     >
         
         <div co-bind="phone_settings.ringing_id as phone.ringing">
-            <div class="numpad">
+            <div class="numpad" co-bind="'connected' as phone.dsp_connected">
                 <div co-bind="phone_settings.offhook_id as phone.incall">
                     <div>
                         <h1>Number to Dial</h1>

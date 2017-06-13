@@ -14,10 +14,12 @@
 
             $scope.$watch('phone_settings', function (val) {
                 if (!val) return;
+                phone.settings = val;
+            });
 
-                $timeout(function () {
-                    $scope.coModuleInstance.$exec('phone_watch', val.query_ids);
-                }, 200);
+            $scope.$watch('phone.dsp_connected', function (val) {
+                if (!val) return;
+                $scope.coModuleInstance.$exec('phone_watch', phone.settings.query_ids);
             });
 
             $scope.addNum = function (val) {

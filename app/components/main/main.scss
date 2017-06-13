@@ -6,6 +6,7 @@
 @import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
 
 
+
 // IOS 8 header support
 body.ios-app-mode {
     article.main {
@@ -609,6 +610,10 @@ article.main {
 
         &.Skype::before, &.skype::before {
             content: "\f17e";
+        }
+
+        &.Receiver::before, &.receiver::before {
+            content: "\f26c";
         }
 
         // Give the DIV a height

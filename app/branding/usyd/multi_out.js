@@ -74,20 +74,21 @@
                     this.$_self[parts.module][parts.index - 1].mute = true;
                 }
             },
-            "name": "Multi Display Room",
+            "name": "Creative Space",
             "joining_rooms": ['sys-B0', 'sys-B1', 'sys-B2'],
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "PC",
             "inputs": [
-                "PC",
-                "Laptop",
-                "Visualiser",
                 "Presentation",
                 "Skype",
+                "Receiver"
             ],
             "Skype": [
                 "skype"
+            ],
+            "Receiver": [
+                "receiver"
             ],
             "PC": [
                 "g1_pc1"
@@ -131,11 +132,11 @@
                     "type": "wired",
                     "record_as": "hdmi"
                 },
-                "vis" : {
-                    "title": "Visualiser",
+                "receiver" : {
+                    "title": "Receiver",
                     "input": 10,
                     "source": "hdmi",
-                    "type": "visualiser"
+                    "type": "residentpc"
                 }
             },
             "outputs": {
@@ -163,7 +164,7 @@
                     "mixer_id": 105,
                     "type": "lcd",
                     "pri": 2,
-                    "title": "NEC LCD"
+                    "title": "LCD"
                 }
             },
             "has_preview": 4,
@@ -172,6 +173,12 @@
             $lights_to: function (level) {
                 this.light_level = level;
             }
+        }],
+        Skype: [{
+            uri: "1234"
+        }],
+        Receiver: [{
+            connected: true
         }],
         Mixer: [{
             fader_106: 1,

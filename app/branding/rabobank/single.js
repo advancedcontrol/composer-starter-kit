@@ -487,6 +487,18 @@
                     "type": "lcd",
                     "pri": 1,
                     "title": "Display"
+                },
+                "Display_2": {
+                    "output": [
+                        3,
+                        23
+                    ],
+                    "audio_out": 21,
+                    "mixer_id": 105,
+                    "basic_mixer": true,
+                    "type": "lcd",
+                    "pri": 1,
+                    "title": "Display"
                 }
             },
             "light_level": "Off",
@@ -555,7 +567,7 @@
         Computer: [{}],
         Skype: [{
             room_user: "meeting.room.email",
-            incoming_call: true,
+            incoming_call: false,
             $mute: function () {
                 console.log('testing');
                 self.incomming_call = true;

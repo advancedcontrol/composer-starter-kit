@@ -1,0 +1,91 @@
+
+<div co-bind="'Receiver' as source_names">
+    <div ng-if="source_names" ng-init="selectSource(source_names[0])" co-module="'Receiver'" class="standard-panel">
+        <div class="camera-control">
+            <div>
+                <div class="webcam-controls">
+                    <br />
+                    <br />
+                    <button ng-touch="coModuleInstance.$exec('menu')">Menu</button>
+                    <button ng-touch="coModuleInstance.$exec('exit')">Exit</button>
+
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td class="up"
+                                ng-touch="coModuleInstance.$exec('cursor', 'up')"
+                            ></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="left"
+                                ng-touch="coModuleInstance.$exec('cursor', 'left')"
+                            ></td>
+                            <td class="center"
+                                ng-touch="coModuleInstance.$exec('enter')"
+                            ></td>
+                            <td class="right"
+                                ng-touch="coModuleInstance.$exec('cursor', 'right')"
+                            ></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="down"
+                                ng-touch="coModuleInstance.$exec('cursor', 'down')"
+                            ></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="phonemain" co-bind="'connected' as rec_con">
+            <div class="numpad">
+                <div>
+                    <div>
+                        <menu class="numpad">
+                            <button ng-touch="coModuleInstance.$exec('num', 1)">1</button>
+                            <button ng-click="coModuleInstance.$exec('num', 2)">2</button>
+                            <button ng-click="coModuleInstance.$exec('num', 3)">3</button>
+
+                            <button ng-click="coModuleInstance.$exec('num', 4)">4</button>
+                            <button ng-click="coModuleInstance.$exec('num', 5)">5</button>
+                            <button ng-click="coModuleInstance.$exec('num', 6)">6</button>
+
+                            <button ng-click="coModuleInstance.$exec('num', 7)">7</button>
+                            <button ng-click="coModuleInstance.$exec('num', 8)">8</button>
+                            <button ng-click="coModuleInstance.$exec('num', 9)">9</button>
+
+                            <button ng-click="coModuleInstance.$exec('num', 0)">0</button>
+                        </menu>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sources">
+            <div>
+                <button class="toggle"
+                    ng-touch="coModuleInstance.$exec('power', true)"
+                >
+                    <i class="fa fa-power-off"></i>Power On / Off
+                </button>
+                <button class="toggle"
+                    ng-touch="coModuleInstance.$exec('channel_up')"
+                >
+                    <i class="fa fa-level-up"></i>Channel Up
+                </button>
+                <button class="toggle"
+                    ng-touch="coModuleInstance.$exec('channel_down')"
+                >
+                    <i class="fa fa-level-down"></i>Channel Down
+                </button>
+
+                <button class="toggle"
+                    ng-touch="coModuleInstance.$exec('toogle_tv_radio')"
+                >
+                    <i class="fa fa-toggle-on "></i>Switch Radio / TV
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
