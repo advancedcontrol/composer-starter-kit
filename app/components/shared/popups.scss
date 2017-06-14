@@ -245,6 +245,15 @@ modal[name=mics] {
 
         }
     }
+
+    div.audio_presets {
+        padding: 0 30px;
+
+        button {
+            font-size: larger;
+            margin-right: 1em;
+        }
+    }
 }
 
 

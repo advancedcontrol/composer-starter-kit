@@ -1,7 +1,7 @@
 
 <div co-bind="'TV' as source_names" id="tv-inputs" ng-touch="$event.stopPropagation()" on-target>
-    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
-        <div ng-controller="TvCtrl" co-module="'Television'">
+    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel" ng-controller="TvCtrl" co-module="'Television'">
+        <div>
             <span co-bind="'channelName'"></span>
             <div co-bind="'channelNames' as data.channelNames"></div>
 
@@ -17,6 +17,12 @@
                     <span>{{name}}</span>
                 </li>
             </ul>
+        </div>
+        <span co-bind="'commands' as data.commands"></span>
+        <div class="sources" ng-if="data.commands" style="vertical-align: top; padding-top: 4em;">
+            <div>
+                <button ng-repeat="name in data.commands" ng-touch="coModuleInstance.$exec('command', name)" class="toggle">{{name}}</button>
+            </div>
         </div>
     </div>
 </div>

@@ -144,8 +144,32 @@
         <div class="noSystem" ng-if="noSystemSelected">
             <h2>No System Selected</h2>
         </div>
-        <div ng-if="coSystem.id" co-module="'System'" co-bind="'state'">
+        <div ng-if="coSystem.id" co-module="'System'" co-bind="'state'" ng-init="inphone = {}">
             <span co-bind="'analytics' as $root.analytics"></span>
+            <span co-bind="'phone_settings' as inphone.settings"></span>
+
+            <span ng-if="inphone.settings">
+                <span co-bind="'incoming_phone_call' as inphone.incoming"></span>
+
+                <span ng-controller="Modals" co-module="'Mixer'">
+                    <span co-bind="'connected' as inphone.connected"></span>
+                    <span ng-if="inphone.connected" ng-init="coModuleInstance.$exec('phone_watch', inphone.settings.query_ids)"></span>
+
+                    <modal name="phone_accept" title="Accept Phone Call?" no-close="true">
+                        <p co-bind="inphone.settings.status_id as inphone.status">
+                            <b>{{inphone.status}}</b>
+                        </p>
+                        <menu>
+                            <button class="cancel" ng-touch="coModuleInstance.$exec('phone_hangup', inphone.settings.hangup_id); closeModal('phone_accept')">Reject</button>
+                            <button class="ok" ng-touch="coModuleInstance.$exec('phone_dial', inphone.settings.dial_id); closeModal('phone_accept')">Accept</button>
+                        </menu>
+                        <div style="clear: both"></div>
+                    </modal>
+
+                    <span ng-if="inphone.incoming" ng-init="showModal('phone_accept')"></span>
+                    <span ng-if="!inphone.incoming" ng-init="closeModal('phone_accept')"></span>
+                </span>
+            </span>
 
             <span ng-controller="Modals" ng-init="skype = {}" co-module="'Skype'">
                 <modal name="skype_accept" title="Accept Skype Call?" no-close="true">

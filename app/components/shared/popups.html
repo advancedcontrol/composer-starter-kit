@@ -250,6 +250,8 @@
     Microphone popup
  -->
 <div co-bind="'mics'">
+    <span co-bind="'audio_presets' as audio_presets"></span>
+
     <div class="mics" ng-if="mics && mics[0].basic_mixer === undefined" co-module="'Mixer'" ng-touch="showModal('mics'); $root.$emit('$track', 'popup', 'microphones')">
         <modal name="mics" title="Microphones">
             <div
@@ -278,6 +280,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div ng-if="audio_presets" class="audio_presets">
+                <h3 co-bind="'connected'">Presets</h3>
+                <button ng-repeat="preset in audio_presets" ng-touch="coModuleInstance.$exec('trigger', preset.trigger)">{{preset.name}}</button>
             </div>
         </modal>
     </div>
@@ -309,6 +316,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div ng-if="audio_presets" class="audio_presets">
+                <h3 co-bind="'connected'">Presets</h3>
+                <button ng-repeat="preset in audio_presets" ng-touch="coModuleInstance.$exec('trigger', preset.trigger)">{{preset.name}}</button>
             </div>
         </modal>
     </div>

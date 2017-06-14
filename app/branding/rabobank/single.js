@@ -41,6 +41,7 @@
                 "Fox Footy",
                 "Some other channel"
             ],
+            "commands": ["Power on/off"],
             $goto: function(name) {
                 this.channelName = name;
             },

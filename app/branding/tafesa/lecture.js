@@ -22,7 +22,13 @@
             $tab: function (tab) {
                 this.tab = tab;
             },
-
+            "audio_presets": [{
+                "trigger": "trig1",
+                "name": "Hello Preset"
+            }, {
+                "trigger": "trig2",
+                "name": "Wow Wow"
+            }],
             $show: function (source, display) {
                 var src = this.sources[source];
 
