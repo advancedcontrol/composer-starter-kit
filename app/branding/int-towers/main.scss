@@ -1,0 +1,217 @@
+@import "compass";
+@import "variables";
+
+body {
+    background-color: black;
+}
+
+$header-color: black;
+
+div.splash > div {
+    background-color: black;
+}
+
+article.main {
+    > div > div > tabs {
+        top: 110px;
+    }
+
+    > header {
+        background-color: $header-color;
+
+        div.logo {
+            //background-color: #303642;
+            width: 200px;
+            margin-top: 8px;
+            height: 70px;
+
+            > div {
+                background-image: url("../../branding/int-towers/logo.png");
+            }
+        }
+    }
+
+    footer {
+        h1 {
+            display: none;
+        }
+
+        &.audio-only {
+            &> div {
+                display: table;
+                width: 100%;
+                
+                &> div {
+                    display: table-row;
+                    height: 100% !important;
+
+                    &> div {
+                        display: table-cell;
+                        vertical-align: middle;
+
+                        padding-left: 1em;
+                    }
+                }
+            }
+        }
+    }
+
+    // ==============================
+    // Use Styles to change the names
+    // ==============================
+    .source-image, tabs nav > div > div {
+        &.PC, &.residentpc {
+            &+ span {
+                font-size: 0;
+                &::before {
+                    font-size: 2.5vh!important;
+                    content: 'Room';
+
+                    @media all and (orientation: portrait) {
+                        font-size: 2.2vw!important;
+                    }
+                }
+            }
+        }
+
+
+        &.Laptop, &.aux_hdmi {
+            &+ span {
+                font-size: 0;
+                &::before {
+                    font-size: 2.5vh!important;;
+                    content: 'Wired';
+
+                    @media all and (orientation: portrait) {
+                        font-size: 2.2vw!important;
+                    }
+                }
+            }
+
+            background-image: url("../../components/main/Wired/usb.svg");
+
+            background-size: auto 1em;
+            background-repeat: no-repeat;
+            background-position: center top;
+
+            &::before {
+                content: "\00A0";
+            }
+        }
+    }
+
+    .source-image, tabs nav > div.active > div {
+        &.Laptop, &.aux_hdmi {
+            background-image: url("../../components/main/Wired/usb-active.svg") !important;
+        }
+    }
+}
+
+
+// Mobile styles
+article.mobile {
+    header {
+        background-color: $header-color;
+        text-align: left;
+        height: 80px;
+        line-height: 80px;
+
+        span {
+            &.name {
+                display: inline-block;
+                padding-left: 20px;
+            }
+
+            &#show-menu {
+                height: 40px !important;
+                margin-top: 20px;
+                width: 120px;
+                padding-right: 0.5em;
+            }
+
+            > div.logo {
+                background-image: url("../../branding/rabobank/logo.png");
+
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+        }
+    }
+
+    &.navDecorate > div#mobile-sources {
+        @include box-shadow(3px 0px 5px 0px rgba(0,0,0,0.1));
+    }
+
+    > div#mobile-sources {
+        background-color: $header-color;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 80px;
+        @include box-shadow(3px 0px 5px 0px rgba(0,0,0,0.1));
+
+        h2 {
+            display: none;
+        }
+
+        p {
+            margin-top: 0px;
+            font-weight: 300;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .sources button {
+            margin-bottom: 0px;
+            border-radius: 0px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            outline: none;
+
+            color: white;
+            font-size: 130%!important;
+
+            &.active {
+                @include box-shadow(inset 0 0 10px rgba(0,0,0,0.6));
+            }
+
+            > span {
+                font-size: 130%!important;
+            }
+        }
+    }
+
+    > aside #aside-wrapper {
+        #nav-wrapper {
+            > nav {
+                display: none !important;
+            }
+
+            > section {
+                box-shadow: none !important;
+                margin-right: 0 !important;
+            }
+        }
+
+        #source-info {
+            h1 {
+                margin: 10px 0px 15px 0px;
+            }
+        }
+    }
+
+    aside div#nav-buffer {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+
+    // ----------------
+    // CAMERA CONTROL
+    // ----------------
+    div.camera-select {
+        div.camera-control {
+            width: 100%;
+        }
+    }
+}
