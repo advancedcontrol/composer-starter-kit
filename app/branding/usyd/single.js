@@ -7,6 +7,10 @@
     window.systemData = window.systemData || {};
     window.systemData['sys-B0'] = {
         System: [{
+            "help_msg": "This text is configurable per room / floor. Phone number etc <b>0408419954</b><br /><br />If you are in need of assistance, select an option below and someone will be with you soon.",
+            "help_options": {
+                "issues": ["Skype not working", "MirrorOp not working", "Other IT issues"]
+            },
             "$powerup": function () {
                 this.state = "online";
             },
@@ -71,7 +75,6 @@
                 }
             },
             "name": "Carslaw Pod 158",
-            "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "PC",
             "apps": ['explorer', 'firefox', 'vlc', 'sankore'],

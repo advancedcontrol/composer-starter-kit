@@ -190,6 +190,16 @@ modal[name=displays], modal[name=screens] {
 }
 
 
+modal[name=help] {
+    p.helpoptions {
+        text-align: center;
+
+        button {
+            margin-left: 0.2em !important;
+        }
+    }
+}
+
 // Hide help popup on mobile
 article.mobile {
     div.help {

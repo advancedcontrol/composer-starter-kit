@@ -32,20 +32,12 @@
     <div class="help" ng-touch="showModal('help'); $root.$emit('$track', 'popup', 'help')">
         <modal name="help" title="Need Support?" co-bind="'help_msg'">
             <p>
-                <span ng-bind-html="help_msg"></span><br />
-                The room or system name is: <b>{{SystemName}}</b>
+                <span ng-bind-html="help_msg"></span>
             </p>
-            <p>
-                <b>FAQs</b><br /><br />
-                <b>Wireless ClickShare not working?</b><br />
-                Use Wired option HDMI or USB and remember to report the problem.
-                <br /><br />
-                <b>Which connection is best for conferencing (Lync video or phone)?</b><br />
-                USB as it connects to the room webcam and audio.
-                <br /><br />
-                <b>Can’t hear any audio?</b><br />
-                Check audio device settings in the application you are using e.g. Skype for
-                Business/Avaya Soft phone.
+            <p class="helpoptions" co-bind="'help_options'">
+                <span ng-repeat="issue in help_options.issues">
+                    <button ng-touch="coModuleInstance.$exec('request_help', issue)">{{issue}}</button>
+                </span>
             </p>
         </modal>
     </div>
