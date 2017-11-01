@@ -2,11 +2,6 @@
 <div co-bind="'Presentation' as source_names" id="laptop-inputs">
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div>
-            <h2>Select the laptop connection to present:</h2>
-            <ul>
-                <li>Wireless - using MirrorOp; or</li>
-                <li>Wired - HDMI</li>
-            </ul>
         </div>
         <div class="sources" ng-if="source_names.length > 1">
             <div btn-group="selectedSource.source">

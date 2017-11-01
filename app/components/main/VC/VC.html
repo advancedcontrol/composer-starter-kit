@@ -22,7 +22,7 @@
 
             <!-- Presenation Mode -->
             <div id="vc-pres-mode" co-bind="'presentation' as vc.pres_mode">
-                <span><br />Content Destination:<br /></span>
+                <span>Content Destination:<br /></span>
                 <div btn-group="vc.pres_mode" btn-class="btn">
                     <button
                         btn="'none'"
@@ -41,7 +41,7 @@
 
             <!-- Presenation Layout -->
             <div co-bind="'content_available'" ng-class="{nosee: !vc.status.direction || (vc.pres_mode == 'none' && !content_available)}">
-                <span><br />Select Presenation Layout:<br /></span>
+                <span>Select Presenation Layout:<br /></span>
                 <div btn-group="vc.layout_local" class="vert-button-group" btn-class="btn">
                     <button
                         btn="'auto'"

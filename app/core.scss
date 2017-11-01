@@ -90,9 +90,10 @@ button, .button {
     @include border-radius(3px);
     padding: 6px 15px;
     display: inline-block;
+    margin-bottom: 8px;
     
     font-family: $default-font;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     text-decoration: none;
     background-color: $button-colour;
@@ -132,7 +133,6 @@ button.toggle, .button.toggle {
     width: 100%;
     background-color: #ddd;
     color: #333;
-    margin-bottom: 10px;
 
     &.active {
         background-color: #777;

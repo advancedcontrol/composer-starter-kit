@@ -36,9 +36,19 @@
             </p>
             <p class="helpoptions" co-bind="'help_options'">
                 <span ng-repeat="issue in help_options.issues">
-                    <button ng-touch="coModuleInstance.$exec('request_help', issue)">{{issue}}</button>
+                    <button ng-touch="coModuleInstance.$exec('request_help', issue); closeModal('help'); showModal('help-confirm')">{{issue}}</button>
                 </span>
             </p>
+        </modal>
+
+        <modal name="help-confirm" title="We're on our way!">
+            <p>
+                A technical staff member will be with you shortly.
+            </p>
+            <menu>
+                <button class="ok" ng-touch="closeModal('help-confirm')">OK</button>
+            </menu>
+            <div style="clear: both"></div>
         </modal>
     </div>
 </div>
