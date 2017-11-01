@@ -57,6 +57,9 @@
                     iptv: function (channel) {
                         ga('send', 'event', 'iptv', channel);
                     },
+                    feedback: function (rating) {
+                        ga('send', 'event', 'feedback', rating, sys_id);
+                    },
                     state: function (state, mode) {
                         if (state === 'online') {
                             ga('set', 'dimension4', mode);
