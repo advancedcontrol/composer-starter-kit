@@ -249,6 +249,19 @@
 </div>
 
 <!--
+    Camera Control Popup
+ -->
+<div co-bind="'Camera' as cam_sources">
+    <div ng-if="cam_sources" class="cameras" ng-touch="showModal('cameras'); $root.$emit('$track', 'popup', 'cameras')">
+        <modal name="cameras" title="Camera Control">
+
+            <div ng-include="'../components/main//Camera/Camera.html'"></div>
+
+        </modal>
+    </div>
+</div>
+
+<!--
     Microphone popup
  -->
 <div co-bind="'mics'">
