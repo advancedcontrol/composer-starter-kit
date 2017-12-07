@@ -7,32 +7,9 @@
             <div co-bind="'room_user' as skype.room_user">
                 <div id="wirelessmain" co-bind="'mute' as skype.muted">
                     <div style="text-align: center">
-                        To share your screen join the Skype link on your laptop
+                        <h2>To share your screen join the Skype link on your laptop</h2>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="sources">
-            <div co-bind="'uri' as skype.dial_string">
-                <button class="toggle"
-                    ng-class="{disabled: !skype.dial_string}"
-                    ng-touch="coModuleInstance.$exec('call_uri')"
-                >
-                    <i class="fa fa-phone"></i>Join scheduled meeting
-                </button>
-                <button class="toggle" ng-class="{disabled: !skype.in_call}"
-                    ng-touch="coModuleInstance.$exec('hang_up')"
-                >
-                    <i class="fa fa-tty"></i>End current call
-                </button>
-                <span>
-                    <button class="toggle" ng-class="{disabled: !skype.in_call, muted: skype.muted}"
-                        ng-touch="coModuleInstance.$exec('mute', !skype.muted)"
-                    >
-                        <span ng-if="!skype.muted"><i class="fa fa-microphone"></i>Mute room mics</span>
-                        <span ng-if="skype.muted"><i class="fa fa-microphone-slash"></i>Unmute room mics</span>
-                    </button>
-                </span>
             </div>
         </div>
     </div>

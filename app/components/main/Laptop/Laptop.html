@@ -1,7 +1,7 @@
 
 <div co-bind="'Laptop' as source_names" id="laptop-inputs">
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
-        <div>
+        <div ng-if="selectedSource.source != 'clickshare'">
             <h2>Need to adjust your display settings?</h2>
             <p>
                 You can adjust your display settings to <b>duplicate</b> or <b>extend</b> your screen.
@@ -11,6 +11,13 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR<br />
                 Click <b>Start Menu &#10142; Search &#10142; Display settings</b>
             </p>
+        </div>
+        <div ng-if="selectedSource.source == 'clickshare'">
+            <img src="components/main/Wireless/dongle.png" title="wireless presenter">
+            <ol style="text-align: left;">
+                <li>Connect the Clickshare device to your laptop via the USB port</li>
+                <li>Follow the instructions on the display</li>
+            </ol>
         </div>
         <div class="sources" ng-if="source_names.length > 1">
             <div btn-group="selectedSource.source">

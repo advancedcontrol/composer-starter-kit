@@ -99,44 +99,34 @@
                 initiator: 'sys-B0'
             },
             "inputs": [
-                "PC",
-                "Laptop",
-                "Receiver"
+                "Skype",
+                "Laptop"
             ],
-            "PC": [
-                "g1_pc1"
+            "Skype": [
+                "skype"
             ],
             "Laptop": [
-                "laptop_g1",
-                "laptop_g2"
-            ],
-            "Receiver": [
-                "tv_receiver"
+                "clickshare",
+                "wired"
             ],
             "sources": {
-                "g1_pc1": {
+                "skype": {
                     "title": "1G1 PC-1",
                     "input": 14,
                     "source": "hdmi",
                     "type": "residentpc"
                 },
-                "laptop_g1": {
+                "wired": {
                     "title": "Laptop HDMI",
                     "input": 11,
                     "source": "hdmi",
                     "type": "aux_hdmi"
                 },
-                "laptop_g2": {
-                    "title": "Laptop VGA",
+                "clickshare": {
+                    "title": "Wireless",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "aux_hdmi"
-                },
-                "tv_receiver": {
-                    "title": "TV Receiver",
-                    "input": 2,
-                    "source": "tv",
-                    "type": "presenter"
+                    "type": "wireless"
                 }
             },
             "outputs": {
