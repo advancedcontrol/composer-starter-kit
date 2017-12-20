@@ -1,5 +1,5 @@
 
-<div class="phonemain" co-bind="'Skype' as source_names">
+<div class="phonemain" co-bind="'Skype' as source_names" ng-init="coModuleInstance.$exec('init_vc')">
     <span ng-if="source_names" ng-init="selectSource(source_names[0])"></span>
 
     <div class="standard-panel" init="skype = {}" co-module="'Skype'">
