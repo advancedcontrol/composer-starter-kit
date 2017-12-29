@@ -1,6 +1,7 @@
 
 <div class="phonemain" co-bind="'phone_settings'" ng-init="coModuleInstance.$exec('init_vc')">
     <span co-bind="'mics_mutes'"></span>
+    <span co-bind="'phone_quick_dial'"></span>
     <div
         ng-if="phone_settings"
         co-module="phone_settings.phone_module" co-implicit-index
@@ -48,6 +49,14 @@
         </div>
         <div class="sources">
             <div>
+                <button
+                    ng-if="phone_quick_dial"
+                    ng-class="{disabled: phone.ringing || phone.incall}"
+                    ng-touch="coModuleInstance.$exec('phone_number', phone_quick_dial, phone_settings.number_id); coModuleInstance.$exec('phone_dial', phone_settings.dial_id)"
+                >
+                    <i class="fa fa-users"></i>&nbsp;&nbsp;Quick Dial Bridge
+                </button>
+                <br />
                 <button class="toggle"
                     ng-class="{disabled: phone.ringing || phone.incall || !phone.number.length}"
                     ng-touch="coModuleInstance.$exec('phone_dial', phone_settings.dial_id)"

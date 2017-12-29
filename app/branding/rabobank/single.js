@@ -207,6 +207,7 @@
             }
         }],
         System: [{
+            "phone_quick_dial": "0408419954",
             "blinds": [{
                 "title": "Shades",
                 "module": "DigitalIO_1",
