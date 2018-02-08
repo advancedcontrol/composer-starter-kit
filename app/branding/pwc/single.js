@@ -6,6 +6,51 @@
     //  
     window.systemData = window.systemData || {};
     window.systemData['sys-B9'] = {
+        Television: [{
+            "name": "L16 Stairs",
+            "box_id": 23,
+            "channelName": "ABC News 24",
+            "channelNames": [
+                "ABC News 24",
+                "ABC 1",
+                "ABC 2",
+                "ABC 3",
+                "One",
+                "SBS One",
+                "SBS 2",
+                "7Mate",
+                "Seven",
+                "7TWO",
+                "Nine",
+                "Ten",
+                "Eleven",
+                "GO",
+                "GEM",
+                "Bloomberg",
+                "CNN",
+                "CNBC",
+                "BBC World",
+                "Sky News",
+                "Nick Jr.",
+                "Fox Sports",
+                "Fox Sports 2",
+                "Fox Sports 3",
+                "ESPN",
+                "ESPN 1",
+                "Fox Sports News",
+                "Fox Footy",
+                "Some other channel"
+            ],
+            // "commands": ["Power on/off"],
+            $goto: function(name) {
+                this.channelName = name;
+            },
+            "input_list": {
+                hdmi: "HDMI",
+                vga: "VGA",
+                display_port: "Display Port"
+            }
+        }],
         Camera: [{
             joy_right: -0x14,
             joy_left: 0x14,
@@ -18,70 +63,12 @@
             joy_center: 0,
             zoom: 80
         }],
-        Bookings: [{
-            order_status: 'idle',
-            waiter_call: false,
-            $waiter_call: function (state) {
-                this.waiter_call = state;
-                if (state) {
-                    this.order_status = 'accepted';
-                } else {
-                    this.order_status = 'idle';
-                }
-            },
-            $commit_order: function () {
-                this.order_status = 'pending';
-            },
-            catering: 'sys-Catering',
-            "menu": [{
-                "name": "Coffee",
-                "options": [{
-                    "name": "Flat White",
-                    "subinfo": "Milk type?",
-                    "options": [{
-                        "name": "Full cream"
-                    },
-                    {
-                        "name": "Skim milk"
-                    }]
-                },{
-                    "name": "Cappuccino",
-                    "subinfo": "Milk type?",
-                    "options": [{
-                        "name": "Full cream"
-                    },
-                    {
-                        "name": "Skim milk"
-                    }]
-                }]
-            }, {
-                "name": "Juice",
-                "options": [{
-                    "name": "Apple"
-                }, {
-                    "name": "Orange"
-                }, {
-                    "name": "Pineapple"
-                }, {
-                    "name": "Blood Orange"
-                }]
-            }]
-        }],
         DigitalIO: [{
             $relay: function (index, state) {
                 this.relay1 = state;
             }
         }],
         System: [{
-            "blinds": [{
-                "title": "Glass",
-                "module": "DigitalIO_1",
-                "feedback": "relay1",
-                "closed_value": false,
-                "open_value": true,
-                "func": "relay",
-                "args": [1]
-            }],
             analytics: 'UA-69533861-111',
             "$powerup": function () {
                 this.state = "online";
@@ -171,7 +158,7 @@
             "name": "Meeting Room 13A",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
-            "tab": "PC",
+            "tab": "Presentation",
             "apps": ['explorer', 'firefox', 'vlc', 'sankore'],
             "channels": [
                 "7 Digital",
@@ -190,14 +177,13 @@
                 "ABC Dig"
             ],
             "inputs": [
-            "Chromebox",
-                "Lectern",
-                "Laptop",
-                "WePresent",
-                "Phone",
+                "Presentation",
                 "VC",
-                "Camera",
-                "Wired"
+                "Phone",
+                "TV"
+            ],
+            "TV": [
+                "tv_input"
             ],
             "PC": [
                 "g1_pc1"
@@ -205,9 +191,10 @@
             "Chromebox": [
                 "g1_pc1"
             ],
-            "Lectern": [
+            "Presentation": [
+            "laptop_wireless",
                 "laptop_g1",
-                "laptop_g2"
+                "digital_signage"
             ],
             "WePresent": [
                 "laptop_wireless"
@@ -228,6 +215,20 @@
                 "training_cam2"
             ],
             "sources": {
+                "digital_signage": {
+                    "title": "Digital Signage",
+                    "input": 2,
+                    "source": "hdmi",
+                    "type": "usb",
+                    "colour": "#FFDB8E"
+                },
+                "tv_input": {
+                    "title": "TV",
+                    "input": 14,
+                    "source": "hdmi",
+                    "type": "residentpc",
+                    "colour": "#F58172"
+                },
                 "g1_pc1": {
                     "title": "Resident PC",
                     "input": 14,
@@ -236,7 +237,7 @@
                     "colour": "#F58172"
                 },
                 "laptop_g1": {
-                    "title": "Laptop (HDMI Audio)",
+                    "title": "Laptop Wired",
                     "input": 11,
                     "source": "hdmi",
                     "type": "aux_hdmi",
@@ -257,10 +258,10 @@
                     "colour": "#FFDB8E"
                 },
                 "laptop_wireless": {
-                    "title": "WePresent",
+                    "title": "Laptop Wireless",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "wepresent",
+                    "type": "wireless",
                     "colour": "#FFDB8E"
                 },
                 "video_conf": {
