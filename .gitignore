@@ -8,6 +8,4 @@ dist/
 
 npm-debug.log
 
-*.zip
-
 *.rdb

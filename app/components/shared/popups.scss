@@ -29,43 +29,45 @@ div.tray {
             background-color: rgba(255,255,255,0.1);
             @include border-radius($radius);
 
-            font-family: FontAwesome;
-            font-size: 30px;
+            font-family: 'doe';
+            font-size: 40px;
             text-align: center;
             line-height: 60px;
             color: rgba(255,255,255,0.9);
 
             &.lights::before {
-                content: "\f0eb";
+                content: "\0053";
             }
 
             &.displays::before {
-                content: "\f085";
+                content: "\0048";
             }
 
             &.screens::before {
-                content: "\f0dc";
+                content: "\0057";
             }
 
             &.help::before {
-                content: "\f059";
+                margin-left: -4px;
+                content: "\004a";
             }
 
             &.cameras::before {
-                content: "\f03d";
+                content: "\0045";
             }
 
             &.power::before {
-                content: "\f011";
+                margin-left: -4px;
+                content: "\004c";
             }
 
             &.mics::before {
-                content: "\f130";
+                content: "\004f";
             }
 
             &.catering {
                 &::before {
-                    content: "\f0f4";
+                    content: "\004e";
                 }
 
                 &.pending {
@@ -94,7 +96,7 @@ div.tray {
 
             &.joining {
                 &::before {
-                    content: "\f0c1";
+                    content: "\0052";
                 }
 
                 &.active {
@@ -115,7 +117,7 @@ modal {
         top: 2px;
         right: 10px;
 
-        font-family: 'FontAwesome';
+        font-family: FontAwesome;
         font-size: 34px;
         color: grey;
 
@@ -427,7 +429,7 @@ modal[name=catering] {
                         // each tab icon is a font icon drawn in the ::before
                         // psuedo element of each a element
                         &:before {
-                            font-family: FontAwesome;
+                            font-family: 'doe';
                             font-size: 40px;
                             color: black;
                             text-decoration: none;

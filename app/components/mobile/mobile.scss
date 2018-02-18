@@ -455,7 +455,7 @@ article.mobile {
     ///////////////////
     div#mobile-sources {
         div.sources > button > span {
-            font-family: FontAwesome;
+            font-family: 'doe';
             margin-right: 0.8em;
 
             &.residentpc::before {
@@ -524,7 +524,7 @@ article.mobile {
                     // each tab icon is a font icon drawn in the ::before
                     // psuedo element of each a element
                     &:before {
-                        font-family: FontAwesome;
+                        font-family: 'doe';
                         font-size: 30px;
                         color: rgba(255,255,255,0.9);
                         text-decoration: none;

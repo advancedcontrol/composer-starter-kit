@@ -255,7 +255,7 @@ article.main {
                                 // each tab icon is a font icon drawn in the ::before
                                 // psuedo element of each a element
                                 &:before {
-                                    font-family: FontAwesome;
+                                    font-family: 'doe';
                                     font-size: 28px;
                                     color: rgba(0, 0, 0, 0.8);
                                     text-decoration: none;
@@ -351,35 +351,34 @@ article.main {
             button {
                 height: 7vh;
                 font-size: 2.5vh;
+                padding-top: 1.5vh;
 
                 i {
+                    margin-top: -0.5vh;
                     float: left;
                     margin-left: 10px;
-                    font-size: 3vh;
-                    font-family: FontAwesome;
+                    font-size: 4vh;
+                    font-family: 'doe';
                     font-style: normal;
 
                     &.aux_hdmi::before {
-                        content: "\f109";
+                        content: "\0042";
                     }
 
                     &.usb::before {
-                        content: "\f287";
+                        content: "\0042";
+                    }
+
+                    &.signage::before {
+                        content: "\0056";
                     }
 
                     &.wireless::before {
-                        content: "\f1eb";
+                        content: "\0041";
                     }
 
-                    &.wired {
-                        background-image: url("../../components/main/Wired/usb-active.svg");
-
-                        background-size: auto 1em;
-                        background-repeat: no-repeat;
-                        background-position: left center;
-
-                        height: 1em;
-                        width: 1em;
+                    &.wired::before {
+                        content: "\0042";
                     }
                 }
             }
@@ -570,38 +569,40 @@ article.main {
 
 
     .source-image, tabs nav > div > div {
-        font-family: FontAwesome;
+        font-family: 'doe';
 
         &.PC::before, &.residentpc::before {
-            content: "\f108";
+            content: "\004b";
         }
 
         &.Presentation::before, &.Laptop::before, &.aux_hdmi::before {
-            content: "\f109";
+            margin-top: -5px;
+            font-size: 1.2em;
+            content: "\004b";
         }
 
         &.Phone::before {
-            content: "\f095";
+            content: "\004d";
         }
 
         &.TV::before {
-            content: "\f26c";
+            content: "\0057";
         }
 
         &.Camera::before, &.vc-camera::before {
-            content: "\f03d";
+            content: "\0045";
         }
 
         &.VC::before, &.vc-active::before {
-            content: "\f0c0";
+            content: "\0043";
         }
 
         &.Presenter::before, &.presenter::before {
-            content: "\f1e7";
+            content: "\0043";
         }
 
         &.Wireless::before, &.wireless::before {
-            content: "\f1eb";
+            content: "\0041";
         }
 
         &.Chromebox::before, &.chromebox::before {
@@ -620,40 +621,39 @@ article.main {
         &.Wired::before, &.wired::before,
         &.Visualiser::before, &.visualiser::before,
         &.Lectern::before, &.lectern::before {
-            content: "\00A0";
+            content: "\0042";
         }
 
         &.usb::before {
-            content: "\f287";
+            content: "\0042";
         }
 
         &.wireless::before {
-            content: "\f1eb";
+            content: "\0041";
         }
 
-        // Fill the DIV with an image
-        &.Visualiser, &.visualiser {
-            background-image: url("../../components/main/Visualiser/visualiser.svg");
-
-            background-size: auto 1em;
-            background-repeat: no-repeat;
-            background-position: center top;
+        &.Wired::before, &.wired::before {
+            content: "\0042";
         }
 
-        &.Wired, &.wired {
-            background-image: url("../../components/main/Wired/usb.svg");
-
-            background-size: auto 1em;
-            background-repeat: no-repeat;
-            background-position: center top;
+        &.aux_hdmi::before {
+            content: "\0042";
         }
 
-        &.Lectern, &.lectern {
-            background-image: url("../../components/main/Lectern/lectern.svg");
+        &.usb::before {
+            content: "\0042";
+        }
 
-            background-size: auto 1em;
-            background-repeat: no-repeat;
-            background-position: center top;
+        &.signage::before {
+            content: "\0056";
+        }
+
+        &.wireless::before {
+            content: "\0041";
+        }
+
+        &.wired::before {
+            content: "\0042";
         }
     }
 

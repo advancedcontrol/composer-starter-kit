@@ -179,7 +179,6 @@
             "inputs": [
                 "Presentation",
                 "VC",
-                "Phone",
                 "TV"
             ],
             "TV": [
@@ -192,7 +191,7 @@
                 "g1_pc1"
             ],
             "Presentation": [
-            "laptop_wireless",
+                "laptop_wireless",
                 "laptop_g1",
                 "digital_signage"
             ],
@@ -219,14 +218,14 @@
                     "title": "Digital Signage",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "usb",
+                    "type": "signage",
                     "colour": "#FFDB8E"
                 },
                 "tv_input": {
                     "title": "TV",
                     "input": 14,
                     "source": "hdmi",
-                    "type": "residentpc",
+                    "type": "TV",
                     "colour": "#F58172"
                 },
                 "g1_pc1": {
