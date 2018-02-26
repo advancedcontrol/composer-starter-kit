@@ -380,6 +380,15 @@ article.main {
                     &.wired::before {
                         content: "\0042";
                     }
+
+                    &.fa {
+                        margin-top: -1vh;
+                        font-size: 3.5vh;
+
+                        &:before {
+                            font-family: 'FontAwesome';
+                        }
+                    }
                 }
             }
         }
@@ -407,10 +416,52 @@ article.main {
         @include box-shadow(darken($footerBackground, 15%) 0px 4px 14px inset);
 
 
+        &> div.single_audio_out {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 3.3em;
+
+            > div.audio {
+                width: 100%;
+                max-width: 100%;
+
+                > div {
+                    position: relative;
+
+                    div.volume {
+                        position: absolute;
+                        top: 0;
+                        left: 4em;
+                        right: 4em;
+                    }
+
+                    div.mute {
+                        position: absolute;
+                        top: -5px;
+                    }
+                }
+            }
+        }
+
         // The scrolling container
         &> div {
             height: 100%;
             white-space: nowrap;
+
+            &.singleaudioout {
+                &> div {
+                    margin-left: 2.5em;
+
+                    .audio-select {
+                        float: left;
+                        position: relative;
+                        overflow: hidden;
+                        left: -2.5em;
+                        width: 2.5em;
+                    }
+                }
+            }
 
             // the display selection UI
             &> div {
@@ -512,7 +563,8 @@ article.main {
         @include co-range-slider(
             $handle-size: 40px,
             $track-girth: 20px,
-            $track-colour:white
+            $track-colour:white,
+            $progress-colour: #244c85
         );
     }
 

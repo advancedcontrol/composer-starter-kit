@@ -312,7 +312,8 @@
                     "basic_mixer": true,
                     "type": "lcd",
                     "pri": 1,
-                    "title": "Display"
+                    "title": "Display",
+                    "single_audio_out": true
                 },
                 "Display_2": {
                     "output": [
@@ -324,7 +325,8 @@
                     "basic_mixer": true,
                     "type": "lcd",
                     "pri": 1,
-                    "title": "Display"
+                    "title": "Display",
+                    "single_audio_out": true
                 }
             },
             "light_level": "Off",

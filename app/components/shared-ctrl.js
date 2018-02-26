@@ -13,6 +13,7 @@
                     $scope.outputNames = Object.keys(val);
                     $scope.numOutputs = $scope.outputNames.length;
                     $scope.poweredOutputs = 0;
+                    $scope.single_audio_out = val[$scope.outputNames[0]].single_audio_out;
 
                     $scope.hasScreens = false;
                     $scope.hasLifters = false;

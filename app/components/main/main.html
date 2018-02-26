@@ -26,7 +26,7 @@
             <!-- Show when more than one output available -->
             <span co-bind="'joined'"></span>
             <footer ng-if="outputs && (numOutputs > 1 || has_preview)">
-                <div>
+                <div ng-class="{singleaudioout: single_audio_out}">
                     <!-- 
                         source === what is currently displaying
                         output.type == projector / lcd / conference
@@ -40,6 +40,10 @@
                     >
                         <span co-bind="output.$key + '_volume' as shared.volume" exec="share_volume(output.$key, shared.volume)"></span>
                         <span co-bind="output.$key + '_amute' as audio.mute" exec="share_mute(output.$key, audio.mute)"></span>
+
+                        <span class="audio-select" ng-if="single_audio_out">
+                            <label style="font-size: larger"><span> <i class="fa fa-volume-up"></i></span><input type="checkbox" /></label>
+                        </span>
 
                         <div class="icon" touch-action="pan-x" ng-click="presetSource()">
                             <div class="outer"></div>
@@ -76,11 +80,17 @@
                             An output may not output any audio (VC for example)
                         -->
                         <div
-                            ng-if="!(output.no_audio || output.hide_audio)"
+                            ng-if="!(output.no_audio || output.hide_audio || output.single_audio_out)"
                             class="audio"
                             ng-include="'components/shared/audio.html'"
                         ></div>
                     </div>
+                </div>
+                <div class="single_audio_out" ng-if="single_audio_out == true">
+                    <div
+                        class="audio"
+                        ng-include="'components/shared/audio.html'"
+                    ></div>
                 </div>
             </footer>
             <footer ng-if="outputs && numOutputs === 1 && !has_preview" ng-controller="JointAudioCtrl" class="audio-only">
