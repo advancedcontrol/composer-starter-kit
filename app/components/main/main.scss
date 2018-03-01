@@ -368,7 +368,7 @@ article.main {
                     }
 
                     &.wireless::before {
-                        content: "\f1eb";
+                        content: "\f109";
                     }
 
                     &.wired {
@@ -601,7 +601,7 @@ article.main {
         }
 
         &.Wireless::before, &.wireless::before {
-            content: "\f1eb";
+            content: "\f109";
         }
 
         &.Chromebox::before, &.chromebox::before {
@@ -616,6 +616,10 @@ article.main {
             content: "\f26c";
         }
 
+        &.Web::before, &.web::before {
+            content: "\f0c0";
+        }
+
         // Give the DIV a height
         &.Wired::before, &.wired::before,
         &.Visualiser::before, &.visualiser::before,
@@ -628,7 +632,7 @@ article.main {
         }
 
         &.wireless::before {
-            content: "\f1eb";
+            content: "\f109";
         }
 
         // Fill the DIV with an image

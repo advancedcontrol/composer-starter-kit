@@ -96,16 +96,18 @@
                 initiator: 'sys-B0'
             },
             "inputs": [
-                "PC",
+                "Wireless",
                 "Laptop",
-                "Receiver"
+                "Web Conference"
             ],
-            "PC": [
+            "Wireless": [
                 "g1_pc1"
             ],
             "Laptop": [
-                "laptop_g1",
-                "laptop_g2"
+                "laptop_g1"
+            ],
+            "Web Conference": [
+                "tv_receiver"
             ],
             "Receiver": [
                 "tv_receiver"
