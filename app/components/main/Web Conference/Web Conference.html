@@ -1,0 +1,15 @@
+
+<div co-bind="'Web Conference' as source_names">
+    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+        <div id="wirelessmain">
+            <span ng-if="numOutputs > 1 || has_preview">
+                You can project on one or both displays in this room.<br />
+                Touch the screens below to select the display for your presentation.<br /><br />
+            </span>
+            <div>
+                <img src="hdmi_usb.png" title="HDMI and USB cables">
+                    <span>To use the webcam with your laptop, connect the <b>HDMI</b> and <b>USB</b> cables</span>
+            </div>
+        </div>
+    </div>
+</div>
