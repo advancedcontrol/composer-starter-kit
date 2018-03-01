@@ -149,6 +149,25 @@
             "vol_max": -20,
             "vol_min": -50,
             "Presenter_hide": true,
+            "lighting_group": 12,
+             "lights": {
+        "levels": [
+            {
+                "name": "High",
+                "trigger": 9
+            },
+            {
+                "name": "Meeting",
+                "trigger": 10
+            },
+            {
+                "name": "Presentation",
+                "trigger": 11
+            }
+        ],
+        "present": 11,
+        "shutdown": 10
+    },
             $lights_to: function (level) {
                 this.light_level = level;
             }
