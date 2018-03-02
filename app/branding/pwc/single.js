@@ -155,7 +155,7 @@
                 "query_ids": ["16-10pVcRoomPhoneProgress", "16-10pVcRoomPhoneRinging", "16-10pVcRoomPhoneOffHook"]
             },
             "mics_mutes": [105, 106, 107],
-            "name": "Meeting Room 13A",
+            "name": "Team Room",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
             "tab": "Presentation",
@@ -193,6 +193,7 @@
             "Presentation": [
                 "laptop_wireless",
                 "laptop_g1",
+                "laptop_g2",
                 "digital_signage"
             ],
             "WePresent": [
@@ -215,7 +216,7 @@
             ],
             "sources": {
                 "digital_signage": {
-                    "title": "Digital Signage",
+                    "title": "Digital signage",
                     "input": 2,
                     "source": "hdmi",
                     "type": "signage",
@@ -236,42 +237,42 @@
                     "colour": "#F58172"
                 },
                 "laptop_g1": {
-                    "title": "Laptop Wired",
+                    "title": "Tablebox front",
                     "input": 11,
                     "source": "hdmi",
                     "type": "aux_hdmi",
                     "colour": "#7BB5D0"
                 },
                 "laptop_g2": {
-                    "title": "Laptop (3.5mm Audio)",
+                    "title": "Tablebox rear",
                     "input": 2,
                     "source": "hdmi",
                     "type": "aux_hdmi",
                     "colour": "#FFDB8E"
                 },
                 "laptop_usb": {
-                    "title": "Laptop Wireless",
+                    "title": "Laptop wireless",
                     "input": 2,
                     "source": "hdmi",
                     "type": "wireless",
                     "colour": "#FFDB8E"
                 },
                 "laptop_wireless": {
-                    "title": "Laptop Wireless",
+                    "title": "Laptop wireless",
                     "input": 2,
                     "source": "hdmi",
                     "type": "wireless",
                     "colour": "#FFDB8E"
                 },
                 "video_conf": {
-                    "title": "Video Conference",
+                    "title": "Video conference",
                     "input": 9,
                     "source": "hdmi",
                     "type": "presenter",
                     "colour": "#65DCC7"
                 },
                 "training_cam": {
-                    "title": "Camera Front",
+                    "title": "Camera front",
                     "type": "vc-camera",
                     "mod": "Camera",
                     "index": 1,
@@ -285,7 +286,7 @@
                     }]
                 },
                 "training_cam2": {
-                    "title": "Camera Rear",
+                    "title": "Camera rear",
                     "type": "vc-camera",
                     "mod": "Camera",
                     "index": 2,
@@ -312,7 +313,7 @@
                     "basic_mixer": true,
                     "type": "lcd",
                     "pri": 1,
-                    "title": "Display",
+                    "title": "Left",
                     "single_audio_out": true
                 },
                 "Display_2": {
@@ -325,7 +326,7 @@
                     "basic_mixer": true,
                     "type": "lcd",
                     "pri": 1,
-                    "title": "Display",
+                    "title": "Right",
                     "single_audio_out": true
                 }
             },
@@ -398,6 +399,10 @@
             $mute: function (mute) {
                 this.mute = mute;
             }
+        },{
+            $mute: function (mute) {
+                this.mute = mute;
+            }
         }],
         VidConf: [{
             results_total: 0,
@@ -408,7 +413,7 @@
                         number: "10.243.218.232",
                         calltype: "Video"
                     }],
-                    name: "Rabobank Sydney - Garden Amphitheater",
+                    name: "School 1",
                     contactid: "localContactId-3",
                     title: "Rabobank Sydney"
                 },
@@ -418,7 +423,7 @@
                         number: "10.243.218.230",
                         calltype: "Video"
                     }],
-                    name: "Rabobank Sydney - Macarthur Room",
+                    name: "School 2",
                     contactid: "localContactId-1",
                     title: "Rabobank Sydney"
                 },
@@ -428,7 +433,7 @@
                         number: "10.243.218.232",
                         calltype: "Video"
                     }],
-                    name: "Rabobank Sydney - Garden Amphitheater",
+                    name: "School 3",
                     contactid: "localContactId-3",
                     title: "Rabobank Sydney"
                 }

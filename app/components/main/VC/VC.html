@@ -22,7 +22,7 @@
 
             <!-- Presenation Mode -->
             <div id="vc-pres-mode" co-bind="'presentation' as vc.pres_mode">
-                <span>Content Destination:<br /></span>
+                <span>Content destination:<br /></span>
                 <div btn-group="vc.pres_mode" btn-class="btn">
                     <button
                         btn="'none'"
@@ -39,31 +39,15 @@
                 </div>
             </div>
 
-            <!-- Presenation Layout -->
-            <div co-bind="'content_available'" ng-class="{nosee: !vc.status.direction || (vc.pres_mode == 'none' && !content_available)}">
-                <span>Select Presenation Layout:<br /></span>
-                <div btn-group="vc.layout_local" class="vert-button-group" btn-class="btn">
-                    <button
-                        btn="'auto'"
-                        ng-touch="vc.layout_local = 'auto'; coModuleInstance.$exec('layout', vc.layout_local)"
-                        class="toggle"
-                    >Auto</button>
-                    <button 
-                        btn="'fullscreen'"
-                        ng-touch="vc.layout_local = 'fullscreen'; coModuleInstance.$exec('layout', vc.layout_local)"
-                        class="toggle"
-                    >Fullscreen</button>
-                    <button 
-                        btn="'equal'"
-                        ng-touch="vc.layout_local = 'equal'; coModuleInstance.$exec('layout', vc.layout_local)"
-                        class="toggle"
-                    >Equal</button>
-                    <button 
-                        btn="'overlay'"
-                        ng-touch="vc.layout_local = 'overlay'; coModuleInstance.$exec('layout', vc.layout_local)"
-                        class="toggle"
-                    >Overlay</button>
-                </div>
+            <br />
+            <br />
+
+            <div style="margin: 0 1em; text-align: left">
+                To record a Skype conference you must:
+                <ol>
+                    <li>join the conference on your laptop</li>
+                    <li>use the Skype client recording tools</li>
+                </ol>
             </div>
         </div>
         <div>
@@ -85,7 +69,7 @@
                         <div class="results" ng-if="!vc.status.direction" co-bind="'search_results'">
                             <div ng-repeat="result in search_results" ng-click="vc.selected = result" ng-class="{selected: vc.selected === result}">
                                 <span class="title">{{result.name}}</span><br />
-                                Number: {{result.methods[0].number}} &nbsp;&nbsp;&nbsp; Type: {{result.methods[0].calltype}}
+                                Number: {{result.methods[0].number}}
                             </div>
                         </div>
 
@@ -112,6 +96,8 @@
         </div>
         <div class="sources">
             <div co-module="'VidConf'">
+                <button>Join skype meeting</button><br /><br />
+
                 <span co-bind="'call_status' as vc.status"></span>
                 <!-- NOTE:: this is a bit hacky -->
                 <span ng-if="vc.status" ng-init="vc.module = coModuleInstance"></span>
@@ -124,7 +110,7 @@
                         <i class="fa fa-hand-pointer-o"></i>Dial
                     </span>
                     <span ng-if="vc.status.direction">
-                        <i class="fa fa-tty"></i>Hang Up
+                        <i class="fa fa-tty"></i>Hang up
                     </span>
                 </button>
 
@@ -134,8 +120,8 @@
                     <button class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.muted}"
                         ng-touch="coModuleInstance.$exec('mute', mics_mutes, !vc.muted)"
                     >
-                        <span ng-if="!vc.muted"><i class="fa fa-microphone"></i>Mute Mics</span>
-                        <span ng-if="vc.muted"><i class="fa fa-microphone-slash"></i>Unmute Mics</span>
+                        <span ng-if="!vc.muted"><i class="fa fa-microphone"></i>Mute mics</span>
+                        <span ng-if="vc.muted"><i class="fa fa-microphone-slash"></i>Unmute mics</span>
                     </button>
                 </span>
 
@@ -144,20 +130,11 @@
                     ng-touch="coModuleInstance.$exec('call', vc.status.status == 'OnHold' ? 'resume' : 'hold')"
                 >
                     <span ng-if="vc.status.status != 'OnHold'">
-                        <i class="fa fa-pause"></i>Place on Hold
+                        <i class="fa fa-pause"></i>Place on hold
                     </span>
                     <span ng-if="vc.status.status == 'OnHold'">
-                        <i class="fa fa-play"></i>Return to Call
+                        <i class="fa fa-play"></i>Return to call
                     </span>
-                </button>
-
-                <!-- Toggle PiP -->
-                <span co-bind="'camera_pip' as vc.pip"></span>
-                <button class="toggle"
-                    ng-touch="coModuleInstance.$exec('show_camera_pip', !vc.pip)"
-                >
-                    <span ng-if="vc.pip"><i class="fa fa-eye"></i>Hide Camera PiP</span>
-                    <span ng-if="!vc.pip"><i class="fa fa-eye-slash"></i>Show Camera PiP</span>
                 </button>
             </div>
         </div>
