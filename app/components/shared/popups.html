@@ -225,25 +225,34 @@
 <!--
     Manual Control Pop up
  -->
-<div>
-    <div ng-if="has_preview || poweredOutputs > 1" class="displays" ng-touch="showModal('displays'); $root.$emit('$track', 'popup', 'manual')">
+<div co-bind="'cog_modes'">
+    <div ng-if="has_preview || poweredOutputs > 1 || cog_modes" class="displays" ng-touch="showModal('displays'); $root.$emit('$track', 'popup', 'manual')">
         <modal name="displays" title="Display Control">
-            <h2>Displays:</h2>
+            <div ng-if="cog_modes" co-bind="'current_cog_mode'">
+                <h2>System Modes:</h2>
+                <div btn-group="current_cog_mode">
+                    <button ng-repeat="mode in cog_modes" btn="mode" ng-touch="coModuleInstance.$exec('switch_mode', mode)" class="toggle">{{mode}}</button>
+                </div>
+            </div>
 
-            <!-- Get the number of displays and list them -->
-            <table class="entries">
-                <tr
-                    ng-repeat="display in outputs | orderObjectBy:'pri'"
-                    ng-if="!display.no_mod"
-                    co-module="display.$key"
-                    co-implicit-index
-                    co-bind="'power'" exec
-                >
-                    <td>{{display.title}}</td>
-                    <td ><div ios-toggle model="power"></div></td>
-                    <td class="onoff">{{power ? 'On' : 'Off'}}</td>
-                </tr>
-            </table>
+            <div ng-if="!cog_modes">
+                <h2>Displays:</h2>
+
+                <!-- Get the number of displays and list them -->
+                <table class="entries">
+                    <tr
+                        ng-repeat="display in outputs | orderObjectBy:'pri'"
+                        ng-if="!display.no_mod"
+                        co-module="display.$key"
+                        co-implicit-index
+                        co-bind="'power'" exec
+                    >
+                        <td>{{display.title}}</td>
+                        <td ><div ios-toggle model="power"></div></td>
+                        <td class="onoff">{{power ? 'On' : 'Off'}}</td>
+                    </tr>
+                </table>
+            </div>
         </modal>
     </div>
 </div>
@@ -255,7 +264,7 @@
     <div ng-if="cam_sources" class="cameras" ng-touch="showModal('cameras'); $root.$emit('$track', 'popup', 'cameras')">
         <modal name="cameras" title="Camera Control">
 
-            <div ng-include="'../components/main//Camera/Camera.html'"></div>
+            <div ng-include="'components/main/Camera/Camera.html'"></div>
 
         </modal>
     </div>
@@ -443,9 +452,7 @@
     <div co-module="'VidConf'">
         <modal name="vc_accept" title="Accept VC Call?" no-close="true">
             <p co-bind="'call_status'">
-                <b>Incomming call from {{call_status.displayname}}</b>
-                <br />Call type: {{call_status.calltype}}
-                <br />Number: {{call_status.remotenumber}}
+                <b>Accept incomming call?</b>
             </p>
             <menu>
                 <button class="cancel" ng-touch="coModuleInstance.$exec('call', 'reject')">Reject</button>

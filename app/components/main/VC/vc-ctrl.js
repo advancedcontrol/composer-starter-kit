@@ -54,7 +54,7 @@
 
             $scope.$watch('vc.selected', function (val) {
                 if (val) {
-                    vc.dial_string = val.methods[0].number;
+                    vc.dial_string = val.name;
                 }
             });
         }]);

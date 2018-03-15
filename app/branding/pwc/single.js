@@ -405,37 +405,55 @@
             }
         }],
         VidConf: [{
-            results_total: 0,
+            results_total: 3,
             search_results: [
                 {
-                    methods: [{
-                        contactmethodid: "1",
-                        number: "10.243.218.232",
-                        calltype: "Video"
-                    }],
                     name: "School 1",
-                    contactid: "localContactId-3",
-                    title: "Rabobank Sydney"
+                    number: "10.243.218.232 10.243.218.232 10.243.218.232"
                 },
                 {
-                    methods: [{
-                        contactmethodid: "1",
-                        number: "10.243.218.230",
-                        calltype: "Video"
-                    }],
                     name: "School 2",
-                    contactid: "localContactId-1",
-                    title: "Rabobank Sydney"
+                    number: "10.243.218.230"
                 },
                 {
-                    methods: [{
-                        contactmethodid: "1",
-                        number: "10.243.218.232",
-                        calltype: "Video"
-                    }],
                     name: "School 3",
-                    contactid: "localContactId-3",
-                    title: "Rabobank Sydney"
+                    number: "localContactId-3"
+                },
+                {
+                    name: "School 1",
+                    number: "10.243.218.232"
+                },
+                {
+                    name: "School 2",
+                    number: "10.243.218.230"
+                },
+                {
+                    name: "School 3",
+                    number: "localContactId-3"
+                },
+                {
+                    name: "School 1",
+                    number: "10.243.218.232"
+                },
+                {
+                    name: "School 2",
+                    number: "10.243.218.230"
+                },
+                {
+                    name: "School 3",
+                    number: "localContactId-3"
+                },
+                {
+                    name: "School 1",
+                    number: "10.243.218.232"
+                },
+                {
+                    name: "School 2",
+                    number: "10.243.218.230"
+                },
+                {
+                    name: "School 3",
+                    number: "localContactId-3"
                 }
             ],
             call_status: {
