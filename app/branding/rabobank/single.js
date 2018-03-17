@@ -41,7 +41,6 @@
                 "Fox Footy",
                 "Some other channel"
             ],
-            "commands": ["Power on/off"],
             $goto: function(name) {
                 this.channelName = name;
             },
@@ -71,7 +70,7 @@
             //meeting_ending: true,
             last_meeting_started: 23,
             meeting_pending: 24,
-            meeting_ending: true,
+            meeting_ending: false,
 
             $waiter_call: function (state) {
                 this.waiter_call = state;
@@ -83,123 +82,7 @@
             },
             $commit_order: function () {
                 this.order_status = 'pending';
-            },
-            catering: 'sys-Catering',
-            "menu": [
-            {
-                "name": "Favourites",
-                "icon": "star",
-                "options": [{
-                    "name": "Flat White",
-                    "extras": true
-                },{
-                    "name": "Cappuccino",
-                    "extras": true
-                },{
-                    "name": "Long Black"
-                },{
-                    "name": "line-break"
-                },{
-                    "name": "Sparkling Water"
-                },{
-                    "name": "Cranberry Juice"
-                },{
-                    "name": "line-break"
-                },{
-                    "name": "English Breakfast",
-                    "extras": true
-                },{
-                    "name": "Lemon Ginger"
-                },{
-                    "name": "Peppermint"
-                },{
-                    "name": "line-break"
-                },{
-                    "name": "Hot Chocolate"
-                }],
-                "extras": {
-                    "milk": ["Full Cream", "Skim", "Soy", "none"],
-                    "sugar": ["none", "Brown", "White", "Artificial"]
-                }
-            },
-            {
-                "name": "Coffee",
-                "icon": "coffee",
-                "options": [{
-                    "name": "Short Black"
-                },{
-                    "name": "Long Black"
-                },{
-                    "name": "Piccolo"
-                },{
-                    "name": "line-break"
-                },{
-                    "name": "Flat White",
-                    "extras": true
-                },{
-                    "name": "Latte",
-                    "extras": true
-                },{
-                    "name": "Cappuccino",
-                    "extras": true
-                },{
-                    "name": "Mocha"
-                }],
-                "extras": {
-                    "milk": ["Full Cream", "Skim", "Soy", "none"],
-                    "sugar": ["none", "Brown", "White", "Artificial"]
-                }
-            },
-            {
-                "name": "Tea",
-                "icon": "tea",
-                "options": [{
-                    "name": "English Breakfast",
-                    "extras": true
-                },{
-                    "name": "line-break"
-                },{
-                    "name": "Chai Latte"
-                },{
-                    "name": "Chai"
-                },{
-                    "name": "Camomile"
-                },{
-                    "name": "Green"
-                },{
-                    "name": "line-break"
-                },{
-                    "name": "Lemon Ginger"
-                },{
-                    "name": "Peppermint"
-                }],
-                "extras": {
-                    "milk": ["Skim", "Soy", "Full Cream", "none"],
-                    "sugar": ["none", "Brown", "White", "Artificial"]
-                }
-            }, {
-                "name": "Cold Drinks",
-                "icon": "lemonade",
-                "options": [{
-                    "name": "Sparkling Water"
-                },{
-                    "name": "line-break"
-                }, {
-                    "name": "Coca Cola"
-                }, {
-                    "name": "Coke Zero"
-                }, {
-                    "name": "Diet Coke"
-                },{
-                    "name": "line-break"
-                }, {
-                    "name": "Apple Juice"
-                }, {
-                    "name": "Orange Juice"
-                }, {
-                    "name": "Cranberry Juice"
-                }]
-            }]
+            }
         }],
         DigitalIO: [{
             $relay: function (index, state) {
@@ -320,10 +203,10 @@
                 "query_ids": ["16-10pVcRoomPhoneProgress", "16-10pVcRoomPhoneRinging", "16-10pVcRoomPhoneOffHook"]
             },
             "mics_mutes": [105, 106, 107],
-            "name": "Meeting Room",
+            "name": "Ballet Rehearsal Room",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",
-            "tab": "PC",
+            "tab": "Presentation",
             "apps": ['explorer', 'firefox', 'vlc', 'sankore'],
             "channels": [
                 "7 Digital",
@@ -342,19 +225,9 @@
                 "ABC Dig"
             ],
             "inputs": [
-                "Wireless",
-                "Phone",
-                "VC",
-                "Camera",
+                "Presentation",
                 "TV",
-                "Skype"
-/*
-                "Lectern",
-                
-                
-                "Wired",
-                "TV"
-    */
+                "Tours"
             ],
             "TV": [
                 "tv_input"
@@ -368,9 +241,10 @@
             "Chromebox": [
                 "g1_pc1"
             ],
-            "Lectern": [
+            "Presentation": [
                 "laptop_g1",
-                "laptop_g2"
+                "laptop_g2",
+                "laptop_wireless"
             ],
             "Wireless": [
                 "laptop_wireless"
@@ -383,27 +257,10 @@
                 "laptop_usb",
                 "laptop_wireless"
             ],
-            "VC": [
-                "video_conf"
-            ],
-            "Camera": [
-                "training_cam",
-                "training_cam2"
+            "Tours": [
+                "tours"
             ],
             "sources": {
-                "g1_pc1": {
-                    "title": "Resident PC",
-                    "input": 14,
-                    "source": "hdmi",
-                    "type": "residentpc",
-                    "colour": "#F58172"
-                },
-                "skype": {
-                    "title": "Skype",
-                    "input": 12,
-                    "source": "hdmi",
-                    "type": "skype"
-                },
                 "tv_input": {
                     "title": "TV",
                     "input": 14,
@@ -412,85 +269,36 @@
                     "colour": "#F58172"
                 },
                 "laptop_g1": {
-                    "title": "Laptop (HDMI Audio)",
+                    "title": "HDMI Input",
                     "input": 11,
                     "source": "hdmi",
                     "type": "aux_hdmi",
                     "colour": "#7BB5D0"
                 },
                 "laptop_g2": {
-                    "title": "Laptop (3.5mm Audio)",
-                    "input": 2,
-                    "source": "hdmi",
-                    "type": "aux_hdmi",
-                    "colour": "#FFDB8E"
-                },
-                "laptop_usb": {
-                    "title": "Laptop HDMI",
+                    "title": "HDMI with 3.5mm Audio",
                     "input": 2,
                     "source": "hdmi",
                     "type": "aux_hdmi",
                     "colour": "#FFDB8E"
                 },
                 "laptop_wireless": {
-                    "title": "Laptop USB",
+                    "title": "Bluetooth",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "usb",
+                    "type": "wireless",
                     "colour": "#FFDB8E"
                 },
-                "video_conf": {
-                    "title": "Video Conference",
+                "tours": {
+                    "title": "Tours",
                     "input": 9,
                     "source": "hdmi",
                     "type": "presenter",
                     "colour": "#65DCC7"
-                },
-                "training_cam": {
-                    "title": "Camera Front",
-                    "type": "vc-camera",
-                    "mod": "Camera",
-                    "index": 1,
-                    "ignore": true,
-                    "presets": [{
-                        "name": "Wide Right",
-                        "number": 2
-                    }, {
-                        "name": "Zoom Lectern",
-                        "lookup": "wide_right"
-                    }]
-                },
-                "training_cam2": {
-                    "title": "Camera Rear",
-                    "type": "vc-camera",
-                    "mod": "Camera",
-                    "index": 2,
-                    "ignore": true,
-                    "presets": [{
-                        "name": "Window Shot",
-                        "number": 1
-                    }]
-                },
-                "soft_phone": {
-                    "title": "Phone",
-                    "type": "soft-phone",
-                    "ignore": true
                 }
             },
             "outputs": {
                 "Display_1": {
-                    "output": [
-                        3,
-                        23
-                    ],
-                    "audio_out": 21,
-                    "mixer_id": 105,
-                    "basic_mixer": true,
-                    "type": "lcd",
-                    "pri": 1,
-                    "title": "Display"
-                },
-                "Display_2": {
                     "output": [
                         3,
                         23
@@ -524,6 +332,40 @@
                 "present": 2,
                 "group": 12
             },
+            "mics": [{
+                name: "Wireless Mic",
+                id: 222,
+                index: 1
+            }, {
+                name: "Handheld Mic",
+                id: 333,
+                index: 1
+            }
+            , {
+                name: "Input 3",
+                id: 333,
+                index: 1
+            }, {
+                name: "Input 4",
+                id: 333,
+                index: 1
+            }, {
+                name: "Input 5",
+                id: 333,
+                index: 1
+            }, {
+                name: "Input 6",
+                id: 333,
+                index: 1
+            }, {
+                name: "Input 7",
+                id: 333,
+                index: 1
+            }, {
+                name: "Input 8",
+                id: 333,
+                index: 1
+            }],
             "vol_max": 650000,
             "vol_min": -650000,
             $lights_to: function (level) {

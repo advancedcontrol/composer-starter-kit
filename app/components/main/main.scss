@@ -596,6 +596,10 @@ article.main {
             content: "\f0c0";
         }
 
+        &.Tours::before, &.tours-active::before {
+            content: "\f0c0";
+        }
+
         &.Presenter::before, &.presenter::before {
             content: "\f1e7";
         }

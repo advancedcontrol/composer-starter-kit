@@ -77,31 +77,19 @@
             "name": "Creative Space",
             "joining_rooms": ['sys-B0', 'sys-B1', 'sys-B2'],
             "help_msg": "For help please call <strong>0408419954</strong>",
-            "state": "shutdown",
+            "state": "online",
             "tab": "PC",
             "inputs": [
                 "Presentation",
-                "Skype",
-                "Receiver"
-            ],
-            "Skype": [
-                "skype"
-            ],
-            "Receiver": [
-                "receiver"
-            ],
-            "PC": [
-                "g1_pc1"
-            ],
-            "Laptop": [
-                "laptop_g1",
-                "laptop_g2"
+                "TV",
+                "Tours"
             ],
             "Presentation": [
+                "g1_pc1",
                 "laptop_g1",
                 "laptop_g2"
             ],
-            "Visualiser": [
+            "Tours": [
                 "vis"
             ],
             "sources": {
@@ -154,20 +142,8 @@
                     "type": "projector",
                     "pri": 1,
                     "title": "Projector"
-                },
-                "Display_2": {
-                    "output": [
-                        3,
-                        23
-                    ],
-                    "audio_out": 21,
-                    "mixer_id": 105,
-                    "type": "lcd",
-                    "pri": 2,
-                    "title": "LCD"
                 }
             },
-            "has_preview": 4,
             "vol_max": 3,
             "vol_min": -50,
             $lights_to: function (level) {
