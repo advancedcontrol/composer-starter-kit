@@ -112,7 +112,20 @@
             </div>
         </div>
         <div class="sources" co-module="'VidConf'">
+            <span co-bind="'call_status' as vc.status"></span>
+            <!-- NOTE:: this is a bit hacky -->
+            <span ng-if="vc.status" ng-init="vc.module = coModuleInstance"></span>
+            
             <table class="remote">
+                <tr>
+                    <td class="call"
+                        ng-touch="coModuleInstance.$exec('dial', vc.dial_string, vc.search_string); $event.preventDefault();"
+                    ></td>
+                    <td></td>
+                    <td class="hangup"
+                        ng-touch="coModuleInstance.$exec('button_press', 'hangup'); $event.preventDefault();"
+                    ></td>
+                </tr>
                 <tr>
                     <td></td>
                     <td class="up"
@@ -147,15 +160,6 @@
                     ></td>
                     <td class="menu"
                         ng-touch="coModuleInstance.$exec('button_press', 'menu'); $event.preventDefault();"
-                    ></td>
-                </tr>
-                <tr>
-                    <td class="call"
-                        ng-touch="coModuleInstance.$exec('dial', vc.dial_string, vc.search_string); $event.preventDefault();"
-                    ></td>
-                    <td></td>
-                    <td class="hangup"
-                        ng-touch="coModuleInstance.$exec('button_press', 'hangup'); $event.preventDefault();"
                     ></td>
                 </tr>
             </table>

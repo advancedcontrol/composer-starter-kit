@@ -194,6 +194,7 @@
                 "laptop_wireless",
                 "laptop_g1",
                 "laptop_g2",
+                "training_cam",
                 "digital_signage"
             ],
             "WePresent": [
@@ -272,6 +273,7 @@
                     "colour": "#65DCC7"
                 },
                 "training_cam": {
+                    "auto_camera": true,
                     "title": "Camera front",
                     "type": "vc-camera",
                     "mod": "Camera",

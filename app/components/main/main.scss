@@ -381,6 +381,10 @@ article.main {
                         content: "\0042";
                     }
 
+                    &.vc-camera::before {
+                        content: "\0045";
+                    }
+
                     &.fa {
                         margin-top: -1vh;
                         font-size: 3.5vh;
