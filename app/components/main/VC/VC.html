@@ -25,6 +25,22 @@
             </select>
 
             <br />
+
+            <!-- Presenation Mode -->
+            <div id="vc-pres-mode" co-bind="'presentation' as vc.pres_mode">
+                <span>Content destination:<br /></span>
+                <div btn-group="vc.pres_mode" btn-class="btn">
+                    <button
+                        btn="'local'"
+                        ng-touch="vc.pres_mode = 'local'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
+                    >Hide</button>
+                    <button
+                        btn="'remote'"
+                        ng-touch="vc.pres_mode = 'remote'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
+                    >Present to remote</button>
+                </div>
+            </div>
+
             <br />
 
             <!-- Mute Mics -->
