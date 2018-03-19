@@ -7,10 +7,14 @@
 >
     <span co-bind="'vc_content_source' as vc.current_content"></span>
     <span co-bind="'mics_mutes'"></span>
+    <span co-bind="'hide_vc_sources' as vc.hide_vc_sources"></span>
+
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div class="presentation-layout" co-module="'VidConf'">
+            <span co-bind="'searching' as vc.searching"></span>
+
             <!-- Content Selection -->
-            <select
+            <select ng-if="!vc.hide_vc_sources"
                 ng-model="vc.content_source"
                 ng-options="key as content.title disable when content.not_vc_content for (key, content) in sources"
                 ng-touch="$event.stopPropagation()"
@@ -36,6 +40,19 @@
             </div>
 
             <br />
+
+            <!-- Mute Mics -->
+            <span class="mutebtn">
+                <span ng-if="mics_mutes" co-module="'Mixer'" co-bind="'fader' + mics_mutes[0] + '_mute' as vc.muted"></span>
+                <span ng-if="!mics_mutes" co-bind="'audio_mute' as vc.muted"></span>
+                <button co-module="'System'" co-bind="'connected'" class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.muted}"
+                    ng-touch="coModuleInstance.$exec('vc_mute', !vc.muted)"
+                >
+                    <span ng-if="!vc.muted"><i class="fa fa-microphone"></i>Mute Mics</span>
+                    <span ng-if="vc.muted"><i class="fa fa-microphone-slash"></i>Unmute Mics</span>
+                </button>
+            </span>
+
             <br />
 
             <div style="margin: 0 1em; text-align: left">
@@ -50,23 +67,27 @@
             <div class="numpad" co-module="'VidConf'">
                 <div co-bind="'search_results' as vc.results">
                     <div>
-                        <h1 ng-if="!vc.selected">Search for remote site</h1>
+                        <h1 ng-if="!vc.selected">Search or dial</h1>
                         <h1 ng-if="vc.selected">Dial: {{vc.selected.name}}</h1>
                         <div class="number">
                             <input
-                                ng-virtual-keyboard="{kt: 'US International', numberPad: true, relative: false, size: 5}"
                                 ng-model="vc.search_string"
                                 ng-touch="$event.stopPropagation()"
-                                user-select="true" 
+                                user-select="true"
                                 no-capture>
-                            <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="backspace()" ng-show="phone.number.length"></span>
+
+                            <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="vc.selected = null; vc.dial_string = vc.search_string = ''; " ng-show="vc.search_string.length || vc.dial_string.length"></span>
                         </div>
 
-                        <div class="results" ng-if="!vc.status.direction">
+                        <div class="results" ng-if="!vc.status.direction && !vc.searching">
                             <div ng-repeat="result in vc.results" ng-click="vc.selected = result" ng-class="{selected: vc.selected === result}">
                                 <span class="title">{{result.name}}</span><br />
                                 {{result.number}}
                             </div>
+                        </div>
+
+                        <div class="results spinner" ng-if="!vc.status.direction && vc.searching">
+                            Searching...
                         </div>
 
                         <menu class="numpad" ng-if="vc.status.direction">
@@ -90,51 +111,54 @@
                 </div>
             </div>
         </div>
-        <div class="sources">
-            <div co-module="'VidConf'">
-                <!-- <button>Join skype meeting</button><br /><br /> -->
-
-                <span co-bind="'call_status' as vc.status"></span>
-                <!-- NOTE:: this is a bit hacky -->
-                <span ng-if="vc.status" ng-init="vc.module = coModuleInstance"></span>
-
-                <!-- Dial Disconnect -->
-                <button class="toggle" ng-class="{disabled: (!vc.dial_string || vc.dial_string == ''), muted: vc.status.direction}"
-                    ng-touch="vc.status.direction ? coModuleInstance.$exec('call', 'disconnect') : coModuleInstance.$exec('dial', vc.dial_string, vc.search_string)"
-                >
-                    <span ng-if="!vc.status.direction">
-                        <i class="fa fa-hand-pointer-o"></i>Dial
-                    </span>
-                    <span ng-if="vc.status.direction">
-                        <i class="fa fa-tty"></i>Hang up
-                    </span>
-                </button>
-
-                <!-- Mute Mics -->
-                <span>
-                    <span ng-if="mics_mutes" co-module="'Mixer'" co-bind="'fader' + mics_mutes[0] + '_mute' as vc.muted"></span>
-                    <span ng-if="!mics_mutes" co-bind="'audio_mute' as vc.muted"></span>
-                    <button co-module="'System'" co-bind="'connected'" class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.muted}"
-                        ng-touch="coModuleInstance.$exec('vc_mute', !vc.muted)"
-                    >
-                        <span ng-if="!vc.muted"><i class="fa fa-microphone"></i>Mute Mics</span>
-                        <span ng-if="vc.muted"><i class="fa fa-microphone-slash"></i>Unmute Mics</span>
-                    </button>
-                </span>
-
-                <!-- Mute Video and Audio
-                <button class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.status.status == 'OnHold'}"
-                    ng-touch="coModuleInstance.$exec('call', vc.status.status == 'OnHold' ? 'resume' : 'hold')"
-                >
-                    <span ng-if="vc.status.status != 'OnHold'">
-                        <i class="fa fa-pause"></i>Place on hold
-                    </span>
-                    <span ng-if="vc.status.status == 'OnHold'">
-                        <i class="fa fa-play"></i>Return to call
-                    </span>
-                </button>
-                 -->
-            </div>
+        <div class="sources" co-module="'VidConf'">
+            <table class="remote">
+                <tr>
+                    <td></td>
+                    <td class="up"
+                        ng-touch="coModuleInstance.$exec('button_press', 'up'); $event.preventDefault();"
+                    ></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="left"
+                        ng-touch="coModuleInstance.$exec('button_press', 'left'); $event.preventDefault();"
+                    ></td>
+                    <td class="center"
+                        ng-touch="coModuleInstance.$exec('button_press', 'select')"
+                    ></td>
+                    <td class="right"
+                        ng-touch="coModuleInstance.$exec('button_press', 'right'); $event.preventDefault();"
+                    ></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="down"
+                        ng-touch="coModuleInstance.$exec('button_press', 'down'); $event.preventDefault();"
+                    ></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="back"
+                        ng-touch="coModuleInstance.$exec('button_press', 'back'); $event.preventDefault();"
+                    ></td>
+                    <td class="home"
+                        ng-touch="coModuleInstance.$exec('button_press', 'home')"
+                    ></td>
+                    <td class="menu"
+                        ng-touch="coModuleInstance.$exec('button_press', 'menu'); $event.preventDefault();"
+                    ></td>
+                </tr>
+                <tr>
+                    <td class="call"
+                        ng-touch="coModuleInstance.$exec('dial', vc.dial_string, vc.search_string); $event.preventDefault();"
+                    ></td>
+                    <td></td>
+                    <td class="hangup"
+                        ng-touch="coModuleInstance.$exec('button_press', 'hangup'); $event.preventDefault();"
+                    ></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

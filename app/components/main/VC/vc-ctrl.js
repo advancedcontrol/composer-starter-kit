@@ -8,7 +8,8 @@
             '$timeout',
 
         function ($scope, $timeout) {
-            var vc = {};
+            var vc = {},
+                searchTimer = null;
             $scope.vc = vc;
 
             $scope.$watch('vc.accept_reject', function (val) {
@@ -45,7 +46,17 @@
             // -----------------
             $scope.$watch('vc.search_string', function (val) {
                 if (val !== undefined && vc.module) {
-                    vc.module.$exec('search', val);
+
+                    if (val.length < 3) {
+                        vc.results = [];
+                        return;
+                    }
+
+                    if (searchTimer) { $timeout.cancel(searchTimer); }
+                    searchTimer = $timeout(function () {
+                        searchTimer = null;
+                        vc.module.$exec('search', val);
+                    }, 1000);
 
                     delete vc.selected;
                     vc.dial_string = val;

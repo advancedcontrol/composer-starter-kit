@@ -30,6 +30,10 @@
         div.nosee {
             opacity: 0;
         }
+
+        span.mutebtn > button {
+            width: 90%;
+        }
     }
 
     div.numpad {
@@ -62,5 +66,83 @@
                 font-weight: bold;
             }
         }
+    }
+
+    table.remote {
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        margin-bottom: 1.5em;
+
+        font-family: FontAwesome;
+
+        tr {
+            height: 60px;
+
+            &> td {
+                width: 33.3%;
+                font-size: 30px;
+                vertical-align: middle;
+
+                &.up:before {
+                    content: "\f077";
+                }
+                
+                &.left:before {
+                    content: "\f053";
+                }
+
+                &.right:before {
+                    content: "\f054";
+                }
+
+                &.down:before {
+                    content: "\f078";
+                }
+
+
+                &.center:before {
+                    content: "\f192";
+                }
+
+                &.zoomin:before {
+                    content: "\f00e";
+                }
+
+                &.zoomout:before {
+                    content: "\f010";
+                }
+
+                &.home:before {
+                    content: "\f015";
+                }
+
+                &.back:before {
+                    content: "\f177";
+                }
+
+                &.menu:before {
+                    content: "\f0c9";
+                }
+
+                &.call {
+                    color: green;
+                    &:before {
+                        content: "\f095";
+                    }
+                }
+
+                &.hangup {
+                    color: red;
+                    &:before {
+                        content: "\f1e4";
+                    }
+                }
+            }
+        }
+    }
+
+    div.results.spinner {
+        height: 60px!important;
     }
 }
