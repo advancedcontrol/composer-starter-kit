@@ -24,21 +24,7 @@
                 <option value="">select content source</option>
             </select>
 
-            <!-- Presenation Mode -->
-            <div id="vc-pres-mode" co-bind="'presentation' as vc.pres_mode">
-                <span>Content destination:<br /></span>
-                <div btn-group="vc.pres_mode" btn-class="btn">
-                    <button
-                        btn="'local'"
-                        ng-touch="vc.pres_mode = 'local'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
-                    >local</button>
-                    <button
-                        btn="'remote'"
-                        ng-touch="vc.pres_mode = 'remote'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
-                    >remote</button>
-                </div>
-            </div>
-
+            <br />
             <br />
 
             <!-- Mute Mics -->
@@ -48,8 +34,8 @@
                 <button co-module="'System'" co-bind="'connected'" class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.muted}"
                     ng-touch="coModuleInstance.$exec('vc_mute', !vc.muted)"
                 >
-                    <span ng-if="!vc.muted"><i class="fa fa-microphone"></i>Mute Mics</span>
-                    <span ng-if="vc.muted"><i class="fa fa-microphone-slash"></i>Unmute Mics</span>
+                    <span ng-if="!vc.muted"><i class="fa fa-microphone"></i> Mute Mics</span>
+                    <span ng-if="vc.muted"><i class="fa fa-microphone-slash"></i> Unmute Mics</span>
                 </button>
             </span>
 
@@ -86,8 +72,11 @@
                             </div>
                         </div>
 
-                        <div class="results spinner" ng-if="!vc.status.direction && vc.searching">
+                        <div class="results" ng-if="!vc.status.direction && vc.searching">
+                            <br />
                             Searching...
+                            <div class="spinner" style="width: 60px; height: 60px;">
+                            </div>
                         </div>
 
                         <menu class="numpad" ng-if="vc.status.direction">
@@ -115,7 +104,7 @@
             <span co-bind="'call_status' as vc.status"></span>
             <!-- NOTE:: this is a bit hacky -->
             <span ng-if="vc.status" ng-init="vc.module = coModuleInstance"></span>
-            
+
             <table class="remote">
                 <tr>
                     <td class="call"

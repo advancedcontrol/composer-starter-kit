@@ -1,6 +1,57 @@
 (function (window, angular) {
     'use strict';
 
+    var vc_results = [
+                {
+                    name: "School 1",
+                    number: "10.243.218.232 10.243.218.232 10.243.218.232"
+                },
+                {
+                    name: "School 2",
+                    number: "10.243.218.230"
+                },
+                {
+                    name: "School 3",
+                    number: "localContactId-3"
+                },
+                {
+                    name: "School 1",
+                    number: "10.243.218.232"
+                },
+                {
+                    name: "School 2",
+                    number: "10.243.218.230"
+                },
+                {
+                    name: "School 3",
+                    number: "localContactId-3"
+                },
+                {
+                    name: "School 1",
+                    number: "10.243.218.232"
+                },
+                {
+                    name: "School 2",
+                    number: "10.243.218.230"
+                },
+                {
+                    name: "School 3",
+                    number: "localContactId-3"
+                },
+                {
+                    name: "School 1",
+                    number: "10.243.218.232"
+                },
+                {
+                    name: "School 2",
+                    number: "10.243.218.230"
+                },
+                {
+                    name: "School 3",
+                    number: "localContactId-3"
+                }
+            ];
+
     // NOTE:: window.systemData is used for development.
     //  In production the interface will obtain this information from the server
     //  
@@ -407,57 +458,13 @@
             }
         }],
         VidConf: [{
+            searching: true,
             results_total: 3,
-            search_results: [
-                {
-                    name: "School 1",
-                    number: "10.243.218.232 10.243.218.232 10.243.218.232"
-                },
-                {
-                    name: "School 2",
-                    number: "10.243.218.230"
-                },
-                {
-                    name: "School 3",
-                    number: "localContactId-3"
-                },
-                {
-                    name: "School 1",
-                    number: "10.243.218.232"
-                },
-                {
-                    name: "School 2",
-                    number: "10.243.218.230"
-                },
-                {
-                    name: "School 3",
-                    number: "localContactId-3"
-                },
-                {
-                    name: "School 1",
-                    number: "10.243.218.232"
-                },
-                {
-                    name: "School 2",
-                    number: "10.243.218.230"
-                },
-                {
-                    name: "School 3",
-                    number: "localContactId-3"
-                },
-                {
-                    name: "School 1",
-                    number: "10.243.218.232"
-                },
-                {
-                    name: "School 2",
-                    number: "10.243.218.230"
-                },
-                {
-                    name: "School 3",
-                    number: "localContactId-3"
-                }
-            ],
+            $search: function() {
+                this.searching = !this.searching;
+                this.search_results = vc_results;
+            },
+            search_results: [],
             call_status: {
                 id: 12
                 

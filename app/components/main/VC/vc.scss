@@ -3,6 +3,10 @@
 
 
 #vc-inputs {
+    button.muted {
+        background-color: rgba(255, 0, 0, 0.5);
+    }
+
     #vc-pres-mode {
         @include button-group();
 
@@ -140,9 +144,5 @@
                 }
             }
         }
-    }
-
-    div.results.spinner {
-        height: 60px!important;
     }
 }
