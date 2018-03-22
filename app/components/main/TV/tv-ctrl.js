@@ -32,7 +32,8 @@
                     "Fox Sports": true,
                     "ESPN": true,
                     "Fox Sports News": true,
-                    "Fox Footy": true
+                    "Fox Footy": true,
+                    "NITV": true
                 };
 
                 $scope.data = {};

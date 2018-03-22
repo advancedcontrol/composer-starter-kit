@@ -91,32 +91,6 @@
         }],
         System: [{
             "phone_quick_dial": "0408419954",
-            "blinds": [{
-                "title": "Shades",
-                "module": "DigitalIO_1",
-                "manual": true,
-                "up": {
-                    "func": "toggle_group",
-                    "args": [1,34,false,"blackout_room"]
-                },
-                "down": {
-                    "func": "toggle_group",
-                    "args": [1,35,true,"blackout_room"]
-                }
-            },
-            {
-                "title": "Blackout",
-                "module": "DigitalIO_1",
-                "manual": true,
-                "up": {
-                    "func": "toggle_group",
-                    "args": [1,34,false,"blackout_room"]
-                },
-                "down": {
-                    "func": "toggle_group",
-                    "args": [1,35,true,"blackout_room"]
-                }
-            }],
             analytics: 'UA-69533861-111',
             "$powerup": function () {
                 this.state = "online";
@@ -224,6 +198,12 @@
                 "TEN",
                 "ABC Dig"
             ],
+            "audio_sources": [
+                "Bluetooth",
+                "Mini-jack 202",
+                "Minijack 203",
+                "USB Audio"
+            ],
             "inputs": [
                 "Presentation",
                 "TV",
@@ -244,7 +224,8 @@
             "Presentation": [
                 "laptop_g1",
                 "laptop_g2",
-                "laptop_wireless"
+                "laptop_wireless",
+                "tv_input"
             ],
             "Wireless": [
                 "laptop_wireless"
@@ -265,7 +246,7 @@
                     "title": "TV",
                     "input": 14,
                     "source": "hdmi",
-                    "type": "residentpc",
+                    "type": "aux_hdmi",
                     "colour": "#F58172"
                 },
                 "laptop_g1": {
@@ -276,17 +257,17 @@
                     "colour": "#7BB5D0"
                 },
                 "laptop_g2": {
-                    "title": "HDMI with 3.5mm Audio",
+                    "title": "SDI (no audio)",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "aux_hdmi",
+                    "type": "usb",
                     "colour": "#FFDB8E"
                 },
                 "laptop_wireless": {
-                    "title": "Bluetooth",
+                    "title": "Venue Long View",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "wireless",
+                    "type": "aux_hdmi",
                     "colour": "#FFDB8E"
                 },
                 "tours": {

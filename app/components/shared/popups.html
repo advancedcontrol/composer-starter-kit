@@ -154,7 +154,7 @@
     Manual Control Pop up
  -->
 <div>
-    <div ng-if="has_preview || poweredOutputs > 1" class="displays" ng-touch="showModal('displays'); $root.$emit('$track', 'popup', 'manual')">
+    <div class="displays" ng-touch="showModal('displays'); $root.$emit('$track', 'popup', 'manual')">
         <modal name="displays" title="Display Control">
             <h2>Displays:</h2>
 
