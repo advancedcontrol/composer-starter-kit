@@ -76,10 +76,10 @@ article.main {
     // ----------
     &> div > div > tabs {
         position: absolute;
-        top: 100px;
+        top: 80px;
         left: $padding;
         right: $padding;
-        bottom: 25%;
+        bottom: 28%;
 
 
         &> div {
@@ -404,7 +404,7 @@ article.main {
     // -----------
     &> div > div > footer {
         position: absolute;
-        top: 75%;
+        top: 72%;
         left: $padding + 10;
         right: $padding + 10;
         bottom: $padding;
@@ -476,7 +476,7 @@ article.main {
                 max-width: 300px;
 
                 padding-left: $padding;
-                padding-top: $padding;
+                padding-top: 10px;
 
                 &:last-child {
                     margin-right: $padding;
@@ -485,7 +485,7 @@ article.main {
                 // A wrapper div
                 &> div.icon {
                     position: relative;
-                    height: 70%;
+                    height: 65%;
 
                     &> div.inner {
                         > span {
@@ -528,7 +528,7 @@ article.main {
                 }
 
                 &> div.audio {
-                    height: 30%;
+                    height: 35%;
                     width: 100%;
 
                     &> div {
@@ -551,13 +551,13 @@ article.main {
     }
 
     div.mute {
-        width: 40px;
+        width: 50px;
 
         @include image-toggle(
             $trueImage: "../../components/images/volume-mute.svg",
             $falseImage: "../../components/images/volume.svg",
-            $width: 30px,
-            $height: 30px
+            $width: 40px,
+            $height: 40px
         );
     }
 
@@ -565,8 +565,8 @@ article.main {
         width: 100%;
 
         @include co-range-slider(
-            $handle-size: 40px,
-            $track-girth: 20px,
+            $handle-size: 50px,
+            $track-girth: 25px,
             $track-colour:white,
             $progress-colour: #244c85
         );

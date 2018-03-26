@@ -189,6 +189,23 @@
                 <span ng-if="!skype.incoming_call" ng-init="closeModal('skype_accept')"></span>
             </span>
 
+            <span ng-controller="Modals" ng-init="vcpopup = {}" co-module="'VidConf'">
+                <modal name="join_skype_meeting" title="Join Skype meeting?" no-close="true">
+                    <p>
+                        <b>Join Skype meeting?</b>
+                    </p>
+                    <menu>
+                        <button class="cancel" ng-touch="coModuleInstance.$exec('button_press', 'select')">Ignore</button>
+                        <button class="ok" ng-touch="coModuleInstance.$exec('button_press', 'right', 'select')">Join</button>
+                    </menu>
+                    <div style="clear: both"></div>
+                </modal>
+
+                <span co-bind="'popupinfo' as vcpopup.popupinfo"></span>
+                <span ng-if="vcpopup.popupinfo == 'meeting'" ng-init="showModal('join_skype_meeting')"></span>
+                <span ng-if="!vcpopup.popupinfo" ng-init="closeModal('join_skype_meeting')"></span>
+            </span>
+
             <span ng-controller="Modals" ng-init="bookings = {}" co-module="'Bookings'">
                 <span co-bind="'meeting_ending' as bookings.ending"></span>
                 <span co-bind="'last_meeting_started' as bookings.last_started"></span>

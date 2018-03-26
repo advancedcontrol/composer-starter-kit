@@ -1,14 +1,14 @@
 
 <div co-bind="'Camera' as source_names" id="camera-inputs" ng-init="coModuleInstance.$exec('start_cameras')">
-    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
-        <div class="presets" ng-if="selectedSource.presets && !selectedSource.auto_camera">
+    <div ng-if="source_names" class="standard-panel">
+        <div class="presets" ng-if="selectCamera.presets && !selectCamera.auto_camera">
             <h3>Presets:</h3>
-            <button ng-repeat="preset in selectedSource.presets" ng-touch="coModuleInstance.$exec('camera_preset', selectedSource.source, preset);">
+            <button ng-repeat="preset in selected.camera.presets" ng-touch="coModuleInstance.$exec('camera_preset', selected.camera.source, preset);">
                 {{preset.name}}
             </button>
         </div>
-        <div class="camera-control" co-module="selectedSource.mod" co-index="selectedSource.index" co-bind="'joy_right'">
-            <div ng-if="!selectedSource.auto_camera" co-bind="'joy_left'">
+        <div class="camera-control" co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'joy_right'">
+            <div ng-if="!selected.camera.auto_camera" co-bind="'joy_left'">
                 <div co-bind="'joy_center'" ng-controller="CamCtrl" class="webcam-controls">
                     <br />
                     <br /><button ng-touch="coModuleInstance.$exec('preset', 'default')">Return to Default Position</button>
@@ -55,13 +55,13 @@
                     </div>
                 </div>
             </div>
-            <div ng-if="selectedSource.auto_camera" style="padding-left: 2em; font-size: larger;">
+            <div ng-if="selected.camera.auto_camera" style="padding-left: 2em; font-size: larger;">
                 This camera will track speakers automatically.
             </div>
         </div>
         <div class="sources" ng-if="source_names.length > 1">
-            <div btn-group="selectedSource.source">
-                <button ng-repeat="cam in source_names" btn="cam" ng-touch="selectSource(cam)" class="toggle" ng-class="sources[cam].type"><i class="fa fa-video-camera"></i>{{sources[cam].title}}</button>
+            <div btn-group="selected.camera.source">
+                <button ng-repeat="cam in source_names" btn="cam" ng-touch="selectCamera(cam)" class="toggle" ng-class="sources[cam].type"><i class="fa fa-video-camera"></i>{{sources[cam].title}}</button>
             </div>
         </div>
     </div>

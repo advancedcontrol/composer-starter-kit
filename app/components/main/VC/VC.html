@@ -16,7 +16,7 @@
             <!-- Content Selection -->
             <select ng-if="!vc.hide_vc_sources"
                 ng-model="vc.content_source"
-                ng-options="key as content.title disable when content.not_vc_content for (key, content) in sources"
+                ng-options="key as content.title for (key, content) in vc_sources"
                 ng-touch="$event.stopPropagation()"
                 user-select="true" 
                 no-capture
@@ -28,16 +28,16 @@
 
             <!-- Presenation Mode -->
             <div id="vc-pres-mode" co-bind="'presentation' as vc.pres_mode">
-                <span>Content destination:<br /></span>
+                <span><br /></span>
                 <div btn-group="vc.pres_mode" btn-class="btn">
                     <button
                         btn="'local'"
                         ng-touch="vc.pres_mode = 'local'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
-                    >Hide</button>
+                    >Stop Pres</button>
                     <button
                         btn="'remote'"
                         ng-touch="vc.pres_mode = 'remote'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
-                    >Present to remote</button>
+                    >Start Presentation</button>
                 </div>
             </div>
 
@@ -57,7 +57,15 @@
 
             <br />
 
-            <div style="margin: 0 1em; text-align: left">
+            <span ng-if="!vc.status.direction">
+                <br />
+                <br />
+                <button ng-touch="coModuleInstance.$exec('button_press', 'home', 'up', 'select')">
+                    Join Meeting
+                </button>
+            </span>
+
+            <div ng-if="vc.status.direction" style="margin: 0 1em; text-align: left">
                 To record a Skype conference you must:
                 <ol>
                     <li>join the conference on your laptop</li>
@@ -142,11 +150,10 @@
                     <td class="left"
                         ng-touch="coModuleInstance.$exec('button_press', 'left'); $event.preventDefault();"
                     ></td>
-                    <td klass="center"
-                        style="font-size: 1em; background-color: #57bdcb; border-radius: 0.6em; padding: 0 5px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;"
+                    <td class="center"
+                        stylz="font-size: 1em; background-color: #57bdcb; border-radius: 0.6em; padding: 0 5px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;"
                         ng-touch="coModuleInstance.$exec('button_press', 'select')"
                     >
-                        Select / Join
                     </td>
                     <td class="right"
                         ng-touch="coModuleInstance.$exec('button_press', 'right'); $event.preventDefault();"

@@ -295,8 +295,8 @@ modal[name=mics] {
                 width: 100%;
 
                 @include co-range-slider(
-                    $handle-size: 40px,
-                    $track-girth: 20px,
+                    $handle-size: 45px,
+                    $track-girth: 25px,
                     $track-colour:$contentBackground
                 );
             }

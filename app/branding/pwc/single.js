@@ -130,7 +130,9 @@
             $tab: function (tab) {
                 this.tab = tab;
             },
-
+            $select_camera: function (src, input, output) {
+                this.selected_camera = src;
+            },
             $init_vc: function () {
                 console.log('phantom on + raising mics + unmuting mics');
             },
@@ -279,7 +281,8 @@
                     "input": 14,
                     "source": "hdmi",
                     "type": "TV",
-                    "colour": "#F58172"
+                    "colour": "#F58172",
+                    "not_vc_content": true
                 },
                 "g1_pc1": {
                     "title": "Resident PC",
@@ -493,6 +496,11 @@
                     status: "Ringing",
                     transmitcallrate: "1920",
                 };
+            },
+            $button_press: function (val) {
+                if (val == 'hangup') {
+                    this.call_status = {};
+                }
             },
             $call: function (func, val) {
                 if (func == 'disconnect') {

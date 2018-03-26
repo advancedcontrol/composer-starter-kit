@@ -85,11 +85,14 @@
 
             &> td {
                 width: 33.3%;
-                font-size: 30px;
+                font-size: 40px;
                 vertical-align: middle;
 
-                &.up:before {
-                    content: "\f077";
+                &.up {
+                    padding-bottom: 0.5em;
+                    &:before {
+                        content: "\f077";
+                    }
                 }
                 
                 &.left:before {
@@ -100,10 +103,13 @@
                     content: "\f054";
                 }
 
-                &.down:before {
-                    content: "\f078";
+                &.down {
+                    padding-top: 0.5em;
+                    padding-bottom: 0.5em;
+                    &:before {
+                        content: "\f078";
+                    }
                 }
-
 
                 &.center:before {
                     content: "\f192";

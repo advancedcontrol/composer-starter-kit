@@ -7,6 +7,7 @@
     co-bind="'sources'"
     ng-class="{single: numOutputs === 1 && !has_preview}"
 >
+    <span co-bind="'selected_camera' as selected.camera_src"></span>
     <header co-bind="'name' as $root.SystemName">
         <div class="logo"><div></div></div>
 
