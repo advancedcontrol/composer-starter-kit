@@ -200,14 +200,11 @@ modal[name=lights] {
         i {
             margin-right: 10px;
             font-size: 20px;
+            opacity: 0.6;
         }
 
         &.Off i {
             opacity: 0.15;
-        }
-
-        &.Presentation i {
-            opacity: 0.5;
         }
 
         &.Full i {

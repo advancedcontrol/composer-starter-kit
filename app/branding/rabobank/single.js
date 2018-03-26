@@ -204,115 +204,174 @@
                 "Minijack 203",
                 "USB Audio"
             ],
-            "inputs": [
-                "Presentation",
-                "TV",
-                "Tours"
-            ],
-            "TV": [
-                "tv_input"
-            ],
-            "Skype": [
-                "skype"
-            ],
-            "PC": [
-                "g1_pc1"
-            ],
-            "Chromebox": [
-                "g1_pc1"
-            ],
-            "Presentation": [
-                "laptop_g1",
-                "laptop_g2",
-                "laptop_wireless",
-                "tv_input"
-            ],
-            "Wireless": [
-                "laptop_wireless"
-            ],
-            "Laptop": [
-                "laptop_usb",
-                "laptop_wireless"
-            ],
-            "Wired": [
-                "laptop_usb",
-                "laptop_wireless"
-            ],
-            "Tours": [
-                "tours"
-            ],
-            "sources": {
-                "tv_input": {
-                    "title": "TV",
-                    "input": 14,
-                    "source": "hdmi",
-                    "type": "aux_hdmi",
-                    "colour": "#F58172"
-                },
-                "laptop_g1": {
-                    "title": "HDMI Input",
-                    "input": 11,
-                    "source": "hdmi",
-                    "type": "aux_hdmi",
-                    "colour": "#7BB5D0"
-                },
-                "laptop_g2": {
-                    "title": "SDI (no audio)",
-                    "input": 2,
-                    "source": "hdmi",
-                    "type": "usb",
-                    "colour": "#FFDB8E"
-                },
-                "laptop_wireless": {
-                    "title": "Venue Long View",
-                    "input": 2,
-                    "source": "hdmi",
-                    "type": "aux_hdmi",
-                    "colour": "#FFDB8E"
-                },
-                "tours": {
-                    "title": "Tours",
-                    "input": 9,
-                    "source": "hdmi",
-                    "type": "presenter",
-                    "colour": "#65DCC7"
-                }
-            },
-            "outputs": {
-                "Display_1": {
-                    "output": [
-                        3,
-                        23
-                    ],
-                    "audio_out": 21,
-                    "mixer_id": 105,
-                    "basic_mixer": true,
-                    "type": "lcd",
-                    "pri": 1,
-                    "title": "Display"
-                }
-            },
-            "light_level": "Off",
-            "lights": {
-                "levels": [
-                    {
-                        "name": "Full",
-                        "trigger": 3
-                    },
-                    {
-                        "name": "Presentation",
-                        "trigger": 2
-                    },
-                    {
-                        "name": "Off",
-                        "trigger": 1
-                    }
-                ],
-                "default": 3,
-                "shutdown": 0,
-                "present": 2,
-                "group": 12
-            },
+            "vol_max": 200,
+  "vol_min": -1000,
+  "audio_inputs": [
+    "bluetooth",
+    "usb",
+    "mini3_5",
+    "xlr_1",
+    "xlr_2"
+  ],
+  "inputs": [
+      "Presentation",
+      "TV"
+  ],
+  "Presentation": [
+    "laptop_hdmi",
+    "sdi",
+    "long_view",
+    "television"
+  ],
+  "TV": [
+    "television"
+  ],
+  "sources": {
+    "laptop_hdmi": {
+        "title": "HDMI Input",
+        "mixer_id": ["BRRSourceMixer:Mixer18x1Input3Gain", "BRRSourceMixer:Mixer18x1Input4Gain"],
+        "feedback_id": "BRRSourceMixer:Mixer18x1Input3Gain",
+        "mute_id": ["BRRSourceMixer:Mixer18x1Input3Mute", "BRRSourceMixer:Mixer18x1Input4Mute"],
+        "mute_feedback_id": "BRRSourceMixer:Mixer18x1Input3Mute",
+
+        "input": 1,
+        "source": "hdmi",
+        "type": "aux_hdmi"
+    },
+    "sdi": {
+        "title": "SDI (no audio)",
+        "no_audio": true,
+
+        "input": 2,
+        "source": "hdmi",
+        "type": "usb"
+    },
+    "long_view": {
+        "title": "Venue Long View",
+        "mixer_id": ["BRRSourceMixer:Mixer18x1Input3Gain", "BRRSourceMixer:Mixer18x1Input4Gain"],
+        "feedback_id": "BRRSourceMixer:Mixer18x1Input3Gain",
+        "mute_id": ["BRRSourceMixer:Mixer18x1Input3Mute", "BRRSourceMixer:Mixer18x1Input4Mute"],
+        "mute_feedback_id": "BRRSourceMixer:Mixer18x1Input3Mute",
+
+        "input": 3,
+        "source": "hdmi",
+        "type": "aux_hdmi"
+    },
+    "television": {
+        "title": "TV",
+        "mixer_id": ["BRRSourceMixer:Mixer18x1Input3Gain", "BRRSourceMixer:Mixer18x1Input4Gain"],
+        "feedback_id": "BRRSourceMixer:Mixer18x1Input3Gain",
+        "mute_id": ["BRRSourceMixer:Mixer18x1Input3Mute", "BRRSourceMixer:Mixer18x1Input4Mute"],
+        "mute_feedback_id": "BRRSourceMixer:Mixer18x1Input3Mute",
+
+        "input": 4,
+        "source": "hdmi",
+        "type": "aux_hdmi"
+    },
+
+    "pa_patch_1": {
+        "title": "PA 03 Patch 1",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input1Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input1Mute"
+    },
+    "pa_patch_2": {
+        "title": "PA 03 Patch 2",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input2Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input2Mute"
+    },
+    "bluetooth": {
+        "title": "Bluetooth",
+        "no_mod": true,
+        "mixer_id": ["BRRSourceMixer:Mixer18x1Input5Gain", "BRRSourceMixer:Mixer18x1Input6Gain"],
+        "feedback_id": "BRRSourceMixer:Mixer18x1Input5Gain",
+        "mute_id": ["BRRSourceMixer:Mixer18x1Input5Mute", "BRRSourceMixer:Mixer18x1Input6Mute"],
+        "mute_feedback_id": "BRRSourceMixer:Mixer18x1Input5Mute"
+    },
+    "usb": {
+        "title": "USB Audio",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input7Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input7Mute"
+    },
+    "xlr_1": {
+        "title": "BRR XLR 1",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input8Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input8Mute"
+    },
+    "xlr_2": {
+        "title": "BRR XLR 2",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input9Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input9Mute"
+    },
+    "mini3_5": {
+        "title": "BRR Mini-Jack",
+        "no_mod": true,
+        "mixer_id": ["BRRSourceMixer:Mixer18x1Input10Gain", "BRRSourceMixer:Mixer18x1Input11Gain"],
+        "feedback_id": "BRRSourceMixer:Mixer18x1Input10Gain",
+        "mute_id": ["BRRSourceMixer:Mixer18x1Input10Mute", "BRRSourceMixer:Mixer18x1Input11Mute"],
+        "mute_feedback_id": "BRRSourceMixer:Mixer18x1Input10Mute"
+    },
+    "dante_1": {
+        "title": "Dante 1",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input12Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input12Mute"
+    },
+    "dante_2": {
+        "title": "Dante 2",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input13Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input13Mute"
+    },
+    "dante_3": {
+        "title": "Dante 3",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input14Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input14Mute"
+    },
+    "dante_4": {
+        "title": "Dante 4",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input15Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input15Mute"
+    },
+    "dante_5": {
+        "title": "Dante 5",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input16Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input16Mute"
+    },
+    "dante_6": {
+        "title": "Dante 6",
+        "no_mod": true,
+        "mixer_id": "BRRSourceMixer:Mixer18x1Input17Gain",
+        "mute_id": "BRRSourceMixer:Mixer18x1Input17Mute"
+    }
+  },
+  "outputs": {
+      "Display_1": {
+          "output": 1,
+          "type": "lcd",
+          "pri": 1,
+          "title": "Display",
+          "hide_audio": true
+      }
+  },
+  "lighting_group": 4,
+  "trigger_app": 20,
+  "lights": {
+    "levels": [
+      {"name": "Full", "trigger": 255},
+      {"name": "Screen Scene", "trigger": 1},
+      {"name": "Mirror Scene", "trigger": 2},
+      {"name": "Low", "trigger": 10},
+      {"name": "Off", "trigger": 0},
+    ]
+  },
             "mics": [{
                 name: "Wireless Mic",
                 id: 222,
@@ -347,8 +406,6 @@
                 id: 333,
                 index: 1
             }],
-            "vol_max": 650000,
-            "vol_min": -650000,
             $lights_to: function (level) {
                 this.light_level = level;
             },

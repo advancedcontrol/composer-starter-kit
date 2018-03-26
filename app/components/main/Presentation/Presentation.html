@@ -1,16 +1,18 @@
 
 <div co-bind="'Presentation' as source_names" id="laptop-inputs" class="phonemain">
-    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
-        <div co-bind="'audio_sources' as audio_sources" class="presentation-layout" style="text-align: center;">
+    <div ng-if="source_names" class="standard-panel">
+        <span co-bind="'Display_1' as local_source"></span>
+        
+        <div co-bind="'audio_inputs' as audio_sources" class="presentation-layout" style="text-align: center;">
             <h3>Select Audio</h3>
-            <div btn-group="selectedSource.audio_source">
-                <button ng-repeat="audio in audio_sources" btn="audio" ng-touch="selectedSource.audio_source = audio" class="toggle">{{audio}}</button>
+            <div btn-group="local_source.source">
+                <button ng-repeat="audio in audio_sources" btn="audio" ng-touch="selectSource(audio)" class="toggle">{{sources[audio].title}}</button>
             </div>
         </div>
         <div style="width: 30%; height: 100%;"></div>
         <div class="sources" ng-if="source_names.length > 1">
             <h3>Select AV</h3>
-            <div btn-group="selectedSource.source">
+            <div btn-group="local_source.source">
                 <button ng-repeat="lap in source_names" btn="lap" ng-touch="selectSource(lap)" class="toggle"><i ng-class="sources[lap].type"></i>{{sources[lap].title}}</button>
             </div>
         </div>
