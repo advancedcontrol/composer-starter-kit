@@ -373,38 +373,34 @@
     ]
   },
             "mics": [{
-                name: "Wireless Mic",
-                id: 222,
-                index: 1
+                "name": "PA-03 Patch 1",
+                "basic_mixer": true,
+                "no_mute": true,
+                "id": "BRRMic/LineInH.P.SOH-BRR-IO-Frame-1SlotAChannel1PreampGain",
+                "min": -1000,
+                "max": 200
             }, {
-                name: "Handheld Mic",
-                id: 333,
-                index: 1
+                "name": "PA-03 Patch 2",
+                "basic_mixer": true,
+                "no_mute": true,
+                "id": "BRRMic/LineInH.P.SOH-BRR-IO-Frame-1SlotAChannel2PreampGain",
+                "min": -1000,
+                "max": 200
             }
             , {
-                name: "Input 3",
-                id: 333,
-                index: 1
+                "name": "BRR PA-01 XLR 1",
+                "basic_mixer": true,
+                "no_mute": true,
+                "id": "BRRAtteroTechUnD4I-LInputGain1",
+                "min": -1000,
+                "max": 200
             }, {
-                name: "Input 4",
-                id: 333,
-                index: 1
-            }, {
-                name: "Input 5",
-                id: 333,
-                index: 1
-            }, {
-                name: "Input 6",
-                id: 333,
-                index: 1
-            }, {
-                name: "Input 7",
-                id: 333,
-                index: 1
-            }, {
-                name: "Input 8",
-                id: 333,
-                index: 1
+                "name": "BRR PA-01 XLR 2",
+                "basic_mixer": true,
+                "no_mute": true,
+                "id": "BRRAtteroTechUnD4I-LInputGain2",
+                "min": -1000,
+                "max": 200
             }],
             $lights_to: function (level) {
                 this.light_level = level;

@@ -8,7 +8,7 @@
     <div class="power" ng-touch="showModal('power')">
         <modal name="power" title="Shutdown?">
             <p>
-                <b>Are you sure you want to finish your meeting?</b>
+                <b>Are you finished with the Ballet Rehearsal Room?</b>
             </p>
             <menu co-bind="'joined'">
                 <button class="cancel" ng-touch="closeModal('power')">Cancel</button>
@@ -205,6 +205,7 @@
                 <h2>{{mic.name}}</h2>
                 <div>
                     <div
+                        ng-show="!mic.no_mute"
                         class="mute"
                         co-bind="'fader' + (mic.feedback_id || mic.id) + '_' + (mic.mute_index || mic.index || 1) + '_mute' as mute"
                         exec="mute(mic.id, mute, mic.mute_index || mic.index || 1)"
@@ -241,6 +242,7 @@
                 <h2>{{mic.name}}</h2>
                 <div>
                     <div
+                        ng-show="!mic.no_mute"
                         class="mute"
                         co-bind="'fader' + (mic.mute_feedback_id || mic.mute_id || mic.feedback_id || mic.id) + '_mute' as mute"
                         exec="mute(mic.mute_id || mic.id, mute)"

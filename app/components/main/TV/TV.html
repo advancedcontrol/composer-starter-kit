@@ -1,6 +1,6 @@
 
 <div co-bind="'TV' as source_names" id="tv-inputs" ng-touch="$event.stopPropagation()" on-target>
-    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel" ng-controller="TvCtrl" co-module="'Television'">
+    <div ng-if="source_names" class="standard-panel" ng-controller="TvCtrl" co-module="'Television'">
         <div>
             <span co-bind="'channelName'"></span>
             <div co-bind="'channelNames' as data.channelNames"></div>
