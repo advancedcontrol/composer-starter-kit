@@ -56,8 +56,11 @@
             </span>
 
             <br />
+            <span co-module="'Bookings'">
+                <span co-bind="'can_join_skype_meeting' as vc.skype_available"></span>
+            </span>
 
-            <span ng-if="!vc.status.direction">
+            <span ng-if="!vc.status.direction && vc.skype_available">
                 <br />
                 <br />
                 <button ng-touch="coModuleInstance.$exec('button_press', 'home', 'up', 'select')">
@@ -65,7 +68,7 @@
                 </button>
             </span>
 
-            <div ng-if="vc.status.direction" style="margin: 0 1em; text-align: left">
+            <div ng-if="vc.status.direction || !vc.skype_available" style="margin: 0 1em; text-align: left">
                 To record a Skype conference you must:
                 <ol>
                     <li>join the conference on your laptop</li>

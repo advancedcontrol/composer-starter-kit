@@ -268,6 +268,7 @@
                 "training_cam",
                 "training_cam2"
             ],
+            "selected_camera": "training_cam",
             "sources": {
                 "digital_signage": {
                     "title": "Digital signage",

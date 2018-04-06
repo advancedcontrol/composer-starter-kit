@@ -11,7 +11,7 @@
             // Provide analytics tracking data
             $scope.$emit('$track', 'state', 'online', 'desktop');
 
-            $scope.selected = {};
+            var selected = $scope.selected = {};
 
             // Updates the currently selected source
             $scope.selectSource = function (src) {
@@ -33,14 +33,15 @@
 
             // Support VC camera selection
             $scope.selectCamera = function (src) {
-                $scope.selected.camera = $scope.sources[src];
-                $scope.selected.camera.source = src;
-                $scope.coModuleInstance.$exec('select_camera', src, $scope.selected.camera.vc_input);
+                selected.camera = $scope.sources[src];
+                selected.camera.source = src;
+                $scope.coModuleInstance.$exec('select_camera', src, selected.camera.vc_input);
             };
 
             $scope.$watch('selected.camera_src', function (current) {
-                if (!current) { return; }
-                $scope.selected.camera = $scope.sources[current];
+                if (current && $scope.sources) {
+                    selected.camera = $scope.sources[current];
+                }
             });
 
             // update the source
@@ -50,6 +51,11 @@
 
             $scope.$watch('sources', function (current) {
                 if (!current) { return; }
+
+                if (selected.camera_src) {
+                    selected.camera = $scope.sources[selected.camera_src];
+                    selected.camera.source = selected.camera_src;
+                }
 
                 var vc_sources = {};
                 angular.forEach(current, function(value, key) {

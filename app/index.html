@@ -192,11 +192,12 @@
             <span ng-controller="Modals" ng-init="vcpopup = {}" co-module="'VidConf'">
                 <modal name="join_skype_meeting" title="Join Skype meeting?" no-close="true">
                     <p>
-                        <b>Join Skype meeting?</b>
+                        <b>Join Skype meeting?</b><br />
+                        Be patient, it can take a few seconds for the call to activate.
                     </p>
                     <menu>
-                        <button class="cancel" ng-touch="coModuleInstance.$exec('button_press', 'select')">Ignore</button>
-                        <button class="ok" ng-touch="coModuleInstance.$exec('button_press', 'right', 'select')">Join</button>
+                        <button class="cancel" ng-touch="coModuleInstance.$exec('button_press', 'select'); closeModal('join_skype_meeting')">Ignore</button>
+                        <button class="ok" ng-touch="coModuleInstance.$exec('button_press', 'right', 'select'); closeModal('join_skype_meeting')">Join</button>
                     </menu>
                     <div style="clear: both"></div>
                 </modal>
@@ -211,6 +212,7 @@
                 <span co-bind="'last_meeting_started' as bookings.last_started"></span>
                 <span co-bind="'meeting_pending' as bookings.pending"></span>
                 <span co-bind="'meeting_pending_notice' as bookings.pending_notice"></span>
+                <span co-bind="'meeting_canbe_extended' as bookings.query_extend"></span>
 
                 <span ng-if="bookings.ending === true" ng-init="showModal('meeting_ending')"></span>
                 <span ng-if="bookings.ending !== true" ng-init="closeModal('meeting_ending')"></span>
@@ -228,6 +230,18 @@
                         <source src="alert.aac" type="audio/aac">
                         <source src="alert.mp3" type="audio/mp3">
                     </audio>
+                </modal>
+
+                <span ng-if="bookings.query_extend" ng-init="showModal('meeting_extend')"></span>
+                <span ng-if="bookings.query_extend === false" ng-init="closeModal('meeting_extend')"></span>
+
+                <modal name="meeting_extend" title="Extend meeting?" no-close="true">
+                    <p><b>Would you like to extend this meeting by 15 minutes?<br /></b></p>
+                    <menu>
+                        <button class="cancel" ng-touch="closeModal('meeting_extend')">Dismiss</button>
+                        <button class="ok" ng-touch="coModuleInstance.$exec('extend_meeting'); closeModal('meeting_extend')">Extend</button>
+                    </menu>
+                    <div style="clear: both"></div>
                 </modal>
 
                 <span ng-if="bookings.pending_notice === true" ng-init="showModal('start_meeting')"></span>
