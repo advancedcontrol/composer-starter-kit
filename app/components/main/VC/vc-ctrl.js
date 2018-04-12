@@ -9,8 +9,11 @@
 
         function ($scope, $timeout) {
             var vc = {},
-                searchTimer = null;
+                searchTimer = null,
+                noSearch = false;
             $scope.vc = vc;
+
+            vc.show_directory = false;
 
             $scope.$watch('vc.accept_reject', function (val) {
                 if (val === true) {
@@ -40,13 +43,34 @@
                 }
             });
 
+            $scope.dial = function (num) {
+                noSearch = true;
+                vc.search_string = (vc.search_string || '') + num;
+
+                if (vc.status.direction) {
+                    $scope.coModuleInstance.$exec('send_DTMF', num);
+                }
+            };
+
+            $scope.focusInput = function () {
+                $('div.number input').focus();
+            };
+
+            $scope.inputFocused = function () {
+                noSearch = false;
+                vc.show_directory = true;
+            };
 
             // -----------------
             // VC dialing string
             // -----------------
             $scope.$watch('vc.search_string', function (val) {
-                if (val !== undefined && vc.module) {
+                if (noSearch) {
+                    noSearch = false;
+                    return;
+                }
 
+                if (val !== undefined && vc.module) {
                     if (val.length < 3) {
                         vc.results = [];
                         return;

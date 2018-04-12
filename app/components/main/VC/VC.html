@@ -87,42 +87,49 @@
                                 ng-model="vc.search_string"
                                 ng-touch="$event.stopPropagation()"
                                 user-select="true"
+                                ng-focus="inputFocused()"
                                 no-capture>
 
-                            <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="vc.selected = null; vc.dial_string = vc.search_string = ''; " ng-show="vc.search_string.length || vc.dial_string.length"></span>
+                            <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="vc.show_directory = false; vc.selected = null; vc.dial_string = vc.search_string = ''; " ng-show="vc.search_string.length || vc.dial_string.length || vc.show_directory"></span>
+                            <span class="fa fa-keyboard-o clear-num" ng-click="focusInput()" ng-show="!(vc.search_string || vc.dial_string) && !vc.show_directory"></span>
                         </div>
 
-                        <div class="results" ng-if="!vc.status.direction && !vc.searching">
+                        <menu class="numpad" ng-if="!vc.show_directory">
+                            <button ng-click="dial('1')">1</button>
+                            <button ng-click="dial('2')">2</button>
+                            <button ng-click="dial('3')">3</button>
+
+                            <button ng-click="dial('4')">4</button>
+                            <button ng-click="dial('5')">5</button>
+                            <button ng-click="dial('6')">6</button>
+
+                            <button ng-click="dial('7')">7</button>
+                            <button ng-click="dial('8')">8</button>
+                            <button ng-click="dial('9')">9</button>
+
+                            <button ng-click="dial('*')">*</button>
+                            <button ng-click="dial('0')">0</button>
+                            <button ng-click="dial('#')">#</button>
+                        </menu>
+
+                        <div class="results" ng-if="!vc.status.direction && !vc.searching && vc.show_directory && (vc.results && vc.results.length)">
                             <div ng-repeat="result in vc.results" ng-click="vc.selected = result" ng-class="{selected: vc.selected === result}">
                                 <span class="title">{{result.name}}</span><br />
                                 {{result.number}}
                             </div>
                         </div>
 
-                        <div class="results" ng-if="!vc.status.direction && vc.searching">
+                        <div class="results" ng-if="!vc.status.direction && vc.searching && vc.show_directory">
                             <br />
                             Searching...
                             <div class="spinner" style="width: 60px; height: 60px;">
                             </div>
                         </div>
 
-                        <menu class="numpad" ng-if="vc.status.direction">
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '1')">1</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '2')">2</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '3')">3</button>
-
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '4')">4</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '5')">5</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '6')">6</button>
-
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '7')">7</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '8')">8</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '9')">9</button>
-
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '*')">*</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '0')">0</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '#')">#</button>
-                        </menu>
+                        <div class="results" ng-if="!vc.status.direction && !vc.searching && vc.show_directory && !(vc.results && vc.results.length)">
+                            <br />
+                            No results. Try adjusting your search.
+                        </div>
                     </div>
                 </div>
             </div>
