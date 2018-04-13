@@ -1,7 +1,7 @@
 
 <div co-bind="'Camera' as source_names" id="camera-inputs" ng-init="coModuleInstance.$exec('start_cameras')">
     <div ng-if="source_names" class="standard-panel">
-        <div class="presets" ng-if="selectCamera.presets && !selectCamera.auto_camera">
+        <div class="presets" ng-if="selected.camera.presets && !selected.camera.auto_camera">
             <h3>Presets:</h3>
             <button ng-repeat="preset in selected.camera.presets" ng-touch="coModuleInstance.$exec('camera_preset', selected.camera.source, preset);">
                 {{preset.name}}
