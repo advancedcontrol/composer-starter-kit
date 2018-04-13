@@ -46,6 +46,7 @@
             $scope.dial = function (num) {
                 noSearch = true;
                 vc.search_string = (vc.search_string || '') + num;
+                vc.dial_string = vc.search_string
 
                 if (vc.status.direction) {
                     $scope.coModuleInstance.$exec('send_DTMF', num);
@@ -70,7 +71,7 @@
                     return;
                 }
 
-                if (val !== undefined && vc.module) {
+                if (val !== undefined && vc.bookings_mod) {
                     if (val.length < 3) {
                         vc.results = [];
                         return;
@@ -79,7 +80,7 @@
                     if (searchTimer) { $timeout.cancel(searchTimer); }
                     searchTimer = $timeout(function () {
                         searchTimer = null;
-                        vc.module.$exec('search', val);
+                        vc.bookings_mod.$exec('directory_search', val);
                     }, 1000);
 
                     delete vc.selected;

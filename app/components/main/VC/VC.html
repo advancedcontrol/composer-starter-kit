@@ -11,8 +11,6 @@
 
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div class="presentation-layout" co-module="'VidConf'">
-            <span co-bind="'searching' as vc.searching"></span>
-
             <!-- Content Selection -->
             <select ng-if="!vc.hide_vc_sources"
                 ng-model="vc.content_source"
@@ -77,8 +75,15 @@
             </div>
         </div>
         <div>
+            <span co-module="'Bookings'">
+                <span co-bind="'searching' as vc.searching"></span>
+                <span co-bind="'directory' as vc.results"></span>
+                <span co-bind="'name' as vc.bookings_ready"></span>
+                <span ng-if="vc.bookings_ready" ng-init="vc.bookings_mod = coModuleInstance"></span>
+            </span>
+
             <div class="numpad" co-module="'VidConf'">
-                <div co-bind="'search_results' as vc.results">
+                <div>
                     <div>
                         <h1 ng-if="!vc.selected">Search or dial</h1>
                         <h1 ng-if="vc.selected">Dial: {{vc.selected.name}}</h1>
@@ -94,7 +99,7 @@
                             <span class="fa fa-keyboard-o clear-num" ng-click="focusInput()" ng-show="!(vc.search_string || vc.dial_string) && !vc.show_directory"></span>
                         </div>
 
-                        <menu class="numpad" ng-if="!vc.show_directory">
+                        <menu class="numpad" ng-if="!vc.show_directory || vc.status.direction">
                             <button ng-click="dial('1')">1</button>
                             <button ng-click="dial('2')">2</button>
                             <button ng-click="dial('3')">3</button>
@@ -115,7 +120,7 @@
                         <div class="results" ng-if="!vc.status.direction && !vc.searching && vc.show_directory && (vc.results && vc.results.length)">
                             <div ng-repeat="result in vc.results" ng-click="vc.selected = result" ng-class="{selected: vc.selected === result}">
                                 <span class="title">{{result.name}}</span><br />
-                                {{result.number}}
+                                {{result.email}}
                             </div>
                         </div>
 
@@ -126,7 +131,7 @@
                             </div>
                         </div>
 
-                        <div class="results" ng-if="!vc.status.direction && !vc.searching && vc.show_directory && !(vc.results && vc.results.length)">
+                        <div class="results" ng-if="!vc.status.direction && !vc.searching && vc.show_directory && (!!!vc.results || vc.results.length === 0)">
                             <br />
                             No results. Try adjusting your search.
                         </div>

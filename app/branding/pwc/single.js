@@ -461,6 +461,14 @@
                 this.mute = mute;
             }
         }],
+        Bookings: [{
+            name: "test",
+            searching: false,
+            $directory_search: function() {
+                this.searching = !this.searching;
+                this.directory = JSON.parse(JSON.stringify(vc_results));
+            }
+        }],
         VidConf: [{
             searching: true,
             results_total: 3,
@@ -479,7 +487,6 @@
             $dial: function (str) {
                 this.call_status = {
                     answerstate: "Unanswered",
-                    callbacknumber: "h323:10.243.218.235",
                     callpriority: "None",
                     calltype: "Video",
                     devicetype: "Endpoint",
