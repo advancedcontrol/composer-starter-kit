@@ -161,6 +161,20 @@
                 "query_ids": ["16-10pVcRoomPhoneProgress", "16-10pVcRoomPhoneRinging", "16-10pVcRoomPhoneOffHook"]
             },
             "mics_mutes": [105, 106, 107],
+            "mics": [
+                {
+                    name: "Some other mic",
+                    mute_id: "test",
+                    id: "fader",
+                    basic_mixer: true
+                },
+                {
+                    name: "Toogle Mute",
+                    mute_only: true,
+                    mute_id: "test",
+                    basic_mixer: true
+                }
+            ],
             "name": "Team Room",
             "help_msg": "For help please call <strong>0408419954</strong>",
             "state": "shutdown",

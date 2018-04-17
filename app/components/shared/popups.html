@@ -320,7 +320,7 @@
                 co-index="mic.mixer || 1"
             >
                 <h2>{{mic.name}}</h2>
-                <div>
+                <div ng-if="!mic.mute_only">
                     <div
                         class="mute"
                         co-bind="'fader' + (mic.mute_feedback_id || mic.mute_id || mic.feedback_id || mic.id) + '_mute' as mute"
@@ -338,6 +338,15 @@
                                 <div co-range model="level" min="mic.min" max="mic.max"></div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div ng-if="mic.mute_only">
+                    <div
+                        class="mute"
+                        co-bind="'fader' + (mic.mute_feedback_id || mic.mute_id || mic.feedback_id || mic.id) + '_mute' as mute"
+                        exec="mute(mic.mute_id || mic.id, mute)"
+                    >
+                        <div ios-toggle model="mute"></div>
                     </div>
                 </div>
             </div>
