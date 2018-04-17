@@ -1,11 +1,18 @@
 
 <div co-bind="'Camera' as source_names" id="camera-inputs" ng-init="coModuleInstance.$exec('start_cameras')">
     <div ng-if="source_names" class="standard-panel">
-        <div class="presets" ng-if="selected.camera.presets && !selected.camera.auto_camera">
+        <span co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'presets' as selected.camera_presets"></span>
+
+        <div class="presets" ng-if="selected.camera_presets && selected.camera_presets.length > 0 && !selected.camera.auto_camera">
             <h3>Presets:</h3>
-            <button ng-repeat="preset in selected.camera.presets" ng-touch="coModuleInstance.$exec('camera_preset', selected.camera.source, preset);">
-                {{preset.name}}
-            </button>
+            <span co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'connected'">
+                <button ng-repeat="preset in selected.camera_presets"
+                    ng-click="coModuleInstance.$exec('preset', preset);"
+                    ng-hold="coModuleInstance.$exec('save_preset', preset)"
+                >
+                    {{preset}}
+                </button>
+            </span>
         </div>
         <div class="camera-control" co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'joy_right'">
             <div ng-if="!selected.camera.auto_camera" co-bind="'joy_left'">

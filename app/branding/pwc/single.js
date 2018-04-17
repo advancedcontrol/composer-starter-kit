@@ -1,56 +1,7 @@
 (function (window, angular) {
     'use strict';
 
-    var vc_results = [
-                {
-                    name: "School 1",
-                    number: "10.243.218.232 10.243.218.232 10.243.218.232"
-                },
-                {
-                    name: "School 2",
-                    number: "10.243.218.230"
-                },
-                {
-                    name: "School 3",
-                    number: "localContactId-3"
-                },
-                {
-                    name: "School 1",
-                    number: "10.243.218.232"
-                },
-                {
-                    name: "School 2",
-                    number: "10.243.218.230"
-                },
-                {
-                    name: "School 3",
-                    number: "localContactId-3"
-                },
-                {
-                    name: "School 1",
-                    number: "10.243.218.232"
-                },
-                {
-                    name: "School 2",
-                    number: "10.243.218.230"
-                },
-                {
-                    name: "School 3",
-                    number: "localContactId-3"
-                },
-                {
-                    name: "School 1",
-                    number: "10.243.218.232"
-                },
-                {
-                    name: "School 2",
-                    number: "10.243.218.230"
-                },
-                {
-                    name: "School 3",
-                    number: "localContactId-3"
-                }
-            ];
+    var vc_results = [{"name":"105 Phillip 1.01 Multifunction VC Restricted (50 Max)", "phone":"34543545"}, {"name":"105 Phillip 1.02 Multifunction VC Restricted (50 Max)", "phone":null, "department":null, "email":"105Phillip102@det.nsw.edu.au"}, {"name":"105 Phillip 1.03 Multifunction VC Restricted (50 Max)", "phone":null, "department":null, "email":"105Phillip103@det.nsw.edu.au"}, {"name":"105 Phillip 1.04 Immersive Restricted (20 Max)", "phone":null, "department":null, "email":"105Phillip104@det.nsw.edu.au"}, {"name":"105 Phillip 1.05 Surface Hub Restricted (16 Max)", "phone":null, "department":null, "email":"105Phillip105@det.nsw.edu.au"}, {"name":"105 Phillip 1.06 VC Restricted (12 Max)", "phone":null, "department":null, "email":"105Phillip106@det.nsw.edu.au"}, {"name":"105 Phillip 1.07 VC Restricted (12 Max)", "phone":null, "department":null, "email":"105Phillip107@det.nsw.edu.au"}, {"name":"105 Phillip 1.08 VC Restricted (12 Max)", "phone":null, "department":null, "email":"105Phillip108@det.nsw.edu.au"}, {"name":"105 Phillip 1.09 VC Restricted (8 Max)", "phone":null, "department":null, "email":"105Phillip109@det.nsw.edu.au"}, {"name":"105 Phillip 1.10 VC Restricted (8 Max)", "phone":null, "department":null, "email":"105Phillip110@det.nsw.edu.au"}, {"name":"105 Phillip 1.11 VC Restricted (8 Max)", "phone":null, "department":null, "email":"105Phillip111@det.nsw.edu.au"}, {"name":"105 Phillip 1.12 VC Restricted (4 Max)", "phone":null, "department":null, "email":"105Phillip112@det.nsw.edu.au"}, {"name":"105 Phillip 1.13 VC Restricted (4 Max)", "phone":null, "department":null, "email":"105Phillip113@det.nsw.edu.au"}, {"name":"105 Phillip 1.14 VC Restricted (4 Max)", "phone":null, "department":null, "email":"105Phillip114@det.nsw.edu.au"}, {"name":"105 Phillip 1.15 VC (4 Max)", "phone":null, "department":null, "email":"105Phillip115@det.nsw.edu.au"}, {"name":"105 Phillip 10.01 Team Room VC  (16 Max)", "phone":null, "department":null, "email":"105Phillip1001@det.nsw.edu.au"}, {"name":"105 Phillip 10.02  VC  (4 Max)", "phone":null, "department":null, "email":"105Phillip1002@det.nsw.edu.au"}, {"name":"105 Phillip 10.03  VC  (4 Max)", "phone":null, "department":null, "email":"105Phillip1003@det.nsw.edu.au"}, {"name":"105 Phillip 10.06  VC  (4 Max)", "phone":null, "department":null, "email":"105Phillip1006@det.nsw.edu.au"}, {"name":"105 Phillip 10.07  VC  (8 Max)", "phone":null, "department":null, "email":"105Phillip1007@det.nsw.edu.au"}, {"name":"105 Phillip 10.08  VC  (4 Max)", "phone":null, "department":null, "email":"105Phillip1008@det.nsw.edu.au"}, {"name":"105 Phillip 10.11  VC  (4 Max)", "phone":null, "department":null, "email":"105Phillip1011@det.nsw.edu.au"}, {"name":"105 Phillip 10.12  VC  (4 Max)", "phone":null, "department":null, "email":"105Phillip1012@det.nsw.edu.au"}, {"name":"105 Phillip 10.13  VC  (4 Max)", "phone":null, "department":null, "email":"105Phillip1013@det.nsw.edu.au"}, {"name":"105 Phillip 10.16  VC  (8 Max)", "phone":null, "department":null, "email":"105Phillip1016@det.nsw.edu.au"}, {"name":"105 Phillip 10.17  VC  (4 Max)", "phone":null, "department":null, "email":"105Phillip1017@det.nsw.edu.au"}, {"name":"105 Phillip 10.20 Open Project Space Surface Hub", "phone":null, "department":null, "email":"105Phillip1020@det.nsw.edu.au"}, {"name":"105 Phillip 10.23 Open Project Space Surface Hub", "phone":null, "department":null, "email":"105Phillip1023@det.nsw.edu.au"}, {"name":"105 Phillip 10.26 Open Project Space Surface Hub", "phone":null, "department":null, "email":"105Phillip1026@det.nsw.edu.au"}, {"name":"105 Phillip 11.01 Team Room VC  (16 Max)", "phone":null, "department":null, "email":"105Phillip1101@det.nsw.edu.au"}];
 
     // NOTE:: window.systemData is used for development.
     //  In production the interface will obtain this information from the server
@@ -106,13 +57,15 @@
             joy_right: -0x14,
             joy_left: 0x14,
             joy_center: 0,
-            zoom: 25
+            zoom: 25,
+            "presets": ["Other", "Lectern"]
         },
         {
             joy_right: -0x14,
             joy_left: 0x14,
             joy_center: 0,
-            zoom: 80
+            zoom: 80,
+            "presets": ["Test", "Lectern"]
         }],
         DigitalIO: [{
             $relay: function (index, state) {
@@ -467,7 +420,8 @@
             $directory_search: function() {
                 this.searching = !this.searching;
                 this.directory = JSON.parse(JSON.stringify(vc_results));
-            }
+            },
+            directory: []
         }],
         VidConf: [{
             searching: true,

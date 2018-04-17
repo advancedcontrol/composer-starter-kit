@@ -120,7 +120,7 @@
                         <div class="results" ng-if="!vc.status.direction && !vc.searching && vc.show_directory && (vc.results && vc.results.length)">
                             <div ng-repeat="result in vc.results" ng-click="vc.selected = result" ng-class="{selected: vc.selected === result}">
                                 <span class="title">{{result.name}}</span><br />
-                                {{result.email}}
+                                {{result.email || result.phone}}
                             </div>
                         </div>
 

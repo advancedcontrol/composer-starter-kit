@@ -49,7 +49,7 @@
                 vc.dial_string = vc.search_string
 
                 if (vc.status.direction) {
-                    $scope.coModuleInstance.$exec('send_DTMF', num);
+                    vc.module.$exec('send_DTMF', num);
                 }
             };
 
@@ -90,7 +90,12 @@
 
             $scope.$watch('vc.selected', function (val) {
                 if (val) {
-                    vc.dial_string = val.name;
+                    if (val.email) {
+                        vc.dial_string = val.name;
+                    } else {
+                        noSearch = true;
+                        vc.search_string = vc.dial_string = val.phone;
+                    }
                 }
             });
         }]);
