@@ -110,7 +110,7 @@
             <div>
                 <h1>ACA Control Setup</h1>
                 <p>Please enter the system ID below:</p>
-                <input ng-virtual-keyboard="{kt: 'US International', relative: false, size: 5}" ng-model="system_id" ng-trim="true" ng-required="true" ng-minlength="5" />
+                <input autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-virtual-keyboard="{kt: 'US International', relative: false, size: 5}" ng-model="system_id" ng-trim="true" ng-required="true" ng-minlength="5" />
                 <button ng-click="configure(system_id)">Finish Setup</button>
             </div>
         </div>
