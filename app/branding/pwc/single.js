@@ -173,6 +173,12 @@
                     mute_only: true,
                     mute_id: "test",
                     basic_mixer: true
+                },
+                {
+                    name: "Other Mute",
+                    mute_only: true,
+                    mute_id: "test",
+                    basic_mixer: true
                 }
             ],
             "name": "Team Room",

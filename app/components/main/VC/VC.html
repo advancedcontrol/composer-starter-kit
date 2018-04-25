@@ -85,36 +85,45 @@
             <div class="numpad" co-module="'VidConf'">
                 <div>
                     <div>
-                        <h1 ng-if="!vc.selected">Search or dial</h1>
-                        <h1 ng-if="vc.selected">Dial: {{vc.selected.name}}</h1>
+                        <h1 ng-if="!vc.selected && !vc.status.direction">Search or dial</h1>
+                        <h1 ng-if="vc.selected && !vc.status.direction">Dial: {{vc.selected.name}}</h1>
+                        <h1 ng-if="vc.status.direction">Call active</h1>
                         <div class="number">
                             <input
+                                ng-if="vc.show_directory"
+                                ng-init="focusInput()"
                                 ng-model="vc.search_string"
                                 ng-touch="$event.stopPropagation()"
                                 user-select="true"
-                                ng-focus="inputFocused()"
-                                no-capture>
+                                no-capture
+                                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                            />
+                            <div class="num-text" ng-if="!vc.show_directory">
+                                {{vc.search_string}}
+                            </div>
 
-                            <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="vc.show_directory = false; vc.selected = null; vc.dial_string = vc.search_string = ''; " ng-show="vc.search_string.length || vc.dial_string.length || vc.show_directory"></span>
-                            <span class="fa fa-keyboard-o clear-num" ng-click="focusInput()" ng-show="!(vc.search_string || vc.dial_string) && !vc.show_directory"></span>
+                            <span role="button" class="fa fa-th clear-num" ng-touch="blurInput()" ng-show="vc.show_directory"></span>
+                            <span class="fa fa-keyboard-o clear-num" ng-touch="vc.show_directory = true;" ng-show="!vc.show_directory && !vc.status.direction"></span>
                         </div>
 
                         <menu class="numpad" ng-if="!vc.show_directory || vc.status.direction">
-                            <button ng-click="dial('1')">1</button>
-                            <button ng-click="dial('2')">2</button>
-                            <button ng-click="dial('3')">3</button>
+                            <button ng-touch="dial('1')">1</button>
+                            <button ng-touch="dial('2')">2</button>
+                            <button ng-touch="dial('3')">3</button>
 
-                            <button ng-click="dial('4')">4</button>
-                            <button ng-click="dial('5')">5</button>
-                            <button ng-click="dial('6')">6</button>
+                            <button ng-touch="dial('4')">4</button>
+                            <button ng-touch="dial('5')">5</button>
+                            <button ng-touch="dial('6')">6</button>
 
-                            <button ng-click="dial('7')">7</button>
-                            <button ng-click="dial('8')">8</button>
-                            <button ng-click="dial('9')">9</button>
+                            <button ng-touch="dial('7')">7</button>
+                            <button ng-touch="dial('8')">8</button>
+                            <button ng-touch="dial('9')">9</button>
 
-                            <button ng-click="dial('*')">*</button>
-                            <button ng-click="dial('0')">0</button>
-                            <button ng-click="dial('#')">#</button>
+                            <button ng-touch="dial('*')">*</button>
+                            <button ng-touch="dial('0')">0</button>
+                            <button ng-touch="dial('#')">#</button>
+
+                            <img ng-show="!vc.status.direction" style="height: 50px" src="components/images/backspace.svg" ng-touch="backspace()" ng-hold="clear();" />
                         </menu>
 
                         <div class="results" ng-if="!vc.status.direction && !vc.searching && vc.show_directory && (vc.results && vc.results.length)">
@@ -146,9 +155,10 @@
 
             <table class="remote">
                 <tr>
-                    <td class="call"
-                        ng-touch="coModuleInstance.$exec('dial', vc.dial_string, vc.search_string); $event.preventDefault();"
+                    <td class="call" ng-if="!vc.status.direction"
+                        ng-touch="coModuleInstance.$exec('dial', vc.dial_string, vc.dial_string); $event.preventDefault();"
                     ></td>
+                    <td ng-if="vc.status.direction"></td>
                     <td></td>
                     <td class="hangup"
                         ng-touch="coModuleInstance.$exec('button_press', 'hangup'); $event.preventDefault();"

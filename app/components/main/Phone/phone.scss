@@ -36,13 +36,13 @@
             div.number {
                 position: relative;
 
-                input {
+                input, div.num-text {
                     width: 100%;
                     text-align: center;
                     border: none;
-                    line-height: 10px;
+                    padding-right: 1.4em;
                     font-size: 3vh;
-                    padding-bottom: 5px;
+
                     outline: none;
                     background-color: #f9f9f9;
                     border-bottom: 1px solid #ddd;
@@ -55,19 +55,36 @@
                     }
                 }
 
+                div.num-text {
+                    height: 1.41em;
+                    overflow: hidden;
+                }
+
                 span.clear-num {
                     position: absolute;
-                    top: 6px;
-                    right: 8px;
+                    top: 1px;
+                    bottom: 1px;
+                    right: 0;
+                    padding-right: 0.2em;
+                    padding-left: 0.2em;
+                    padding-top: 0.2em;
 
                     font-size: 3vh;
                     cursor: pointer;
+
+                    background-color: #f9f9f9;
+
+                    &.fa-th {
+                        padding-top: 3px;
+                    }
                 }
             }
 
             menu.numpad {
+                position: relative;
                 padding: 0px 0px;
                 background-color: #f1f1f1;
+                padding-right: 60px;
 
                 button {
                     margin: 2px 0px;
@@ -81,6 +98,14 @@
                     padding: 4px 15px;
                     cursor: pointer;
                     outline: none;
+                }
+
+                img {
+                    position: absolute;
+                    right: 0px;
+                    bottom: 13px;
+
+                    cursor: pointer;
                 }
             }
         }

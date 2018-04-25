@@ -46,20 +46,38 @@
             $scope.dial = function (num) {
                 noSearch = true;
                 vc.search_string = (vc.search_string || '') + num;
-                vc.dial_string = vc.search_string
+                vc.dial_string = vc.search_string;
 
                 if (vc.status.direction) {
                     vc.module.$exec('send_DTMF', num);
+                } else {
+                    delete vc.selected;
                 }
             };
 
             $scope.focusInput = function () {
-                $('div.number input').focus();
+                $timeout(function () {
+                    $('div.number input').focus();
+                }, 100);
             };
 
-            $scope.inputFocused = function () {
-                noSearch = false;
-                vc.show_directory = true;
+            $scope.blurInput = function () {
+                $('div.number input').blur();
+                vc.show_directory = false;
+            };
+
+            $scope.backspace = function () {
+                noSearch = true;
+                delete vc.selected;
+                vc.search_string = (vc.search_string || '');
+                vc.search_string = vc.search_string.substring(0, vc.search_string.length - 1);
+                vc.dial_string = vc.search_string;
+            };
+
+            $scope.clear = function () {
+                noSearch = true;
+                delete vc.selected;
+                vc.dial_string = vc.search_string = '';
             };
 
             // -----------------
@@ -91,12 +109,15 @@
             $scope.$watch('vc.selected', function (val) {
                 if (val) {
                     if (val.email) {
-                        vc.dial_string = val.name;
+                        vc.dial_string = val.email;
                     } else {
-                        noSearch = true;
-                        vc.search_string = vc.dial_string = val.phone;
+                        vc.dial_string = val.phone;
                     }
                 }
+            });
+
+            $scope.$watch('vc.status.direction', function (val) {
+                if (val) { $scope.blurInput(); }
             });
         }]);
 
