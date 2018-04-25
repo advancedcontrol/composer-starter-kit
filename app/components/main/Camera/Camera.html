@@ -1,14 +1,23 @@
 
 <div co-bind="'Camera' as source_names" id="camera-inputs" ng-init="coModuleInstance.$exec('start_cameras')">
-    <div ng-if="source_names" class="standard-panel">
-        <span co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'presets' as selected.camera_presets"></span>
+    <div ng-if="source_names" class="standard-panel" ng-init="preset_update = {}">
+        <span co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'presets' as selected.camera_presets">
+            <modal name="save_preset" title="Save preset?" no-close="true">
+                <p><b>Save the current camera position to the "{{preset_update.preset}}" preset?<br /></b></p>
+                <menu>
+                    <button class="cancel" ng-touch="closeModal('save_preset')">Cancel</button>
+                    <button class="ok" ng-touch="coModuleInstance.$exec('save_preset', preset_update.preset); closeModal('save_preset')">Save</button>
+                </menu>
+                <div style="clear: both"></div>
+            </modal>
+        </span>
 
         <div class="presets" ng-if="selected.camera_presets && selected.camera_presets.length > 0 && !selected.camera.auto_camera">
             <h3>Presets:</h3>
             <span co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'connected'">
                 <button ng-repeat="preset in selected.camera_presets"
                     ng-click="coModuleInstance.$exec('preset', preset);"
-                    ng-hold="coModuleInstance.$exec('save_preset', preset)"
+                    ng-hold="preset_update.preset = preset; showModal('save_preset');"
                 >
                     {{preset}}
                 </button>
