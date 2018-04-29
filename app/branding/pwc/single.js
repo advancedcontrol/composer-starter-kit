@@ -205,7 +205,8 @@
             "inputs": [
                 "Presentation",
                 "VC",
-                "TV"
+                "TV",
+                "Streaming"
             ],
             "TV": [
                 "tv_input"
@@ -237,6 +238,8 @@
             "VC": [
                 "video_conf"
             ],
+            "Streaming": [
+                "training_cam2"],
             "Camera": [
                 "training_cam",
                 "training_cam2"

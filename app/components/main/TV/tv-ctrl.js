@@ -32,7 +32,17 @@
                     "Fox Sports": true,
                     "ESPN": true,
                     "Fox Sports News": true,
-                    "Fox Footy": true
+                    "Fox Footy": true,
+                    "NITV": true,
+                    "Food Network": true,
+                    "RACING.COM": true,
+                    "7flix": true,
+                    "9Life": true,
+                    "DoubleJ Radio": true,
+                    "SBS Arabic24 Radio": true,
+                    "SBS Radio 1": true,
+                    "SBS Radio 2": true,
+                    "SBS Radio 3": true
                 };
 
                 $scope.data = {};
@@ -54,6 +64,10 @@
                         return 'seven_mate';
                     else if (name == '7TWO')
                         return 'seven_two';
+                    else if (name == '7flix')
+                        return 'seven_flix';
+                    else if (name == '9Life')
+                        return 'nine_life';
                     else
                         return name.replace(/\s+|\./g, '_').toLowerCase();
                 };

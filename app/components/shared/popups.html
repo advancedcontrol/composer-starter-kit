@@ -137,10 +137,7 @@
             <p>This room has been linked to: {{rooms[joined.initiator]}}</p>
 
             <menu>
-                <button ng-if="!is_slave_system" class="ok" ng-click="closeModal('notify_joining')">
-                    Got it
-                </button>
-                <button ng-if="is_slave_system" class="ok" ng-click="coModuleInstance.$exec('unjoin'); closeModal('notify_joining')">
+                <button class="ok" ng-click="coModuleInstance.$exec('unjoin'); closeModal('notify_joining')">
                     Unlink
                 </button>
             </menu>
@@ -322,6 +319,7 @@
                 <h2>{{mic.name}}</h2>
                 <div ng-if="!mic.mute_only">
                     <div
+                        ng-if="!mic.no_mute"
                         class="mute"
                         co-bind="'fader' + (mic.mute_feedback_id || mic.mute_id || mic.feedback_id || mic.id) + '_mute' as mute"
                         exec="mute(mic.mute_id || mic.id, mute)"

@@ -25,7 +25,7 @@ div.camera-control {
     // Now that we are not using the joystick:
     div.webcam-controls > table {
         tr {
-            height: 60px;
+            height: 70px;
         }
     }
 
@@ -88,7 +88,7 @@ div.camera-control {
                     @include co-range-slider(
                         $handle-size: 40px,
                         $track-girth: 20px,
-                        $track-colour:white
+                        $track-colour:lightgrey
                     );
                 }
             }

@@ -1,7 +1,7 @@
 
-<div co-bind="'Camera' as source_names" id="camera-inputs" ng-init="coModuleInstance.$exec('start_cameras')">
-    <div ng-if="source_names" class="standard-panel" ng-init="preset_update = {}">
-        <span co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'presets' as selected.camera_presets">
+<div co-bind="'Streaming' as source_names" id="camera-inputs" ng-init="coModuleInstance.$exec('start_cameras')">
+    <div ng-if="source_names" class="standard-panel" ng-init="selectSource(source_names[0]); preset_update = {}">
+        <span co-module="selectedSource.mod" co-index="selectedSource.index" co-bind="'presets' as selectedSource.camera_presets">
             <modal name="save_preset" title="Save preset?" no-close="true">
                 <p><b>Save the current camera position to the "{{preset_update.preset}}" preset?<br /></b></p>
                 <menu>
@@ -12,9 +12,9 @@
             </modal>
         </span>
 
-        <div class="presets" ng-if="selected.camera_presets && selected.camera_presets.length > 0 && !selected.camera.auto_camera">
+        <div class="presets" ng-if="selectedSource.camera_presets && selectedSource.camera_presets.length > 0 && !selectedSource.auto_camera">
             <h3>Presets:</h3>
-            <span co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'connected'">
+            <span co-module="selectedSource.mod" co-index="selectedSource.index" co-bind="'connected'">
                 <button ng-repeat="preset in selected.camera_presets"
                     ng-click="coModuleInstance.$exec('preset', preset);"
                     ng-hold="preset_update.preset = preset; showModal('save_preset');"
@@ -23,8 +23,8 @@
                 </button>
             </span>
         </div>
-        <div class="camera-control" co-module="selected.camera.mod" co-index="selected.camera.index" co-bind="'joy_right'">
-            <div ng-if="!selected.camera.auto_camera" co-bind="'joy_left'">
+        <div class="camera-control" co-module="selectedSource.mod" co-index="selectedSource.index" co-bind="'joy_right'">
+            <div ng-if="!selectedSource.auto_camera" co-bind="'joy_left'">
                 <div co-bind="'joy_center'" ng-controller="CamCtrl" class="webcam-controls">
                     <br />
                     <table>
@@ -69,13 +69,13 @@
                     </div>
                 </div>
             </div>
-            <div ng-if="selected.camera.auto_camera" style="padding-left: 2em; font-size: larger;">
+            <div ng-if="selectedSource.auto_camera" style="padding-left: 2em; font-size: larger;">
                 This camera will track speakers automatically.
             </div>
         </div>
         <div class="sources" ng-if="source_names.length > 1">
-            <div btn-group="selected.camera.source">
-                <button ng-repeat="cam in source_names" btn="cam" ng-touch="selectCamera(cam)" class="toggle" ng-class="sources[cam].type"><i class="fa fa-video-camera"></i>{{sources[cam].title}}</button>
+            <div btn-group="selectedSource.source">
+                <button ng-repeat="cam in source_names" btn="cam" ng-touch="selectSource(cam)" class="toggle" ng-class="sources[cam].type"><i class="fa fa-video-camera"></i>{{sources[cam].title}}</button>
             </div>
         </div>
     </div>

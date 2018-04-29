@@ -1,7 +1,12 @@
 
 <div co-bind="'Presentation' as source_names" id="laptop-inputs">
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
-        <div>
+        <div co-bind="'Wired' as box_names">
+            <div class="sources" ng-if="box_names.length > 1" style="width: 53%; margin-top:0;">
+                <div btn-group="selectedSource.source">
+                    <button ng-repeat="box in box_names" btn="box" ng-touch="selectSource(box)" class="toggle"><i ng-class="sources[box].type"></i>{{sources[box].title}}</button>
+                </div>
+            </div>
         </div>
         <div class="sources" ng-if="source_names.length > 1">
             <div btn-group="selectedSource.source">

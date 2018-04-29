@@ -645,7 +645,7 @@ article.main {
             content: "\0057";
         }
 
-        &.Camera::before, &.vc-camera::before {
+        &.Camera::before, &.Streaming::before, &.vc-camera::before {
             content: "\0045";
         }
 
@@ -688,8 +688,12 @@ article.main {
             content: "\0041";
         }
 
-        &.Wired::before, &.wired::before {
+        &.wired::before {
             content: "\0042";
+        }
+
+        &.Wired::before {
+            content: "\0049";
         }
 
         &.aux_hdmi::before {
