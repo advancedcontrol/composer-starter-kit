@@ -223,32 +223,13 @@
     Manual Control Pop up
  -->
 <div co-bind="'cog_modes'">
-    <div ng-if="has_preview || poweredOutputs > 1 || cog_modes" class="displays" ng-touch="showModal('displays'); $root.$emit('$track', 'popup', 'manual')">
+    <div ng-if="cog_modes" class="displays" ng-touch="showModal('displays'); $root.$emit('$track', 'popup', 'mode')">
         <modal name="displays" title="Display Control">
-            <div ng-if="cog_modes" co-bind="'current_cog_mode'">
+            <div co-bind="'current_cog_mode'">
                 <h2>System Modes:</h2>
                 <div btn-group="current_cog_mode">
                     <button ng-repeat="mode in cog_modes" btn="mode" ng-touch="coModuleInstance.$exec('switch_mode', mode)" class="toggle">{{mode}}</button>
                 </div>
-            </div>
-
-            <div ng-if="!cog_modes">
-                <h2>Displays:</h2>
-
-                <!-- Get the number of displays and list them -->
-                <table class="entries">
-                    <tr
-                        ng-repeat="display in outputs | orderObjectBy:'pri'"
-                        ng-if="!display.no_mod"
-                        co-module="display.$key"
-                        co-implicit-index
-                        co-bind="'power'" exec
-                    >
-                        <td>{{display.title}}</td>
-                        <td ><div ios-toggle model="power"></div></td>
-                        <td class="onoff">{{power ? 'On' : 'Off'}}</td>
-                    </tr>
-                </table>
             </div>
         </modal>
     </div>

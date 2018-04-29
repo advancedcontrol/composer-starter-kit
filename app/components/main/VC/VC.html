@@ -43,8 +43,7 @@
 
             <!-- Mute Mics -->
             <span class="mutebtn">
-                <span ng-if="mics_mutes" co-module="'Mixer'" co-bind="'fader' + mics_mutes[0] + '_mute' as vc.muted"></span>
-                <span ng-if="!mics_mutes" co-bind="'audio_mute' as vc.muted"></span>
+                <span co-bind="'audio_mute' as vc.muted"></span>
                 <button co-module="'System'" co-bind="'connected'" class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.muted}"
                     ng-touch="coModuleInstance.$exec('vc_mute', !vc.muted)"
                 >

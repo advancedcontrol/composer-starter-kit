@@ -170,7 +170,7 @@
                 },
                 {
                     name: "Toogle Mute",
-                    mute_only: true,
+                    no_mute: true,
                     mute_id: "test",
                     basic_mixer: true
                 },
