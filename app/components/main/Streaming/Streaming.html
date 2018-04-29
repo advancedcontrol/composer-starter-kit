@@ -15,7 +15,7 @@
         <div class="presets" ng-if="selectedSource.camera_presets && selectedSource.camera_presets.length > 0 && !selectedSource.auto_camera">
             <h3>Presets:</h3>
             <span co-module="selectedSource.mod" co-index="selectedSource.index" co-bind="'connected'">
-                <button ng-repeat="preset in selected.camera_presets"
+                <button ng-repeat="preset in selectedSource.camera_presets"
                     ng-click="coModuleInstance.$exec('preset', preset);"
                     ng-hold="preset_update.preset = preset; showModal('save_preset');"
                 >
