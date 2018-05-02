@@ -1,12 +1,12 @@
 
-<div co-bind="'Streaming' as source_names" id="camera-inputs" ng-init="coModuleInstance.$exec('start_cameras')">
-    <div ng-if="source_names" class="standard-panel" ng-init="selectSource(source_names[0]); preset_update = {}">
+<div ng-controller="Modals" co-bind="'Streaming' as source_names" id="camera-inputs" ng-init="coModuleInstance.$exec('start_cameras')">
+    <div ng-if="source_names" class="standard-panel" ng-init="selectSource(source_names[0]); stream_preset_update = {}">
         <span co-module="selectedSource.mod" co-index="selectedSource.index" co-bind="'presets' as selectedSource.camera_presets">
-            <modal name="save_preset" title="Save preset?" no-close="true">
-                <p><b>Save the current camera position to the "{{preset_update.preset}}" preset?<br /></b></p>
+            <modal name="save_stream_preset" title="Save preset?" no-close="true">
+                <p><b>Save the current camera position to the "{{stream_preset_update.preset}}" preset?<br /></b></p>
                 <menu>
-                    <button class="cancel" ng-touch="closeModal('save_preset')">Cancel</button>
-                    <button class="ok" ng-touch="coModuleInstance.$exec('save_preset', preset_update.preset); closeModal('save_preset')">Save</button>
+                    <button class="cancel" ng-touch="closeModal('save_stream_preset')">Cancel</button>
+                    <button class="ok" ng-touch="coModuleInstance.$exec('save_preset', stream_preset_update.preset); closeModal('save_stream_preset')">Save</button>
                 </menu>
                 <div style="clear: both"></div>
             </modal>
@@ -17,7 +17,7 @@
             <span co-module="selectedSource.mod" co-index="selectedSource.index" co-bind="'connected'">
                 <button ng-repeat="preset in selectedSource.camera_presets"
                     ng-click="coModuleInstance.$exec('preset', preset);"
-                    ng-hold="preset_update.preset = preset; showModal('save_preset');"
+                    ng-hold="stream_preset_update.preset = preset; showModal('save_stream_preset');"
                 >
                     {{preset}}
                 </button>
@@ -60,10 +60,10 @@
                     </table>
 
                     <span class="zoom-text">Zoom:</span>
-                    <div co-bind="'zoom'" exec>
+                    <div co-bind="'zoom' as cam_zoom" exec="zoom(cam_zoom)">
                         <div co-bind="'zoom_min'">
                             <div co-bind="'zoom_max'">
-                                <div co-range model="zoom" min="zoom_min" max="zoom_max"></div>
+                                <div co-range model="cam_zoom" min="zoom_min" max="zoom_max"></div>
                             </div>
                         </div>
                     </div>
