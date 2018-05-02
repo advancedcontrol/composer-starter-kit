@@ -8,13 +8,14 @@
     <span co-bind="'vc_content_source' as vc.current_content"></span>
     <span co-bind="'mics_mutes'"></span>
     <span co-bind="'hide_vc_sources' as vc.hide_vc_sources"></span>
+    <span co-bind="'vc_sources' as vc.vc_sources"></span>
 
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div class="presentation-layout" co-module="'VidConf'">
             <!-- Content Selection -->
             <select ng-if="!vc.hide_vc_sources"
                 ng-model="vc.content_source"
-                ng-options="key as content.title for (key, content) in vc_sources"
+                ng-options="key as content.title for (key, content) in vc.vc_sources"
                 ng-touch="$event.stopPropagation()"
                 user-select="true" 
                 no-capture

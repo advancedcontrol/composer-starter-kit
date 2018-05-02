@@ -179,6 +179,54 @@
                     mute_only: true,
                     mute_id: "test",
                     basic_mixer: true
+                },
+                {
+                    name: "Toogle Mute",
+                    no_mute: true,
+                    mute_id: "test",
+                    basic_mixer: true
+                },
+                {
+                    name: "Other Mute",
+                    mute_only: true,
+                    mute_id: "test",
+                    basic_mixer: true
+                },
+                {
+                    name: "Toogle Mute",
+                    no_mute: true,
+                    mute_id: "test",
+                    basic_mixer: true
+                },
+                {
+                    name: "Other Mute",
+                    mute_only: true,
+                    mute_id: "test",
+                    basic_mixer: true
+                },
+                {
+                    name: "Toogle Mute",
+                    no_mute: true,
+                    mute_id: "test",
+                    basic_mixer: true
+                },
+                {
+                    name: "Other Mute",
+                    mute_only: true,
+                    mute_id: "test",
+                    basic_mixer: true
+                },
+                {
+                    name: "Toogle Mute",
+                    no_mute: true,
+                    mute_id: "test",
+                    basic_mixer: true
+                },
+                {
+                    name: "Other Mute",
+                    mute_only: true,
+                    mute_id: "test",
+                    basic_mixer: true
                 }
             ],
             "name": "Team Room",
@@ -245,6 +293,30 @@
                 "training_cam2"
             ],
             "selected_camera": "training_cam",
+            "vc_sources": {
+                "digital_signage": {
+                    "title": "Digital signage",
+                    "input": 2,
+                    "source": "hdmi",
+                    "type": "signage",
+                    "colour": "#FFDB8E"
+                },
+                "tv_input": {
+                    "title": "TV",
+                    "input": 14,
+                    "source": "hdmi",
+                    "type": "TV",
+                    "colour": "#F58172",
+                    "not_vc_content": true
+                },
+                "g1_pc1": {
+                    "title": "Resident PC",
+                    "input": 14,
+                    "source": "hdmi",
+                    "type": "chromebox",
+                    "colour": "#F58172"
+                }
+            },
             "sources": {
                 "digital_signage": {
                     "title": "Digital signage",

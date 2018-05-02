@@ -304,6 +304,11 @@ modal[name=mics] {
         }
     }
 
+    div.modal-content {
+        max-height: 82vh;
+        overflow: scroll;
+    }
+
     div.audio_presets {
         padding: 0 30px;
 
