@@ -261,7 +261,7 @@ article.mobile {
 @import "../../../bower_components/angular-range-slider/angular-range-slider.scss";
 
 modal[name=mics] {
-    div.mic {
+    div.mic > div {
         padding: 0 30px;
 
         &> h2 {

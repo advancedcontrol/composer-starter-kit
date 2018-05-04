@@ -168,6 +168,21 @@
                     id: "fader",
                     basic_mixer: true
                 },
+
+                {
+                    name: "Some middle mic",
+                    mute_id: "test",
+                    route: "HH2FADER",
+                    route_id: "2",
+                    id: "fader",
+                    basic_mixer: true
+                },
+                {
+                    name: "third mic",
+                    mute_id: "test",
+                    id: "fader",
+                    basic_mixer: true
+                },
                 {
                     name: "Toogle Mute",
                     no_mute: true,
@@ -468,6 +483,7 @@
             fader105: -25,
             fader32: -30,
             fader107_mute: true,
+            "HH2FADER": "1",
             "16-10pVcRoomPhoneDialString": '1234',
             $fader: function (fader, volume) {
                 this['fader' + fader] = volume;
