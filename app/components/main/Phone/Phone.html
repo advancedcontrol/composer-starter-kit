@@ -42,6 +42,8 @@
                             <button ng-touch="addNum('*')">*</button>
                             <button ng-touch="addNum(0)">0</button>
                             <button ng-touch="addNum('#')">#</button>
+
+                            <img ng-show="phone.number.length && !(phone.ringing || phone.incall)" style="height: 50px" src="components/images/backspace.svg" ng-touch="backspace()" />
                         </menu>
                     </div>
                 </div>

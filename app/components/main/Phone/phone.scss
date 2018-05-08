@@ -66,6 +66,8 @@
             }
 
             menu.numpad {
+                position: relative;
+
                 padding: 0px 0px;
                 background-color: #f1f1f1;
 
@@ -87,6 +89,12 @@
                     &.ng-click-active {
                         background-color: #3388cc;
                     } 
+                }
+
+                > img {
+                    position: absolute;
+                    bottom: 0.9vh;
+                    right: -65px;
                 }
             }
         }
