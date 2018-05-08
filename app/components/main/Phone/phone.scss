@@ -57,10 +57,10 @@
 
                 span.clear-num {
                     position: absolute;
-                    top: 6px;
-                    right: 8px;
+                    top: 0px;
+                    right: -1.5em;
 
-                    font-size: 3vh;
+                    font-size: 4vh;
                     cursor: pointer;
                 }
             }
@@ -71,8 +71,8 @@
 
                 button {
                     margin: 2px 0px;
-                    height: 7vh;
-                    width: 8vh;
+                    height: 8vh;
+                    width: 10vh;
                     font-size: 4.5vh;
                     font-weight: 300;
                     border: none;
@@ -81,6 +81,12 @@
                     padding: 4px 15px;
                     cursor: pointer;
                     outline: none;
+
+                    transition: background-color 0.3s ease;
+
+                    &.ng-click-active {
+                        background-color: #3388cc;
+                    } 
                 }
             }
         }

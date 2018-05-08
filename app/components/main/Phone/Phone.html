@@ -23,25 +23,25 @@
                                 user-select="true" 
                                 no-capture
                             >
-                            <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="backspace()" ng-show="phone.number.length"></span>
+                            <span role="button" class="fa fa-times-circle-o clear-num" ng-click="clear()" ng-show="phone.number.length"></span>
                         </div>
 
                         <menu class="numpad">
-                            <button ng-click="addNum(1)">1</button>
-                            <button ng-click="addNum(2)">2</button>
-                            <button ng-click="addNum(3)">3</button>
+                            <button ng-touch="addNum(1)">1</button>
+                            <button ng-touch="addNum(2)">2</button>
+                            <button ng-touch="addNum(3)">3</button>
 
-                            <button ng-click="addNum(4)">4</button>
-                            <button ng-click="addNum(5)">5</button>
-                            <button ng-click="addNum(6)">6</button>
+                            <button ng-touch="addNum(4)">4</button>
+                            <button ng-touch="addNum(5)">5</button>
+                            <button ng-touch="addNum(6)">6</button>
 
-                            <button ng-click="addNum(7)">7</button>
-                            <button ng-click="addNum(8)">8</button>
-                            <button ng-click="addNum(9)">9</button>
+                            <button ng-touch="addNum(7)">7</button>
+                            <button ng-touch="addNum(8)">8</button>
+                            <button ng-touch="addNum(9)">9</button>
 
-                            <button ng-click="addNum('*')">*</button>
-                            <button ng-click="addNum(0)">0</button>
-                            <button ng-click="addNum('#')">#</button>
+                            <button ng-touch="addNum('*')">*</button>
+                            <button ng-touch="addNum(0)">0</button>
+                            <button ng-touch="addNum('#')">#</button>
                         </menu>
                     </div>
                 </div>
