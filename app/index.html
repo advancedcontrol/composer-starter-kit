@@ -206,8 +206,10 @@
                     <div style="clear: both"></div>
                 </modal>
 
+                <span co-module="'Bookings'" co-bind="'skype_meeting_pending' as vcpopup.meeting_pending"></span>
+
                 <span co-bind="'popupinfo' as vcpopup.popupinfo"></span>
-                <span ng-if="vcpopup.popupinfo == 'meeting'" ng-init="showModal('join_skype_meeting')"></span>
+                <span ng-if="vcpopup.popupinfo == 'meeting' && vcpopup.meeting_pending" ng-init="showModal('join_skype_meeting')"></span>
                 <span ng-if="!vcpopup.popupinfo" ng-init="closeModal('join_skype_meeting')"></span>
             </span>
 
