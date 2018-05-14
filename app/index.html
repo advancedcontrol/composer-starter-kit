@@ -176,6 +176,19 @@
                 </span>
             </span>
 
+            <span ng-controller="Modals" co-module="'System'">
+                <!--
+                    Emergency Shutdown Pop up
+                 -->
+                <div co-bind="'show_emergency_popup'">
+                    <span ng-if="show_emergency_popup" ng-init="showModal('emergency')"></span>
+                    <span ng-if="!show_emergency_popup" ng-init="closeModal('emergency')"></span>
+                    <modal name="emergency" title="Emergency Shutdown">
+                        <p>A system shutdown has been triggered by the emergency warning/evacuation system. Please be alert and listen for public announcements.</p>
+                    </modal>
+                </div>
+            </span>
+
             <span ng-controller="Modals" ng-init="skype = {}" co-module="'Skype'">
                 <modal name="skype_accept" title="Accept Skype Call?" no-close="true">
                     <p co-bind="'call_status'">
