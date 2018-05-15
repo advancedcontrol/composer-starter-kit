@@ -1,0 +1,20 @@
+
+<div co-bind="'Share' as source_names" id="pc-inputs" ng-init="hasTabs = false">
+    <div style="font-size: larger" ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+        <div ng-if="numOutputs > 1 || has_preview">
+            You can present on one or both displays in this room.<br /><br />
+            <span ng-if="source_names.length > 1">
+                Select a source to display, then<br />
+            </span>
+            touch the screen you would like to present on.
+        </div>
+        <div ng-if="numOutputs === 1 && !has_preview">
+            <span ng-if="source_names.length > 1">The selected connection will be presented.</span>
+        </div>
+        <div class="sources" ng-if="source_names.length > 1">
+            <div btn-group="selectedSource.source">
+                <button ng-repeat="pc in source_names" btn="pc" ng-touch="selectSource(pc)" class="toggle" ng-class="sources[pc].type"><i class="fa fa-desktop"></i>{{sources[pc].title}}</button>
+            </div>
+        </div>
+    </div>
+</div>

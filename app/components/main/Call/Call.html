@@ -1,24 +1,29 @@
 
-<div co-bind="'VC' as source_names"
+<div co-bind="'Call' as source_names"
     id="vc-inputs"
     ng-init="coModuleInstance.$exec('init_vc')"
     class="phonemain"
     ng-controller="VcCtrl"
 >
     <span co-bind="'vc_content_source' as vc.current_content"></span>
+    <span co-bind="'hide_vc_sources' as vc.hide_vc_sources"></span>
+    <span co-bind="'vc_sources' as vc.vc_sources"></span>
     <span co-bind="'mics_mutes'"></span>
+
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
         <div class="presentation-layout" co-module="'VidConf'">
             <!-- Content Selection -->
-            <select
+            <select ng-if="!vc.hide_vc_sources"
                 ng-model="vc.content_source"
-                ng-options="key as content.title disable when content.not_vc_content for (key, content) in sources"
+                ng-options="key as content.title for (key, content) in vc.vc_sources"
                 ng-touch="$event.stopPropagation()"
                 user-select="true" 
                 no-capture
             >
                 <option value="">select content source</option>
             </select>
+
+            <br />
 
             <!-- Presenation Mode -->
             <div id="vc-pres-mode" co-bind="'presentation' as vc.pres_mode">
@@ -38,6 +43,8 @@
                     >remote</button>
                 </div>
             </div>
+
+            <br />
 
             <!-- Presenation Layout -->
             <div co-bind="'content_available'" ng-class="{nosee: !vc.status.direction || (vc.pres_mode == 'none' && !content_available)}">

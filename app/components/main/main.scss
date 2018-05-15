@@ -348,6 +348,11 @@ article.main {
             width: 35%;
             margin-top: 15px;
 
+            &> div {
+                max-height: 100%;
+                overflow: scroll;
+            }
+
             button {
                 height: 7vh;
                 font-size: 2.5vh;
@@ -418,11 +423,11 @@ article.main {
                 display: inline-block;
 
                 height: 100%;
-                width: 23%;
+                width: 24%;
                 max-width: 300px;
 
                 padding-left: $padding;
-                padding-top: $padding;
+                padding-top: $padding / 2;
 
                 &:last-child {
                     margin-right: $padding;
@@ -431,7 +436,7 @@ article.main {
                 // A wrapper div
                 &> div.icon {
                     position: relative;
-                    height: 70%;
+                    height: 65%;
 
                     &> div.inner {
                         > span {
@@ -474,7 +479,7 @@ article.main {
                 }
 
                 &> div.audio {
-                    height: 30%;
+                    height: 35%;
                     width: 100%;
 
                     &> div {
@@ -502,8 +507,8 @@ article.main {
         @include image-toggle(
             $trueImage: "../../components/images/volume-mute.svg",
             $falseImage: "../../components/images/volume.svg",
-            $width: 30px,
-            $height: 30px
+            $width: 40px,
+            $height: 40px
         );
     }
 
@@ -512,7 +517,7 @@ article.main {
 
         @include co-range-slider(
             $handle-size: 40px,
-            $track-girth: 20px,
+            $track-girth: 25px,
             $track-colour:white
         );
     }
@@ -576,7 +581,7 @@ article.main {
             content: "\f108";
         }
 
-        &.Presentation::before, &.Laptop::before, &.aux_hdmi::before {
+        &.Share::before, &.Presentation::before, &.Laptop::before, &.aux_hdmi::before {
             content: "\f109";
         }
 
@@ -592,8 +597,12 @@ article.main {
             content: "\f03d";
         }
 
-        &.VC::before, &.vc-active::before {
+        &.Call::before, &.VC::before, &.vc-active::before {
             content: "\f0c0";
+        }
+
+        &.Videowall::before, &.videowall::before {
+            content: "\f00a";
         }
 
         &.Presenter::before, &.presenter::before {

@@ -28,7 +28,7 @@
             });
 
             $scope.$watch('vc.content_source', function (val) {
-                if (!val) return;
+                if (!val && val !== "") return;
                 $scope.coModuleInstance.$exec('vc_content', $scope.selectedSource.source, val);
             });
 

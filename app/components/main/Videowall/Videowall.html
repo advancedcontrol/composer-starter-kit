@@ -1,0 +1,16 @@
+
+<div co-bind="'Videowall' as source_names" id="pc-inputs" ng-init="hasTabs = false">
+    <div style="font-size: larger" ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+        <div>
+            <span ng-if="numOutputs > 1">
+                Select the display you would like to present on, then<br />
+            </span>
+            follow the on screen instructions
+        </div>
+        <div class="sources" ng-if="source_names.length > 1">
+            <div btn-group="selectedSource.source">
+                <button ng-repeat="pc in source_names" btn="pc" ng-touch="selectSource(pc)" class="toggle" ng-class="sources[pc].type"><i class="fa fa-desktop"></i>{{sources[pc].title}}</button>
+            </div>
+        </div>
+    </div>
+</div>

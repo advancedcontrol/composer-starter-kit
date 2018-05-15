@@ -81,6 +81,12 @@
                     padding: 4px 15px;
                     cursor: pointer;
                     outline: none;
+
+                    transition: background-color 0.3s ease;
+
+                    &.ng-click-active {
+                        background-color: #3388cc;
+                    }
                 }
             }
         }

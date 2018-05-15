@@ -193,11 +193,11 @@
             "Chromebox",
                 "Lectern",
                 "Laptop",
-                "WePresent",
+                "Videowall",
                 "Phone",
-                "VC",
+                "Call",
                 "Camera",
-                "Wired"
+                "Share"
             ],
             "PC": [
                 "g1_pc1"
@@ -209,18 +209,23 @@
                 "laptop_g1",
                 "laptop_g2"
             ],
-            "WePresent": [
+            "Videowall": [
                 "laptop_wireless"
             ],
             "Laptop": [
                 "laptop_usb",
                 "laptop_wireless"
             ],
-            "Wired": [
+            "Share": [
                 "laptop_usb",
-                "laptop_wireless"
+                "laptop_wireless",
+                "laptop_g1",
+                "laptop_g2",
+                "g1_pc1",
+                "training_cam",
+                "training_cam2"
             ],
-            "VC": [
+            "Call": [
                 "video_conf"
             ],
             "Camera": [
@@ -260,7 +265,7 @@
                     "title": "WePresent",
                     "input": 2,
                     "source": "hdmi",
-                    "type": "wepresent",
+                    "type": "videowall",
                     "colour": "#FFDB8E"
                 },
                 "video_conf": {
