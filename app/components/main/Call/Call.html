@@ -11,104 +11,41 @@
     <span co-bind="'mics_mutes'"></span>
 
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
-        <div class="presentation-layout" co-module="'VidConf'">
-            <!-- Content Selection -->
-            <select ng-if="!vc.hide_vc_sources"
-                ng-model="vc.content_source"
-                ng-options="key as content.title for (key, content) in vc.vc_sources"
-                ng-touch="$event.stopPropagation()"
-                user-select="true" 
-                no-capture
-            >
-                <option value="">select content source</option>
-            </select>
-
-            <br />
-
-            <!-- Presenation Mode -->
-            <div id="vc-pres-mode" co-bind="'presentation' as vc.pres_mode">
-                <span>Content Destination:<br /></span>
-                <div btn-group="vc.pres_mode" btn-class="btn">
-                    <button
-                        btn="'none'"
-                        ng-touch="vc.pres_mode = 'none'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
-                    >hide</button>
-                    <button 
-                        btn="'local'"
-                        ng-touch="vc.pres_mode = 'local'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
-                    >local</button>
-                    <button 
-                        btn="'remote'"
-                        ng-touch="vc.pres_mode = 'remote'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
-                    >remote</button>
-                </div>
-            </div>
-
-            <br />
-
-            <!-- Presenation Layout -->
-            <div ng-if="numOutputs === 1 || vc_show_pres_layout" co-bind="'content_available'" ng-class="{nosee: !vc.status.direction || (vc.pres_mode == 'none' && !content_available)}">
-                <span>Select Presenation Layout:<br /></span>
-                <div btn-group="vc.layout_local" class="vert-button-group" btn-class="btn">
-                    <button
-                        btn="'auto'"
-                        ng-touch="vc.layout_local = 'auto'; coModuleInstance.$exec('layout', vc.layout_local)"
-                        class="toggle"
-                    >Auto</button>
-                    <button 
-                        btn="'fullscreen'"
-                        ng-touch="vc.layout_local = 'fullscreen'; coModuleInstance.$exec('layout', vc.layout_local)"
-                        class="toggle"
-                    >Fullscreen</button>
-                    <button 
-                        btn="'equal'"
-                        ng-touch="vc.layout_local = 'equal'; coModuleInstance.$exec('layout', vc.layout_local)"
-                        class="toggle"
-                    >Equal</button>
-                    <button 
-                        btn="'overlay'"
-                        ng-touch="vc.layout_local = 'overlay'; coModuleInstance.$exec('layout', vc.layout_local)"
-                        class="toggle"
-                    >Overlay</button>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="numpad" co-module="'VidConf'">
+        <div  style="vertical-align:top; width: 33.33%">
+            <div co-module="'VidConf'">
                 <div co-bind="'search_results' as vc.results">
                     <div>
-                        <h1 ng-if="!vc.selected">Search for remote site</h1>
-                        <h1 ng-if="vc.selected">Dial: {{vc.selected.name}}</h1>
+                        <h2 ng-if="!vc.selected">Search Directory</h1>
+                        <h2 ng-if="vc.selected">Dial: {{vc.selected.name}}</h1>
                         <div class="number">
-                            <input
-                                ng-virtual-keyboard="{kt: 'US International', numberPad: true, relative: false, size: 5}"
-                                ng-model="vc.search_string"
-                                ng-touch="$event.stopPropagation()"
-                                user-select="true" 
-                                no-capture>
+                            <input style="width:60%"
+                            ng-model="vc.search_string"
+                            ng-touch="$event.stopPropagation()"
+                            user-select="true"
+                            no-capture>
                             <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="backspace()" ng-show="phone.number.length"></span>
                         </div>
 
                         <div class="results" ng-if="!vc.status.direction" co-bind="'search_results'">
                             <div ng-repeat="result in search_results" ng-click="vc.selected = result" ng-class="{selected: vc.selected === result}">
-                                <span class="title">{{result.name}}</span><br />
-                                Number: {{result.methods[0].number}} &nbsp;&nbsp;&nbsp; Type: {{result.methods[0].calltype}}
+                                <span class="title" style="font-weight:bold;line-height: 25px">{{result.name}}</span><br />
+                                <span>( {{result.methods[0].number}} )</span>
                             </div>
                         </div>
-
-                        <menu class="numpad" ng-if="vc.status.direction">
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '1')">1</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '2')">2</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '3')">3</button>
-
+<br />
+                        <menu style="display:contents" class="number" ng-if="vc.status.direction>
+                            <button  ng-click="coModuleInstance.$exec('send_DTMF', '1')">1</button>
+                            <button  ng-click="coModuleInstance.$exec('send_DTMF', '2')">2</button>
+                            <button  ng-click="coModuleInstance.$exec('send_DTMF', '3')">3</button>
+<br />
                             <button ng-click="coModuleInstance.$exec('send_DTMF', '4')">4</button>
                             <button ng-click="coModuleInstance.$exec('send_DTMF', '5')">5</button>
                             <button ng-click="coModuleInstance.$exec('send_DTMF', '6')">6</button>
-
+<br />
                             <button ng-click="coModuleInstance.$exec('send_DTMF', '7')">7</button>
                             <button ng-click="coModuleInstance.$exec('send_DTMF', '8')">8</button>
                             <button ng-click="coModuleInstance.$exec('send_DTMF', '9')">9</button>
-
+<br />
                             <button ng-click="coModuleInstance.$exec('send_DTMF', '*')">*</button>
                             <button ng-click="coModuleInstance.$exec('send_DTMF', '0')">0</button>
                             <button ng-click="coModuleInstance.$exec('send_DTMF', '#')">#</button>
@@ -117,6 +54,75 @@
                 </div>
             </div>
         </div>
+
+
+
+    <div class="presentation-layout" co-module="'VidConf'"  style="vertical-align:top">
+
+            <h2>Send Content</h2>
+
+            <!-- Content Selection -->
+            <select  style="font-size:150%" ng-if="!vc.hide_vc_sources"
+                ng-model="vc.content_source"
+                ng-options="key as content.title for (key, content) in vc.vc_sources"
+                ng-touch="$event.stopPropagation()"
+                user-select="true"
+                no-capture
+            >
+                <option value="">Select source...</option>
+            </select>
+
+            <br /><br />
+
+            <!-- Presenation Mode -->
+            <div id="vc-pres-mode" co-bind="'presentation' as vc.pres_mode">
+                <div btn-group="vc.pres_mode" btn-class="btn">
+                    <button
+                        btn="'remote'"
+                        ng-touch="vc.pres_mode = 'remote'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
+                    >To all</button>
+                    <button
+                        btn="'local'"
+                        ng-touch="vc.pres_mode = 'local'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
+                    >Local only</button>
+                    <button
+                        btn="'none'"
+                        ng-touch="vc.pres_mode = 'none'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
+                    >Stop sending</button>
+                </div>
+            </div>
+
+            <br />
+
+            <!-- Presenation Layout -->
+            <div ng-if="numOutputs === 1 || vc_show_pres_layout" co-bind="'content_available'" ng-class="{nosee: !vc.status.direction || (vc.pres_mode == 'none' && !content_available)}">
+                <h2>Select Layout</h2>
+                <div style="width:50%; display:inline-block" btn-group="vc.layout_local" class="vert-button-group" btn-class="btn">
+                    <button
+                        btn="'auto'"
+                        ng-touch="vc.layout_local = 'auto'; coModuleInstance.$exec('layout', vc.layout_local)"
+                        class="toggle"
+                    >Auto</button>
+                    <button
+                        btn="'fullscreen'"
+                        ng-touch="vc.layout_local = 'prominent'; coModuleInstance.$exec('layout', vc.layout_local)"
+                        class="toggle"
+                    >Fullscreen</button>
+                    <button
+                        btn="'equal'"
+                        ng-touch="vc.layout_local = 'equal'; coModuleInstance.$exec('layout', vc.layout_local)"
+                        class="toggle"
+                    >Equal</button>
+                    <button
+                        btn="'overlay'"
+                        ng-touch="vc.layout_local = 'overlay'; coModuleInstance.$exec('layout', vc.layout_local)"
+                        class="toggle"
+                    >Overlay</button>
+                </div>
+            </div>
+        </div>
+
+
         <div class="sources">
             <div co-module="'VidConf'">
                 <span co-bind="'call_status' as vc.status"></span>
@@ -136,11 +142,10 @@
                 </button>
 
                 <!-- Mute Mics -->
-                <span>
-                    <span ng-if="mics_mutes" co-module="'Mixer'" co-bind="'fader' + mics_mutes[0] + '_mute' as vc.muted"></span>
-                    <span ng-if="!mics_mutes" co-bind="'mute' as vc.muted"></span>
-                    <button co-module="'System'" co-bind="'connected'" class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.muted}"
-                        ng-touch="coModuleInstance.$exec('vc_mute', !vc.muted)"
+                <span ng-if="mics_mutes" co-module="'Mixer'">
+                    <span co-bind="'fader' + mics_mutes[0] + '_mute' as vc.muted"></span>
+                    <button class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.muted}"
+                        ng-touch="coModuleInstance.$exec('mute', mics_mutes, !vc.muted)"
                     >
                         <span ng-if="!vc.muted"><i class="fa fa-microphone"></i>Mute Mics</span>
                         <span ng-if="vc.muted"><i class="fa fa-microphone-slash"></i>Unmute Mics</span>
