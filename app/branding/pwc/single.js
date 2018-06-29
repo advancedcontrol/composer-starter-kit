@@ -318,18 +318,6 @@
                     "type": "lcd",
                     "pri": 1,
                     "title": "Display"
-                },
-                "Display_2": {
-                    "output": [
-                        3,
-                        23
-                    ],
-                    "audio_out": 21,
-                    "mixer_id": 105,
-                    "basic_mixer": true,
-                    "type": "lcd",
-                    "pri": 1,
-                    "title": "Display"
                 }
             },
             "light_level": "Off",
@@ -434,6 +422,146 @@
                     name: "Rabobank Sydney - Garden Amphitheater",
                     contactid: "localContactId-3",
                     title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.230",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Macarthur Room",
+                    contactid: "localContactId-1",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.232",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Garden Amphitheater",
+                    contactid: "localContactId-3",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.230",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Macarthur Room",
+                    contactid: "localContactId-1",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.232",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Garden Amphitheater",
+                    contactid: "localContactId-3",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.230",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Macarthur Room",
+                    contactid: "localContactId-1",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.232",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Garden Amphitheater",
+                    contactid: "localContactId-3",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.230",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Macarthur Room",
+                    contactid: "localContactId-1",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.232",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Garden Amphitheater",
+                    contactid: "localContactId-3",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.230",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Macarthur Room",
+                    contactid: "localContactId-1",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.232",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Garden Amphitheater",
+                    contactid: "localContactId-3",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.230",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Macarthur Room",
+                    contactid: "localContactId-1",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.232",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Garden Amphitheater",
+                    contactid: "localContactId-3",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.230",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Macarthur Room",
+                    contactid: "localContactId-1",
+                    title: "Rabobank Sydney"
+                },
+                {
+                    methods: [{
+                        contactmethodid: "1",
+                        number: "10.243.218.232",
+                        calltype: "Video"
+                    }],
+                    name: "Rabobank Sydney - Garden Amphitheater",
+                    contactid: "localContactId-3",
+                    title: "Rabobank Sydney"
                 }
             ],
             call_status: {
@@ -468,6 +596,7 @@
             $call: function (func, val) {
                 if (func == 'disconnect') {
                     this.call_status = {};
+                    this.search_results = [];
                 } else if (func == 'hold' || func == 'resume') {
                     this.call_status = {
                         answerstate: "Unanswered",

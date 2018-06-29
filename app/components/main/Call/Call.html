@@ -8,47 +8,56 @@
     <span co-bind="'vc_content_source' as vc.current_content"></span>
     <span co-bind="'hide_vc_sources' as vc.hide_vc_sources"></span>
     <span co-bind="'vc_sources' as vc.vc_sources"></span>
+    <span co-bind="'video_output_mode' as vc.vc_mode"></span>
+    <span co-bind="'vc_show_pres_layout' as vc.show_pres_layout"></span>
     <span co-bind="'mics_mutes'"></span>
 
     <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
-        <div  style="vertical-align:top; width: 33.33%">
+        <div style="vertical-align:top; width: 33.33%;">
             <div co-module="'VidConf'">
                 <div co-bind="'search_results' as vc.results">
-                    <div>
-                        <h2 ng-if="!vc.selected">Search Directory</h1>
-                        <h2 ng-if="vc.selected">Dial: {{vc.selected.name}}</h1>
-                        <div class="number">
-                            <input style="width:60%"
+                    <div style="overflow: hidden; height: 52vh; position: relative;">
+                        <div style="position: absolute; left: 0; right: 0; overflow: hidden;">
+                            <h2 ng-if="!vc.selected">Search Directory</h2>
+                            <h2 ng-if="vc.selected">Dial: {{vc.selected.name}}</h2>
+                        </div>
+                        <div class="number" style="position: absolute; left: 0; right: 0; top: 2em;">
+                            <input style="width:80%; font-size: 1.6em;"
                             ng-model="vc.search_string"
                             ng-touch="$event.stopPropagation()"
+                            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                             user-select="true"
                             no-capture>
                             <span role="button" class="fa fa-arrow-circle-o-left clear-num" ng-click="backspace()" ng-show="phone.number.length"></span>
                         </div>
-
-                        <div class="results" ng-if="!vc.status.direction" co-bind="'search_results'">
-                            <div ng-repeat="result in search_results" ng-click="vc.selected = result" ng-class="{selected: vc.selected === result}">
+                        <br />
+                        <div class="results" ng-if="!vc.status.direction && vc.results.length > 0"
+                            style="position: absolute; height: 40vh; left: 0; right: 0; top: 5em; overflow: scroll; -webkit-overflow-scrolling: touch;"
+                        >
+                            <div ng-repeat="result in vc.results" ng-click="vc.selected = result" ng-class="{selected: vc.selected === result}">
                                 <span class="title" style="font-weight:bold;line-height: 25px">{{result.name}}</span><br />
                                 <span>( {{result.methods[0].number}} )</span>
                             </div>
                         </div>
-<br />
-                        <menu style="display:contents" class="number" ng-if="vc.status.direction">
-                            <button  ng-click="coModuleInstance.$exec('send_DTMF', '1')">1</button>
-                            <button  ng-click="coModuleInstance.$exec('send_DTMF', '2')">2</button>
-                            <button  ng-click="coModuleInstance.$exec('send_DTMF', '3')">3</button>
-<br />
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '4')">4</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '5')">5</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '6')">6</button>
-<br />
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '7')">7</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '8')">8</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '9')">9</button>
-<br />
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '*')">*</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '0')">0</button>
-                            <button ng-click="coModuleInstance.$exec('send_DTMF', '#')">#</button>
+                        
+                        <menu style="position: absolute; bottom: 0; left: 0; right: 0; top: 6em; padding-right: 50px;" class="numpad number" ng-if="vc.status.direction || vc.results.length == 0">
+                            <button ng-touch="dial('1')">1</button>
+                            <button ng-touch="dial('2')">2</button>
+                            <button ng-touch="dial('3')">3</button>
+
+                            <button ng-touch="dial('4')">4</button>
+                            <button ng-touch="dial('5')">5</button>
+                            <button ng-touch="dial('6')">6</button>
+
+                            <button ng-touch="dial('7')">7</button>
+                            <button ng-touch="dial('8')">8</button>
+                            <button ng-touch="dial('9')">9</button>
+
+                            <button ng-touch="dial('*')">*</button>
+                            <button ng-touch="dial('0')">0</button>
+                            <button ng-touch="dial('#')">#</button>
+
+                            <img ng-show="!vc.status.direction" style="height: 50px" src="components/images/backspace.svg" ng-touch="backspace()" ng-hold="clear();" />
                         </menu>
                     </div>
                 </div>
@@ -62,7 +71,7 @@
             <h2>Send Content</h2>
 
             <!-- Content Selection -->
-            <select  style="font-size:150%" ng-if="!vc.hide_vc_sources"
+            <select  style="font-size:1.3em; margin-top: 10px;" ng-if="!vc.hide_vc_sources"
                 ng-model="vc.content_source"
                 ng-options="key as content.title for (key, content) in vc.vc_sources"
                 ng-touch="$event.stopPropagation()"
@@ -95,16 +104,16 @@
             <br />
 
             <!-- Presenation Layout -->
-            <div ng-if="numOutputs === 1 || vc_show_pres_layout" co-bind="'content_available'" ng-class="{nosee: !vc.status.direction || (vc.pres_mode == 'none' && !content_available)}">
+            <div class="layouts" ng-if="vc.vc_mode == 'Single' || (numOutputs === 1 || vc.show_pres_layout)" co-bind="'content_available'" ng-class="{nosee: !vc.status.direction || (vc.pres_mode == 'none' && !content_available)}">
                 <h2>Select Layout</h2>
-                <div style="width:50%; display:inline-block" btn-group="vc.layout_local" class="vert-button-group" btn-class="btn">
+                <div style="width:80%; display:inline-block" btn-group="vc.layout_local" class="vert-button-group" btn-class="btn">
                     <button
                         btn="'auto'"
                         ng-touch="vc.layout_local = 'auto'; coModuleInstance.$exec('layout', vc.layout_local)"
                         class="toggle"
                     >Auto</button>
                     <button
-                        btn="'fullscreen'"
+                        btn="'single'"
                         ng-touch="vc.layout_local = 'single'; coModuleInstance.$exec('layout', vc.layout_local)"
                         class="toggle"
                     >Fullscreen</button>
@@ -131,7 +140,7 @@
 
                 <!-- Dial Disconnect -->
                 <button class="toggle" ng-class="{disabled: (!vc.dial_string || vc.dial_string == ''), muted: vc.status.direction}"
-                    ng-touch="vc.status.direction ? coModuleInstance.$exec('call', 'disconnect') : coModuleInstance.$exec('dial', vc.dial_string)"
+                    ng-touch="vc.status.direction ? disconnect() : coModuleInstance.$exec('dial', vc.dial_string)"
                 >
                     <span ng-if="!vc.status.direction">
                         <i class="fa fa-hand-pointer-o"></i>Dial

@@ -3,6 +3,15 @@
 
 
 #vc-inputs {
+    h2 {
+        padding: 0;
+        margin: 0;
+        font-size: 1.5em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
     #vc-pres-mode {
         @include button-group();
 
@@ -29,6 +38,14 @@
 
         div.nosee {
             opacity: 0;
+        }
+
+        div.layouts {
+            button {
+                float: left;
+                width: 50%;
+
+            }
         }
     }
 

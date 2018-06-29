@@ -64,31 +64,6 @@
                     cursor: pointer;
                 }
             }
-
-            menu.numpad {
-                padding: 0px 0px;
-                background-color: #f1f1f1;
-
-                button {
-                    margin: 2px 0px;
-                    height: 7vh;
-                    width: 8vh;
-                    font-size: 4.5vh;
-                    font-weight: 300;
-                    border: none;
-                    background-color: rgba(0,0,0,0.04);
-                    color: #444;
-                    padding: 4px 15px;
-                    cursor: pointer;
-                    outline: none;
-
-                    transition: background-color 0.3s ease;
-
-                    &.ng-click-active {
-                        background-color: #3388cc;
-                    }
-                }
-            }
         }
     }
 
@@ -101,6 +76,42 @@
         button.muted {
             background-color: rgba(255, 0, 0, 0.5);
         }
+    }
+}
+
+menu.numpad {
+    padding: 0px 0px;
+    background-color: #f1f1f1;
+
+    max-width: 40vh;
+    margin: 0 auto;
+
+    button {
+        margin: 2px 0px;
+        height: 7.5vh;
+        width: 9vh;
+        font-size: 4.5vh;
+        font-weight: 300;
+        border: none;
+        background-color: rgba(0,0,0,0.04);
+        color: #444;
+        padding: 4px 15px;
+        cursor: pointer;
+        outline: none;
+
+        transition: background-color 0.3s ease;
+
+        &.ng-click-active {
+            background-color: #3388cc;
+        }
+    }
+
+    img {
+        position: absolute;
+        right: 0px;
+        top: 24vh;
+
+        cursor: pointer;
     }
 }
 
