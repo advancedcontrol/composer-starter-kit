@@ -2,13 +2,13 @@
 @import "variables";
 
 body {
-    background-color: #191a33;
+    background-color: #242424;
 }
 
-$header-color: #191a33;
+$header-color: #242424;
 
 div.splash > div {
-    background-color: #244c85;
+    background-color: #209FD9;
 }
 
 .phonemain div.numpad > div menu.numpad {
@@ -28,21 +28,18 @@ article.main {
             }
 
             > div > div {
-                background-color: #244c85;
+                background-color: darken( #139CE4, 10% );
             }
         }
 
         div.logo {
-            display: none;
-
-            background-color: #191a33;
             width: 150px;
-            margin-top: 10px;
+            margin-top: 5px;
             padding: 5px 5px 5px 5px;
             height: 60px;
 
             > div {
-                background-image: none;
+                background-image: url("../../branding/arrb/logo.png");
             }
         }
     }
@@ -50,7 +47,7 @@ article.main {
     /* Not selected tab colour */
     > div > div > tabs > div > nav > div {
         color: black !important;
-        background-color: #57bdcb;
+        background-color: #515151;
 
         &.active {
             background-color: white!important;
@@ -129,7 +126,7 @@ article.mobile {
             }
 
             > div.logo {
-                background-image: url("../../branding/doe/logo.png");
+                background-image: url("../../branding/arrb/logo.png");
 
                 background-size: contain;
                 background-repeat: no-repeat;
