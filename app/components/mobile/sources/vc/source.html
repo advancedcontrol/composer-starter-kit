@@ -1,0 +1,131 @@
+
+<!-- stopPropagation here supports scrolling -->
+<section ng-touch="$event.stopPropagation()" on-target>
+    <div co-bind="'VC' as source_names"
+        id="vc-inputs"
+        ng-init="coModuleInstance.$exec('init_vc')"
+        class="phonemain"
+        ng-controller="VcCtrl"
+    >
+        <span co-bind="'vc_content_source' as vc.current_content"></span>
+        <span co-bind="'mics_mutes'"></span>
+        <span co-bind="'hide_vc_sources' as vc.hide_vc_sources"></span>
+        <span co-bind="'vc_sources' as vc.vc_sources"></span>
+
+        <div ng-if="source_names" ng-init="selectSource(source_names[0])">
+            <div co-module="'VidConf'">
+                <!-- Content Selection -->
+                <select ng-if="!vc.hide_vc_sources"
+                    ng-model="vc.content_source"
+                    ng-options="key as content.title for (key, content) in vc.vc_sources"
+                    ng-touch="$event.stopPropagation()"
+                    user-select="true" 
+                    no-capture
+                >
+                    <option value="">select content source</option>
+                </select>
+
+                <br />
+
+                <!-- Presenation Mode -->
+                <div id="vc-pres-mode" co-bind="'presentation' as vc.pres_mode">
+                    <span><br /></span>
+                    <div btn-group="vc.pres_mode" btn-class="btn">
+                        <button
+                            btn="'local'"
+                            ng-touch="vc.pres_mode = 'local'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
+                        >Stop Pres</button>
+                        <button
+                            btn="'remote'"
+                            ng-touch="vc.pres_mode = 'remote'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
+                        >Start Presentation</button>
+                    </div>
+                </div>
+
+                <br />
+
+                <!-- Mute Mics -->
+                <span class="mutebtn">
+                    <span co-bind="'audio_mute' as vc.muted"></span>
+                    <button co-module="'System'" co-bind="'connected'" class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.muted}"
+                        ng-touch="coModuleInstance.$exec('vc_mute', !vc.muted)"
+                    >
+                        <span ng-if="!vc.muted"><i class="fa fa-microphone"></i> Mute Mics</span>
+                        <span ng-if="vc.muted"><i class="fa fa-microphone-slash"></i> Unmute Mics</span>
+                    </button>
+                </span>
+
+                <br />
+                <span co-module="'Bookings'">
+                    <span co-bind="'can_join_skype_meeting' as vc.skype_available"></span>
+                </span>
+
+                <span ng-if="!vc.status.direction && vc.skype_available">
+                    <br />
+                    <br />
+                    <button ng-touch="coModuleInstance.$exec('button_press', 'home', 'up', 'select')">
+                        Join Meeting
+                    </button>
+                </span>
+
+                <br />
+
+                <span co-bind="'call_status' as vc.status"></span>
+                <!-- NOTE:: this is a bit hacky -->
+                <span ng-if="vc.status" ng-init="vc.module = coModuleInstance"></span>
+
+                <table class="remote" style="color: black;">
+                    <tr>
+                        <td class="call" ng-if="!vc.status.direction"
+                            ng-touch="coModuleInstance.$exec('dial', vc.dial_string, vc.dial_string); $event.preventDefault();"
+                        ></td>
+                        <td ng-if="vc.status.direction"></td>
+                        <td></td>
+                        <td class="hangup"
+                            ng-touch="coModuleInstance.$exec('button_press', 'hangup'); $event.preventDefault();"
+                        ></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="up"
+                            ng-touch="coModuleInstance.$exec('button_press', 'up'); $event.preventDefault();"
+                        ></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="left"
+                            ng-touch="coModuleInstance.$exec('button_press', 'left'); $event.preventDefault();"
+                        ></td>
+                        <td class="center"
+                            stylz="font-size: 1em; background-color: #57bdcb; border-radius: 0.6em; padding: 0 5px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;"
+                            ng-touch="coModuleInstance.$exec('button_press', 'select')"
+                        >
+                        </td>
+                        <td class="right"
+                            ng-touch="coModuleInstance.$exec('button_press', 'right'); $event.preventDefault();"
+                        ></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="down"
+                            ng-touch="coModuleInstance.$exec('button_press', 'down'); $event.preventDefault();"
+                        ></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="back"
+                            ng-touch="coModuleInstance.$exec('button_press', 'back'); $event.preventDefault();"
+                        ></td>
+                        <td class="home"
+                            ng-touch="coModuleInstance.$exec('button_press', 'home')"
+                        ></td>
+                        <td class="menu"
+                            ng-touch="coModuleInstance.$exec('button_press', 'menu'); $event.preventDefault();"
+                        ></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -338,7 +338,8 @@
                     "input": 2,
                     "source": "hdmi",
                     "type": "signage",
-                    "colour": "#FFDB8E"
+                    "colour": "#FFDB8E",
+                    "ignore": true
                 },
                 "tv_input": {
                     "title": "TV",
@@ -387,7 +388,7 @@
                     "title": "Video conference",
                     "input": 9,
                     "source": "hdmi",
-                    "type": "presenter",
+                    "type": "vc",
                     "colour": "#65DCC7"
                 },
                 "training_cam": {
