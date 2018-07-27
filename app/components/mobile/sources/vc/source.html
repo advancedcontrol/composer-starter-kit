@@ -77,7 +77,7 @@
                 <table class="remote" style="color: black;">
                     <tr>
                         <td class="call" ng-if="!vc.status.direction"
-                            ng-touch="coModuleInstance.$exec('dial', vc.dial_string, vc.dial_string); $event.preventDefault();"
+                            ng-touch="coModuleInstance.$exec('button_press', 'call'); $event.preventDefault();"
                         ></td>
                         <td ng-if="vc.status.direction"></td>
                         <td></td>
