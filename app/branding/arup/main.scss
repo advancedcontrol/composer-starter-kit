@@ -37,9 +37,10 @@ article.main {
             margin-top: 5px;
             padding: 5px 5px 5px 5px;
             height: 60px;
+            margin-right: 10px;
 
             > div {
-                background-image: url("../../branding/arrb/logo.png");
+                background-image: url("../../branding/arup/logo.svg");
             }
         }
     }
@@ -67,7 +68,7 @@ article.main {
             &> div {
                 display: table;
                 width: 100%;
-                
+
                 &> div {
                     display: table-row;
                     height: 100% !important;
@@ -126,7 +127,7 @@ article.mobile {
             }
 
             > div.logo {
-                background-image: url("../../branding/arrb/logo.png");
+                background-image: url("../../branding/arup/logo.svg");
 
                 background-size: contain;
                 background-repeat: no-repeat;

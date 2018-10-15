@@ -16,6 +16,7 @@ var filed = require('filed');
 var fs = require('fs');
 var manifest = require('gulp-manifest');
 var rebaseUrls = require('gulp-css-rebase-urls');
+var gutil = require('gulp-util');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 9',
@@ -159,25 +160,22 @@ gulp.task('serve', ['dev:styles', 'dev:images', 'dev:svg', 'browser-sync']);
 // Scan Your HTML For Assets & Optimize Them
 gulp.task('html', function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app,bower_components}'});
-  
+
   return gulp.src('app/**/*.html')
     .pipe(assets)
-    
+
     // Concatenate And Minify JavaScript
-    .pipe($.if('*.js', $.uglify({
-      preserveComments: function () {
-        return false;
-      }
-    })))
-    
+    .pipe($.if('*.js', $.uglify()))
+    .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
+
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
-    
+
     // Minify Any HTML
     //.pipe($.if('*.html', $.minifyHtml()))
-    
+
     // Output Files
     .pipe(gulp.dest('dist'))
     .pipe($.size({title: 'html'}));
