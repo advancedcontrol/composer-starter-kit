@@ -23,7 +23,7 @@
     }"
 >
     <div
-        id="touch-overlay" 
+        id="touch-overlay"
         ng-touch="toggleNav()"
     >
         <!--
@@ -32,13 +32,14 @@
          -->
     </div>
 
-    <header 
-        class="promote-layer" 
-        ng-touch="$event.stopPropagation()" 
-        user-select="true" 
+    <header
+        class="promote-layer"
+        ng-touch="$event.stopPropagation()"
+        user-select="true"
         no-capture
     >
-        <span co-bind="'name' as $root.SystemName" class="name">{{SystemName}}</span>
+        <div ng-if="show_back_btn" style="height: 100%!important; margin: 0!important; padding: 0 15px!important;" ng-click="goback()" class="button">Back to App</div>
+        <span ng-if="!show_back_btn" co-bind="'name' as $root.SystemName" class="name">{{SystemName}}</span>
 
         <span id="show-menu" ng-touch="toggleNav()">
             <div class="logo"></div>
@@ -46,7 +47,7 @@
     </header>
 
     <aside ng-controller="OptionsCtrl"  class="promote-layer" ng-style="{'background-color': selectedSource.colour}">
-        <div 
+        <div
             id="aside-wrapper"
             ng-class="{hasVolume: selectedSource.title && !output.no_audio}"
         >
@@ -64,7 +65,7 @@
                 </div>
             </div>
 
-            <div 
+            <div
                 id="nav-wrapper"
                 ng-include="'components/mobile/sources/' + (selectedSource.type || 'none') + '/source.html'"
                 ng-controller="TabsCtrl"
@@ -86,8 +87,8 @@
                 ng-model="tmp_output"
                 ng-change="selectOutput(tmp_output)"
                 ng-options="key as output.title for (key, output) in outputs"
-                ng-touch="$event.stopPropagation()" 
-                user-select="true" 
+                ng-touch="$event.stopPropagation()"
+                user-select="true"
                 no-capture
             >
                 <option value="">all displays</option>
@@ -118,8 +119,8 @@
         </div>
 
         <!-- Source Selection -->
-        <div 
-            ng-if="sources" 
+        <div
+            ng-if="sources"
             co-bind="(current_output || 'all_displays') as selectedSource"
             exec="present(selectedSource.source, current_output)"
             ng-controller="OptionsCtrl"

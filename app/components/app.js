@@ -46,6 +46,14 @@
                     elWindow
                         .off('orientationchange', setHeightWidth)
                         .off('resize', setHeightWidth);
+            },
+
+            isRunningStandalone = function() {
+                try {
+                    return (window.matchMedia('(display-mode: standalone)').matches);
+                } catch (e) {
+                    return false;
+                }
             };
 
         // Ang Smith (iOS god)
@@ -65,14 +73,27 @@
                 .on('orientationchange resize', setHeightWidth);
         }
 
-        // Support iOS Application mode
+        // Support iOS and Android Application mode
         if ($window.navigator.standalone) {
-            angular.element('body').addClass('ios-app-mode');
+            elBody.addClass('ios-app-mode');
+
+            if ($window.history.length > 1) {
+                $rootScope.show_back_btn = true;
+            }
+        } else if (isRunningStandalone()) {
+            if ($window.history.length > 1) {
+                $rootScope.show_back_btn = true;
+            }
         }
+
+        $rootScope.goback = function () {
+            $window.history.go(-1);
+            return false;
+        };
 
         $rootScope.width = $window.innerWidth;
         $rootScope.height = $window.innerHeight;
-        
+
         elWindow.on('orientationchange resize', function () {
             $rootScope.width = $window.innerWidth;
             $rootScope.height = $window.innerHeight;

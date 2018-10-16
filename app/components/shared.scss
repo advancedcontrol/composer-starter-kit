@@ -109,7 +109,7 @@ div.splash {
     left: 0;
 
     z-index: 70; // This is bigger than the mobile z-indexes
-    
+
     height: 100%;
     width: 100%;
 
@@ -321,7 +321,7 @@ div.webcam-controls {
                 &.up:before {
                     content: "\f077";
                 }
-                
+
                 &.left:before {
                     content: "\f053";
                 }
@@ -379,4 +379,13 @@ div.camera-select {
 
         position: absolute!important;
     }
+}
+
+
+
+// Back Button
+// -----------
+#app-back-btn {
+    float: left;
+    margin: 1em;
 }

@@ -349,8 +349,8 @@
                 "Skype"
 /*
                 "Lectern",
-                
-                
+
+
                 "Wired",
                 "TV"
     */
@@ -442,7 +442,7 @@
                     "title": "Video Conference",
                     "input": 9,
                     "source": "hdmi",
-                    "type": "presenter",
+                    "type": "vc",
                     "colour": "#65DCC7"
                 },
                 "training_cam": {

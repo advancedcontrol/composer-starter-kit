@@ -9,7 +9,8 @@
 >
     <span co-bind="'selected_camera' as selected.camera_src"></span>
     <header co-bind="'name' as $root.SystemName">
-        <div class="logo"><div></div></div>
+        <div class="logo" ng-if="!show_back_btn"><div></div></div>
+        <div id="app-back-btn" ng-if="show_back_btn" ng-click="goback()" class="button">Back to App</div>
 
         <div class="tray" ng-include="'components/shared/popups.html'"  ng-controller="Modals"></div>
     </header>
@@ -28,7 +29,7 @@
             <span co-bind="'joined'"></span>
             <footer ng-if="outputs && (numOutputs > 1 || has_preview)">
                 <div ng-class="{singleaudioout: single_audio_out}">
-                    <!-- 
+                    <!--
                         source === what is currently displaying
                         output.type == projector / lcd / conference
                         overlay is for indicating warming / cooling / errors etc
