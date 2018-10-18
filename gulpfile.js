@@ -16,6 +16,7 @@ var filed = require('filed');
 var fs = require('fs');
 var manifest = require('gulp-manifest');
 var rebaseUrls = require('gulp-css-rebase-urls');
+var gutil = require('gulp-util');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 9',
@@ -90,7 +91,7 @@ gulp.task('browser-sync', function () {
         function(req, res, next) {
           if ((req.url.indexOf('/control/') === 0) || (req.url.indexOf('/auth') === 0) || (req.url.indexOf('/api') === 0)) {
             proxy.web(req, res, {
-              target: 'http://0.0.0.0:3000'
+              target: 'http://127.0.0.1:3000'
             });
           } else {
             next();
@@ -164,11 +165,8 @@ gulp.task('html', function () {
     .pipe(assets)
 
     // Concatenate And Minify JavaScript
-    .pipe($.if('*.js', $.uglify({
-      preserveComments: function () {
-        return false;
-      }
-    })))
+    .pipe($.if('*.js', $.uglify()))
+    .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
 
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.csso()))
