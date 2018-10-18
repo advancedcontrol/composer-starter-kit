@@ -16,7 +16,7 @@
             <select ng-if="!vc.hide_vc_sources"
                 ng-model="vc.content_source"
                 ng-options="key as content.title for (key, content) in vc.vc_sources"
-                ng-release="$event.stopPropagation()"
+                ng-touch="$event.stopPropagation()"
                 user-select="true"
                 no-capture
             >
@@ -31,11 +31,11 @@
                 <div btn-group="vc.pres_mode" btn-class="btn">
                     <button
                         btn="'local'"
-                        ng-release="vc.pres_mode = 'local'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
+                        ng-touch="vc.pres_mode = 'local'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
                     >Stop Pres</button>
                     <button
                         btn="'remote'"
-                        ng-release="vc.pres_mode = 'remote'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
+                        ng-touch="vc.pres_mode = 'remote'; coModuleInstance.$exec('presentation_mode', vc.pres_mode)"
                     >Start Presentation</button>
                 </div>
             </div>
@@ -46,7 +46,7 @@
             <span class="mutebtn">
                 <span co-bind="'audio_mute' as vc.muted"></span>
                 <button co-module="'System'" co-bind="'connected'" class="toggle" ng-class="{disabled: !vc.status.direction, muted: vc.muted}"
-                    ng-release="coModuleInstance.$exec('vc_mute', !vc.muted)"
+                    ng-touch="coModuleInstance.$exec('vc_mute', !vc.muted)"
                 >
                     <span ng-if="!vc.muted"><i class="fa fa-microphone"></i> Mute Mics</span>
                     <span ng-if="vc.muted"><i class="fa fa-microphone-slash"></i> Unmute Mics</span>
@@ -61,7 +61,7 @@
             <span ng-if="!vc.status.direction && vc.skype_available">
                 <br />
                 <br />
-                <button ng-release="coModuleInstance.$exec('button_press', 'home', 'up', 'select')">
+                <button ng-touch="coModuleInstance.$exec('button_press', 'home', 'up', 'select')">
                     Join Meeting
                 </button>
             </span>
@@ -93,7 +93,7 @@
                                 ng-if="vc.show_directory"
                                 ng-init="focusInput()"
                                 ng-model="vc.search_string"
-                                ng-release="$event.stopPropagation()"
+                                ng-touch="$event.stopPropagation()"
                                 user-select="true"
                                 no-capture
                                 autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
@@ -102,28 +102,28 @@
                                 {{vc.search_string}}
                             </div>
 
-                            <span role="button" class="fa fa-th clear-num" ng-release="blurInput()" ng-show="vc.show_directory"></span>
-                            <span class="fa fa-keyboard-o clear-num" ng-release="vc.show_directory = true;" ng-show="!vc.show_directory && !vc.status.direction"></span>
+                            <span role="button" class="fa fa-th clear-num" ng-touch="blurInput()" ng-show="vc.show_directory"></span>
+                            <span class="fa fa-keyboard-o clear-num" ng-touch="vc.show_directory = true;" ng-show="!vc.show_directory && !vc.status.direction"></span>
                         </div>
 
                         <menu class="numpad" ng-if="!vc.show_directory || vc.status.direction">
-                            <button ng-release="dial('1')">1</button>
-                            <button ng-release="dial('2')">2</button>
-                            <button ng-release="dial('3')">3</button>
+                            <button ng-touch="dial('1')">1</button>
+                            <button ng-touch="dial('2')">2</button>
+                            <button ng-touch="dial('3')">3</button>
 
-                            <button ng-release="dial('4')">4</button>
-                            <button ng-release="dial('5')">5</button>
-                            <button ng-release="dial('6')">6</button>
+                            <button ng-touch="dial('4')">4</button>
+                            <button ng-touch="dial('5')">5</button>
+                            <button ng-touch="dial('6')">6</button>
 
-                            <button ng-release="dial('7')">7</button>
-                            <button ng-release="dial('8')">8</button>
-                            <button ng-release="dial('9')">9</button>
+                            <button ng-touch="dial('7')">7</button>
+                            <button ng-touch="dial('8')">8</button>
+                            <button ng-touch="dial('9')">9</button>
 
-                            <button ng-release="dial('*')">*</button>
-                            <button ng-release="dial('0')">0</button>
-                            <button ng-release="dial('#')">#</button>
+                            <button ng-touch="dial('*')">*</button>
+                            <button ng-touch="dial('0')">0</button>
+                            <button ng-touch="dial('#')">#</button>
 
-                            <img ng-show="!vc.status.direction" style="height: 50px" src="components/images/backspace.svg" ng-release="backspace()" ng-hold="clear();" />
+                            <img ng-show="!vc.status.direction" style="height: 50px" src="components/images/backspace.svg" ng-touch="backspace()" ng-hold="clear();" />
                         </menu>
 
                         <div class="results" ng-if="!vc.status.direction && !vc.searching && vc.show_directory && (vc.results && vc.results.length)">
@@ -156,50 +156,50 @@
             <table class="remote">
                 <tr>
                     <td class="call" ng-if="!vc.status.direction"
-                        ng-release="coModuleInstance.$exec('dial', vc.dial_string, vc.dial_string); $event.preventDefault();"
+                        ng-touch="coModuleInstance.$exec('dial', vc.dial_string, vc.dial_string); $event.preventDefault();"
                     ></td>
                     <td ng-if="vc.status.direction"></td>
                     <td></td>
                     <td class="hangup"
-                        ng-release="coModuleInstance.$exec('button_press', 'hangup'); $event.preventDefault();"
+                        ng-touch="coModuleInstance.$exec('button_press', 'hangup'); $event.preventDefault();"
                     ></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td class="up"
-                        ng-release="coModuleInstance.$exec('button_press', 'up'); $event.preventDefault();"
+                        ng-touch="coModuleInstance.$exec('button_press', 'up'); $event.preventDefault();"
                     ></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="left"
-                        ng-release="coModuleInstance.$exec('button_press', 'left'); $event.preventDefault();"
+                        ng-touch="coModuleInstance.$exec('button_press', 'left'); $event.preventDefault();"
                     ></td>
                     <td class="center"
                         stylz="font-size: 1em; background-color: #57bdcb; border-radius: 0.6em; padding: 0 5px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;"
-                        ng-release="coModuleInstance.$exec('button_press', 'select')"
+                        ng-touch="coModuleInstance.$exec('button_press', 'select')"
                     >
                     </td>
                     <td class="right"
-                        ng-release="coModuleInstance.$exec('button_press', 'right'); $event.preventDefault();"
+                        ng-touch="coModuleInstance.$exec('button_press', 'right'); $event.preventDefault();"
                     ></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td class="down"
-                        ng-release="coModuleInstance.$exec('button_press', 'down'); $event.preventDefault();"
+                        ng-touch="coModuleInstance.$exec('button_press', 'down'); $event.preventDefault();"
                     ></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="back"
-                        ng-release="coModuleInstance.$exec('button_press', 'back'); $event.preventDefault();"
+                        ng-touch="coModuleInstance.$exec('button_press', 'back'); $event.preventDefault();"
                     ></td>
                     <td class="home"
-                        ng-release="coModuleInstance.$exec('button_press', 'home')"
+                        ng-touch="coModuleInstance.$exec('button_press', 'home')"
                     ></td>
                     <td class="menu"
-                        ng-release="coModuleInstance.$exec('button_press', 'menu'); $event.preventDefault();"
+                        ng-touch="coModuleInstance.$exec('button_press', 'menu'); $event.preventDefault();"
                     ></td>
                 </tr>
             </table>
