@@ -4,7 +4,7 @@
     var source = {};
 
     angular.module('AcaEngine')
-    
+
         .controller('SidebarCtrl', [
             '$animation',
             '$nextFrame',
@@ -32,7 +32,7 @@
                 },
                 navChangeComplete = function () {
                     navTimeout = undefined;
-                    
+
                     if (navAnimating) {
                         navUpdatePos('');
                         navAnimating = false;
@@ -54,6 +54,18 @@
             $scope.navAnimate = false;
             $scope.navOpen = false;
             $scope.navDecorate = false;
+
+            $scope.$watch('navOpen', function (open) {
+                var elBody = angular.element('body');
+                if (open) {
+                    elBody.css('overflow', 'hidden');
+                    elBody.css('position', 'fixed');
+                    elBody.css('width', '100%');
+                } else {
+                    elBody.css('overflow', 'auto');
+                    elBody.css('position', 'static');
+                }
+            });
 
 
             // Provide analytics tracking data
@@ -154,7 +166,7 @@
             $scope.dragEndNav = function() {
                 $nextFrame().then(function () {
                     navState.dragging = false;
-                
+
                     if (navState.thresholdReached) {
                         $scope.navOpen = !navState.wasOpen;
                     } else {
