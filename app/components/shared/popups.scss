@@ -47,6 +47,10 @@ div.tray {
                 content: "\f0dc";
             }
 
+            &.doors::before {
+                content: "\f13e";
+            }
+
             &.help::before {
                 content: "\f059";
             }
@@ -167,7 +171,7 @@ modal[name=lights] {
 
 
 // Manual control popup
-modal[name=displays], modal[name=screens] {
+modal[name=displays], modal[name=screens], modal[name=doors] {
     &> div > div {
         width: 300px;
     }

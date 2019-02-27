@@ -46,10 +46,28 @@
                     </table>
 
                     <span class="zoom-text">Zoom:</span>
-                    <div co-bind="'zoom'" exec>
+                    <div co-bind="'zoom'" exec></div>
+                    <span co-bind="'no_discrete_zoom'"></span>
+
+                    <div ng-if="!no_discrete_zoom" co-bind="'zoom'" exec>
                         <div co-bind="'zoom_min'">
                             <div co-bind="'zoom_max'">
                                 <div co-range model="zoom" min="zoom_min" max="zoom_max"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="no_discrete_zoom">
+                        <div>
+                            <div style="font-size: 3em">
+                                <div style="display: inline-block; margin-right: 2em; margin-left: 1em"
+                                  ng-touch="coModuleInstance.$exec('zoom', 'out'); $event.preventDefault();"
+                                  ng-release="coModuleInstance.$exec('zoom', 'stop')"
+                                ><i class="fa fa-search-minus" aria-hidden="true"></i></div>
+                                <div style="display: inline-block"
+                                  ng-touch="coModuleInstance.$exec('zoom', 'in'); $event.preventDefault();"
+                                  ng-release="coModuleInstance.$exec('zoom', 'stop')"
+                                ><i class="fa fa-search-plus" aria-hidden="true"></i></div>
                             </div>
                         </div>
                     </div>

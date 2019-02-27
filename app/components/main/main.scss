@@ -616,6 +616,10 @@ article.main {
             content: "\f26c";
         }
 
+        &.Tele::before, &.tele::before {
+          content: "\f095";
+        }
+
         &.Web::before, &.web::before {
             content: "\f0c0";
         }

@@ -139,6 +139,31 @@
 <!--
     Screen Control Pop up
  -->
+<div co-bind="'doors'">
+  <div ng-if="doors" class="doors" ng-touch="showModal('doors'); $root.$emit('$track', 'popup', 'doors')">
+      <modal name="doors" title="Open/Close Doors">
+            <!-- Get the number of screens and list them -->
+            <table class="entries">
+                <tr
+                  ng-repeat="door in doors"
+                  co-module="door.module"
+                  co-implicit-index
+                  ng-init="result = {}"
+                  co-bind="door.feedback as result.state"
+                  exec="relay(result.state)"
+                >
+                    <td>{{door.title}}</td>
+                    <td ><div ios-toggle model="result.state"></div></td>
+                    <td class="onoff">{{result.state === true ? 'Open' : 'Closed'}}</td>
+                </tr>
+            </table>
+        </modal>
+    </div>
+</div>
+
+<!--
+    Screen Control Pop up
+ -->
 <div co-bind="'blinds'">
     <div ng-if="hasScreens || hasLifters || blinds" class="screens" ng-touch="showModal('screens'); $root.$emit('$track', 'popup', 'screens')">
         <modal name="screens" title="Raise/Lower Control">

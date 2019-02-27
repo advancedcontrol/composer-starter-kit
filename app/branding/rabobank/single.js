@@ -52,6 +52,7 @@
             }
         }],
         Camera: [{
+          no_discrete_zoom: true,
             joy_right: -0x14,
             joy_left: 0x14,
             joy_center: 0,
@@ -207,6 +208,11 @@
             }
         }],
         System: [{
+            "doors": [{
+              "title": "Doors",
+              "module": "Door_1",
+              "feedback": "relay1"
+            }],
             "blinds": [{
                 "title": "Shades",
                 "module": "DigitalIO_1",
@@ -346,14 +352,18 @@
                 "VC",
                 "Camera",
                 "TV",
-                "Skype"
+                "Skype",
+                "Tele Conference"
 /*
                 "Lectern",
-                
-                
+
+
                 "Wired",
                 "TV"
     */
+            ],
+            "Tele Conference": [
+              "tv_input"
             ],
             "TV": [
                 "tv_input"
