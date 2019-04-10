@@ -222,6 +222,7 @@
                 <span co-module="'Bookings'" co-bind="'skype_meeting_pending' as vcpopup.meeting_pending"></span>
 
                 <span co-bind="'popupinfo' as vcpopup.popupinfo"></span>
+                <span co-bind="'call_status' as inphone.vcstatus"></span>
                 <span ng-if="vcpopup.popupinfo == 'meeting' && vcpopup.meeting_pending" ng-init="showModal('join_skype_meeting')"></span>
                 <span ng-if="!vcpopup.popupinfo" ng-init="closeModal('join_skype_meeting')"></span>
             </span>
@@ -263,7 +264,7 @@
                     <div style="clear: both"></div>
                 </modal>
 
-                <span ng-if="bookings.pending_notice === true" ng-init="showModal('start_meeting')"></span>
+                <span ng-if="bookings.pending_notice === true && !inphone.vcstatus.direction" ng-init="showModal('start_meeting')"></span>
                 <span ng-if="bookings.pending_notice !== true || bookings.last_started === bookings.pending" ng-init="closeModal('start_meeting')"></span>
 
                 <modal name="start_meeting" title="Start Meeting?" no-close="true">

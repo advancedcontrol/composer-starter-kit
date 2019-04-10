@@ -143,7 +143,15 @@ modal {
     }
 }
 
+modal[name=start_meeting] {
+  h1 {
+    background-color: darkorange;
+  }
 
+  menu > button {
+    background-color: green;
+  }
+}
 
 modal[name=cameras] {
     > div > div {

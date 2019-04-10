@@ -71,7 +71,9 @@
             //meeting_ending: true,
             last_meeting_started: 23,
             meeting_pending: 24,
-            meeting_ending: true,
+            meeting_ending: false,
+
+            meeting_pending_notice: true,
 
             $waiter_call: function (state) {
                 this.waiter_call = state;
@@ -349,8 +351,8 @@
                 "Skype"
 /*
                 "Lectern",
-                
-                
+
+
                 "Wired",
                 "TV"
     */
@@ -619,8 +621,8 @@
                 }
             ],
             call_status: {
-                id: 12
-
+                id: 12,
+                direction: false
             },
             $show_camera_pip: function (val) {
                 this.camera_pip = val;
