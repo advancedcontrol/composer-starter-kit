@@ -219,12 +219,30 @@
                     <div style="clear: both"></div>
                 </modal>
 
+                <modal name="warn_vc_in_progress" title="End Video Conference?" no-close="true">
+                    <p>
+                        <b>End Video Conference?</b><br />
+                        There is an active Video Conference call. Please use the Start Presentation button on the VC tab to present.<br /><br />
+                        You can end the call if you only want to present locally to the room.
+                    </p>
+                    <menu>
+                      <button class="cancel" ng-touch="coModuleInstance.$exec('hangup'); closeModal('warn_vc_in_progress')">End Call</button>
+                      <button class="ok" co-module="'System'" co-bind="'connected' as vcpopup.connected_tab" ng-touch="coModuleInstance.$exec('tab', 'VC'); closeModal('warn_vc_in_progress');" style="margin-left: 10px">Return to VC</button>
+                      <button class="ok" ng-touch="closeModal('warn_vc_in_progress')" style="margin-left: 10px">Ignore</button>
+                    </menu>
+                    <div style="clear: both"></div>
+                </modal>
+
+                <span co-module="'System'" co-bind="'tab' as vcpopup.current_tab"></span>
                 <span co-module="'Bookings'" co-bind="'skype_meeting_pending' as vcpopup.meeting_pending"></span>
 
                 <span co-bind="'popupinfo' as vcpopup.popupinfo"></span>
                 <span co-bind="'call_status' as inphone.vcstatus"></span>
                 <span ng-if="vcpopup.popupinfo == 'meeting' && vcpopup.meeting_pending" ng-init="showModal('join_skype_meeting')"></span>
                 <span ng-if="!vcpopup.popupinfo" ng-init="closeModal('join_skype_meeting')"></span>
+
+                <span ng-if="inphone.vcstatus.direction && vcpopup.current_tab != 'VC'" ng-init="showModal('warn_vc_in_progress')"></span>
+                <span ng-if="!inphone.vcstatus.direction || vcpopup.current_tab == 'VC'" ng-init="closeModal('warn_vc_in_progress')"></span>
             </span>
 
             <span ng-controller="Modals" ng-init="bookings = {}" co-module="'Bookings'">

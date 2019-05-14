@@ -36,14 +36,14 @@
             </p>
             <p class="helpoptions" co-bind="'help_options'">
                 <span ng-repeat="issue in help_options.issues">
-                    <button ng-touch="coModuleInstance.$exec('request_help', issue); closeModal('help'); showModal('help-confirm')">{{issue}}</button>
+                    <button ng-touch="coModuleInstance.$exec('request_help', issue); closeModal('help'); showModal('help-confirm')">{{issue}}</button><br />
                 </span>
             </p>
         </modal>
 
         <modal name="help-confirm" title="We're on our way!">
             <p>
-                A technical staff member will be with you shortly.
+                The local Support team has been notified and someone will be with you shortly. Alternatively, you may call us on (02) 7814 3832
             </p>
             <menu>
                 <button class="ok" ng-touch="closeModal('help-confirm')">OK</button>
