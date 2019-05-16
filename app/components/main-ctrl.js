@@ -44,7 +44,9 @@
                     if ($scope.page == num)
                         return;
                     $location.path($location.path()).search({page: num}).replace();
-                    window.location.reload();
+                    window.setTimeout(function() {
+                      window.location.reload();
+                    }, 500);
                 }
 
                 // camera urls are protected behind one time auth requests. make a request
