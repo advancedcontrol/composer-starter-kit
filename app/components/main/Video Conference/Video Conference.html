@@ -1,0 +1,64 @@
+
+<div co-bind="'Video Conference' as source_names">
+    <div ng-if="source_names" ng-init="selectSource(source_names[0])" class="standard-panel">
+        <div id="wirelessmain" class="vcconfmain">
+            <span ng-if="numOutputs > 1 || has_preview">
+                You can project on one or both displays in this room.<br />
+                Touch the screens below to select the display for your presentation.
+            </span>
+            <div style="text-align: center">
+                <img src="components/main/Web Conference/hdmi_usb.png" title="HDMI and USB cables">
+                <ol style="margin-bottom: 0;"><li>To use the webcam with your laptop, connect the <b>HDMI</b> and <b>USB</b> cables</li></ol>
+
+                <div class="camera-control" co-module="'Camera'" co-index="1" co-bind="'joy_right'">
+                    <div co-bind="'joy_left'">
+                        <div co-bind="'joy_center'" ng-controller="CamCtrl" class="webcam-controls">
+                            <table style="padding-top:0!important;">
+                                <tr>
+                                    <td></td>
+                                    <td class="up"
+                                        ng-touch="coModuleInstance.$exec('adjust_tilt', 'up'); $event.preventDefault();"
+                                        ng-release="coModuleInstance.$exec('adjust_tilt', 'stop')"
+                                    ></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="left"
+                                        ng-touch="coModuleInstance.$exec('adjust_pan', 'left'); $event.preventDefault();"
+                                        ng-release="coModuleInstance.$exec('adjust_pan', 'stop')"
+                                    ></td>
+                                    <td class="center"
+                                        ng-touch="coModuleInstance.$exec('home')"
+                                    ></td>
+                                    <td class="right"
+                                        ng-touch="coModuleInstance.$exec('adjust_pan', 'right'); $event.preventDefault();"
+                                        ng-release="coModuleInstance.$exec('adjust_pan', 'stop')"
+                                    ></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="down"
+                                        ng-touch="coModuleInstance.$exec('adjust_tilt', 'down'); $event.preventDefault();"
+                                        ng-release="coModuleInstance.$exec('adjust_tilt', 'stop')"
+                                    ></td>
+                                    <td></td>
+                                </tr>
+                                <tr style="height: 30px;">
+                                    <td
+                                        ng-touch="coModuleInstance.$exec('zoom', 'out'); $event.preventDefault();"
+                                        ng-release="coModuleInstance.$exec('zoom', 'stop')"
+                                    ><i class="fa fa-search-minus" aria-hidden="true"></i></td>
+                                    <td></td>
+                                    <td
+                                        ng-touch="coModuleInstance.$exec('zoom', 'in'); $event.preventDefault();"
+                                        ng-release="coModuleInstance.$exec('zoom', 'stop')"
+                                    ><i class="fa fa-search-plus" aria-hidden="true"></i></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

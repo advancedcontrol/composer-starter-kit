@@ -592,7 +592,7 @@ article.main {
             content: "\f03d";
         }
 
-        &.VC::before, &.vc-active::before {
+        &.VC::before, &.vc-active::before, &.Video::before, &.video-active::before {
             content: "\f0c0";
         }
 

@@ -353,7 +353,7 @@
                 "Camera",
                 "TV",
                 "Skype",
-                "Tele Conference"
+                "Video Conference"
 /*
                 "Lectern",
 
@@ -362,7 +362,7 @@
                 "TV"
     */
             ],
-            "Tele Conference": [
+            "Video Conference": [
               "tv_input"
             ],
             "TV": [
